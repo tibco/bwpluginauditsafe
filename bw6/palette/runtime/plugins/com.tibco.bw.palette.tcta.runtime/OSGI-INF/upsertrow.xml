@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" factory="com.tibco.bw.palette.tcta.UpsertRow" name="bw.tcta.UpsertRow">
+   <implementation class="com.tibco.bw.palette.tcta.runtime.UpsertRowActivity"/>
+   <property name="activityTypeID" type="String" value="bw.tcta.UpsertRow"/>
+   <property name="modelPackageClass" type="String" value="com.tibco.bw.palette.tcta.model.tcta.TctaPackage"/>
+   <property name="runtimeClass" type="String" value="com.tibco.bw.palette.tcta.runtime.UpsertRowActivity"/>
+</scr:component>

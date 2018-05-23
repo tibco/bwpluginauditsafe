@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sharedresource.runtime">
+
+<!-- 
+    ${repo}${autobuild.svn.tags-prefix}/tags${autobuild.svn.tags-suffix}/${autobuild.svn.tagname-base}-x.y.z.nnn/${autobuild.svn.tag-pattern}
+
+   ${repo}                        = bw
+   ${autobuild.svn.tags-prefix}   = <empty>
+   ${autobuild.svn.tags-suffix}   = /bw/{release-unit folder structure as in svn}
+   ${autobuild.svn.tagname-base}  = {two(or three) part release-unit name}
+   ${autobuild.svn.tag-pattern}   = {folder name as in svn, under which release-unit exists}
+   
+   Ex:
+   bw/tags/bw/sharedresource/runtime/sharedresource.runtime-6.0.0.001/runtime
+ -->
+
+    <property name="release-unit" value="sharedresource.runtime" />
+    <property name="feature" value="com.tibco.bw.sharedresource.tcta.runtime.feature" />
+    <property name="autobuild.repository" value="amxext" />
+	
+    <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tcta/sharedresource" />
+
+    <property name="autobuild.svn.tag-pattern" value="runtime" />
+
+    <property name="autobuild.version.eclipse" value="3.7" />
+    <property name="autobuild.version.developer.eclipse" value="3.7" />
+
+    <property name="javacSource" value="1.6" />
+    <property name="javacTarget" value="1.6" />
+
+	<!--<property name="autobuild.p2.packaging" value="true" /> -->
+	
+    <property name="autobuild.obfuscator.style" value="none"/>
+
+    <property name="pdms.virtual.product" value="tcta"/>
+    <property name="pdms.release.unit" value="tcta_res_runtime"/>
+
+    
+    <!--property name="autobuild.workspace.extra-feature" location="extrafeature.xml"/-->
+
+	<property name="site.type" value="release"/>
+    
+    <property name="reldist.download.enable" value="true"/>
+
+    <!-- this only happens for developer builds -->
+    <import file="${autobuild.dir.user}/bw/tools/build-overrides.xml" optional="true" />
+	
+	<updatesites id="autobuild.workspace.update-sites.list">
+       <updatesite url="http://spin.tibco.com:8008/dev/release/"/> 
+       <updatesite url="http://starlight.na.tibco.com:8080/integ-builds/release"/>
+    </updatesites>
+</project>

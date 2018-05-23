@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ Copyright2011 - 2013 TIBCO Software Inc.
+ All rights reserved.
+ This software is confidential and proprietary information of TIBCO Software Inc.
+ Overridable true
+ </copyright>
+ $Id$
+-->
+
+<plugin>
+
+   <extension
+         point="com.tibco.bw.design.Palette">
+      <paletteDrawer
+            expanded="false"
+            paletteID="bw.tcta"
+            name="%tcta.palette.name"
+            priority="500"
+            smallIcon="icons/obj16/tcta_16x16.png"
+            productID="bw.tcta.product"
+            tooltip="%tcta.palette.tooltip">
+      </paletteDrawer>
+   </extension>
+   
+   <extension
+         point="com.tibco.bw.design.ActivityType">
+      <activityType
+            activityTypeID="bw.tcta.UpsertRow"
+            name="%tcta.activity.UpsertRow.name"
+            priority="100"
+            tooltip="%tcta.activity.UpsertRow.tooltip"
+            visible="true">
+         <palette
+               paletteID="bw.tcta">
+         </palette>
+      </activityType>
+
+      
+   </extension>
+   
+     <extension
+         point="com.tibco.bw.design.ActivitySignature">
+      <signature
+            activityTypeID="bw.tcta.UpsertRow"
+            signatureClass="com.tibco.bw.palette.tcta.design.upsertrow.UpsertRowSignature">
+      </signature>
+   </extension>
+   
+   <extension
+         point="com.tibco.bw.design.ActivityTypeConfigEMF">
+      <config
+            activityTypeID="bw.tcta.UpsertRow"
+            eClassName="UpsertRow"
+            ePackageNSURI="http://ns.tibco.com/bw/palette/tcta"
+            instanceName="%tcta.activity.default.UpsertRow.name"
+            modelHelperClass="com.tibco.bw.palette.tcta.design.upsertrow.UpsertRowModelHelper">
+      </config>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.views.properties.tabbed.propertySections">
+      <propertySections
+            contributorId="com.tibco.bw.core.design.process.editor">
+         <propertySection
+               afterSection="com.tibco.bw.design.activity.general"
+               class="com.tibco.bw.palette.tcta.design.upsertrow.UpsertRowGeneralSection"
+               filter="com.tibco.bw.palette.tcta.design.upsertrow.UpsertRowGeneralSection"
+               id="bw.tcta.UpsertRow.general"
+               tab="tibco.bw.activity.property.tab.general">
+         </propertySection>
+         <propertySection
+               class="com.tibco.bw.palette.tcta.design.upsertrow.UpsertRowAdvancedSection"
+               filter="com.tibco.bw.palette.tcta.design.upsertrow.UpsertRowAdvancedSection"
+               id="bw.tcta.UpsertRow.advanced"
+               tab="tibco.bw.activity.property.tab.advanced">
+         </propertySection>
+      </propertySections>
+   </extension>
+   
+   <extension
+       point="com.tibco.bw.design.propertyType">
+          <propertyTypeToITBinding
+           implementationTypeID="implementation.bw"
+           supportedPropertyType="{http://ns.tibco.com/bw/sharedresource/tcta}tctaConnection">
+       </propertyTypeToITBinding>
+   </extension>  
+   <extension
+         point="com.tibco.bw.design.BWContextHelp">
+      <plugin
+            defaultURL="https://docs.tibco.com/pub/activematrix-businessworks-plugin-for-tcta/6.0.0-february-2014/doc/html/index.html"
+            id="bw.tcta.product"
+            name="BusinessWorks TCTA Plugin">
+      </plugin>
+   </extension>
+   
+</plugin>

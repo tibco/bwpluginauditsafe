@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ Copyright2011 - 2013 TIBCO Software Inc.
+ All rights reserved.
+ This software is confidential and proprietary information of TIBCO Software Inc.
+ Overridable true
+ </copyright>
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://ns.tibco.com/bw/palette/tcta"
+            class="com.tibco.bw.palette.tcta.model.tcta.TctaPackage"/>
+   </extension>
+   <extension
+         point="com.tibco.bw.model.ActivityIcon">
+      <activityIcon
+            activityTypeID="bw.tcta.UpsertRow"
+            diagramIcon="icons/obj48/tcta_48x48.png"
+            largeIcon="icons/obj32/tcta_32x32.png"
+            smallIcon="icons/obj16/tcta_16x16.png">
+      </activityIcon>
+    </extension>
+</plugin>

@@ -1,0 +1,7 @@
+<?xml  version="1.0"?>
+<components>
+	<component name="bwplugintcta_samples" type="common">
+		<include file="aliases_bwplugintcta.xml" />
+		<dir src="${bldsrcdir}/samples" dest="" plat="${ALL}"/>
+	</component>
+</components>

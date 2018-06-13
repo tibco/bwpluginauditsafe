@@ -1,0 +1,4 @@
+<includes>
+	<include file="bwplugintcta_runtime.xml" />	
+	<include file="bwplugintcta_samples.xml" />
+</includes>

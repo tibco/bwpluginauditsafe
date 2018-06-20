@@ -30,18 +30,10 @@
     <property name="allow.binary.cycles" value="true" />
 
     <property name="site.type" value="release"/>
-    <condition property="reldist.update.site"
-        value="http://reldist.na.tibco.com:${autobuild.spin.port}/reldist/${site.type}"
-        else="http://reldist.na.tibco.com/reldist/${site.type}">
-        <isset property="autobuild.spin.port" />
-    </condition>
+    <property name="reldist.download.enable" value="true"/>
 
     <updatesites id="autobuild.workspace.update-sites.list">
-        <updatesite url="${reldist.update.site}"/>
-        <updatesite url="http://spin.tibco.com:8008/dev/release/"/> 
+        <updatesite url="http://spin.tibco.com:8008/dev/release/"/>
     </updatesites>
-
-    <!-- this only happens for developer builds -->
-    <import file="${autobuild.dir.user}/bw/tools/build-overrides.xml" optional="true" />
 
 </project>

@@ -22,31 +22,18 @@
 
     <property name="autobuild.svn.tag-pattern" value="runtime" />
 
-    <property name="autobuild.version.eclipse" value="3.7" />
-    <property name="autobuild.version.developer.eclipse" value="3.7" />
+    <property name="autobuild.version.eclipse" value="4.4" />
+    <property name="autobuild.version.developer.eclipse" value="4.4" />
 
-    <property name="javacSource" value="1.6" />
-    <property name="javacTarget" value="1.6" />
-
-	<!--<property name="autobuild.p2.packaging" value="true" /> -->
+    <!--<property name="autobuild.p2.packaging" value="true" /> -->
 	
     <property name="autobuild.obfuscator.style" value="none"/>
 
-    <property name="pdms.virtual.product" value="tcta"/>
-    <property name="pdms.release.unit" value="tcta_res_runtime"/>
-
-    
-    <!--property name="autobuild.workspace.extra-feature" location="extrafeature.xml"/-->
-
-	<property name="site.type" value="release"/>
-    
+    <property name="site.type" value="release"/>
     <property name="reldist.download.enable" value="true"/>
 
-    <!-- this only happens for developer builds -->
-    <import file="${autobuild.dir.user}/bw/tools/build-overrides.xml" optional="true" />
-	
-	<updatesites id="autobuild.workspace.update-sites.list">
-       <updatesite url="http://spin.tibco.com:8008/dev/release/"/> 
-       <updatesite url="http://starlight.na.tibco.com:8080/integ-builds/release"/>
+    <updatesites id="autobuild.workspace.update-sites.list">
+        <updatesite url="http://spin.tibco.com/dev/release/"/>
     </updatesites>
+	
 </project>

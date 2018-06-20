@@ -18,13 +18,14 @@
    </license>
 
    <requires>
-      <import feature="com.tibco.amf.design.core.feature" version="3.900.100" match="compatible"/>
-      <import feature="com.tibco.bw.api.design.feature" version="6.0.100" match="compatible"/>
-      <import feature="com.tibco.amf.sharedresource.model.feature.eclipse" version="3.900.100" match="compatible"/>
-      <import feature="com.tibco.neo.model.core.feature.eclipse" version="1.0.500" match="compatible"/>
-      <import feature="org.eclipse.emf" version="2.7.2" match="compatible"/>
-      <import feature="com.tibco.tpcl.javax.jms.feature.eclipse" version="1.1.100" match="compatible"/> 
-      <import feature="com.tibco.bw.core.design.feature" version="6.0.0" match="compatible"/>
+      <import feature="com.tibco.amf.design.core.feature" version="3.901.0" match="compatible"/>
+      <import feature="com.tibco.bw.api.design.feature" version="6.3.0" match="compatible"/>
+      <import feature="com.tibco.amf.sharedresource.model.feature.eclipse" version="3.901.0" match="compatible"/>
+      <import feature="com.tibco.neo.model.core.feature.eclipse" version="1.901.0" match="compatible"/>
+//      <import feature="org.eclipse.emf" version="2.7.2" match="compatible"/>
+      <import feature="com.tibco.tibcoxml.xml.eclipse" version="5.60.100" match="compatible"/>
+      <import feature="com.tibco.tpcl.javax.jms.feature.eclipse" version="1.10.0" match="compatible"/> 
+      <import feature="com.tibco.bw.core.design.feature" version="6.3.0" match="compatible"/>
    	  <import feature="com.tibco.bw.sharedresource.tcta.model.feature" version="6.0.0" match="compatible"/>
    </requires>
 

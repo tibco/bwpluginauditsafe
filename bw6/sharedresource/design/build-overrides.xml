@@ -20,18 +20,14 @@
     <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tcta/sharedresource" />
     <property name="autobuild.svn.tag-pattern" value="design" />
 
-    <property name="autobuild.version.eclipse" value="3.7" />
-    <property name="autobuild.version.developer.eclipse" value="3.7" />
+    <property name="autobuild.version.eclipse" value="4.4" />
+    <property name="autobuild.version.developer.eclipse" value="4.4" />
 
-    <property name="javacSource" value="1.6" />
-    <property name="javacTarget" value="1.6" />
-
-	<property name="autobuild.p2.packaging" value="true" />
+    <property name="autobuild.p2.packaging" value="true" />
 	
     <property name="autobuild.obfuscator.style" value="package"/>
 
-    <property name="pdms.virtual.product" value="tcta"/>
-    <property name="pdms.release.unit" value="tcta_res_design"/>
+    <property name="allow.binary.cycles" value="true" />
 
     <property name="site.type" value="release"/>
     <condition property="reldist.update.site"

@@ -20,13 +20,11 @@
     <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tcta/sharedresource" />
     <property name="autobuild.svn.tag-pattern" value="model" />
 
-    <property name="autobuild.version.eclipse" value="3.7" />
-    <property name="autobuild.version.developer.eclipse" value="3.7" />
+    <property name="autobuild.version.eclipse" value="4.4" />
+    <property name="autobuild.version.developer.eclipse" value="4.4" />
 
-    <property name="javacSource" value="1.6" />
-    <property name="javacTarget" value="1.6" />
 
-	<property name="autobuild.p2.packaging" value="true" />
+    <property name="autobuild.p2.packaging" value="true" />
 	
     <property name="autobuild.obfuscator.style" value="package"/>
 

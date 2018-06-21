@@ -25,86 +25,82 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 public class TctaFactoryImpl extends EFactoryImpl implements TctaFactory
 {
   /**
-   * Creates the default factory implementation.
-   * <!-- begin-user-doc -->
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public static TctaFactory init()
   {
-    try
-    {
-      TctaFactory theTctaFactory = (TctaFactory)EPackage.Registry.INSTANCE.getEFactory("http://ns.tibco.com/bw/sharedresource/tcta"); 
-      if (theTctaFactory != null)
-      {
-        return theTctaFactory;
-      }
-    }
-    catch (Exception exception)
-    {
-      EcorePlugin.INSTANCE.log(exception);
-    }
-    return new TctaFactoryImpl();
-  }
+		try {
+			TctaFactory theTctaFactory = (TctaFactory)EPackage.Registry.INSTANCE.getEFactory(TctaPackage.eNS_URI);
+			if (theTctaFactory != null) {
+				return theTctaFactory;
+			}
+		}
+		catch (Exception exception) {
+			EcorePlugin.INSTANCE.log(exception);
+		}
+		return new TctaFactoryImpl();
+	}
 
   /**
-   * Creates an instance of the factory.
-   * <!-- begin-user-doc -->
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public TctaFactoryImpl()
   {
-    super();
-  }
+		super();
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   public EObject create(EClass eClass)
   {
-    switch (eClass.getClassifierID())
-    {
-      case TctaPackage.TCTA_CONNECTION: return createtctaConnection();
-      default:
-        throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
-    }
-  }
+		switch (eClass.getClassifierID()) {
+			case TctaPackage.TCTA_CONNECTION: return createtctaConnection();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
-  public tctaConnection createtctaConnection()
+	 * @generated
+	 */
+  public TctaConnection createtctaConnection()
   {
-    tctaConnectionImpl tctaConnection = new tctaConnectionImpl();
-    return tctaConnection;
-  }
+		TctaConnectionImpl tctaConnection = new TctaConnectionImpl();
+		return tctaConnection;
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public TctaPackage getTctaPackage()
   {
-    return (TctaPackage)getEPackage();
-  }
+		return (TctaPackage)getEPackage();
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @deprecated
-   * @generated
-   */
+	 * @deprecated
+	 * @generated
+	 */
   @Deprecated
   public static TctaPackage getPackage()
   {
-    return TctaPackage.eINSTANCE;
-  }
+		return TctaPackage.eINSTANCE;
+	}
 
 } //TctaFactoryImpl

@@ -19,29 +19,29 @@ import org.eclipse.emf.ecore.EFactory;
 public interface TctaFactory extends EFactory
 {
   /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
+	 * The singleton instance of the factory.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   TctaFactory eINSTANCE = com.tibco.bw.sharedresource.tcta.model.tcta.impl.TctaFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>tcta Connection</em>'.
-   * <!-- begin-user-doc -->
+	 * Returns a new object of class '<em>tcta Connection</em>'.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>tcta Connection</em>'.
-   * @generated
-   */
-  tctaConnection createtctaConnection();
+	 * @return a new object of class '<em>tcta Connection</em>'.
+	 * @generated
+	 */
+  TctaConnection createtctaConnection();
 
   /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
+	 * Returns the package supported by this factory.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
+	 * @return the package supported by this factory.
+	 * @generated
+	 */
   TctaPackage getTctaPackage();
 
 } //TctaFactory

@@ -1,43 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="tcta"
-    nsURI="http://ns.tibco.com/bw/sharedresource/tcta" nsPrefix="tcta">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="tcta" nsURI="http://ns.tibco.com/bw/sharedresource/tcta" nsPrefix="tcta">
   <eClassifiers xsi:type="ecore:EClass" name="tctaConnection" eSuperTypes="platform:/plugin/com.tibco.neo.model.core.eclipse/model/SvarModel.ecore#//SubstitutableObject">
     <eAnnotations source="http://tns.tibco.com/bw/annotations/configuration"/>
-    <eAnnotations source="cbsharedresourceconfig">
-      <details key="isgenerate" value="yes"/>
-      <details key="fileExtension" value=""/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="textBox" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eAnnotations source="cbgeneralcontrol">
-        <details key="label" value="TextBox : "/>
-        <details key="type" value="SRAttributeBindingField"/>
-        <details key="control" value="TextBox"/>
-      </eAnnotations>
-      <eAnnotations source="cbfieldmigrateconfig">
-        <details key="id" value=""/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="spinner" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt">
-      <eAnnotations source="cbgeneralcontrol">
-        <details key="label" value="Spinner :"/>
-        <details key="type" value="Spinner"/>
-      </eAnnotations>
-      <eAnnotations source="cbfieldmigrateconfig">
-        <details key="id" value=""/>
-      </eAnnotations>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comboViewer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eAnnotations source="cbgeneralcontrol">
-        <details key="label" value="ComboViewer :"/>
-        <details key="type" value="SRAttributeBindingField"/>
-        <details key="control" value="ComboViewer"/>
-        <details key="value" value="&quot;value1&quot;,&quot;value2&quot;"/>
-      </eAnnotations>
-      <eAnnotations source="cbfieldmigrateconfig">
-        <details key="id" value=""/>
-      </eAnnotations>
-    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="serverlUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

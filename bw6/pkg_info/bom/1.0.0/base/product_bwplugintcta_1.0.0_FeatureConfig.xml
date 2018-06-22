@@ -9,7 +9,7 @@
    		compatDisplayName="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) Transaction Audit"
    		compatType="bwplugintcta"
 		emailalias="mqian@tibco.com"
-   		universalinstallerrelease="3.4.2"
+   		universalinstallerrelease="3.6.4"
    		universalinstallerversion="L"/>
 
         <packagingProperties createp2installer="true" supportedBWVersion="6.4" createcloudartifacts="epaas" bundle_analysis="true"/>

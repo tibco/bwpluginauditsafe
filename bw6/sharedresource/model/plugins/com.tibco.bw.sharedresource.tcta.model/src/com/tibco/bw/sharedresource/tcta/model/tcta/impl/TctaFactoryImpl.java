@@ -6,15 +6,15 @@
  */
 package com.tibco.bw.sharedresource.tcta.model.tcta.impl;
 
-import com.tibco.bw.sharedresource.tcta.model.tcta.*;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import com.tibco.bw.sharedresource.tcta.model.tcta.TctaConnection;
+import com.tibco.bw.sharedresource.tcta.model.tcta.TctaFactory;
+import com.tibco.bw.sharedresource.tcta.model.tcta.TctaPackage;
 
 /**
  * <!-- begin-user-doc -->

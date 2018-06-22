@@ -14,7 +14,7 @@ import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Leslie
- * 
+ *
  */
 public class Messages extends NLS {
 
@@ -28,10 +28,10 @@ public class Messages extends NLS {
 	public static ResourceBundle getBundle() {
 		return ResourceBundle.getBundle(BUNDLE_NAME);
 	}
-    
-	
-	public static String TCTACONNECTION_TEXTBOX;
-	public static String TCTACONNECTION_SPINNER;
-	public static String TCTACONNECTION_COMBOVIEWER;
-	public static String SHAREDRESOURCE_PARAMETER_VALUE_INVALID;	
+
+
+	public static String TCTACONNECTION_SERVERURL;
+	public static String TCTACONNECTION_USERNAME;
+	public static String TCTACONNECTION_PASSWORD;
+	public static String SHAREDRESOURCE_PARAMETER_VALUE_INVALID;
 }

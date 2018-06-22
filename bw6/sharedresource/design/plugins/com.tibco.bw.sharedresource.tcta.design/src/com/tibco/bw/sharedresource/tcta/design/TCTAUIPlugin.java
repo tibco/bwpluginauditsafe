@@ -3,9 +3,9 @@ package com.tibco.bw.sharedresource.tcta.design;
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-import org.eclipse.ui.PlatformUI;
 
 public class TCTAUIPlugin extends EclipseUIPlugin {
 

@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.forms.editor.FormEditor;
 
 import com.tibco.bw.sharedresource.common.design.sr.AbstractBWSharedResourceFormPage;
-import com.tibco.bw.sharedresource.tcta.design.sections.tctaConnectionSection;
+import com.tibco.bw.sharedresource.tcta.design.sections.TctaConnectionSection;
 import com.tibco.bw.sharedresource.tcta.model.helper.TCTAConstants;
 
 /**
@@ -20,7 +20,7 @@ import com.tibco.bw.sharedresource.tcta.model.helper.TCTAConstants;
  *
  * @since 1.0.0
  */
-public class tctaConnectionPage extends AbstractBWSharedResourceFormPage {
+public class TctaConnectionPage extends AbstractBWSharedResourceFormPage {
 
 	/**
 	 * <!-- begin-custom-doc -->
@@ -28,7 +28,7 @@ public class tctaConnectionPage extends AbstractBWSharedResourceFormPage {
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
-	public tctaConnectionPage(FormEditor editor) {
+	public TctaConnectionPage(FormEditor editor) {
 	    // begin-custom-code
 		super(editor, TCTAConstants.TCTACONNECTION_MAIN, TCTAConstants.TCTACONNECTION_LABEL);
 		// end-custom-code
@@ -41,7 +41,7 @@ public class tctaConnectionPage extends AbstractBWSharedResourceFormPage {
 	 * @generated
 	 */
 	protected void addSections(Composite body) {
-	    tctaConnectionSection tctaconnectionSection = new tctaConnectionSection();
+	    TctaConnectionSection tctaconnectionSection = new TctaConnectionSection();
 		addSectionControl(body, tctaconnectionSection);
 	    // begin-custom-code
 	    // end-custom-code

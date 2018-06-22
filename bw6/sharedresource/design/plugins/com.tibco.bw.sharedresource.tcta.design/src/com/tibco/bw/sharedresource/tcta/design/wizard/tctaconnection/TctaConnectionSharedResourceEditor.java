@@ -7,9 +7,9 @@ import org.eclipse.ui.forms.editor.IFormPage;
 import com.tibco.bw.sharedresource.common.design.forms.AbstractSREditor;
 import com.tibco.bw.sharedresource.tcta.design.TCTAUIPlugin;
 
-public class tctaConnectionSharedResourceEditor extends AbstractSREditor {
+public class TctaConnectionSharedResourceEditor extends AbstractSREditor {
 
-	public tctaConnectionSharedResourceEditor() {
+	public TctaConnectionSharedResourceEditor() {
 		super();
 	}
 
@@ -22,7 +22,7 @@ public class tctaConnectionSharedResourceEditor extends AbstractSREditor {
 	@Override
 	protected void addPages() {
 		try {
-			IFormPage mainPage = new tctaConnectionPage(this);
+			IFormPage mainPage = new TctaConnectionPage(this);
 			addPage(mainPage);
 		} catch (PartInitException e) {
 			TCTAUIPlugin.getDefault().getLog().log(new Status(Status.ERROR, TCTAUIPlugin.PLUGIN_ID, e.getMessage(), e));

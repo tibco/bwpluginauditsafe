@@ -6,11 +6,11 @@
  */
 package com.tibco.bw.sharedresource.tcta.model.tcta;
 
-import com.tibco.neo.svar.svarmodel.SvarmodelPackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+
+import com.tibco.neo.svar.svarmodel.SvarmodelPackage;
 
 /**
  * <!-- begin-user-doc -->

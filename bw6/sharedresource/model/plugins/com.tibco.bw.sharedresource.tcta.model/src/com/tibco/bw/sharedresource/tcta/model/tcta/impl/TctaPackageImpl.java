@@ -6,17 +6,15 @@
  */
 package com.tibco.bw.sharedresource.tcta.model.tcta.impl;
 
-import com.tibco.bw.sharedresource.tcta.model.tcta.TctaFactory;
-import com.tibco.bw.sharedresource.tcta.model.tcta.TctaPackage;
-import com.tibco.bw.sharedresource.tcta.model.tcta.TctaConnection;
-
-import com.tibco.neo.svar.svarmodel.SvarmodelPackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import com.tibco.bw.sharedresource.tcta.model.tcta.TctaConnection;
+import com.tibco.bw.sharedresource.tcta.model.tcta.TctaFactory;
+import com.tibco.bw.sharedresource.tcta.model.tcta.TctaPackage;
+import com.tibco.neo.svar.svarmodel.SvarmodelPackage;
 
 /**
  * <!-- begin-user-doc -->

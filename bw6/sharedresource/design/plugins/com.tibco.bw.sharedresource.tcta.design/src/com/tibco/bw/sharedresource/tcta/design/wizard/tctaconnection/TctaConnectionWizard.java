@@ -6,11 +6,11 @@ import org.eclipse.emf.ecore.EObject;
 
 import com.tibco.bw.sharedresource.common.design.wizard.SharedResourceWizard;
 import com.tibco.bw.sharedresource.tcta.design.TCTAUIPlugin;
-import com.tibco.bw.sharedresource.tcta.model.tcta.tctaConnection;
-import com.tibco.bw.sharedresource.tcta.model.tcta.TctaFactory;
 import com.tibco.bw.sharedresource.tcta.model.helper.TCTAConstants;
+import com.tibco.bw.sharedresource.tcta.model.tcta.TctaConnection;
+import com.tibco.bw.sharedresource.tcta.model.tcta.TctaFactory;
 
-public class tctaConnectionWizard extends SharedResourceWizard {
+public class TctaConnectionWizard extends SharedResourceWizard {
 
 	@Override
 	protected String getDefaultFilename() {
@@ -24,7 +24,7 @@ public class tctaConnectionWizard extends SharedResourceWizard {
 
 	@Override
 	protected EObject createConfigurationModelInstance() {
-		tctaConnection tctaconnection = TctaFactory.eINSTANCE.createtctaConnection();
+		TctaConnection tctaconnection = TctaFactory.eINSTANCE.createtctaConnection();
 		//set default value for the object if need
 		return tctaconnection;
 	}

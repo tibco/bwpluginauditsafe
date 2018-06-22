@@ -8,10 +8,6 @@
  */
 package com.tibco.bw.sharedresource.tcta.design.provider;
 
-import com.tibco.bw.sharedresource.tcta.design.TCTAUIPlugin;
-import com.tibco.bw.sharedresource.tcta.model.tcta.tctaConnection;
-import com.tibco.bw.sharedresource.tcta.model.tcta.TctaPackage;
-
 import java.util.Collection;
 import java.util.List;
 
@@ -27,12 +23,16 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+
+import com.tibco.bw.sharedresource.tcta.design.TCTAUIPlugin;
+import com.tibco.bw.sharedresource.tcta.model.tcta.TctaConnection;
+import com.tibco.bw.sharedresource.tcta.model.tcta.TctaPackage;
 import com.tibco.neo.svar.svarmodel.provider.SubstitutableObjectItemProvider;
 
 /**
- * This is the item provider adapter for a {@link com.tibco.bw.sharedresource.TCTA.model.tcta.tctaConnection} object.
+ * This is the item provider adapter for a {@link com.tibco.bw.sharedresource.TctaConnection.model.tcta.tctaConnection} object.
  */
-public class tctaConnectionItemProvider
+public class TctaConnectionItemProvider
     extends SubstitutableObjectItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -42,17 +42,17 @@ public class tctaConnectionItemProvider
 		IItemPropertySource {
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
-	public tctaConnectionItemProvider(AdapterFactory adapterFactory) {
+	public TctaConnectionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
@@ -60,28 +60,28 @@ public class tctaConnectionItemProvider
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
-			
-			addTextBoxPropertyDescriptor(object);
-			addSpinnerPropertyDescriptor(object);
-			addComboViewerPropertyDescriptor(object);
+
+			addServerUrlPropertyDescriptor(object);
+			addUsernamePropertyDescriptor(object);
+			addPasswordPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
-	
+
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
-	protected void addTextBoxPropertyDescriptor(Object object) {
+	protected void addServerUrlPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_tctaConnection_textBox_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_tctaConnection_textBox_feature", "_UI_tctaConnection_type"),
-				 TctaPackage.Literals.TCTA_CONNECTION__TEXT_BOX,
+				 TctaPackage.Literals.TCTA_CONNECTION__SERVERL_URL,
 				 true,
 				 false,
 				 false,
@@ -89,21 +89,21 @@ public class tctaConnectionItemProvider
 				 null,
 				 null));
 	}
-	
+
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
-	protected void addSpinnerPropertyDescriptor(Object object) {
+	protected void addUsernamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_tctaConnection_spinner_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_tctaConnection_spinner_feature", "_UI_tctaConnection_type"),
-				 TctaPackage.Literals.TCTA_CONNECTION__SPINNER,
+				 TctaPackage.Literals.TCTA_CONNECTION__USERNAME,
 				 true,
 				 false,
 				 false,
@@ -111,21 +111,21 @@ public class tctaConnectionItemProvider
 				 null,
 				 null));
 	}
-	
+
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
-	protected void addComboViewerPropertyDescriptor(Object object) {
+	protected void addPasswordPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
 				 getString("_UI_tctaConnection_comboViewer_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_tctaConnection_comboViewer_feature", "_UI_tctaConnection_type"),
-				 TctaPackage.Literals.TCTA_CONNECTION__COMBO_VIEWER,
+				 TctaPackage.Literals.TCTA_CONNECTION__PASSWORD,
 				 true,
 				 false,
 				 false,
@@ -133,10 +133,10 @@ public class tctaConnectionItemProvider
 				 null,
 				 null));
 	}
-	
+
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
@@ -147,7 +147,7 @@ public class tctaConnectionItemProvider
 
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
@@ -161,18 +161,18 @@ public class tctaConnectionItemProvider
 
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-		switch (notification.getFeatureID(tctaConnection.class)) {
-			
-			case TctaPackage.TCTA_CONNECTION__TEXT_BOX:
-			case TctaPackage.TCTA_CONNECTION__SPINNER:
-			case TctaPackage.TCTA_CONNECTION__COMBO_VIEWER:
+		switch (notification.getFeatureID(TctaConnection.class)) {
+
+			case TctaPackage.TCTA_CONNECTION__SERVERL_URL:
+			case TctaPackage.TCTA_CONNECTION__USERNAME:
+			case TctaPackage.TCTA_CONNECTION__PASSWORD:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -181,7 +181,7 @@ public class tctaConnectionItemProvider
 
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
@@ -192,7 +192,7 @@ public class tctaConnectionItemProvider
 
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */

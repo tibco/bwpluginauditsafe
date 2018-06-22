@@ -24,7 +24,7 @@
          point="com.tibco.amf.design.sr.core.sharedResourceCreator">
       <sharedResourceCreator
             sharedResourceType="tctaconnectionResource"
-            wizard="com.tibco.bw.sharedresource.tcta.design.wizard.tctaconnection.tctaConnectionWizard">
+            wizard="com.tibco.bw.sharedresource.tcta.design.wizard.tctaconnection.TctaConnectionWizard">
       </sharedResourceCreator>
    </extension>
    <extension
@@ -75,7 +75,7 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="com.tibco.bw.sharedresource.tcta.design.wizard.tctaconnection.tctaConnectionSharedResourceEditor"
+            class="com.tibco.bw.sharedresource.tcta.design.wizard.tctaconnection.TctaConnectionSharedResourceEditor"
             contributorClass="com.tibco.bw.sharedresource.common.design.forms.SREditorContributor"
             default="false"
             extensions="tctaconnectionResource"

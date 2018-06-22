@@ -6,14 +6,14 @@
  */
 package com.tibco.bw.sharedresource.tcta.model.tcta.util;
 
-import com.tibco.bw.sharedresource.tcta.model.tcta.*;
-
-import com.tibco.neo.svar.svarmodel.SubstitutableObject;
-
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
+import com.tibco.bw.sharedresource.tcta.model.tcta.TctaConnection;
+import com.tibco.bw.sharedresource.tcta.model.tcta.TctaPackage;
+import com.tibco.neo.svar.svarmodel.SubstitutableObject;
 
 /**
  * <!-- begin-user-doc -->

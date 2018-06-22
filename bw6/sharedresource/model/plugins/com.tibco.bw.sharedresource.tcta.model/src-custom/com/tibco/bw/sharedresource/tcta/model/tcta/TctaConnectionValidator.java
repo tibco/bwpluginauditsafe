@@ -1,12 +1,7 @@
 package com.tibco.bw.sharedresource.tcta.model.tcta;
 
-import com.tibco.bw.sharedresource.tcta.model.tcta.TctaPackage;
-import com.tibco.bw.sharedresource.tcta.model.tcta.TctaConnection;
 import com.tibco.bw.validation.sharedresource.SharedResourceConfigurationValidator;
 import com.tibco.bw.validation.sharedresource.SharedResourceValidationContext;
-import com.tibco.bw.sharedresource.tcta.model.helper.Messages;
-import com.tibco.bw.sharedresource.tcta.model.helper.MessageCode;
-import org.eclipse.osgi.util.NLS;
 
 public class TctaConnectionValidator implements SharedResourceConfigurationValidator {
 	/**

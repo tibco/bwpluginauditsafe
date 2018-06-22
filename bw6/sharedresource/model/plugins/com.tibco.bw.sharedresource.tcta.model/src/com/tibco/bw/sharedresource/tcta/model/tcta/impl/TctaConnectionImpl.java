@@ -6,16 +6,13 @@
  */
 package com.tibco.bw.sharedresource.tcta.model.tcta.impl;
 
-import com.tibco.bw.sharedresource.tcta.model.tcta.TctaPackage;
-import com.tibco.bw.sharedresource.tcta.model.tcta.TctaConnection;
-
-import com.tibco.neo.svar.svarmodel.impl.SubstitutableObjectImpl;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import com.tibco.bw.sharedresource.tcta.model.tcta.TctaConnection;
+import com.tibco.bw.sharedresource.tcta.model.tcta.TctaPackage;
+import com.tibco.neo.svar.svarmodel.impl.SubstitutableObjectImpl;
 
 /**
  * <!-- begin-user-doc -->

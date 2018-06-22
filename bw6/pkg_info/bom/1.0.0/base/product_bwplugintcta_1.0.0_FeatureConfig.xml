@@ -48,7 +48,7 @@
 			<assembly uid="product_tibco_bwplugintcta_samples" overrideTargetDirectory="$L{bwplugintcta.extension.palettes.home}" version="6.0.0"/>
         </assemblyList>
 
-        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime" type="feature" uid="Runtime_BW" version="1.0.0"/>
+        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime" type="feature" uid="Runtime_BW" version="6.4.2"/>
 	<dependency description="TIBCO BusinessWorks Cloud Runtime" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="1.0.0"/>
 
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
@@ -99,7 +99,7 @@
 
 		</assemblyList>
 
-        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design" type="feature" uid="Design_BW" version="1.0.0"/>
+        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design" type="feature" uid="Design_BW" version="6.4.2"/>
 	<dependency description="TIBCO BusinessWorks Cloud Design" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="1.0.0"/>
 		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TCTA - Runtime" type="feature" uid="runtime_bwplugintcta" version="1.0.0"/>
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">

@@ -39,9 +39,9 @@ public class TctaConnectionSection extends AbstractBWSharedResourceSection {
 	 * @generated
 	 */
 	protected void initBindings() {
-        getBindingManager().bind(serverUrl, getInput(), TctaPackage.Literals.TCTA_CONNECTION__SERVERL_URL);
-        getBindingManager().bind(username, getInput(), TctaPackage.Literals.TCTA_CONNECTION__USERNAME);
-        getBindingManager().bind(password, getInput(), TctaPackage.Literals.TCTA_CONNECTION__PASSWORD);
+        getBindingManager().bind(serverUrlAttribute, getInput(), TctaPackage.Literals.TCTA_CONNECTION__SERVERL_URL);
+        getBindingManager().bind(usernameAttribute, getInput(), TctaPackage.Literals.TCTA_CONNECTION__USERNAME);
+        getBindingManager().bind(passwordAttribute, getInput(), TctaPackage.Literals.TCTA_CONNECTION__PASSWORD);
 	    // begin-custom-code
         // end-custom-code
 	}
@@ -59,7 +59,7 @@ public class TctaConnectionSection extends AbstractBWSharedResourceSection {
 
    	    username = BWFieldFactory.getInstance().createTextBox(sectionComposite);
    	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TCTACONNECTION_USERNAME, false);
-   	    usernameAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, serverUrl, PropertyTypeQnameConstants.STRING_PRIMITIVE);
+   	    usernameAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, username, PropertyTypeQnameConstants.STRING_PRIMITIVE);
 
    	    password = BWFieldFactory.getInstance().createPasswordField(sectionComposite);
 	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TCTACONNECTION_PASSWORD, false);

@@ -65,11 +65,11 @@
          point="org.eclipse.ui.newWizards">
       <wizard
             category="com.tibco.new"
-            class="com.tibco.bw.sharedresource.tcta.design.wizard.tctaconnection.tctaConnectionWizard"
+            class="com.tibco.bw.sharedresource.tcta.design.wizard.tctaconnection.TctaConnectionWizard"
             descriptionImage="icons/obj48/tcta_48x48.png"
             icon="icons/obj16/tctaResource_16x16.png"
             id="com.tibco.bw.sharedresource.tcta.design.tctaconnectionwizard"
-            name="%tctaconnection.sharedresource.name">       
+            name="%tctaconnection.sharedresource.name">
       </wizard>
    </extension>
    <extension
@@ -128,5 +128,5 @@
                org.eclipse.emf.edit.provider.IItemPropertySource">
       </factory>
    </extension>
-    
+
 </plugin>

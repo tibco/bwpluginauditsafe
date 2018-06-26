@@ -34,4 +34,12 @@ public class Messages extends NLS {
 	public static String TCTACONNECTION_USERNAME;
 	public static String TCTACONNECTION_PASSWORD;
 	public static String SHAREDRESOURCE_PARAMETER_VALUE_INVALID;
+
+	public static String TEST_CONNECTION_LABEL_TEXT;
+	public static String TEST_DISCONNECTION_LABEL_TEXT;
+	public static String CONNECT_BUTTON_TEXT;
+	public static String DISCONNECT_BUTTON_TEXT;
+
+	public static String CONNECTED_TO_TCTA;
+
 }

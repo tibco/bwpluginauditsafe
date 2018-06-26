@@ -9,7 +9,10 @@
 package com.tibco.bw.sharedresource.tcta.design.sections;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
@@ -37,6 +40,8 @@ public class TctaConnectionSection extends AbstractBWSharedResourceSection {
 	private SRAttributeBindingField usernameAttribute;
 	private SRAttributeBindingField passwordAttribute;
 
+	private TctaConnection tctaConnection;
+
     /**
 	 * <!-- begin-custom-doc -->
 	 *
@@ -44,11 +49,20 @@ public class TctaConnectionSection extends AbstractBWSharedResourceSection {
 	 * @generated
 	 */
 	protected void initBindings() {
-        getBindingManager().bind(serverUrlAttribute, getInput(), TctaPackage.Literals.TCTA_CONNECTION__SERVER_URL);
-        getBindingManager().bind(usernameAttribute, getInput(), TctaPackage.Literals.TCTA_CONNECTION__USERNAME);
-        getBindingManager().bind(passwordAttribute, getInput(), TctaPackage.Literals.TCTA_CONNECTION__PASSWORD);
+		tctaConnection = (TctaConnection)getInput();
+        getBindingManager().bind(serverUrlAttribute, tctaConnection, TctaPackage.Literals.TCTA_CONNECTION__SERVER_URL);
+        getBindingManager().bind(usernameAttribute, tctaConnection, TctaPackage.Literals.TCTA_CONNECTION__USERNAME);
+        getBindingManager().bind(passwordAttribute, tctaConnection, TctaPackage.Literals.TCTA_CONNECTION__PASSWORD);
 	    // begin-custom-code
         // end-custom-code
+	}
+
+	public TctaConnection getTctaConnection() {
+		return tctaConnection;
+	}
+
+	public void setTctaConnection(TctaConnection tctaConnection) {
+		this.tctaConnection = tctaConnection;
 	}
 
 	/**
@@ -70,8 +84,15 @@ public class TctaConnectionSection extends AbstractBWSharedResourceSection {
 	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TCTACONNECTION_PASSWORD, false);
 	    passwordAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, password, PropertyTypeQnameConstants.STRING_PRIMITIVE);
 
-        // begin-custom-code
-        // end-custom-code
+	    Composite buttonComposite = new Composite(sectionComposite, 0);
+		buttonComposite.setLocation(0, 0);
+		GridLayout gridLayout = new GridLayout(4, false);
+		buttonComposite.setLayout(gridLayout);
+	 	Label testLabel = paramFormToolkit.createLabel(sectionComposite,"Click test connection");
+	 	testLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+		TestConnectionButtonHelper testConnectionButton = new TestConnectionButtonHelper(this);
+		testConnectionButton.settestLabel(testLabel);
+		testConnectionButton.createTestConnectionButton(buttonComposite);
 	}
 
 	/**

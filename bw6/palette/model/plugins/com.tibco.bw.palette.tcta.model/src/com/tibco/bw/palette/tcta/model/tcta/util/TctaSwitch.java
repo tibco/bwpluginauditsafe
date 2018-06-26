@@ -99,8 +99,8 @@ public class TctaSwitch<T>
 				return result;
 			}
 			case TctaPackage.TCTA_GET_TOKEN: {
-				TCTAGetToken tctaGetToken = (TCTAGetToken)theEObject;
-				T result = caseTCTAGetToken(tctaGetToken);
+				TctaGetToken tctaGetToken = (TctaGetToken)theEObject;
+				T result = caseTctaGetToken(tctaGetToken);
 				if (result == null) result = caseTctaAbstractObject(tctaGetToken);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -132,17 +132,17 @@ public class TctaSwitch<T>
 	}
 
 		/**
-	 * Returns the result of interpreting the object as an instance of '<em>TCTA Get Token</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Get Token</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>TCTA Get Token</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Get Token</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseTCTAGetToken(TCTAGetToken object) {
+	public T caseTctaGetToken(TctaGetToken object) {
 		return null;
 	}
 

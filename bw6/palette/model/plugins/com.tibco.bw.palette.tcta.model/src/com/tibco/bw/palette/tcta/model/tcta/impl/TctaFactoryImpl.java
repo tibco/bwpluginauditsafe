@@ -64,7 +64,7 @@ public class TctaFactoryImpl extends EFactoryImpl implements TctaFactory
   public EObject create(EClass eClass)
   {
 		switch (eClass.getClassifierID()) {
-			case TctaPackage.TCTA_GET_TOKEN: return createTCTAGetToken();
+			case TctaPackage.TCTA_GET_TOKEN: return createTctaGetToken();
 			case TctaPackage.UPSERT_ROW: return createUpsertRow();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -76,8 +76,8 @@ public class TctaFactoryImpl extends EFactoryImpl implements TctaFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TCTAGetToken createTCTAGetToken() {
-		TCTAGetTokenImpl tctaGetToken = new TCTAGetTokenImpl();
+	public TctaGetToken createTctaGetToken() {
+		TctaGetTokenImpl tctaGetToken = new TctaGetTokenImpl();
 		return tctaGetToken;
 	}
 

@@ -14,5 +14,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model superTypes="com.tibco.bw.palette.tcta.model.tcta.TctaAbstractObject"
  * @generated
  */
-public interface TCTAGetToken extends EObject, TctaAbstractObject {
+public interface TctaGetToken extends EObject, TctaAbstractObject {
 } // TCTAGetToken

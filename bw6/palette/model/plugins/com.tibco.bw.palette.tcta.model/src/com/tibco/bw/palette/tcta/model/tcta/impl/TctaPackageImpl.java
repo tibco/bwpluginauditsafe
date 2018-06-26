@@ -6,9 +6,10 @@
  */
 package com.tibco.bw.palette.tcta.model.tcta.impl;
 
-import com.tibco.bw.palette.tcta.model.tcta.TCTAGetToken;
+import com.tibco.bw.palette.tcta.model.tcta.TctaGetToken;
 import com.tibco.bw.palette.tcta.model.tcta.TctaAbstractObject;
 import com.tibco.bw.palette.tcta.model.tcta.TctaFactory;
+import com.tibco.bw.palette.tcta.model.tcta.TctaGetToken;
 import com.tibco.bw.palette.tcta.model.tcta.TctaPackage;
 import com.tibco.bw.palette.tcta.model.tcta.UpsertRow;
 
@@ -72,7 +73,7 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 
   /**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 *
+	 * 
 	 * <p>This method is used to initialize {@link TctaPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -100,7 +101,7 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 		// Mark meta-data to indicate it can't be changed
 		theTctaPackage.freeze();
 
-
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(TctaPackage.eNS_URI, theTctaPackage);
 		return theTctaPackage;
@@ -129,7 +130,7 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getTCTAGetToken() {
+	public EClass getTctaGetToken() {
 		return tctaGetTokenEClass;
 	}
 
@@ -216,7 +217,7 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 		initEClass(tctaAbstractObjectEClass, Object.class, "TctaAbstractObject", IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTctaAbstractObject_TctaConnection(), ecorePackage.getEString(), "tctaConnection", null, 0, 1, TctaAbstractObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(tctaGetTokenEClass, TCTAGetToken.class, "TCTAGetToken", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(tctaGetTokenEClass, TctaGetToken.class, "TctaGetToken", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(upsertRowEClass, UpsertRow.class, "UpsertRow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -236,10 +237,10 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 	 */
   protected void createCbgeneralcontrolAnnotations()
   {
-		String source = "cbgeneralcontrol";
+		String source = "cbgeneralcontrol";	
 		addAnnotation
-		  (getTctaAbstractObject_TctaConnection(),
-		   source,
+		  (getTctaAbstractObject_TctaConnection(), 
+		   source, 
 		   new String[] {
 			 "label", "TCTA Connection:",
 			 "type", "text"

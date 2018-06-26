@@ -79,8 +79,8 @@ public class TctaAdapterFactory extends AdapterFactoryImpl
 				return createTctaAbstractObjectAdapter();
 			}
 			@Override
-			public Adapter caseTCTAGetToken(TCTAGetToken object) {
-				return createTCTAGetTokenAdapter();
+			public Adapter caseTctaGetToken(TctaGetToken object) {
+				return createTctaGetTokenAdapter();
 			}
 			@Override
 			public Adapter caseUpsertRow(UpsertRow object) {
@@ -122,16 +122,16 @@ public class TctaAdapterFactory extends AdapterFactoryImpl
 	}
 
 		/**
-	 * Creates a new adapter for an object of class '{@link com.tibco.bw.palette.tcta.model.tcta.TCTAGetToken <em>TCTA Get Token</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.tibco.bw.palette.tcta.model.tcta.TctaGetToken <em>Get Token</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.tibco.bw.palette.tcta.model.tcta.TCTAGetToken
+	 * @see com.tibco.bw.palette.tcta.model.tcta.TctaGetToken
 	 * @generated
 	 */
-	public Adapter createTCTAGetTokenAdapter() {
+	public Adapter createTctaGetTokenAdapter() {
 		return null;
 	}
 

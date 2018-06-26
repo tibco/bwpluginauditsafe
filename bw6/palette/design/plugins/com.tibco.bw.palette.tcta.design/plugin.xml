@@ -25,7 +25,7 @@
             tooltip="%tcta.palette.tooltip">
       </paletteDrawer>
    </extension>
-   
+
    <extension
          point="com.tibco.bw.design.ActivityType">
       <activityType
@@ -38,18 +38,32 @@
                paletteID="bw.tcta">
          </palette>
       </activityType>
+      <activityType
+            activityTypeID="bw.tcta.TctaGetToken"
+            name="%tcta.activity.TctaGetToken.name"
+            priority="100"
+            tooltip="%tcta.activity.TctaGetToken.tooltip"
+            visible="true">
+         <palette
+               paletteID="bw.tcta">
+         </palette>
+      </activityType>
 
-      
+
    </extension>
-   
-     <extension
+
+   <extension
          point="com.tibco.bw.design.ActivitySignature">
       <signature
             activityTypeID="bw.tcta.UpsertRow"
             signatureClass="com.tibco.bw.palette.tcta.design.upsertrow.UpsertRowSignature">
       </signature>
+      <signature
+            activityTypeID="bw.tcta.TctaGetToken"
+            signatureClass="com.tibco.bw.palette.tcta.design.gettoken.TctaGetTokenSignature">
+      </signature>
    </extension>
-   
+
    <extension
          point="com.tibco.bw.design.ActivityTypeConfigEMF">
       <config
@@ -58,6 +72,13 @@
             ePackageNSURI="http://ns.tibco.com/bw/palette/tcta"
             instanceName="%tcta.activity.default.UpsertRow.name"
             modelHelperClass="com.tibco.bw.palette.tcta.design.upsertrow.UpsertRowModelHelper">
+      </config>
+      <config
+            activityTypeID="bw.tcta.TctaGetToken"
+            eClassName="TctaGetToken"
+            ePackageNSURI="http://ns.tibco.com/bw/palette/tcta"
+            instanceName="%tcta.activity.default.TctaGetToken.name"
+            modelHelperClass="com.tibco.bw.palette.tcta.design.gettoken.TctaGetTokenModelHelper">
       </config>
    </extension>
 
@@ -73,21 +94,15 @@
                tab="tibco.bw.activity.property.tab.general">
          </propertySection>
          <propertySection
-               class="com.tibco.bw.palette.tcta.design.upsertrow.UpsertRowAdvancedSection"
-               filter="com.tibco.bw.palette.tcta.design.upsertrow.UpsertRowAdvancedSection"
-               id="bw.tcta.UpsertRow.advanced"
-               tab="tibco.bw.activity.property.tab.advanced">
+               afterSection="com.tibco.bw.design.activity.general"
+               class="com.tibco.bw.palette.tcta.design.gettoken.TctaGetTokenGeneralSection"
+               filter="com.tibco.bw.palette.tcta.design.gettoken.TctaGetTokenGeneralSection"
+               id="bw.tcta.TctaGetToken.general"
+               tab="tibco.bw.activity.property.tab.general">
          </propertySection>
       </propertySections>
    </extension>
-   
-   <extension
-       point="com.tibco.bw.design.propertyType">
-          <propertyTypeToITBinding
-           implementationTypeID="implementation.bw"
-           supportedPropertyType="{http://ns.tibco.com/bw/sharedresource/tcta}tctaConnection">
-       </propertyTypeToITBinding>
-   </extension>  
+
    <extension
          point="com.tibco.bw.design.BWContextHelp">
       <plugin
@@ -96,5 +111,5 @@
             name="BusinessWorks TCTA Plugin">
       </plugin>
    </extension>
-   
+
 </plugin>

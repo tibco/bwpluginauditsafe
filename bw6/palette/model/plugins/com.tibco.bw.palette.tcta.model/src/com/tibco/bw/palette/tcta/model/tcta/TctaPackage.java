@@ -88,11 +88,11 @@ public interface TctaPackage extends EPackage
 	int TCTA_ABSTRACT_OBJECT_FEATURE_COUNT = 1;
 
 		/**
-	 * The meta object id for the '{@link com.tibco.bw.palette.tcta.model.tcta.impl.TCTAGetTokenImpl <em>TCTA Get Token</em>}' class.
+	 * The meta object id for the '{@link com.tibco.bw.palette.tcta.model.tcta.impl.TctaGetTokenImpl <em>Get Token</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TCTAGetTokenImpl
-	 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaPackageImpl#getTCTAGetToken()
+	 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaGetTokenImpl
+	 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaPackageImpl#getTctaGetToken()
 	 * @generated
 	 */
 	int TCTA_GET_TOKEN = 1;
@@ -107,7 +107,7 @@ public interface TctaPackage extends EPackage
 	int TCTA_GET_TOKEN__TCTA_CONNECTION = TCTA_ABSTRACT_OBJECT__TCTA_CONNECTION;
 
 		/**
-	 * The number of structural features of the '<em>TCTA Get Token</em>' class.
+	 * The number of structural features of the '<em>Get Token</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -167,14 +167,14 @@ public interface TctaPackage extends EPackage
 	EAttribute getTctaAbstractObject_TctaConnection();
 
 		/**
-	 * Returns the meta object for class '{@link com.tibco.bw.palette.tcta.model.tcta.TCTAGetToken <em>TCTA Get Token</em>}'.
+	 * Returns the meta object for class '{@link com.tibco.bw.palette.tcta.model.tcta.TctaGetToken <em>Get Token</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>TCTA Get Token</em>'.
-	 * @see com.tibco.bw.palette.tcta.model.tcta.TCTAGetToken
+	 * @return the meta object for class '<em>Get Token</em>'.
+	 * @see com.tibco.bw.palette.tcta.model.tcta.TctaGetToken
 	 * @generated
 	 */
-	EClass getTCTAGetToken();
+	EClass getTctaGetToken();
 
 		/**
 	 * Returns the meta object for class '{@link com.tibco.bw.palette.tcta.model.tcta.UpsertRow <em>Upsert Row</em>}'.
@@ -228,14 +228,14 @@ public interface TctaPackage extends EPackage
 		EAttribute TCTA_ABSTRACT_OBJECT__TCTA_CONNECTION = eINSTANCE.getTctaAbstractObject_TctaConnection();
 
 			/**
-		 * The meta object literal for the '{@link com.tibco.bw.palette.tcta.model.tcta.impl.TCTAGetTokenImpl <em>TCTA Get Token</em>}' class.
+		 * The meta object literal for the '{@link com.tibco.bw.palette.tcta.model.tcta.impl.TctaGetTokenImpl <em>Get Token</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TCTAGetTokenImpl
-		 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaPackageImpl#getTCTAGetToken()
+		 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaGetTokenImpl
+		 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaPackageImpl#getTctaGetToken()
 		 * @generated
 		 */
-		EClass TCTA_GET_TOKEN = eINSTANCE.getTCTAGetToken();
+		EClass TCTA_GET_TOKEN = eINSTANCE.getTctaGetToken();
 
 			/**
 		 * The meta object literal for the '{@link com.tibco.bw.palette.tcta.model.tcta.impl.UpsertRowImpl <em>Upsert Row</em>}' class.

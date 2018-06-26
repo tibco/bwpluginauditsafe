@@ -10,6 +10,6 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TCTAGetToken" eSuperTypes="#//TctaAbstractObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TctaGetToken" eSuperTypes="#//TctaAbstractObject"/>
   <eClassifiers xsi:type="ecore:EClass" name="UpsertRow" eSuperTypes="#//TctaAbstractObject"/>
 </ecore:EPackage>

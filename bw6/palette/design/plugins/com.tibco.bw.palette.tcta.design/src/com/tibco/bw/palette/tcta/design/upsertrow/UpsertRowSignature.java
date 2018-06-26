@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.eclipse.xsd.XSDElementDeclaration;
 import com.tibco.bw.design.api.BWActivitySignature;
-import com.tibco.bw.palette.tcta.design.TCTAExceptionsSchema;
+import com.tibco.bw.palette.tcta.design.TctaExceptionsSchema;
 import com.tibco.bw.model.activityconfig.Configuration;
 import org.eclipse.xsd.XSDCompositor;
 import org.eclipse.xsd.XSDModelGroup;
@@ -73,7 +73,7 @@ public class UpsertRowSignature extends BWActivitySignature {
     @Override
     public List<XSDElementDeclaration> getFaultTypes(final Configuration config) {
     	List<XSDElementDeclaration> faultType = null;
-        faultType =  TCTAExceptionsSchema.getTCTAPluginFaultTypes();
+        faultType =  TctaExceptionsSchema.getTCTAPluginFaultTypes();
         // begin-custom-code
         // end-custom-code
 		return faultType;

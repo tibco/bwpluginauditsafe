@@ -2,7 +2,7 @@
  */
 package com.tibco.bw.palette.tcta.model.tcta.impl;
 
-import com.tibco.bw.palette.tcta.model.tcta.TCTAGetToken;
+import com.tibco.bw.palette.tcta.model.tcta.TctaGetToken;
 import com.tibco.bw.palette.tcta.model.tcta.TctaPackage;
 
 import org.eclipse.emf.ecore.EClass;
@@ -16,13 +16,13 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class TCTAGetTokenImpl extends TctaAbstractObjectImpl implements TCTAGetToken {
+public class TctaGetTokenImpl extends TctaAbstractObjectImpl implements TctaGetToken {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TCTAGetTokenImpl() {
+	protected TctaGetTokenImpl() {
 		super();
 	}
 

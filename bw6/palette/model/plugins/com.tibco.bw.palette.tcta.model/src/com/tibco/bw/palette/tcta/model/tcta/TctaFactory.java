@@ -27,13 +27,13 @@ public interface TctaFactory extends EFactory
   TctaFactory eINSTANCE = com.tibco.bw.palette.tcta.model.tcta.impl.TctaFactoryImpl.init();
 
   /**
-	 * Returns a new object of class '<em>TCTA Get Token</em>'.
+	 * Returns a new object of class '<em>Get Token</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>TCTA Get Token</em>'.
+	 * @return a new object of class '<em>Get Token</em>'.
 	 * @generated
 	 */
-	TCTAGetToken createTCTAGetToken();
+	TctaGetToken createTctaGetToken();
 
 		/**
 	 * Returns a new object of class '<em>Upsert Row</em>'.

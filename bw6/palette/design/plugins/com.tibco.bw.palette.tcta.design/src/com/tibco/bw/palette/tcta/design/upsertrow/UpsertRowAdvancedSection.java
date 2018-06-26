@@ -43,8 +43,6 @@ public class UpsertRowAdvancedSection extends AbstractBWTransactionalSection {
 	*/
     @Override
     protected void initBindings() {
-        getBindingManager().bindCustomViewer(comboViewer, getInput(), TctaPackage.Literals.UPSERT_ROW__COMBO_VIEWER, BWFieldFactory.getInstance().getPropertyTargetToModelUpdateValueStrategy(), null);
-        getBindingManager().bind(comboViewerABF, getInput(), TctaPackage.Literals.UPSERT_ROW__COMBO_VIEWER);
    	    // begin-custom-code
         // end-custom-code
     }

@@ -29,114 +29,152 @@ import org.eclipse.emf.ecore.EObject;
 public class TctaSwitch<T>
 {
   /**
-   * The cached model package
-   * <!-- begin-user-doc -->
+	 * The cached model package
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected static TctaPackage modelPackage;
 
   /**
-   * Creates an instance of the switch.
-   * <!-- begin-user-doc -->
+	 * Creates an instance of the switch.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   public TctaSwitch()
   {
-    if (modelPackage == null)
-    {
-      modelPackage = TctaPackage.eINSTANCE;
-    }
-  }
+		if (modelPackage == null) {
+			modelPackage = TctaPackage.eINSTANCE;
+		}
+	}
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-   * <!-- begin-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the first non-null result returned by a <code>caseXXX</code> call.
-   * @generated
-   */
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @generated
+	 */
   public T doSwitch(EObject theEObject)
   {
-    return doSwitch(theEObject.eClass(), theEObject);
-  }
+		return doSwitch(theEObject.eClass(), theEObject);
+	}
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-   * <!-- begin-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the first non-null result returned by a <code>caseXXX</code> call.
-   * @generated
-   */
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @generated
+	 */
   protected T doSwitch(EClass theEClass, EObject theEObject)
   {
-    if (theEClass.eContainer() == modelPackage)
-    {
-      return doSwitch(theEClass.getClassifierID(), theEObject);
-    }
-    else
-    {
-      List<EClass> eSuperTypes = theEClass.getESuperTypes();
-      return
-        eSuperTypes.isEmpty() ?
-          defaultCase(theEObject) :
-          doSwitch(eSuperTypes.get(0), theEObject);
-    }
-  }
+		if (theEClass.eContainer() == modelPackage) {
+			return doSwitch(theEClass.getClassifierID(), theEObject);
+		}
+		else {
+			List<EClass> eSuperTypes = theEClass.getESuperTypes();
+			return
+				eSuperTypes.isEmpty() ?
+					defaultCase(theEObject) :
+					doSwitch(eSuperTypes.get(0), theEObject);
+		}
+	}
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-   * <!-- begin-user-doc -->
+	 * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the first non-null result returned by a <code>caseXXX</code> call.
-   * @generated
-   */
+	 * @return the first non-null result returned by a <code>caseXXX</code> call.
+	 * @generated
+	 */
   protected T doSwitch(int classifierID, EObject theEObject)
   {
-    switch (classifierID)
-    {
-      case TctaPackage.UPSERT_ROW:
-      {
-        UpsertRow upsertRow = (UpsertRow)theEObject;
-        T result = caseUpsertRow(upsertRow);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      default: return defaultCase(theEObject);
-    }
-  }
+		switch (classifierID) {
+			case TctaPackage.TCTA_ABSTRACT_OBJECT: {
+				TctaAbstractObject tctaAbstractObject = (TctaAbstractObject)theEObject;
+				T result = caseTctaAbstractObject(tctaAbstractObject);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TctaPackage.TCTA_GET_TOKEN: {
+				TCTAGetToken tctaGetToken = (TCTAGetToken)theEObject;
+				T result = caseTCTAGetToken(tctaGetToken);
+				if (result == null) result = caseTctaAbstractObject(tctaGetToken);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case TctaPackage.UPSERT_ROW: {
+				UpsertRow upsertRow = (UpsertRow)theEObject;
+				T result = caseUpsertRow(upsertRow);
+				if (result == null) result = caseTctaAbstractObject(upsertRow);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			default: return defaultCase(theEObject);
+		}
+	}
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Upsert Row</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Upsert Row</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseUpsertRow(UpsertRow object)
-  {
-    return null;
-  }
+	 * Returns the result of interpreting the object as an instance of '<em>Abstract Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Abstract Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTctaAbstractObject(TctaAbstractObject object) {
+		return null;
+	}
 
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-   * <!-- begin-user-doc -->
+		/**
+	 * Returns the result of interpreting the object as an instance of '<em>TCTA Get Token</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>TCTA Get Token</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTCTAGetToken(TCTAGetToken object) {
+		return null;
+	}
+
+		/**
+	 * Returns the result of interpreting the object as an instance of '<em>Upsert Row</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Upsert Row</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUpsertRow(UpsertRow object) {
+		return null;
+	}
+
+		/**
+	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch, but this is the last case anyway.
    * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject)
-   * @generated
-   */
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
+	 * @generated
+	 */
   public T defaultCase(EObject object)
   {
-    return null;
-  }
+		return null;
+	}
 
 } //TctaSwitch

@@ -10,14 +10,13 @@ public class UpsertRowModelHelper extends BWAbstractModelHelper {
 
 	/**
 	* <!-- begin-custom-doc -->
-	* 
+	*
 	* <!-- end-custom-doc -->
 	* @generated
 	*/
     @Override
     public EObject createInstance() {
         UpsertRow activity = TctaFactory.eINSTANCE.createUpsertRow();
-		activity.setSpinner(1000);
         // begin-custom-code
         // end-custom-code
         return activity;

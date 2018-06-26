@@ -28,178 +28,175 @@ import org.eclipse.emf.ecore.EPackage;
 public interface TctaPackage extends EPackage
 {
   /**
-   * The package name.
-   * <!-- begin-user-doc -->
+	 * The package name.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   String eNAME = "tcta";
 
   /**
-   * The package namespace URI.
-   * <!-- begin-user-doc -->
+	 * The package namespace URI.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   String eNS_URI = "http://ns.tibco.com/bw/palette/tcta";
 
   /**
-   * The package namespace name.
-   * <!-- begin-user-doc -->
+	 * The package namespace name.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   String eNS_PREFIX = "tcta";
 
   /**
-   * The singleton instance of the package.
-   * <!-- begin-user-doc -->
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   TctaPackage eINSTANCE = com.tibco.bw.palette.tcta.model.tcta.impl.TctaPackageImpl.init();
 
   /**
-   * The meta object id for the '{@link com.tibco.bw.palette.tcta.model.tcta.impl.UpsertRowImpl <em>Upsert Row</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see com.tibco.bw.palette.tcta.model.tcta.impl.UpsertRowImpl
-   * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaPackageImpl#getUpsertRow()
-   * @generated
-   */
-  int UPSERT_ROW = 0;
+	 * The meta object id for the '{@link com.tibco.bw.palette.tcta.model.tcta.impl.TctaAbstractObjectImpl <em>Abstract Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaAbstractObjectImpl
+	 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaPackageImpl#getTctaAbstractObject()
+	 * @generated
+	 */
+	int TCTA_ABSTRACT_OBJECT = 0;
 
-  /**
-   * The feature id for the '<em><b>Property Field</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int UPSERT_ROW__PROPERTY_FIELD = 0;
+		/**
+	 * The feature id for the '<em><b>Tcta Connection</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TCTA_ABSTRACT_OBJECT__TCTA_CONNECTION = 0;
 
-  /**
-   * The feature id for the '<em><b>Check Box</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int UPSERT_ROW__CHECK_BOX = 1;
+		/**
+	 * The number of structural features of the '<em>Abstract Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TCTA_ABSTRACT_OBJECT_FEATURE_COUNT = 1;
 
-  /**
-   * The feature id for the '<em><b>Text Box</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int UPSERT_ROW__TEXT_BOX = 2;
+		/**
+	 * The meta object id for the '{@link com.tibco.bw.palette.tcta.model.tcta.impl.TCTAGetTokenImpl <em>TCTA Get Token</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TCTAGetTokenImpl
+	 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaPackageImpl#getTCTAGetToken()
+	 * @generated
+	 */
+	int TCTA_GET_TOKEN = 1;
 
-  /**
-   * The feature id for the '<em><b>Spinner</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int UPSERT_ROW__SPINNER = 3;
+		/**
+	 * The feature id for the '<em><b>Tcta Connection</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TCTA_GET_TOKEN__TCTA_CONNECTION = TCTA_ABSTRACT_OBJECT__TCTA_CONNECTION;
 
-  /**
-   * The feature id for the '<em><b>Combo Viewer</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int UPSERT_ROW__COMBO_VIEWER = 4;
-
-  /**
-   * The number of structural features of the '<em>Upsert Row</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int UPSERT_ROW_FEATURE_COUNT = 5;
+		/**
+	 * The number of structural features of the '<em>TCTA Get Token</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TCTA_GET_TOKEN_FEATURE_COUNT = TCTA_ABSTRACT_OBJECT_FEATURE_COUNT + 0;
 
 
-  /**
-   * Returns the meta object for class '{@link com.tibco.bw.palette.tcta.model.tcta.UpsertRow <em>Upsert Row</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Upsert Row</em>'.
-   * @see com.tibco.bw.palette.tcta.model.tcta.UpsertRow
-   * @generated
-   */
-  EClass getUpsertRow();
+		/**
+	 * The meta object id for the '{@link com.tibco.bw.palette.tcta.model.tcta.impl.UpsertRowImpl <em>Upsert Row</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.tibco.bw.palette.tcta.model.tcta.impl.UpsertRowImpl
+	 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaPackageImpl#getUpsertRow()
+	 * @generated
+	 */
+	int UPSERT_ROW = 2;
 
-  /**
-   * Returns the meta object for the attribute '{@link com.tibco.bw.palette.tcta.model.tcta.UpsertRow#getPropertyField <em>Property Field</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Property Field</em>'.
-   * @see com.tibco.bw.palette.tcta.model.tcta.UpsertRow#getPropertyField()
-   * @see #getUpsertRow()
-   * @generated
-   */
-  EAttribute getUpsertRow_PropertyField();
+		/**
+	 * The feature id for the '<em><b>Tcta Connection</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPSERT_ROW__TCTA_CONNECTION = TCTA_ABSTRACT_OBJECT__TCTA_CONNECTION;
 
-  /**
-   * Returns the meta object for the attribute '{@link com.tibco.bw.palette.tcta.model.tcta.UpsertRow#getCheckBox <em>Check Box</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Check Box</em>'.
-   * @see com.tibco.bw.palette.tcta.model.tcta.UpsertRow#getCheckBox()
-   * @see #getUpsertRow()
-   * @generated
-   */
-  EAttribute getUpsertRow_CheckBox();
+		/**
+	 * The number of structural features of the '<em>Upsert Row</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UPSERT_ROW_FEATURE_COUNT = TCTA_ABSTRACT_OBJECT_FEATURE_COUNT + 0;
 
-  /**
-   * Returns the meta object for the attribute '{@link com.tibco.bw.palette.tcta.model.tcta.UpsertRow#getTextBox <em>Text Box</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Text Box</em>'.
-   * @see com.tibco.bw.palette.tcta.model.tcta.UpsertRow#getTextBox()
-   * @see #getUpsertRow()
-   * @generated
-   */
-  EAttribute getUpsertRow_TextBox();
+		/**
+	 * Returns the meta object for class '{@link TctaAbstractObject <em>Abstract Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Abstract Object</em>'.
+	 * @see TctaAbstractObject
+	 * @model instanceClass="TctaAbstractObject"
+	 * @generated
+	 */
+	EClass getTctaAbstractObject();
 
-  /**
-   * Returns the meta object for the attribute '{@link com.tibco.bw.palette.tcta.model.tcta.UpsertRow#getSpinner <em>Spinner</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Spinner</em>'.
-   * @see com.tibco.bw.palette.tcta.model.tcta.UpsertRow#getSpinner()
-   * @see #getUpsertRow()
-   * @generated
-   */
-  EAttribute getUpsertRow_Spinner();
+		/**
+	 * Returns the meta object for the attribute '{@link TctaAbstractObject#getTctaConnection <em>Tcta Connection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Tcta Connection</em>'.
+	 * @see TctaAbstractObject#getTctaConnection()
+	 * @see #getTctaAbstractObject()
+	 * @generated
+	 */
+	EAttribute getTctaAbstractObject_TctaConnection();
 
-  /**
-   * Returns the meta object for the attribute '{@link com.tibco.bw.palette.tcta.model.tcta.UpsertRow#getComboViewer <em>Combo Viewer</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Combo Viewer</em>'.
-   * @see com.tibco.bw.palette.tcta.model.tcta.UpsertRow#getComboViewer()
-   * @see #getUpsertRow()
-   * @generated
-   */
-  EAttribute getUpsertRow_ComboViewer();
+		/**
+	 * Returns the meta object for class '{@link com.tibco.bw.palette.tcta.model.tcta.TCTAGetToken <em>TCTA Get Token</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>TCTA Get Token</em>'.
+	 * @see com.tibco.bw.palette.tcta.model.tcta.TCTAGetToken
+	 * @generated
+	 */
+	EClass getTCTAGetToken();
 
-  /**
-   * Returns the factory that creates the instances of the model.
-   * <!-- begin-user-doc -->
+		/**
+	 * Returns the meta object for class '{@link com.tibco.bw.palette.tcta.model.tcta.UpsertRow <em>Upsert Row</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Upsert Row</em>'.
+	 * @see com.tibco.bw.palette.tcta.model.tcta.UpsertRow
+	 * @generated
+	 */
+	EClass getUpsertRow();
+
+		/**
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the factory that creates the instances of the model.
-   * @generated
-   */
+	 * @return the factory that creates the instances of the model.
+	 * @generated
+	 */
   TctaFactory getTctaFactory();
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * Defines literals for the meta objects that represent
    * <ul>
    *   <li>each class,</li>
@@ -208,59 +205,47 @@ public interface TctaPackage extends EPackage
    *   <li>and each data type</li>
    * </ul>
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   interface Literals
   {
     /**
-     * The meta object literal for the '{@link com.tibco.bw.palette.tcta.model.tcta.impl.UpsertRowImpl <em>Upsert Row</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see com.tibco.bw.palette.tcta.model.tcta.impl.UpsertRowImpl
-     * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaPackageImpl#getUpsertRow()
-     * @generated
-     */
-    EClass UPSERT_ROW = eINSTANCE.getUpsertRow();
+		 * The meta object literal for the '{@link com.tibco.bw.palette.tcta.model.tcta.impl.TctaAbstractObjectImpl <em>Abstract Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaAbstractObjectImpl
+		 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaPackageImpl#getTctaAbstractObject()
+		 * @generated
+		 */
+		EClass TCTA_ABSTRACT_OBJECT = eINSTANCE.getTctaAbstractObject();
 
-    /**
-     * The meta object literal for the '<em><b>Property Field</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute UPSERT_ROW__PROPERTY_FIELD = eINSTANCE.getUpsertRow_PropertyField();
+			/**
+		 * The meta object literal for the '<em><b>Tcta Connection</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TCTA_ABSTRACT_OBJECT__TCTA_CONNECTION = eINSTANCE.getTctaAbstractObject_TctaConnection();
 
-    /**
-     * The meta object literal for the '<em><b>Check Box</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute UPSERT_ROW__CHECK_BOX = eINSTANCE.getUpsertRow_CheckBox();
+			/**
+		 * The meta object literal for the '{@link com.tibco.bw.palette.tcta.model.tcta.impl.TCTAGetTokenImpl <em>TCTA Get Token</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TCTAGetTokenImpl
+		 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaPackageImpl#getTCTAGetToken()
+		 * @generated
+		 */
+		EClass TCTA_GET_TOKEN = eINSTANCE.getTCTAGetToken();
 
-    /**
-     * The meta object literal for the '<em><b>Text Box</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute UPSERT_ROW__TEXT_BOX = eINSTANCE.getUpsertRow_TextBox();
-
-    /**
-     * The meta object literal for the '<em><b>Spinner</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute UPSERT_ROW__SPINNER = eINSTANCE.getUpsertRow_Spinner();
-
-    /**
-     * The meta object literal for the '<em><b>Combo Viewer</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute UPSERT_ROW__COMBO_VIEWER = eINSTANCE.getUpsertRow_ComboViewer();
+			/**
+		 * The meta object literal for the '{@link com.tibco.bw.palette.tcta.model.tcta.impl.UpsertRowImpl <em>Upsert Row</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.tibco.bw.palette.tcta.model.tcta.impl.UpsertRowImpl
+		 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaPackageImpl#getUpsertRow()
+		 * @generated
+		 */
+		EClass UPSERT_ROW = eINSTANCE.getUpsertRow();
 
   }
 

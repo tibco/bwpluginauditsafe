@@ -26,5 +26,11 @@
             largeIcon="icons/obj32/tcta_32x32.png"
             smallIcon="icons/obj16/tcta_16x16.png">
       </activityIcon>
+      <activityIcon
+            activityTypeID="bw.tcta.TctaGetToken"
+            diagramIcon="icons/obj48/tcta_gettoken_48x48.png"
+            largeIcon="icons/obj32/tcta_gettoken_32x32.png"
+            smallIcon="icons/obj16/tcta_gettoken_16x16.png">
+      </activityIcon>
     </extension>
 </plugin>

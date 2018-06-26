@@ -83,10 +83,6 @@ public class UpsertRowGeneralSection extends AbstractBWTransactionalSection {
 	*/
     @Override
     protected void initBindings() {
-        getBindingManager().bind(propertyField, TctaPackage.Literals.UPSERT_ROW__PROPERTY_FIELD, getInput(), BWFieldFactory.getInstance().getPropertyTargetToModelUpdateValueStrategy(), null);
-        getBindingManager().bind(checkBoxABF, getInput(), TctaPackage.Literals.UPSERT_ROW__CHECK_BOX);
-        getBindingManager().bind(textBoxABF, getInput(), TctaPackage.Literals.UPSERT_ROW__TEXT_BOX);
-        getBindingManager().bind(spinner, getInput(), TctaPackage.Literals.UPSERT_ROW__SPINNER);
    	    // begin-custom-code
         // end-custom-code
     }

@@ -81,13 +81,13 @@ public interface TctaPackage extends EPackage
   int TCTA_CONNECTION__SUBSTITUTION_BINDINGS = SvarmodelPackage.SUBSTITUTABLE_OBJECT__SUBSTITUTION_BINDINGS;
 
   /**
-	 * The feature id for the '<em><b>Serverl Url</b></em>' attribute.
+	 * The feature id for the '<em><b>Server Url</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TCTA_CONNECTION__SERVERL_URL = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 0;
+	int TCTA_CONNECTION__SERVER_URL = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 0;
 
 		/**
 	 * The feature id for the '<em><b>Username</b></em>' attribute.
@@ -128,15 +128,15 @@ public interface TctaPackage extends EPackage
   EClass gettctaConnection();
 
   /**
-	 * Returns the meta object for the attribute '{@link com.tibco.bw.sharedresource.tcta.model.tcta.TctaConnection#getServerlUrl <em>Serverl Url</em>}'.
+	 * Returns the meta object for the attribute '{@link com.tibco.bw.sharedresource.tcta.model.tcta.TctaConnection#getServerUrl <em>Server Url</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Serverl Url</em>'.
-	 * @see com.tibco.bw.sharedresource.tcta.model.tcta.TctaConnection#getServerlUrl()
+	 * @return the meta object for the attribute '<em>Server Url</em>'.
+	 * @see com.tibco.bw.sharedresource.tcta.model.tcta.TctaConnection#getServerUrl()
 	 * @see #gettctaConnection()
 	 * @generated
 	 */
-	EAttribute gettctaConnection_ServerlUrl();
+	EAttribute gettctaConnection_ServerUrl();
 
 		/**
 	 * Returns the meta object for the attribute '{@link com.tibco.bw.sharedresource.tcta.model.tcta.TctaConnection#getUsername <em>Username</em>}'.
@@ -194,12 +194,12 @@ public interface TctaPackage extends EPackage
     EClass TCTA_CONNECTION = eINSTANCE.gettctaConnection();
 
     /**
-		 * The meta object literal for the '<em><b>Serverl Url</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Server Url</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TCTA_CONNECTION__SERVERL_URL = eINSTANCE.gettctaConnection_ServerlUrl();
+		EAttribute TCTA_CONNECTION__SERVER_URL = eINSTANCE.gettctaConnection_ServerUrl();
 
 				/**
 		 * The meta object literal for the '<em><b>Username</b></em>' attribute feature.

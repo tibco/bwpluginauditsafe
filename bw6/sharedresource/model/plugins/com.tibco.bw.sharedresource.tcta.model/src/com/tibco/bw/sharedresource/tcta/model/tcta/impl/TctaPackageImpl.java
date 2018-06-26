@@ -112,7 +112,7 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute gettctaConnection_ServerlUrl() {
+	public EAttribute gettctaConnection_ServerUrl() {
 		return (EAttribute)tctaConnectionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -165,7 +165,7 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 
 		// Create classes and their features
 		tctaConnectionEClass = createEClass(TCTA_CONNECTION);
-		createEAttribute(tctaConnectionEClass, TCTA_CONNECTION__SERVERL_URL);
+		createEAttribute(tctaConnectionEClass, TCTA_CONNECTION__SERVER_URL);
 		createEAttribute(tctaConnectionEClass, TCTA_CONNECTION__USERNAME);
 		createEAttribute(tctaConnectionEClass, TCTA_CONNECTION__PASSWORD);
 	}
@@ -206,7 +206,7 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(tctaConnectionEClass, TctaConnection.class, "tctaConnection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(gettctaConnection_ServerlUrl(), ecorePackage.getEString(), "serverlUrl", null, 0, 1, TctaConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(gettctaConnection_ServerUrl(), ecorePackage.getEString(), "serverUrl", null, 0, 1, TctaConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(gettctaConnection_Username(), ecorePackage.getEString(), "username", null, 0, 1, TctaConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(gettctaConnection_Password(), ecorePackage.getEString(), "password", null, 0, 1, TctaConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

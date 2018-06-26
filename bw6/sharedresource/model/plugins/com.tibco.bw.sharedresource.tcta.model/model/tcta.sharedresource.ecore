@@ -3,7 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="tcta" nsURI="http://ns.tibco.com/bw/sharedresource/tcta" nsPrefix="tcta">
   <eClassifiers xsi:type="ecore:EClass" name="tctaConnection" eSuperTypes="platform:/plugin/com.tibco.neo.model.core.eclipse/model/SvarModel.ecore#//SubstitutableObject">
     <eAnnotations source="http://tns.tibco.com/bw/annotations/configuration"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="serverlUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="serverUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

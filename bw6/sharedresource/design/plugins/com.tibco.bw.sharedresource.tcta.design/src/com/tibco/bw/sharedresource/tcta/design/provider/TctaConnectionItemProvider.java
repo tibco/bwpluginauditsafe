@@ -81,7 +81,7 @@ public class TctaConnectionItemProvider
 				 getResourceLocator(),
 				 getString("_UI_tctaConnection_textBox_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_tctaConnection_textBox_feature", "_UI_tctaConnection_type"),
-				 TctaPackage.Literals.TCTA_CONNECTION__SERVERL_URL,
+				 TctaPackage.Literals.TCTA_CONNECTION__SERVER_URL,
 				 true,
 				 false,
 				 false,
@@ -170,7 +170,7 @@ public class TctaConnectionItemProvider
 		updateChildren(notification);
 		switch (notification.getFeatureID(TctaConnection.class)) {
 
-			case TctaPackage.TCTA_CONNECTION__SERVERL_URL:
+			case TctaPackage.TCTA_CONNECTION__SERVER_URL:
 			case TctaPackage.TCTA_CONNECTION__USERNAME:
 			case TctaPackage.TCTA_CONNECTION__PASSWORD:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

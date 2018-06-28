@@ -6,13 +6,15 @@ Bundle-Version: 6.0.0.qualifier
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Import-Package: com.tibco.bw.runtime;version="[6.0.0,7.0.0)",
- com.tibco.bw.sharedresource.tcta.model.tcta;version="[6.0.0,7.0.0)",
- com.tibco.bw.sharedresource.tcta.model.helper;version="[6.0.0,7.0.0)",
+Import-Package: com.fasterxml.jackson.core;version="2.6.1",
+ com.fasterxml.jackson.databind;version="2.6.1",
+ com.tibco.bw.runtime;version="[6.0.0,7.0.0)",
  com.tibco.bw.sharedresource.runtime;version="[6.0.0,7.0.0)",
  com.tibco.bw.sharedresource.runtime.builder;version="[6.0.0,7.0.0)",
  com.tibco.bw.sharedresource.runtime.configuration;version="[6.0.0,7.0.0)",
  com.tibco.bw.sharedresource.runtime.exception;version="[6.0.0,7.0.0)",
+ com.tibco.bw.sharedresource.tcta.model.helper;version="[6.0.0,7.0.0)",
+ com.tibco.bw.sharedresource.tcta.model.tcta;version="[6.0.0,7.0.0)",
  com.tibco.neo.localized;version="[2.5.0,3.0.0)",
  org.genxdm.xs;version="[1.0.0,2.0.0)",
  org.genxdm.xs.components;version="[1.0.0,2.0.0)",

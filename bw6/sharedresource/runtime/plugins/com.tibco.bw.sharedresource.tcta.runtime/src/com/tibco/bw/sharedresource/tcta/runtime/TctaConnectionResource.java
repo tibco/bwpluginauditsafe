@@ -59,7 +59,10 @@ public class TctaConnectionResource {
 			String messagebody = getHttpRequestBody(httpConn);
 			int statusCode = httpConn.getResponseCode();
 			if(statusCode == 200){
-				token = messagebody;
+				JsonReader node = new JsonReader(messagebody);
+				if(node.getNode("access_token")!=null){
+					token = node.getNode("access_token").textValue();
+				}
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

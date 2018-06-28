@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="bw.sharedresource.tcta.tctaconnection" configuration-policy="optional">
-   <implementation class="com.tibco.bw.sharedresource.tcta.runtime.tctaConnectionResourceFactory"/>
+   <implementation class="com.tibco.bw.sharedresource.tcta.runtime.TctaConnectionResourceFactory"/>
    <service>
       <provide interface="com.tibco.bw.sharedresource.runtime.configuration.SharedResourceFactory"/>
    </service>

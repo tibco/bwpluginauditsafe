@@ -14,29 +14,28 @@ package com.tibco.bw.palette.tcta.runtime;
 
 import org.genxdm.ProcessingContext;
 import org.genxdm.mutable.MutableModel;
-import com.tibco.bw.palette.tcta.runtime.RuntimeMessageBundle;
 import org.genxdm.mutable.NodeFactory;
-import com.tibco.bw.palette.tcta.model.tcta.UpsertRow;
+
 import com.tibco.bw.runtime.ActivityFault;
 import com.tibco.bw.runtime.ProcessContext;
-import com.tibco.neo.localized.LocalizedMessage;
 import com.tibco.bw.runtime.annotation.Property;
 import com.tibco.bw.sharedresource.tcta.runtime.TctaConnectionResource;
+import com.tibco.neo.localized.LocalizedMessage;
 
-public class UpsertRowActivity<N> extends BaseSyncActivity<N> implements TCTAContants{
+public class TctaGetTokenActivity<N> extends BaseSyncActivity<N> implements TCTAContants{
 
-	@Property
-	public UpsertRow activityConfig;
-	
+//	@Property
+//	public TctaGetToken activityConfig;
+
     /**
      * <!-- begin-custom-doc -->
      * Shared Resource injected by framework.
      * <!-- end-custom-doc -->
      * @generated
     */
-    @Property(name = "propertyField")
+    @Property(name = "tctaConnection")
     public TctaConnectionResource sharedResource;
-    
+
 	@Override
 	protected N customizeExecute(N input, ProcessContext<N> processContext) throws ActivityFault {
         // add your own business code here
@@ -50,28 +49,26 @@ public class UpsertRowActivity<N> extends BaseSyncActivity<N> implements TCTACon
         }
         return result;
 	}
-	
+
 	@Override
     protected <N, A> N evalOutput(N inputData,ProcessingContext<N> processContext) throws Exception {
-        // add your own business code here
+
         N outputType = getOutputRootElement(processContext);
 
         MutableModel<N> mutableModel = processContext.getMutableContext().getModel();
         NodeFactory<N> noteFactory = mutableModel.getFactory(outputType);
 
-        N output = noteFactory.createElement("", ACTIVITY_OUTPUT_ELEMENT_NAME, "");
+        N output = noteFactory.createElement("", "token", "");
         mutableModel.appendChild(outputType, output);
-		
-        String requireInputData = getInputParameterStringValueByName(inputData, processContext, ACTIVITY_INPUT_REQUIRED_ELEMENT_NAME);
-        String optionalInputData = getInputParameterStringValueByName(inputData, processContext, ACTIVITY_INPUT_OPTIONAL_ELEMENT_NAME);
-        String outputData = ACTIVITY_INPUT_REQUIRED_ELEMENT_NAME + "= " + requireInputData + "; " + ACTIVITY_INPUT_OPTIONAL_ELEMENT_NAME + " = " + optionalInputData;
-        
-        N contentValueNode = noteFactory.createText(outputData);
-        mutableModel.appendChild(output, contentValueNode);
+
+        // add your own business code here
+		String token = sharedResource.getToken();
+
+		mutableModel.appendChild(output,noteFactory.createText(token));
 
         return outputType;
     }
-    
+
 	@Override
 	protected String getActivityOutputType() {
 		return ACTIVITY_OUTPUT_ROOT_ELEMENT_NAME;

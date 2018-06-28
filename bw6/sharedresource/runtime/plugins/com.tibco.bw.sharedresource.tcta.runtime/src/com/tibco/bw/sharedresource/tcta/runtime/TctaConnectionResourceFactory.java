@@ -23,28 +23,28 @@ import com.tibco.bw.sharedresource.runtime.exception.ResourceException;
 import com.tibco.bw.sharedresource.tcta.model.helper.TCTAConstants;
 import com.tibco.neo.localized.LocalizedMessage;
 
-public class tctaConnectionResourceFactory extends BaseSharedResourceFactory
+public class TctaConnectionResourceFactory extends BaseSharedResourceFactory
 {
     @Override
     protected String getCustomizeName() {
         return "ManagedServiceFactory for TCTA ResourceManager";
     }
-    
+
     private ResourceReferenceDescriptor buildResourceReference(SharedResourceContext context) throws ResourceException {
-        tctaConnectionResource resource = new tctaConnectionResource();
+        TctaConnectionResource resource = new TctaConnectionResource();
 		Map<String, ?> properties = context.getSharedResourceConfiguration();
-		setProperties(properties, resource);
+		setProperties(context, properties, resource);
 		@SuppressWarnings("unchecked")
         ResourceReferenceDescriptor reference = ResourceReferenceDescriptorBuilder.builder()
             .withName((String) properties.get(".name"))
             .withType(TCTAConstants.TCTACONNECTION_QNAME.toString())
             .withResource(resource)
             .withConfiguration((Map<String, Object>) properties)
-            .withBusinessInterface(tctaConnectionResource.class.getName())
+            .withBusinessInterface(TctaConnectionResource.class.getName())
             .build();
         return reference;
     }
-    
+
 	@Override
 	protected ResourceDependencyHandler customizeCreate(SharedResourceContext context)
 			throws SharedResourceLifeCycleFault {
@@ -57,13 +57,13 @@ public class tctaConnectionResourceFactory extends BaseSharedResourceFactory
             throw new TCTAPluginSRException(message, e);
         }
 	}
-	
+
 	@Override
 	protected void customizeDelete(SharedResourceContext context)
 			throws SharedResourceLifeCycleFault {
 		if(context.getSharedResourceLogger().isDebugEnabled()) {
 		    context.getSharedResourceLogger().debug(RuntimeMessageBundle.DEBUG_DELETE_SHAREDRESOURCE, new String[] {TCTAConstants.TCTACONNECTION_QNAME.toString()});
-	    }	
+	    }
 	}
 
 	@Override
@@ -81,7 +81,7 @@ public class tctaConnectionResourceFactory extends BaseSharedResourceFactory
 		    context.getSharedResourceLogger().debug(RuntimeMessageBundle.DEBUG_START_SHAREDRESOURCE, new String[] {TCTAConstants.TCTACONNECTION_QNAME.toString()});
 	    }
 	}
-	
+
 	@Override
 	protected ResourceDependencyHandler customizeUpdate(SharedResourceContext context)
 			throws SharedResourceLifeCycleFault {
@@ -90,17 +90,17 @@ public class tctaConnectionResourceFactory extends BaseSharedResourceFactory
 		}
 		return create(context);
 	}
-	
+
 	/**
      * <!-- begin-custom-doc -->
-     * 
+     *
      * <!-- end-custom-doc -->
      * @generated
      */
-	private void setProperties(final Map<String, ?> toSet, final tctaConnectionResource resource) {
-	    resource.setSpinner((Integer) toSet.get("spinner"));
-	    resource.setComboViewer((String) toSet.get("comboViewer"));
-	    resource.setTextBox((String) toSet.get("textBox"));
+	private void setProperties(SharedResourceContext context ,final Map<String, ?> toSet, final TctaConnectionResource resource) {
+	    resource.setServerUrl((String) toSet.get("serverUrl"));
+	    resource.setUsername((String)toSet.get("username"));
+	    resource.setPassword(context.getDecryptedPasswordValue((String) toSet.get("password")));
 	    // begin-custom-code
         // end-custom-code
 	}

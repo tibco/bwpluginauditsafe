@@ -47,6 +47,8 @@
       <import feature="com.tibco.trinity.models" version="3.5.200" match="compatible"/>
 
       <import feature="com.tibco.bw.sharedresource.tcta.model.feature" version="6.0.0" match="compatible"/>
+      <import feature="com.tibco.bw.tpcl.com.fasterxml.jackson.feature" version="1.0.0" match="compatible"/>
+
    </requires>
 
    <plugin

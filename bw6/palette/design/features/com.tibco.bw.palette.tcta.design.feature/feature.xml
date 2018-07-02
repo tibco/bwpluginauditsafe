@@ -18,9 +18,9 @@
    </license>
 
    <requires>
-      <import feature="com.tibco.bw.sharedresource.firefly.model.feature" version="1.1.0"/>
-      <import feature="com.tibco.bw.sharedresource.firefly.design.feature" version="1.1.0"/>
-      <import feature="com.tibco.bw.palette.firefly.model.feature" version="1.1.0"/>
+      <import feature="com.tibco.bw.sharedresource.tcta.model.feature" version="1.0.0"/>
+      <import feature="com.tibco.bw.sharedresource.tcta.design.feature" version="1.0.0"/>
+      <import feature="com.tibco.bw.palette.tcta.model.feature" version="1.0.0"/>
       <import feature="com.tibco.bw.core.design.feature" version="6.3.400" match="compatible"/>
       <import feature="com.tibco.bw.palette.tcta.model.feature" version="6.0.0" match="compatible"/>
       <import feature="com.tibco.bw.sharedresource.tcta.model.feature" version="6.0.0" match="compatible"/>

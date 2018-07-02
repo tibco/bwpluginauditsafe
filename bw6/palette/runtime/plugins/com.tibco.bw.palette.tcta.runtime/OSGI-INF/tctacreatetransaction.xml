@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" factory="com.tibco.bw.palette.tcta.TctaCreateTransaction" name="bw.tcta.TctaCreateTransaction">
+   <implementation class="com.tibco.bw.palette.tcta.runtime.TctaCreateTransactionActivity"/>
+   <property name="activityTypeID" type="String" value="bw.tcta.TctaCreateTransaction"/>
+   <property name="modelPackageClass" type="String" value="com.tibco.bw.palette.tcta.model.tcta.TctaPackage"/>
+   <property name="runtimeClass" type="String" value="com.tibco.bw.palette.tcta.runtime.TctaCreateTransactionActivity"/>
+</scr:component>

@@ -32,6 +32,6 @@ Import-Package: com.tibco.bw.palette.tcta.model.tcta,
  org.genxdm.xs.resolve;version="[1.0.0,2.0.0)",
  org.genxdm.xs.types;version="[1.0.0,2.0.0)"
 Bundle-Vendor: %providerName
-Service-Component:  OSGI-INF/upsertrow.xml,OSGI-INF/tctagettoken.xml
+Service-Component:  OSGI-INF/tctacreatetransaction.xml,OSGI-INF/tctagettoken.xml
 Provide-Capability: com.tibco.bw.palette; name=bw.tcta
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

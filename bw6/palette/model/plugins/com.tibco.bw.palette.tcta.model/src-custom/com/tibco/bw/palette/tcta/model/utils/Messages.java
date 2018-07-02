@@ -14,7 +14,7 @@ import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Leslie
- * 
+ *
  */
 public class Messages extends NLS {
 
@@ -28,12 +28,7 @@ public class Messages extends NLS {
 	public static ResourceBundle getBundle() {
 		return ResourceBundle.getBundle(BUNDLE_NAME);
 	}
-    
-	
-	public static String UPSERTROW_PROPERTYFIELD;
-	public static String UPSERTROW_CHECKBOX;
-	public static String UPSERTROW_TEXTBOX;
-	public static String UPSERTROW_SPINNER;
-	public static String UPSERTROW_COMBOVIEWER;
-	public static String PALETTE_PARAMETER_VALUE_INVALID;	
+
+
+	public static String PALETTE_PARAMETER_VALUE_INVALID;
 }

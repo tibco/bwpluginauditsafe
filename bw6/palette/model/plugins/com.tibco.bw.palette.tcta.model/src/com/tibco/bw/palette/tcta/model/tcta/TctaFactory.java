@@ -36,13 +36,13 @@ public interface TctaFactory extends EFactory
 	TctaGetToken createTctaGetToken();
 
 		/**
-	 * Returns a new object of class '<em>Upsert Row</em>'.
+	 * Returns a new object of class '<em>Create Transaction</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Upsert Row</em>'.
+	 * @return a new object of class '<em>Create Transaction</em>'.
 	 * @generated
 	 */
-	UpsertRow createUpsertRow();
+	TctaCreateTransaction createTctaCreateTransaction();
 
 		/**
 	 * Returns the package supported by this factory.

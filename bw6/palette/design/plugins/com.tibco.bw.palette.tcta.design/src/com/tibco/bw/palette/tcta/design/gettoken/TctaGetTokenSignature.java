@@ -13,9 +13,9 @@ import com.tibco.bw.palette.tcta.design.TctaBasicSignature;
 public class TctaGetTokenSignature extends TctaBasicSignature {
   //  private static final String CREATE_INPUT_TYPE_ELEMENT_NAME = "gettoken"; //$NON-NLS-1$
 
-    private static final String SCHEMA_INPUT_ROOT_NAME = "gettokenAllInput";
+    private static final String SCHEMA_INPUT_ROOT_NAME = "gettokenInput";
 
-    private   final String SCHEMA_OUTPUT_ROOT_NAME = "gettokenAllOutput";
+    private   final String SCHEMA_OUTPUT_ROOT_NAME = "gettokenOutput";
 
 
     @Override

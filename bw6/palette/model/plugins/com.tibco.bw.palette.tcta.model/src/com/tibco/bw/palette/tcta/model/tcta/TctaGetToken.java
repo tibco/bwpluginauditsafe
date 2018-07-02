@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EObject;
  * <!-- end-user-doc -->
  *
  *
- * @see com.tibco.bw.palette.tcta.model.tcta.TctaPackage#getTCTAGetToken()
+ * @see com.tibco.bw.palette.tcta.model.tcta.TctaPackage#getTctaGetToken()
  * @model superTypes="com.tibco.bw.palette.tcta.model.tcta.TctaAbstractObject"
  * @generated
  */

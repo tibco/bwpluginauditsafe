@@ -6,15 +6,16 @@
  */
 package com.tibco.bw.palette.tcta.model.tcta.impl;
 
-import com.tibco.bw.palette.tcta.model.tcta.*;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+
+import com.tibco.bw.palette.tcta.model.tcta.TctaCreateTransaction;
+import com.tibco.bw.palette.tcta.model.tcta.TctaFactory;
+import com.tibco.bw.palette.tcta.model.tcta.TctaGetToken;
+import com.tibco.bw.palette.tcta.model.tcta.TctaPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -65,7 +66,7 @@ public class TctaFactoryImpl extends EFactoryImpl implements TctaFactory
   {
 		switch (eClass.getClassifierID()) {
 			case TctaPackage.TCTA_GET_TOKEN: return createTctaGetToken();
-			case TctaPackage.UPSERT_ROW: return createUpsertRow();
+			case TctaPackage.TCTA_CREATE_TRANSACTION: return createTctaCreateTransaction();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -86,9 +87,9 @@ public class TctaFactoryImpl extends EFactoryImpl implements TctaFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UpsertRow createUpsertRow() {
-		UpsertRowImpl upsertRow = new UpsertRowImpl();
-		return upsertRow;
+	public TctaCreateTransaction createTctaCreateTransaction() {
+		TctaCreateTransactionImpl tctaCreateTransaction = new TctaCreateTransactionImpl();
+		return tctaCreateTransaction;
 	}
 
 		/**

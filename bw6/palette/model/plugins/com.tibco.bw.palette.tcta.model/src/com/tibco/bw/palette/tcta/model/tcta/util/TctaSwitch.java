@@ -6,12 +6,15 @@
  */
 package com.tibco.bw.palette.tcta.model.tcta.util;
 
-import com.tibco.bw.palette.tcta.model.tcta.*;
-
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
+import com.tibco.bw.palette.tcta.model.tcta.TctaAbstractObject;
+import com.tibco.bw.palette.tcta.model.tcta.TctaCreateTransaction;
+import com.tibco.bw.palette.tcta.model.tcta.TctaGetToken;
+import com.tibco.bw.palette.tcta.model.tcta.TctaPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -105,10 +108,10 @@ public class TctaSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TctaPackage.UPSERT_ROW: {
-				UpsertRow upsertRow = (UpsertRow)theEObject;
-				T result = caseUpsertRow(upsertRow);
-				if (result == null) result = caseTctaAbstractObject(upsertRow);
+			case TctaPackage.TCTA_CREATE_TRANSACTION: {
+				TctaCreateTransaction tctaCreateTransaction = (TctaCreateTransaction)theEObject;
+				T result = caseTctaCreateTransaction(tctaCreateTransaction);
+				if (result == null) result = caseTctaAbstractObject(tctaCreateTransaction);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -147,17 +150,17 @@ public class TctaSwitch<T>
 	}
 
 		/**
-	 * Returns the result of interpreting the object as an instance of '<em>Upsert Row</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Create Transaction</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Upsert Row</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Create Transaction</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseUpsertRow(UpsertRow object) {
+	public T caseTctaCreateTransaction(TctaCreateTransaction object) {
 		return null;
 	}
 

@@ -1,12 +1,12 @@
-package com.tibco.bw.palette.tcta.design.upsertrow;
+package com.tibco.bw.palette.tcta.design.createtransaction;
 
 import org.eclipse.emf.ecore.EObject;
 
 import com.tibco.bw.design.api.BWAbstractModelHelper;
 import com.tibco.bw.palette.tcta.model.tcta.TctaFactory;
-import com.tibco.bw.palette.tcta.model.tcta.UpsertRow;
+import com.tibco.bw.palette.tcta.model.tcta.TctaCreateTransaction;
 
-public class UpsertRowModelHelper extends BWAbstractModelHelper {
+public class TctaCreateTransactionModelHelper extends BWAbstractModelHelper {
 
 	/**
 	* <!-- begin-custom-doc -->
@@ -16,7 +16,7 @@ public class UpsertRowModelHelper extends BWAbstractModelHelper {
 	*/
     @Override
     public EObject createInstance() {
-        UpsertRow activity = TctaFactory.eINSTANCE.createUpsertRow();
+        TctaCreateTransaction activity = TctaFactory.eINSTANCE.createTctaCreateTransaction();
         // begin-custom-code
         // end-custom-code
         return activity;

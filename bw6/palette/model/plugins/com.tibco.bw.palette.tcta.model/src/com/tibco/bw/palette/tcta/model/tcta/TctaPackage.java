@@ -117,14 +117,14 @@ public interface TctaPackage extends EPackage
 
 
 		/**
-	 * The meta object id for the '{@link com.tibco.bw.palette.tcta.model.tcta.impl.UpsertRowImpl <em>Upsert Row</em>}' class.
+	 * The meta object id for the '{@link com.tibco.bw.palette.tcta.model.tcta.impl.TctaCreateTransactionImpl <em>Create Transaction</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see com.tibco.bw.palette.tcta.model.tcta.impl.UpsertRowImpl
-	 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaPackageImpl#getUpsertRow()
+	 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaCreateTransactionImpl
+	 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaPackageImpl#getTctaCreateTransaction()
 	 * @generated
 	 */
-	int UPSERT_ROW = 2;
+	int TCTA_CREATE_TRANSACTION = 2;
 
 		/**
 	 * The feature id for the '<em><b>Tcta Connection</b></em>' attribute.
@@ -133,16 +133,16 @@ public interface TctaPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int UPSERT_ROW__TCTA_CONNECTION = TCTA_ABSTRACT_OBJECT__TCTA_CONNECTION;
+	int TCTA_CREATE_TRANSACTION__TCTA_CONNECTION = TCTA_ABSTRACT_OBJECT__TCTA_CONNECTION;
 
 		/**
-	 * The number of structural features of the '<em>Upsert Row</em>' class.
+	 * The number of structural features of the '<em>Create Transaction</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int UPSERT_ROW_FEATURE_COUNT = TCTA_ABSTRACT_OBJECT_FEATURE_COUNT + 0;
+	int TCTA_CREATE_TRANSACTION_FEATURE_COUNT = TCTA_ABSTRACT_OBJECT_FEATURE_COUNT + 0;
 
 		/**
 	 * Returns the meta object for class '{@link TctaAbstractObject <em>Abstract Object</em>}'.
@@ -177,14 +177,14 @@ public interface TctaPackage extends EPackage
 	EClass getTctaGetToken();
 
 		/**
-	 * Returns the meta object for class '{@link com.tibco.bw.palette.tcta.model.tcta.UpsertRow <em>Upsert Row</em>}'.
+	 * Returns the meta object for class '{@link com.tibco.bw.palette.tcta.model.tcta.TctaCreateTransaction <em>Create Transaction</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Upsert Row</em>'.
-	 * @see com.tibco.bw.palette.tcta.model.tcta.UpsertRow
+	 * @return the meta object for class '<em>Create Transaction</em>'.
+	 * @see com.tibco.bw.palette.tcta.model.tcta.TctaCreateTransaction
 	 * @generated
 	 */
-	EClass getUpsertRow();
+	EClass getTctaCreateTransaction();
 
 		/**
 	 * Returns the factory that creates the instances of the model.
@@ -238,14 +238,14 @@ public interface TctaPackage extends EPackage
 		EClass TCTA_GET_TOKEN = eINSTANCE.getTctaGetToken();
 
 			/**
-		 * The meta object literal for the '{@link com.tibco.bw.palette.tcta.model.tcta.impl.UpsertRowImpl <em>Upsert Row</em>}' class.
+		 * The meta object literal for the '{@link com.tibco.bw.palette.tcta.model.tcta.impl.TctaCreateTransactionImpl <em>Create Transaction</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see com.tibco.bw.palette.tcta.model.tcta.impl.UpsertRowImpl
-		 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaPackageImpl#getUpsertRow()
+		 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaCreateTransactionImpl
+		 * @see com.tibco.bw.palette.tcta.model.tcta.impl.TctaPackageImpl#getTctaCreateTransaction()
 		 * @generated
 		 */
-		EClass UPSERT_ROW = eINSTANCE.getUpsertRow();
+		EClass TCTA_CREATE_TRANSACTION = eINSTANCE.getTctaCreateTransaction();
 
   }
 

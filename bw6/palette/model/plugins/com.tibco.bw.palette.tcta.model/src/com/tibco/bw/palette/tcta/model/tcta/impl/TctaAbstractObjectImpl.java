@@ -2,13 +2,13 @@
  */
 package com.tibco.bw.palette.tcta.model.tcta.impl;
 
-import com.tibco.bw.palette.tcta.model.tcta.TctaAbstractObject;
-import com.tibco.bw.palette.tcta.model.tcta.TctaPackage;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import com.tibco.bw.palette.tcta.model.tcta.TctaAbstractObject;
+import com.tibco.bw.palette.tcta.model.tcta.TctaPackage;
 
 /**
  * <!-- begin-user-doc -->

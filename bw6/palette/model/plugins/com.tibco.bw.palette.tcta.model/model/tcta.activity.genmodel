@@ -6,12 +6,5 @@
     bundleManifest="false" complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.4">
   <genPackages prefix="Tcta" basePackage="com.tibco.bw.palette.tcta.model" disposableProviderFactory="true"
       ecorePackage="tcta.activity.ecore#/">
-    <genClasses ecoreClass="tcta.activity.ecore#//UpsertRow">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tcta.activity.ecore#//UpsertRow/propertyField"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tcta.activity.ecore#//UpsertRow/checkBox"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tcta.activity.ecore#//UpsertRow/textBox"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tcta.activity.ecore#//UpsertRow/spinner"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tcta.activity.ecore#//UpsertRow/comboViewer"/>
-    </genClasses>
   </genPackages>
 </genmodel:GenModel>

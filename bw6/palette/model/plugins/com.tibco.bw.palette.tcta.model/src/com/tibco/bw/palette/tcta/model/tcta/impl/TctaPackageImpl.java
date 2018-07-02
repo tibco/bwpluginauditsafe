@@ -6,17 +6,16 @@
  */
 package com.tibco.bw.palette.tcta.model.tcta.impl;
 
-import com.tibco.bw.palette.tcta.model.tcta.TctaGetToken;
-import com.tibco.bw.palette.tcta.model.tcta.TctaAbstractObject;
-import com.tibco.bw.palette.tcta.model.tcta.TctaFactory;
-import com.tibco.bw.palette.tcta.model.tcta.TctaGetToken;
-import com.tibco.bw.palette.tcta.model.tcta.TctaPackage;
-import com.tibco.bw.palette.tcta.model.tcta.UpsertRow;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import com.tibco.bw.palette.tcta.model.tcta.TctaAbstractObject;
+import com.tibco.bw.palette.tcta.model.tcta.TctaCreateTransaction;
+import com.tibco.bw.palette.tcta.model.tcta.TctaFactory;
+import com.tibco.bw.palette.tcta.model.tcta.TctaGetToken;
+import com.tibco.bw.palette.tcta.model.tcta.TctaPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -43,7 +42,7 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass upsertRowEClass = null;
+	private EClass tctaCreateTransactionEClass = null;
 		/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
@@ -73,7 +72,7 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 
   /**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link TctaPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -101,7 +100,7 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 		// Mark meta-data to indicate it can't be changed
 		theTctaPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(TctaPackage.eNS_URI, theTctaPackage);
 		return theTctaPackage;
@@ -139,8 +138,8 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getUpsertRow() {
-		return upsertRowEClass;
+	public EClass getTctaCreateTransaction() {
+		return tctaCreateTransactionEClass;
 	}
 
 		/**
@@ -178,7 +177,7 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 
 		tctaGetTokenEClass = createEClass(TCTA_GET_TOKEN);
 
-		upsertRowEClass = createEClass(UPSERT_ROW);
+		tctaCreateTransactionEClass = createEClass(TCTA_CREATE_TRANSACTION);
 	}
 
   /**
@@ -211,7 +210,7 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 
 		// Add supertypes to classes
 		tctaGetTokenEClass.getESuperTypes().add(this.getTctaAbstractObject());
-		upsertRowEClass.getESuperTypes().add(this.getTctaAbstractObject());
+		tctaCreateTransactionEClass.getESuperTypes().add(this.getTctaAbstractObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(tctaAbstractObjectEClass, Object.class, "TctaAbstractObject", IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
@@ -219,7 +218,7 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 
 		initEClass(tctaGetTokenEClass, TctaGetToken.class, "TctaGetToken", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(upsertRowEClass, UpsertRow.class, "UpsertRow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(tctaCreateTransactionEClass, TctaCreateTransaction.class, "TctaCreateTransaction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -237,10 +236,10 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 	 */
   protected void createCbgeneralcontrolAnnotations()
   {
-		String source = "cbgeneralcontrol";	
+		String source = "cbgeneralcontrol";
 		addAnnotation
-		  (getTctaAbstractObject_TctaConnection(), 
-		   source, 
+		  (getTctaAbstractObject_TctaConnection(),
+		   source,
 		   new String[] {
 			 "label", "TCTA Connection:",
 			 "type", "text"

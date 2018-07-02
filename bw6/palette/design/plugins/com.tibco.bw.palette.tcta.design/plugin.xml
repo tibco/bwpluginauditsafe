@@ -29,10 +29,10 @@
    <extension
          point="com.tibco.bw.design.ActivityType">
       <activityType
-            activityTypeID="bw.tcta.UpsertRow"
-            name="%tcta.activity.UpsertRow.name"
+            activityTypeID="bw.tcta.TctaCreateTransaction"
+            name="%tcta.activity.TctaCreateTransaction.name"
             priority="100"
-            tooltip="%tcta.activity.UpsertRow.tooltip"
+            tooltip="%tcta.activity.TctaCreateTransaction.tooltip"
             visible="true">
          <palette
                paletteID="bw.tcta">
@@ -55,8 +55,8 @@
    <extension
          point="com.tibco.bw.design.ActivitySignature">
       <signature
-            activityTypeID="bw.tcta.UpsertRow"
-            signatureClass="com.tibco.bw.palette.tcta.design.upsertrow.UpsertRowSignature">
+            activityTypeID="bw.tcta.TctaCreateTransaction"
+            signatureClass="com.tibco.bw.palette.tcta.design.createtransaction.TctaCreateTransactionSignature">
       </signature>
       <signature
             activityTypeID="bw.tcta.TctaGetToken"
@@ -67,11 +67,11 @@
    <extension
          point="com.tibco.bw.design.ActivityTypeConfigEMF">
       <config
-            activityTypeID="bw.tcta.UpsertRow"
-            eClassName="UpsertRow"
+            activityTypeID="bw.tcta.TctaCreateTransaction"
+            eClassName="TctaCreateTransaction"
             ePackageNSURI="http://ns.tibco.com/bw/palette/tcta"
-            instanceName="%tcta.activity.default.UpsertRow.name"
-            modelHelperClass="com.tibco.bw.palette.tcta.design.upsertrow.UpsertRowModelHelper">
+            instanceName="%tcta.activity.default.TctaCreateTransaction.name"
+            modelHelperClass="com.tibco.bw.palette.tcta.design.createtransaction.TctaCreateTransactionModelHelper">
       </config>
       <config
             activityTypeID="bw.tcta.TctaGetToken"
@@ -88,9 +88,9 @@
             contributorId="com.tibco.bw.core.design.process.editor">
          <propertySection
                afterSection="com.tibco.bw.design.activity.general"
-               class="com.tibco.bw.palette.tcta.design.upsertrow.UpsertRowGeneralSection"
-               filter="com.tibco.bw.palette.tcta.design.upsertrow.UpsertRowGeneralSection"
-               id="bw.tcta.UpsertRow.general"
+               class="com.tibco.bw.palette.tcta.design.createtransaction.TctaCreateTransactionGeneralSection"
+               filter="com.tibco.bw.palette.tcta.design.createtransaction.TctaCreateTransactionGeneralSection"
+               id="bw.tcta.TctaCreateTransaction.general"
                tab="tibco.bw.activity.property.tab.general">
          </propertySection>
          <propertySection

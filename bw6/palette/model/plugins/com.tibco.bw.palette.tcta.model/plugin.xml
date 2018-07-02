@@ -21,7 +21,7 @@
    <extension
          point="com.tibco.bw.model.ActivityIcon">
       <activityIcon
-            activityTypeID="bw.tcta.UpsertRow"
+            activityTypeID="bw.tcta.TctaCreateTransaction"
             diagramIcon="icons/obj48/tcta_48x48.png"
             largeIcon="icons/obj32/tcta_32x32.png"
             smallIcon="icons/obj16/tcta_16x16.png">

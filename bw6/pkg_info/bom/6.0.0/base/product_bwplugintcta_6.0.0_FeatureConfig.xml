@@ -1,8 +1,8 @@
 <?xml  version="1.0"?>
 <TIBCOInstallerFeatures>
    <productDef
-   		name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) Transaction Audit 1.0.0"
-   		version="1.0.0"
+   		name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) Transaction Audit 6.0.0"
+   		version="6.0.0"
    		id="bwplugintcta"
    		releaseType="base"
    		supportedPlatforms="linux/x86_64,win/x86_64,macos/x86_64"
@@ -15,9 +15,9 @@
         <packagingProperties createp2installer="true" supportedBWVersion="6.4" createcloudartifacts="epaas" bundle_analysis="true"/>
 
     <customVariables>
-		<localVariable name="bwplugintctacloud.minimum.bw.version" value="1.0.10"/>
+		<localVariable name="bwplugintctacloud.minimum.bw.version" value="1.0.6"/>
 
-                <localVariable name="bwplugintcta.minimum.bw.version" value="6.4.2"/>
+                <localVariable name="bwplugintcta.minimum.bw.version" value="6.4.0"/>
 		<localVariable name="bwplugintcta.extension.palettes.home" value="${tibco.BW.home}/../palettes/tcta/6.4"/>
 		<localVariable name="bwplugintcta.extension.palettes.runtime.home" value="${tibco.BW.home}/../palettes/tcta/6.4/runtime"/>
 		<localVariable name="bwplugintcta.extension.palettes.design.home" value="${tibco.BW.home}/../palettes/tcta/6.4/design"/>
@@ -38,18 +38,18 @@
     <installerFeatureNode name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TCTA Design" nodeID="design-node" parentNode="root"/>
     <installerFeatureNode name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TCTA Runtime" nodeID="runtime-node" parentNode="root"/>
 
-    <installerFeature name="runtime" visible="true" version="1.0.0" parentNode="runtime-node" profileUID="runtime-profile" dependencyOperator="OR">
+    <installerFeature name="runtime" visible="true" version="6.0.0" parentNode="runtime-node" profileUID="runtime-profile" dependencyOperator="OR">
         <assemblyList>
 			<assembly uid="assembly_tibco_com_tibco_bw_palette_tcta_model_feature" overrideTargetDirectory="$L{bwplugintcta.extension.palettes.runtime.home}" version="6.0.0" />
 			<assembly uid="assembly_tibco_com_tibco_bw_palette_tcta_runtime_feature" overrideTargetDirectory="$L{bwplugintcta.extension.palettes.runtime.home}" version="6.0.0" />
 			<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tcta_model_feature" overrideTargetDirectory="$L{bwplugintcta.extension.palettes.runtime.home}" version="6.0.0" />
 			<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tcta_runtime_feature"  overrideTargetDirectory="$L{bwplugintcta.extension.palettes.runtime.home}" version="6.0.0"/>
-			<assembly uid="product_tibco_bwplugintcta_runtime" overrideTargetDirectory="$L{bwplugintcta.extension.palettes.home}" version="1.0.0"/>
-			<assembly uid="product_tibco_bwplugintcta_samples" overrideTargetDirectory="$L{bwplugintcta.extension.palettes.home}" version="1.0.0"/>
+			<assembly uid="product_tibco_bwplugintcta_runtime" overrideTargetDirectory="$L{bwplugintcta.extension.palettes.home}" version="6.0.0"/>
+			<assembly uid="product_tibco_bwplugintcta_samples" overrideTargetDirectory="$L{bwplugintcta.extension.palettes.home}" version="6.0.0"/>
         </assemblyList>
 
         <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime" type="feature" uid="Runtime_BW" version="6.4.2"/>
-	<dependency description="TIBCO BusinessWorks Cloud Runtime" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="1.0.0"/>
+	<dependency description="TIBCO BusinessWorks Cloud Runtime" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="6.0.0"/>
 
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
@@ -89,7 +89,7 @@
 		</postInstallAction>
     </installerFeature>
 
-    <installerFeature name="design" visible="true" version="1.0.0" parentNode="design-node" profileUID="typical" dependencyOperator="OR">
+    <installerFeature name="design" visible="true" version="6.0.0" parentNode="design-node" profileUID="typical" dependencyOperator="OR">
 
 		<assemblyList>
 			<assembly overrideTargetDirectory="$L{bwplugintcta.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_palette_tcta_design_feature" version="6.0.0"/>
@@ -100,8 +100,8 @@
 		</assemblyList>
 
         <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design" type="feature" uid="Design_BW" version="6.4.2"/>
-	<dependency description="TIBCO BusinessWorks Cloud Design" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="1.0.0"/>
-		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TCTA - Runtime" type="feature" uid="runtime_bwplugintcta" version="1.0.0"/>
+	<dependency description="TIBCO BusinessWorks Cloud Design" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="6.0.0"/>
+		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TCTA - Runtime" type="feature" uid="runtime_bwplugintcta" version="6.0.0"/>
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
 			<property minimumVersion="$L{bwplugintcta.minimum.bw.version}"/>
@@ -127,7 +127,7 @@
 				<property mustBeMet="true"/>
 				<property uid="Design_BW"/>
 				<property type="feature"/>
-				<property version="1.0.0"/>
+				<property version="6.0.0"/>
 				<property mustBeInstalled="true"/>
 				</condition>
 			<property featureUID="migration_bwplugintcta"/>

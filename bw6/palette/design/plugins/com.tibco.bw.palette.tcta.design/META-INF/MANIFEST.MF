@@ -11,7 +11,8 @@ Require-Bundle: com.tibco.bw.palette.tcta.model;bundle-version="[6.0.0,7.0.0)",
  com.tibco.amf.sca.model.validation;bundle-version="[3.0.0,4.0.0)",
  com.tibco.bw.model.eclipse;bundle-version="[6.0.0,7.0.0)",
  com.tibco.bw.sharedresource.tcta.model,
- com.tibco.bw.tpcl.javax.ws.rs.eclipse;bundle-version="2.1.0"
+ com.tibco.bw.tpcl.javax.ws.rs.eclipse;bundle-version="[2.1.0,3.0.0)",
+ com.tibco.tpcl.javax.json;bundle-version="[1.0.4,2.0.0)"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: com.tibco.bw.palette.tcta.design;version="6.0.0",
@@ -19,3 +20,4 @@ Export-Package: com.tibco.bw.palette.tcta.design;version="6.0.0",
  com.tibco.bw.palette.tcta.design.gettoken;version="6.0.0"
 Import-Package: com.tibco.amf.model.sharedresource.jndi;version="[1.4.0,2.0.0)",
  com.tibco.neo.svar.svarmodel;version="[2.1.0,3.0.0)"
+Bundle-ClassPath: .

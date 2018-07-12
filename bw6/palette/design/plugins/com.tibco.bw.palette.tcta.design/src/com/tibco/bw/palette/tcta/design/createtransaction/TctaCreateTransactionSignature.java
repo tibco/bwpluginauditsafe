@@ -1,11 +1,22 @@
 package com.tibco.bw.palette.tcta.design.createtransaction;
 
+import java.io.StringReader;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonReader;
+import javax.json.JsonValue;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.core.MultivaluedMap;
+import javax.ws.rs.core.Response;
 
 import org.eclipse.xsd.XSDModelGroup;
 import org.eclipse.xsd.XSDSchema;
@@ -52,10 +63,25 @@ public class TctaCreateTransactionSignature extends TctaBasicSignature {
 
 		Invocation.Builder invocationBuilder = client.target("https://auditsafe.ax-qa.tcie.pro").path("/tcta/dataserver/schema").
 				request(MediaType.APPLICATION_JSON_TYPE).headers(myHeaders);
-		//Response response = invocationBuilder.post(Entity.)
-//		XSDUtility.addSimpleTypeElement(activityInput, TctaConstants.TRANS_SOURCE, "string", 1, 1);
-//		XSDUtility.addSimpleTypeElement(activityInput, TctaConstants.TRANS_DESTINATION, "string", 1, 1);
-
+		String json = "{ \"path\": \"/tcta/dataserver/transactions/intercom\",  \"method\": \"POST\"}";
+		Response response = invocationBuilder.post(Entity.entity(json, MediaType.APPLICATION_JSON));
+		int status = response.getStatus();
+		String replyString = response.readEntity(String.class);
+		JsonReader jsonReader = Json.createReader(new StringReader(replyString));
+		JsonObject reply = jsonReader.readObject();
+		JsonObject requestSchema = reply.getJsonObject("requestSchema");
+		String type = requestSchema.getString("type");
+		JsonObject properties = requestSchema.getJsonObject("properties");
+		Set<Entry<String, JsonValue>> valueSet = properties.entrySet();
+		for (Entry<String, JsonValue> entry : valueSet) {
+			String name = entry.getKey();
+			JsonValue value = entry.getValue();
+			JsonObject obj = (JsonObject)value;
+			String prop_type = obj.getString("type");
+			if("string".equalsIgnoreCase(prop_type)){
+				XSDUtility.addSimpleTypeElement(activityInput, TctaConstants.TRANS_SOURCE, "string", 1, 1);
+			}
+		}
 	}
 
 	@Override
@@ -63,4 +89,5 @@ public class TctaCreateTransactionSignature extends TctaBasicSignature {
 			XSDSchema inputSchema) {
 		XSDUtility.addSimpleTypeElement(rootOutPut, TctaConstants.RESPONSE, "string", 1, 1);
 	}
+
 }

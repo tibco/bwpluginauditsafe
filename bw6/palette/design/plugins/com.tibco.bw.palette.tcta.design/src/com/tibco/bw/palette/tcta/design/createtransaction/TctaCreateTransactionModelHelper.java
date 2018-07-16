@@ -6,8 +6,8 @@ import com.tibco.bw.design.api.BWAbstractModelHelper;
 import com.tibco.bw.design.util.ModelHelper;
 import com.tibco.bw.design.util.ProcessProperty;
 import com.tibco.bw.palette.tcta.design.TctaConstants;
-import com.tibco.bw.palette.tcta.model.tcta.TctaFactory;
 import com.tibco.bw.palette.tcta.model.tcta.TctaCreateTransaction;
+import com.tibco.bw.palette.tcta.model.tcta.TctaFactory;
 
 public class TctaCreateTransactionModelHelper extends BWAbstractModelHelper {
 

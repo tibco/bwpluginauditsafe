@@ -4,8 +4,8 @@ import org.eclipse.xsd.XSDModelGroup;
 import org.eclipse.xsd.XSDSchema;
 
 import com.tibco.bw.design.util.XSDUtility;
-import com.tibco.bw.palette.tcta.design.TctaConstants;
 import com.tibco.bw.palette.tcta.design.TctaBasicSignature;
+import com.tibco.bw.palette.tcta.design.TctaConstants;
 
 
 

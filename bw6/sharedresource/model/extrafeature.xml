@@ -22,6 +22,7 @@
       <import feature="com.tibco.amf.sharedresource.model.feature" version="3.901.0" match="compatible"/>
       <import feature="com.tibco.neo.model.core.feature" version="1.902.0" match="compatible"/>
       <import feature="com.tibco.bw.api.model.feature" version="6.3.0" match="compatible"/>
+      <import feature="com.tibco.bw.tpcl.com.fasterxml.jackson.feature" version="1.0.0" match="compatible"/>
    </requires>
 
 </feature>

@@ -13,6 +13,10 @@
       %copyright
    </copyright>
 
+   <requires>
+   	  <import feature="com.tibco.bw.tpcl.com.fasterxml.jackson.feature" version="1.0.0" match="compatible"/>
+   </requires>
+
    <license url="%licenseURL">
       %license
    </license>

@@ -8,10 +8,11 @@ Export-Package: com.tibco.bw.palette.tcta.runtime;version="6.0.0";
   uses:="com.tibco.neo.localized,com.tibco.bw.runtime,javax.activation,
    com.tibco.neo.localized"
 Import-Package: com.tibco.bw.palette.tcta.model.tcta,
- com.tibco.bw.sharedresource.tcta.runtime;version="6.0.0",
- com.tibco.bw.runtime.util;version="6.0.0",
  com.tibco.bw.runtime;version="[6.0.0,7.0.0)",
  com.tibco.bw.runtime.annotation;version="[6.0.0,7.0.0)",
+ com.tibco.bw.runtime.util;version="6.0.0",
+ com.tibco.bw.sharedresource.tcta.model.helper;version="6.0.0",
+ com.tibco.bw.sharedresource.tcta.runtime;version="6.0.0",
  com.tibco.neo.localized;version="[2.5.0,3.0.0)",
  org.eclipse.emf.ecore;version="[2.4.2,3.0.0)",
  org.eclipse.xsd;version="[2.4.0,3.0.0)",

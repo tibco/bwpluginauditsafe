@@ -12,6 +12,7 @@
  */
 package com.tibco.bw.palette.tcta.runtime;
 
+import org.genxdm.Model;
 import org.genxdm.ProcessingContext;
 import org.genxdm.mutable.MutableModel;
 import org.genxdm.mutable.NodeFactory;
@@ -20,6 +21,7 @@ import com.tibco.bw.palette.tcta.model.tcta.TctaCreateTransaction;
 import com.tibco.bw.runtime.ActivityFault;
 import com.tibco.bw.runtime.ProcessContext;
 import com.tibco.bw.runtime.annotation.Property;
+import com.tibco.bw.sharedresource.tcta.model.helper.TctaClientUtils;
 import com.tibco.bw.sharedresource.tcta.runtime.TctaConnectionResource;
 import com.tibco.neo.localized.LocalizedMessage;
 
@@ -63,9 +65,18 @@ public class TctaCreateTransactionActivity<N> extends BaseSyncActivity<N> implem
         mutableModel.appendChild(outputType, output);
 
         // add your own business code here
-		String token = "create transaction succssfully";
+		String token = TctaClientUtils.getToken(sharedResource.getUsername(), sharedResource.getPassword());
+		String result  = "";
 
-		mutableModel.appendChild(output,noteFactory.createText(token));
+		if(token != null){
+			Model<N> model =processContext.getModel();
+			N bodyN =  model.getFirstChildElementByName(inputData, null, "body");
+			String body = model.getStringValue(bodyN);
+			result = TctaClientUtils.requestCreateTransaction(token, sharedResource.getServerUrl(), body);
+		}
+
+		mutableModel.appendChild(output,noteFactory.createText(result));
+
 
         return outputType;
     }

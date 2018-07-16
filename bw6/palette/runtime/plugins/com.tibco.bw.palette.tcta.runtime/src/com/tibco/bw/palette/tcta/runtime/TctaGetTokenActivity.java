@@ -19,6 +19,7 @@ import org.genxdm.mutable.NodeFactory;
 import com.tibco.bw.runtime.ActivityFault;
 import com.tibco.bw.runtime.ProcessContext;
 import com.tibco.bw.runtime.annotation.Property;
+import com.tibco.bw.sharedresource.tcta.model.helper.TctaClientUtils;
 import com.tibco.bw.sharedresource.tcta.runtime.TctaConnectionResource;
 import com.tibco.neo.localized.LocalizedMessage;
 
@@ -62,7 +63,7 @@ public class TctaGetTokenActivity<N> extends BaseSyncActivity<N> implements TCTA
         mutableModel.appendChild(outputType, output);
 
         // add your own business code here
-		String token = sharedResource.getToken();
+		String token = TctaClientUtils.getToken(sharedResource.getUsername(), sharedResource.getPassword());
 
 		mutableModel.appendChild(output,noteFactory.createText(token));
 

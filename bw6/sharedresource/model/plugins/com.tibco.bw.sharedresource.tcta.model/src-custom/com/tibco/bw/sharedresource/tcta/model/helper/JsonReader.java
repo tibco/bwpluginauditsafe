@@ -1,4 +1,4 @@
-package com.tibco.bw.sharedresource.tcta.runtime;
+package com.tibco.bw.sharedresource.tcta.model.helper;
 
 import java.io.IOException;
 

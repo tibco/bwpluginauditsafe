@@ -11,7 +11,7 @@
 					svn-url="https://svn.tibco.com/svn/amxext/trunk/bwsolutions/bwplugintcta/bw6/pkg_info/bom/6.0.0/base" 
 					svn-revision="HEAD" recipient-email-address="mqian@tibco.com" 
 					assembly-id="all" 
-					set-environment-variables="bldsrcdir=/local/relbuild/bwplugintas_600/6.0" 
+					set-environment-variables="bldsrcdir=/local/relbuild/bwplugintas_600/bw6" 
 					override-default-export-dir="/local/tibco/export_dir" 
 					ports="all"/>
 

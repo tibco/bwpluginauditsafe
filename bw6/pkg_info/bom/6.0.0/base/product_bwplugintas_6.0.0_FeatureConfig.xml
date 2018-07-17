@@ -17,7 +17,7 @@
     <customVariables>
 		<localVariable name="bwplugintascloud.minimum.bw.version" value="1.0.6"/>
 
-                <localVariable name="bwplugintas.minimum.bw.version" value="6.4.0"/>
+        <localVariable name="bwplugintas.minimum.bw.version" value="6.4.0"/>
 		<localVariable name="bwplugintas.extension.palettes.home" value="${tibco.BW.home}/../palettes/tas/6.0"/>
 		<localVariable name="bwplugintas.extension.palettes.runtime.home" value="${tibco.BW.home}/../palettes/tas/6.0/runtime"/>
 		<localVariable name="bwplugintas.extension.palettes.design.home" value="${tibco.BW.home}/../palettes/tas/6.0/design"/>
@@ -26,7 +26,7 @@
 		<localVariable name="bwplugintas.palette.short.name" value="tas"/>
 		<localVariable name="bwplugintas.palette.package.name" value="com.tibco.bw.palette"/>
 
-		<localVariable name="all.palette.ius" value="com.tibco.bw.palette.tcta.design.feature.feature.group,com.tibco.bw.palette.tcta.model.feature.feature.group,com.tibco.bw.sharedresource.tcta.design.feature.feature.group,com.tibco.bw.sharedresource.tcta.model.feature.feature.group"/>
+		<localVariable name="bwplugintas.palette.ius" value="com.tibco.bw.palette.tcta.design.feature.feature.group,com.tibco.bw.palette.tcta.model.feature.feature.group,com.tibco.bw.sharedresource.tcta.design.feature.feature.group,com.tibco.bw.sharedresource.tcta.model.feature.feature.group"/>
 		<localVariable name="bwplugintas.palette.install.tag" value="TIBCO BW TAS Palette Features Installation"/>
 		<localVariable name="bwplugintas.palette.uninstall.tag" value="TIBCO BW TAS Palette Features Uninstallation"/>
 
@@ -48,8 +48,8 @@
 			<assembly uid="product_tibco_bwplugintas_samples" overrideTargetDirectory="$L{bwplugintas.extension.palettes.home}" version="6.0.0"/>
         </assemblyList>
 
-        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime" type="feature" uid="Runtime_BW" version="6.4.2"/>
-	<dependency description="TIBCO BusinessWorks Cloud Runtime" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="6.0.0"/>
+        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime" type="feature" uid="Runtime_BW" version="6.4.0"/>
+	<dependency description="TIBCO BusinessWorks Cloud Runtime" type="assembly" uid="product_tibco_bwplugin_cloud_runtime_dependency" version="1.0.6"/>
 
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
@@ -99,9 +99,18 @@
 
 		</assemblyList>
 
-        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design" type="feature" uid="Design_BW" version="6.4.2"/>
-	<dependency description="TIBCO BusinessWorks Cloud Design" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="6.0.0"/>
-		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TAS - Runtime" type="feature" uid="runtime_bwplugintas" version="6.0.0"/>
+        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design" type="feature" uid="Design_BW" version="6.4.0"/>
+	<dependency description="TIBCO BusinessWorks Cloud Design" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="1.0.6"/>
+		<!-- <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TAS - Runtime" type="feature" uid="runtime_bwplugintas" version="6.0.0"/> -->
+		
+		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction">
+                        <property featureUID="runtime_bwplugintas"/>
+                        <property isEnabled="true"/>
+                        <property isVisible="true"/>
+                        <property isSelected="true"/>
+                </wizardAction>
+
+				
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
 			<property minimumVersion="$L{bwplugintas.minimum.bw.version}"/>
@@ -122,7 +131,7 @@
 			<property description="Get install location for Cloud Design"/>
 		</wizardAction>
 
-		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction">
+		<!-- <wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction">
 			<condition class="com.tibco.installer.wizard.condition.TIBCOCheckDependencyWizardCondition">
 				<property mustBeMet="true"/>
 				<property uid="Design_BW"/>
@@ -134,10 +143,6 @@
 			<property isEnabled="true"/>
 			<property isVisible="false"/>
 			<property isSelected="true"/>
-		</wizardAction>
-
-		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCreateP2AssemblyList">
-			<property variableToSet="tibco.p2.assemblies" />
 		</wizardAction>
 
   <wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOSetVariableWizardAction">
@@ -158,8 +163,13 @@
       </condition>
       <property variableToSet="bwplugintas.palette.ius"/>
       <property variableValue="com.tibco.bw.palette.tcta.design.feature.feature.group,com.tibco.bw.palette.tcta.model.feature.feature.group,com.tibco.bw.sharedresource.tcta.design.feature.feature.group,com.tibco.bw.sharedresource.tcta.model.feature.feature.group"/>
-</wizardAction>
+</wizardAction> -->
 
+
+		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCreateP2AssemblyList">
+			<property variableToSet="tibco.p2.assemblies" />
+		</wizardAction>
+		
 		<postInstallAction sequence="post-assembly-ref" target="install-ext-palette-design" logLevel="debug" taskFile="${tibco.BW.home}/scripts/build.xml">
 			<postInstallActionProperty name="bw.home" value="${tibco.BW.home}"/>
 			<postInstallActionProperty name="bw.home.esc" value="${tibco.BW.home.esc}"/>
@@ -170,10 +180,10 @@
 			<postInstallActionProperty name="ext.palette.install.tag" value="$L{bwplugintas.palette.install.tag}"/>
 		</postInstallAction>
 
-		<postInstallAction logLevel="debug" sequence="post-assembly-ref" target="remove-exclude-as-provisioning-properties" taskFile="${tibco.BW.home}/scripts/build.xml">
+		<!-- <postInstallAction logLevel="debug" sequence="post-assembly-ref" target="remove-exclude-as-provisioning-properties" taskFile="${tibco.BW.home}/scripts/build.xml">
 			<postInstallActionProperty name="bw.home" value="${tibco.BW.home}"/>
 			<postInstallActionProperty name="bw.home.esc" value="${tibco.BW.home.esc}"/>
-		</postInstallAction>
+		</postInstallAction> -->
 
 		<postInstallAction logLevel="debug" sequence="post-assembly-ref" target="setup-bwthor-launch" taskFile="${tibco.BW.home}/scripts/build.xml">
 			<postInstallActionProperty name="bw.home" value="${tibco.BW.home}"/>

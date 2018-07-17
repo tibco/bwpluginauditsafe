@@ -3,11 +3,11 @@
    <productDef
    		name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) Transaction Audit 6.0.0"
    		version="6.0.0"
-   		id="bwplugintcta"
+   		id="bwplugintas"
    		releaseType="base"
    		supportedPlatforms="linux/x86_64,win/x86_64,macos/x86_64"
    		compatDisplayName="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) Transaction Audit"
-   		compatType="bwplugintcta"
+   		compatType="bwplugintas"
 		emailalias="mqian@tibco.com"
    		universalinstallerrelease="3.6.4"
    		universalinstallerversion="L"/>
@@ -15,37 +15,37 @@
         <packagingProperties createp2installer="true" supportedBWVersion="6.4" createcloudartifacts="epaas" bundle_analysis="true"/>
 
     <customVariables>
-		<localVariable name="bwplugintctacloud.minimum.bw.version" value="1.0.6"/>
+		<localVariable name="bwplugintascloud.minimum.bw.version" value="1.0.6"/>
 
-                <localVariable name="bwplugintcta.minimum.bw.version" value="6.4.0"/>
-		<localVariable name="bwplugintcta.extension.palettes.home" value="${tibco.BW.home}/../palettes/tcta/6.0"/>
-		<localVariable name="bwplugintcta.extension.palettes.runtime.home" value="${tibco.BW.home}/../palettes/tcta/6.0/runtime"/>
-		<localVariable name="bwplugintcta.extension.palettes.design.home" value="${tibco.BW.home}/../palettes/tcta/6.0/design"/>
+                <localVariable name="bwplugintas.minimum.bw.version" value="6.4.0"/>
+		<localVariable name="bwplugintas.extension.palettes.home" value="${tibco.BW.home}/../palettes/tas/6.0"/>
+		<localVariable name="bwplugintas.extension.palettes.runtime.home" value="${tibco.BW.home}/../palettes/tas/6.0/runtime"/>
+		<localVariable name="bwplugintas.extension.palettes.design.home" value="${tibco.BW.home}/../palettes/tas/6.0/design"/>
 
-		<localVariable name="bwplugintcta.palette.full.name" value="TIBCO BW TCTA Palette"/>
-		<localVariable name="bwplugintcta.palette.short.name" value="tcta"/>
-		<localVariable name="bwplugintcta.palette.package.name" value="com.tibco.bw.palette"/>
+		<localVariable name="bwplugintas.palette.full.name" value="TIBCO BW TAS Palette"/>
+		<localVariable name="bwplugintas.palette.short.name" value="tas"/>
+		<localVariable name="bwplugintas.palette.package.name" value="com.tibco.bw.palette"/>
 
 		<localVariable name="all.palette.ius" value="com.tibco.bw.palette.tcta.design.feature.feature.group,com.tibco.bw.palette.tcta.model.feature.feature.group,com.tibco.bw.sharedresource.tcta.design.feature.feature.group,com.tibco.bw.sharedresource.tcta.model.feature.feature.group"/>
-		<localVariable name="bwplugintcta.palette.install.tag" value="TIBCO BW TCTA Palette Features Installation"/>
-		<localVariable name="bwplugintcta.palette.uninstall.tag" value="TIBCO BW TCTA Palette Features Uninstallation"/>
+		<localVariable name="bwplugintas.palette.install.tag" value="TIBCO BW TAS Palette Features Installation"/>
+		<localVariable name="bwplugintas.palette.uninstall.tag" value="TIBCO BW TAS Palette Features Uninstallation"/>
 
     </customVariables>
 
     <installProfile name="Runtime" uid="runtime-profile" description=""/>
     <installProfile description="Installs all components of the product" name="Typical" uid="typical" defaultSelected="true"/>
 
-    <installerFeatureNode name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TCTA Design" nodeID="design-node" parentNode="root"/>
-    <installerFeatureNode name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TCTA Runtime" nodeID="runtime-node" parentNode="root"/>
+    <installerFeatureNode name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TAS Design" nodeID="design-node" parentNode="root"/>
+    <installerFeatureNode name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TAS Runtime" nodeID="runtime-node" parentNode="root"/>
 
     <installerFeature name="runtime" visible="true" version="6.0.0" parentNode="runtime-node" profileUID="runtime-profile" dependencyOperator="OR">
         <assemblyList>
-			<assembly uid="assembly_tibco_com_tibco_bw_palette_tcta_model_feature" overrideTargetDirectory="$L{bwplugintcta.extension.palettes.runtime.home}" version="6.0.0" />
-			<assembly uid="assembly_tibco_com_tibco_bw_palette_tcta_runtime_feature" overrideTargetDirectory="$L{bwplugintcta.extension.palettes.runtime.home}" version="6.0.0" />
-			<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tcta_model_feature" overrideTargetDirectory="$L{bwplugintcta.extension.palettes.runtime.home}" version="6.0.0" />
-			<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tcta_runtime_feature"  overrideTargetDirectory="$L{bwplugintcta.extension.palettes.runtime.home}" version="6.0.0"/>
-			<assembly uid="product_tibco_bwplugintcta_runtime" overrideTargetDirectory="$L{bwplugintcta.extension.palettes.home}" version="6.0.0"/>
-			<assembly uid="product_tibco_bwplugintcta_samples" overrideTargetDirectory="$L{bwplugintcta.extension.palettes.home}" version="6.0.0"/>
+			<assembly uid="assembly_tibco_com_tibco_bw_palette_tcta_model_feature" overrideTargetDirectory="$L{bwplugintas.extension.palettes.runtime.home}" version="6.0.0" />
+			<assembly uid="assembly_tibco_com_tibco_bw_palette_tcta_runtime_feature" overrideTargetDirectory="$L{bwplugintas.extension.palettes.runtime.home}" version="6.0.0" />
+			<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tcta_model_feature" overrideTargetDirectory="$L{bwplugintas.extension.palettes.runtime.home}" version="6.0.0" />
+			<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tcta_runtime_feature"  overrideTargetDirectory="$L{bwplugintas.extension.palettes.runtime.home}" version="6.0.0"/>
+			<assembly uid="product_tibco_bwplugintas_runtime" overrideTargetDirectory="$L{bwplugintas.extension.palettes.home}" version="6.0.0"/>
+			<assembly uid="product_tibco_bwplugintas_samples" overrideTargetDirectory="$L{bwplugintas.extension.palettes.home}" version="6.0.0"/>
         </assemblyList>
 
         <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime" type="feature" uid="Runtime_BW" version="6.4.2"/>
@@ -53,71 +53,71 @@
 
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
-			<property minimumVersion="$L{bwplugintcta.minimum.bw.version}"/>
+			<property minimumVersion="$L{bwplugintas.minimum.bw.version}"/>
 			<property vpdUID="BW_runtime"/>
 			<property productAssemblyUID="product_tibco_com_tibco_bw_enterprise_runtime"/>
-			<property productAssemblyMinVersion="$L{bwplugintcta.minimum.bw.version}"/>
+			<property productAssemblyMinVersion="$L{bwplugintas.minimum.bw.version}"/>
 			<property showProgress="true"/>
 			<property description="Get install location for BW Runtime"/>
 		</wizardAction>
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
-			<property minimumVersion="$L{bwplugintctacloud.minimum.bw.version}"/>
+			<property minimumVersion="$L{bwplugintascloud.minimum.bw.version}"/>
 			<property vpdUID=""/>
 			<property productAssemblyUID="product_tibco_bwplugin_cloud_runtime_dependency"/>
-			<property productAssemblyMinVersion="$L{bwplugintctacloud.minimum.bw.version}"/>
+			<property productAssemblyMinVersion="$L{bwplugintascloud.minimum.bw.version}"/>
 			<property showProgress="true"/>
 			<property description="Get install location for Cloud Runtime"/>
 		</wizardAction>
 
-		<postInstallAction taskFile="${tibco.BW.home}/scripts/build.xml" description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TCTA runtime - creating extension palette link" target="create-ext-palette-link" logLevel="debug" sequence="post-assembly-ref">
+		<postInstallAction taskFile="${tibco.BW.home}/scripts/build.xml" description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TAS runtime - creating extension palette link" target="create-ext-palette-link" logLevel="debug" sequence="post-assembly-ref">
 			<postInstallActionProperty name="bw.home" value="${tibco.BW.home}"/>
 			<postInstallActionProperty name="bw.home.esc" value="${tibco.BW.home.esc}"/>
-			<postInstallActionProperty name="ext.palette.full.name" value="$L{bwplugintcta.palette.full.name}"/>
-			<postInstallActionProperty name="ext.palette.short.name" value="$L{bwplugintcta.palette.short.name}"/>
-			<postInstallActionProperty name="ext.palette.package.name" value="$L{bwplugintcta.palette.package.name}"/>
-			<postInstallActionProperty name="ext.palette.location" value="$L{bwplugintcta.extension.palettes.home}"/>
+			<postInstallActionProperty name="ext.palette.full.name" value="$L{bwplugintas.palette.full.name}"/>
+			<postInstallActionProperty name="ext.palette.short.name" value="$L{bwplugintas.palette.short.name}"/>
+			<postInstallActionProperty name="ext.palette.package.name" value="$L{bwplugintas.palette.package.name}"/>
+			<postInstallActionProperty name="ext.palette.location" value="$L{bwplugintas.extension.palettes.home}"/>
 		</postInstallAction>
 
-		<postInstallAction taskFile="${tibco.BW.home}/scripts/build.xml" description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TCTA runtime - deleting extension palette link" target="delete-ext-palette-link" logLevel="debug" sequence="pre-uninstall-ref">
+		<postInstallAction taskFile="${tibco.BW.home}/scripts/build.xml" description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TAS runtime - deleting extension palette link" target="delete-ext-palette-link" logLevel="debug" sequence="pre-uninstall-ref">
 			<postInstallActionProperty name="bw.home" value="${tibco.BW.home}"/>
 			<postInstallActionProperty name="bw.home.esc" value="${tibco.BW.home.esc}"/>
-			<postInstallActionProperty name="ext.palette.full.name" value="$L{bwplugintcta.palette.full.name}"/>
-			<postInstallActionProperty name="ext.palette.short.name" value="$L{bwplugintcta.palette.short.name}"/>
-			<postInstallActionProperty name="ext.palette.package.name" value="$L{bwplugintcta.palette.package.name}"/>
-			<postInstallActionProperty name="ext.palette.location" value="$L{bwplugintcta.extension.palettes.home}"/>
+			<postInstallActionProperty name="ext.palette.full.name" value="$L{bwplugintas.palette.full.name}"/>
+			<postInstallActionProperty name="ext.palette.short.name" value="$L{bwplugintas.palette.short.name}"/>
+			<postInstallActionProperty name="ext.palette.package.name" value="$L{bwplugintas.palette.package.name}"/>
+			<postInstallActionProperty name="ext.palette.location" value="$L{bwplugintas.extension.palettes.home}"/>
 		</postInstallAction>
     </installerFeature>
 
     <installerFeature name="design" visible="true" version="6.0.0" parentNode="design-node" profileUID="typical" dependencyOperator="OR">
 
 		<assemblyList>
-			<assembly overrideTargetDirectory="$L{bwplugintcta.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_palette_tcta_design_feature" version="6.0.0"/>
-			<assembly overrideTargetDirectory="$L{bwplugintcta.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tcta_design_feature" version="6.0.0"/>
-			<assembly additionalTargetDirectory="$L{bwplugintcta.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tcta_model_feature" version="6.0.0"/>
-			<assembly additionalTargetDirectory="$L{bwplugintcta.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_palette_tcta_model_feature" version="6.0.0"/>
+			<assembly overrideTargetDirectory="$L{bwplugintas.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_palette_tcta_design_feature" version="6.0.0"/>
+			<assembly overrideTargetDirectory="$L{bwplugintas.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tcta_design_feature" version="6.0.0"/>
+			<assembly additionalTargetDirectory="$L{bwplugintas.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tcta_model_feature" version="6.0.0"/>
+			<assembly additionalTargetDirectory="$L{bwplugintas.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_palette_tcta_model_feature" version="6.0.0"/>
 
 		</assemblyList>
 
         <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design" type="feature" uid="Design_BW" version="6.4.2"/>
 	<dependency description="TIBCO BusinessWorks Cloud Design" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="6.0.0"/>
-		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TCTA - Runtime" type="feature" uid="runtime_bwplugintcta" version="6.0.0"/>
+		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TAS - Runtime" type="feature" uid="runtime_bwplugintas" version="6.0.0"/>
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
-			<property minimumVersion="$L{bwplugintcta.minimum.bw.version}"/>
+			<property minimumVersion="$L{bwplugintas.minimum.bw.version}"/>
 			<property vpdUID="BW_design"/>
 			<property productAssemblyUID="product_tibco_com_tibco_bw_enterprise_design"/>
-			<property productAssemblyMinVersion="$L{bwplugintcta.minimum.bw.version}"/>
+			<property productAssemblyMinVersion="$L{bwplugintas.minimum.bw.version}"/>
 			<property showProgress="true"/>
 			<property description="Get install location for BW Design"/>
 		</wizardAction>
 
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
-			<property minimumVersion="$L{bwplugintctacloud.minimum.bw.version}"/>
+			<property minimumVersion="$L{bwplugintascloud.minimum.bw.version}"/>
 			<property vpdUID=""/>
 			<property productAssemblyUID="product_tibco_bwplugin_cloud_design_dependency"/>
-			<property productAssemblyMinVersion="$L{bwplugintctacloud.minimum.bw.version}"/>
+			<property productAssemblyMinVersion="$L{bwplugintascloud.minimum.bw.version}"/>
 			<property showProgress="true"/>
 			<property description="Get install location for Cloud Design"/>
 		</wizardAction>
@@ -130,7 +130,7 @@
 				<property version="6.0.0"/>
 				<property mustBeInstalled="true"/>
 				</condition>
-			<property featureUID="migration_bwplugintcta"/>
+			<property featureUID="migration_bwplugintas"/>
 			<property isEnabled="true"/>
 			<property isVisible="false"/>
 			<property isSelected="true"/>
@@ -146,7 +146,7 @@
       <property assemblyID="product_tibco_bwplugin_cloud_design_dependency"/>
       <property version="1.0.0"/>
       </condition>
-      <property variableToSet="bwplugintcta.palette.ius"/>
+      <property variableToSet="bwplugintas.palette.ius"/>
       <property variableValue="com.tibco.bw.palette.tcta.design.feature.feature.group,com.tibco.bw.palette.tcta.model.feature.feature.group,com.tibco.bw.sharedresource.tcta.design.feature.feature.group,com.tibco.bw.sharedresource.tcta.model.feature.feature.group"/>
 </wizardAction>
 
@@ -156,18 +156,18 @@
       <property assemblyID="product_tibco_com_tibco_bw_enterprise_runtime"/>
       <property version="1.0.0"/>
       </condition>
-      <property variableToSet="bwplugintcta.palette.ius"/>
+      <property variableToSet="bwplugintas.palette.ius"/>
       <property variableValue="com.tibco.bw.palette.tcta.design.feature.feature.group,com.tibco.bw.palette.tcta.model.feature.feature.group,com.tibco.bw.sharedresource.tcta.design.feature.feature.group,com.tibco.bw.sharedresource.tcta.model.feature.feature.group"/>
 </wizardAction>
 
 		<postInstallAction sequence="post-assembly-ref" target="install-ext-palette-design" logLevel="debug" taskFile="${tibco.BW.home}/scripts/build.xml">
 			<postInstallActionProperty name="bw.home" value="${tibco.BW.home}"/>
 			<postInstallActionProperty name="bw.home.esc" value="${tibco.BW.home.esc}"/>
-			<postInstallActionProperty name="ext.palette.short.name" value="$L{bwplugintcta.palette.short.name}"/>
-			<postInstallActionProperty name="ext.palette.package.name" value="$L{bwplugintcta.palette.package.name}"/>
-			<postInstallActionProperty name="ext.palette.location" value="$L{bwplugintcta.extension.palettes.home}"/>
-			<postInstallActionProperty name="ext.palette.install.ius" value="${bwplugintcta.palette.ius}"/>
-			<postInstallActionProperty name="ext.palette.install.tag" value="$L{bwplugintcta.palette.install.tag}"/>
+			<postInstallActionProperty name="ext.palette.short.name" value="$L{bwplugintas.palette.short.name}"/>
+			<postInstallActionProperty name="ext.palette.package.name" value="$L{bwplugintas.palette.package.name}"/>
+			<postInstallActionProperty name="ext.palette.location" value="$L{bwplugintas.extension.palettes.home}"/>
+			<postInstallActionProperty name="ext.palette.install.ius" value="${bwplugintas.palette.ius}"/>
+			<postInstallActionProperty name="ext.palette.install.tag" value="$L{bwplugintas.palette.install.tag}"/>
 		</postInstallAction>
 
 		<postInstallAction logLevel="debug" sequence="post-assembly-ref" target="remove-exclude-as-provisioning-properties" taskFile="${tibco.BW.home}/scripts/build.xml">
@@ -183,11 +183,11 @@
 		<postInstallAction logLevel="debug" sequence="pre-assembly-uninstall-ref" target="uninstall-ext-palette-design" taskFile="${tibco.BW.home}/scripts/build.xml">
 			<postInstallActionProperty name="bw.home" value="${tibco.BW.home}"/>
 			<postInstallActionProperty name="bw.home.esc" value="${tibco.BW.home.esc}"/>
-			<postInstallActionProperty name="ext.palette.short.name" value="$L{bwplugintcta.palette.short.name}"/>
-			<postInstallActionProperty name="ext.palette.package.name" value="$L{bwplugintcta.palette.package.name}"/>
-			<postInstallActionProperty name="ext.palette.location" value="$L{bwplugintcta.extension.palettes.home}"/>
-			<postInstallActionProperty name="ext.palette.uninstall.ius" value="${bwplugintcta.palette.ius}"/>
-			<postInstallActionProperty name="ext.palette.uninstall.tag" value="$L{bwplugintcta.palette.uninstall.tag}"/>
+			<postInstallActionProperty name="ext.palette.short.name" value="$L{bwplugintas.palette.short.name}"/>
+			<postInstallActionProperty name="ext.palette.package.name" value="$L{bwplugintas.palette.package.name}"/>
+			<postInstallActionProperty name="ext.palette.location" value="$L{bwplugintas.extension.palettes.home}"/>
+			<postInstallActionProperty name="ext.palette.uninstall.ius" value="${bwplugintas.palette.ius}"/>
+			<postInstallActionProperty name="ext.palette.uninstall.tag" value="$L{bwplugintas.palette.uninstall.tag}"/>
 		</postInstallAction>
 
 		<postInstallAction logLevel="debug" sequence="post-uninstall-ref" target="setup-bwthor-launch" taskFile="${tibco.BW.home}/scripts/build.xml">

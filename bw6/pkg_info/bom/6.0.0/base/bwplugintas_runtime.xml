@@ -1,7 +1,7 @@
 <?xml  version="1.0"?>
 <components>
-	<component name="bwplugintcta_runtime" type="common">
-		<include file="aliases_bwplugintcta.xml" />
+	<component name="bwplugintas_runtime" type="common">
+		<include file="aliases_bwplugintas.xml" />
 		<file src="${bldsrcdir}/lib/bwextension.ini" dest="lib/bwextension.ini" perm="755" plat="${ALL}"/>
 		<dir src="${bldsrcdir}/bin" dest="" plat="${ALL}"/>
 		<dir src="${bldsrcdir}/doc" dest="" plat="${ALL}"/>

@@ -49,7 +49,7 @@
         </assemblyList>
 
         <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime" type="feature" uid="Runtime_BW" version="6.4.0"/>
-	<dependency description="TIBCO BusinessWorks Cloud Runtime" type="assembly" uid="product_tibco_bwplugin_cloud_runtime_dependency" version="1.0.6"/>
+	<dependency description="TIBCO BusinessWorks Cloud Runtime" type="assembly" uid="product_tibco_bwplugin_cloud_runtime_dependency" version="1.0.0"/>
 
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
@@ -114,7 +114,7 @@
 		</assemblyList>
 
         <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design" type="feature" uid="Design_BW" version="6.4.0"/>
-	<dependency description="TIBCO BusinessWorks Cloud Design" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="1.0.6"/>
+	<dependency description="TIBCO BusinessWorks Cloud Design" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="1.0.0"/>
 		<!-- <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TAS - Runtime" type="feature" uid="runtime_bwplugintas" version="6.0.0"/> -->
 		
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction">

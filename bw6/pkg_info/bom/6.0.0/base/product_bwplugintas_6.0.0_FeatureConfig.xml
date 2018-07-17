@@ -15,7 +15,7 @@
         <packagingProperties createp2installer="true" supportedBWVersion="6.4" createcloudartifacts="epaas" bundle_analysis="true"/>
 
     <customVariables>
-		<localVariable name="bwplugintascloud.minimum.bw.version" value="1.0.6"/>
+		<localVariable name="bwplugintascloud.minimum.bw.version" value="1.0.0"/>
 
         <localVariable name="bwplugintas.minimum.bw.version" value="6.4.0"/>
 		<localVariable name="bwplugintas.extension.palettes.home" value="${tibco.BW.home}/../palettes/tas/6.0"/>
@@ -87,6 +87,20 @@
 			<postInstallActionProperty name="ext.palette.package.name" value="$L{bwplugintas.palette.package.name}"/>
 			<postInstallActionProperty name="ext.palette.location" value="$L{bwplugintas.extension.palettes.home}"/>
 		</postInstallAction>
+		
+		<postInstallAction taskFile="${tibco.BW.home}/scripts/build.xml" description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TAS runtime - deleting previous extension palette link" target="delete-ext-palette-link" logLevel="debug" sequence="pre-install-ref">
+			<condition class="com.tibco.installer.wizard.condition.TIBCOFileExistsWizardCondition">
+				<property mustBeMet="true"/>
+				<property filename="${tibco.BW.home.esc}/ext/palettes/com.tibco.bw.palette.tas.link"/>
+			</condition>
+			<postInstallActionProperty name="bw.home" value="${tibco.BW.home}"/>
+			<postInstallActionProperty name="bw.home.esc" value="${tibco.BW.home.esc}"/>
+			<postInstallActionProperty name="ext.palette.full.name" value="$L{bwplugintas.palette.full.name}"/>
+			<postInstallActionProperty name="ext.palette.short.name" value="$L{bwplugintas.palette.short.name}"/>
+			<postInstallActionProperty name="ext.palette.package.name" value="$L{bwplugintas.palette.package.name}"/>
+			<postInstallActionProperty name="ext.palette.location" value="$L{bwplugintas.extension.palettes.home}"/>
+		</postInstallAction>
+		
     </installerFeature>
 
     <installerFeature name="design" visible="true" version="6.0.0" parentNode="design-node" profileUID="typical" dependencyOperator="OR">
@@ -176,7 +190,7 @@
 			<postInstallActionProperty name="ext.palette.short.name" value="$L{bwplugintas.palette.short.name}"/>
 			<postInstallActionProperty name="ext.palette.package.name" value="$L{bwplugintas.palette.package.name}"/>
 			<postInstallActionProperty name="ext.palette.location" value="$L{bwplugintas.extension.palettes.home}"/>
-			<postInstallActionProperty name="ext.palette.install.ius" value="${bwplugintas.palette.ius}"/>
+			<postInstallActionProperty name="ext.palette.install.ius" value="$L{bwplugintas.palette.ius}"/>
 			<postInstallActionProperty name="ext.palette.install.tag" value="$L{bwplugintas.palette.install.tag}"/>
 		</postInstallAction>
 
@@ -196,7 +210,7 @@
 			<postInstallActionProperty name="ext.palette.short.name" value="$L{bwplugintas.palette.short.name}"/>
 			<postInstallActionProperty name="ext.palette.package.name" value="$L{bwplugintas.palette.package.name}"/>
 			<postInstallActionProperty name="ext.palette.location" value="$L{bwplugintas.extension.palettes.home}"/>
-			<postInstallActionProperty name="ext.palette.uninstall.ius" value="${bwplugintas.palette.ius}"/>
+			<postInstallActionProperty name="ext.palette.uninstall.ius" value="$L{bwplugintas.palette.ius}"/>
 			<postInstallActionProperty name="ext.palette.uninstall.tag" value="$L{bwplugintas.palette.uninstall.tag}"/>
 		</postInstallAction>
 

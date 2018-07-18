@@ -118,7 +118,7 @@ public abstract class TctaBasicSignature extends BWActivitySignature {
 			String key = ite.next();
 			JsonNode field = properties.get(key);
 			if("string".equals(field.get("type").textValue())){
-				XSDUtility.addSimpleTypeElement(rootInput, key, "string", 1, 1);
+				XSDUtility.addSimpleTypeElement(rootInput, key, "string", 0, 1);
 			} else {
 				JsonNode extra_props = properties.get("extra_props").get("items").get("properties");
 			    XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(rootInput, "extra_props", "extra_props", 0, -1, XSDCompositor.SEQUENCE_LITERAL);

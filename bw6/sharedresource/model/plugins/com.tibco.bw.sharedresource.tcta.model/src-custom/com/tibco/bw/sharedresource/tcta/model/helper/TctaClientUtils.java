@@ -16,6 +16,8 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.databind.JsonNode;
+
 public class TctaClientUtils {
 
 	public static String requestCreateTransaction(String token,
@@ -124,6 +126,36 @@ public class TctaClientUtils {
 		}
 
 		return token;
+	}
+
+	public static JsonNode getSchema(String tctaBaseUrl, String body, int type){
+		if(tctaBaseUrl.endsWith("/")){
+			tctaBaseUrl = tctaBaseUrl.substring(0,tctaBaseUrl.length()-1);
+		}
+		String schemaUrl = tctaBaseUrl + "/tcta/dataserver/schema";
+		HttpURLConnection httpConn;
+		try {
+
+			httpConn = buildpostHttpUrlConnectionWithJson(schemaUrl, body,
+					getsettingMap("application/json","application/json"));
+			String messagebody = getHttpRequestBody(httpConn);
+			int statusCode = httpConn.getResponseCode();
+
+			if(statusCode == HttpURLConnection.HTTP_OK){
+				JsonReader node = new JsonReader(messagebody);
+				if(type == 1 && node.getNode("requestSchema")!=null){
+					return node.getNode("requestSchema");
+				}else if(type == 2 && node.getNode("responseSchema")!=null){
+					return node.getNode("responseSchema");
+				}
+			}
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+
+		}
+		return null;
 	}
 
 	public static Map<String, String> getsettingMap() {

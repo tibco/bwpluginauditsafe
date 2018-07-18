@@ -6,8 +6,8 @@ import com.tibco.bw.sharedresource.tcta.model.tcta.TctaPackage;
 
 public interface TctaConstants {
 
-	public static final String TCTA_ACTIVITY_INPUT = "Input";
-	public static final String TCTA_ACTIVITY_OUTPUT = "Output";
+	public static final String TCTA_ACTIVITY_INPUT = "ActivityInput";
+	public static final String TCTA_ACTIVITY_OUTPUT = "ActivityOutput";
 
 	public static final String START_STAUTS = "status";
 	public static final String PROJECT_NAME = "projectName";

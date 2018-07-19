@@ -17,6 +17,9 @@ import org.genxdm.ProcessingContext;
 import org.genxdm.mutable.MutableModel;
 import org.genxdm.mutable.NodeFactory;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.tibco.bw.palette.tcta.model.tcta.TctaCreateTransaction;
 import com.tibco.bw.runtime.ActivityFault;
 import com.tibco.bw.runtime.ProcessContext;
@@ -69,9 +72,29 @@ public class TctaCreateTransactionActivity<N> extends BaseSyncActivity<N> implem
 		String result  = "";
 
 		if(token != null){
-			Model<N> model =processContext.getModel();
-			N bodyN =  model.getFirstChildElementByName(inputData, null, "body");
-			String body = model.getStringValue(bodyN);
+			ObjectMapper mapper = new ObjectMapper();
+			ObjectNode request = mapper.createObjectNode();
+			ArrayNode extraPropsNode = mapper.createArrayNode();
+
+			Model<N> model = processContext.getModel();
+			Iterable<N> ite = model.getChildElements(inputData);
+			for (N node : ite) {
+				String name = model.getLocalName(node);
+				if(!"extra_props".equals(name)){
+					request.put(name, model.getStringValue(node));
+				} else {
+					ObjectNode propNode = mapper.createObjectNode();
+					N nameNode = model.getFirstChildElementByName(node, null, "prop_name");
+					if(nameNode != null && model.getStringValue(nameNode)!=null){
+						propNode.put("prop_name", model.getStringValue(nameNode));
+						propNode.put("prop_value", model.getStringValue(model.getFirstChildElementByName(node, null, "prop_value")));
+						extraPropsNode.add(propNode);
+					}
+
+				}
+			}
+			request.set("extra_props", extraPropsNode);
+			String body = mapper.writeValueAsString(request);
 			result = TctaClientUtils.requestCreateTransaction(token, sharedResource.getServerUrl(), body);
 		}
 

@@ -7,7 +7,9 @@ Bundle-Version: 6.0.0.qualifier
 Export-Package: com.tibco.bw.palette.tcta.runtime;version="6.0.0";
   uses:="com.tibco.neo.localized,com.tibco.bw.runtime,javax.activation,
    com.tibco.neo.localized"
-Import-Package: com.tibco.bw.palette.tcta.model.tcta,
+Import-Package: com.fasterxml.jackson.databind;version="2.6.1",
+ com.fasterxml.jackson.databind.node;version="2.6.1",
+ com.tibco.bw.palette.tcta.model.tcta,
  com.tibco.bw.runtime;version="[6.0.0,7.0.0)",
  com.tibco.bw.runtime.annotation;version="[6.0.0,7.0.0)",
  com.tibco.bw.runtime.util;version="6.0.0",

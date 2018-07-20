@@ -15,10 +15,10 @@
  -->
 
     <property name="release-unit" value="sharedresource.runtime" />
-    <property name="feature" value="com.tibco.bw.sharedresource.tcta.runtime.feature" />
+    <property name="feature" value="com.tibco.bw.sharedresource.tas.runtime.feature" />
     <property name="autobuild.repository" value="amxext" />
 	
-    <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tcta/sharedresource" />
+    <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tas/sharedresource" />
 
     <property name="autobuild.svn.tag-pattern" value="runtime" />
 

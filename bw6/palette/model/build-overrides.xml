@@ -15,15 +15,15 @@
  -->
 
     <property name="release-unit" value="palette.model" />
-    <property name="feature" value="com.tibco.bw.palette.tcta.model.feature" />
+    <property name="feature" value="com.tibco.bw.palette.tas.model.feature" />
     
     <!--
    	if your product the final path in svn like this:
-     ...amxext/tags/bw6plugins/tcta/palette/palette.model-6.0.0.001/model
+     ...amxext/tags/bw6plugins/tas/palette/palette.model-6.0.0.001/model
     then property configuration as below:  
     -->
     <property name="autobuild.repository" value="amxext" />
-    <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tcta/palette" />
+    <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tas/palette" />
     <property name="autobuild.svn.tag-pattern" value="model" />
     <property name="autobuild.version.eclipse" value="4.4" />
     <property name="autobuild.version.developer.eclipse" value="4.4" />

@@ -15,9 +15,9 @@
  -->
 
     <property name="release-unit" value="sharedresource.model" />
-    <property name="feature" value="com.tibco.bw.sharedresource.tcta.model.feature" />
+    <property name="feature" value="com.tibco.bw.sharedresource.tas.model.feature" />
     <property name="autobuild.repository" value="amxext" />
-    <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tcta/sharedresource" />
+    <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tas/sharedresource" />
     <property name="autobuild.svn.tag-pattern" value="model" />
 
     <property name="autobuild.version.eclipse" value="4.4" />
@@ -27,9 +27,6 @@
     <property name="autobuild.p2.packaging" value="true" />
 	
     <property name="autobuild.obfuscator.style" value="package"/>
-
-    <property name="pdms.virtual.product" value="tcta"/>
-    <property name="pdms.release.unit" value="tcta_res_model"/>
 
     <property name="autobuild.workspace.extra-feature" location="extrafeature.xml"/>
 

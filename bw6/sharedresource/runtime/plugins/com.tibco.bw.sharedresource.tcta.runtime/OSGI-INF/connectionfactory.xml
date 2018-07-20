@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scr:component xmlns:scr="http://www.osgi.org/xmlns/scr/v1.1.0" name="bw.sharedresource.tas.tasconnection" configuration-policy="optional">
+   <implementation class="com.tibco.bw.sharedresource.tas.runtime.TctaConnectionResourceFactory"/>
+   <service>
+      <provide interface="com.tibco.bw.sharedresource.runtime.configuration.SharedResourceFactory"/>
+   </service>
+   <property name="resource.type" type="String" value="{http://ns.tibco.com/bw/sharedresource/tas}tasConnection"/>
+</scr:component>

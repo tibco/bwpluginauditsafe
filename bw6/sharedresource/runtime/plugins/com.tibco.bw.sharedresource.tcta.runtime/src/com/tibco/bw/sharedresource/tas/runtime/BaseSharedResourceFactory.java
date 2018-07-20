@@ -10,7 +10,7 @@
  * electronic or mechanical, without written permission from
  * TIBCO Software Inc.
  */
-package com.tibco.bw.sharedresource.tcta.runtime;
+package com.tibco.bw.sharedresource.tas.runtime;
 
 import com.tibco.bw.sharedresource.runtime.ResourceDependencyHandler;
 import com.tibco.bw.sharedresource.runtime.configuration.SharedResourceContext;

@@ -2,7 +2,7 @@
  * Copyright (c) TIBCO Software Inc. 2005.
  * All Rights Reserved.
  */
-package com.tibco.bw.palette.tcta.runtime;
+package com.tibco.bw.palette.tas.runtime;
 
 import com.tibco.neo.localized.BundleMessage;
 import com.tibco.neo.localized.MessageBundle;
@@ -16,7 +16,7 @@ import com.tibco.neo.localized.MessageBundle;
 public class RuntimeMessageBundle extends MessageBundle {
 
     // Following member is accessed by MessageBundle.initializeMessages, do not remove!
-    static public final String BUNDLE_NAME = "com.tibco.bw.palette.tcta.runtime.Resources"; //$NON-NLS-1$
+    static public final String BUNDLE_NAME = "com.tibco.bw.palette.tas.runtime.Resources"; //$NON-NLS-1$
 
     static {
         MessageBundle.initializeMessages(RuntimeMessageBundle.class);

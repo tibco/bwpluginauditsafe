@@ -10,7 +10,7 @@
  * electronic or mechanical, without written permission from
  * TIBCO Software Inc.
  */
-package com.tibco.bw.palette.tcta.runtime;
+package com.tibco.bw.palette.tas.runtime;
 
 import org.genxdm.Model;
 import org.genxdm.ProcessingContext;
@@ -20,12 +20,12 @@ import org.genxdm.mutable.NodeFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.tibco.bw.palette.tcta.model.tcta.TctaCreateTransaction;
+import com.tibco.bw.palette.tas.model.tas.TctaCreateTransaction;
 import com.tibco.bw.runtime.ActivityFault;
 import com.tibco.bw.runtime.ProcessContext;
 import com.tibco.bw.runtime.annotation.Property;
-import com.tibco.bw.sharedresource.tcta.model.helper.TctaClientUtils;
-import com.tibco.bw.sharedresource.tcta.runtime.TctaConnectionResource;
+import com.tibco.bw.sharedresource.tas.model.helper.TctaClientUtils;
+import com.tibco.bw.sharedresource.tas.runtime.TctaConnectionResource;
 import com.tibco.neo.localized.LocalizedMessage;
 
 public class TctaCreateTransactionActivity<N> extends BaseSyncActivity<N> implements TCTAContants{
@@ -39,7 +39,7 @@ public class TctaCreateTransactionActivity<N> extends BaseSyncActivity<N> implem
      * <!-- end-custom-doc -->
      * @generated
     */
-	@Property(name = "tctaConnection")
+	@Property(name = "tasConnection")
     public TctaConnectionResource sharedResource;
 
 	@Override

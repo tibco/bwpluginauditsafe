@@ -1,4 +1,4 @@
-package com.tibco.bw.palette.tcta.runtime;
+package com.tibco.bw.palette.tas.runtime;
 
 public interface TCTAContants {
 	public static final String ACTIVITY_OUTPUT_ROOT_ELEMENT_NAME = "ActivityOutput";

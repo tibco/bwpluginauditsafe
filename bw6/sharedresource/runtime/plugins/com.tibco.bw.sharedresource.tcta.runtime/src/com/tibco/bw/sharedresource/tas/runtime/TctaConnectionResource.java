@@ -6,7 +6,7 @@
  * This software is confidential and proprietary information of TIBCO Software Inc.
  * Overridable true
  */
-package com.tibco.bw.sharedresource.tcta.runtime;
+package com.tibco.bw.sharedresource.tas.runtime;
 
 
 public class TctaConnectionResource {

@@ -10,7 +10,7 @@
  * electronic or mechanical, without written permission from
  * TIBCO Software Inc.
  */
-package com.tibco.bw.palette.tcta.runtime;
+package com.tibco.bw.palette.tas.runtime;
 
 import org.genxdm.Model;
 import org.genxdm.ProcessingContext;

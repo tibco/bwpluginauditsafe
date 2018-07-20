@@ -1,4 +1,4 @@
-package com.tibco.bw.sharedresource.tcta.runtime;
+package com.tibco.bw.sharedresource.tas.runtime;
 
 import com.tibco.bw.sharedresource.runtime.configuration.SharedResourceLifeCycleFault;
 import com.tibco.neo.localized.LocalizedMessage;

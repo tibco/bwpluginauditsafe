@@ -10,7 +10,7 @@
  * electronic or mechanical, without written permission from
  * TIBCO Software Inc.
  */
-package com.tibco.bw.sharedresource.tcta.runtime;
+package com.tibco.bw.sharedresource.tas.runtime;
 
 import java.util.Map;
 
@@ -20,7 +20,7 @@ import com.tibco.bw.sharedresource.runtime.builder.ResourceReferenceDescriptorBu
 import com.tibco.bw.sharedresource.runtime.configuration.SharedResourceContext;
 import com.tibco.bw.sharedresource.runtime.configuration.SharedResourceLifeCycleFault;
 import com.tibco.bw.sharedresource.runtime.exception.ResourceException;
-import com.tibco.bw.sharedresource.tcta.model.helper.TCTAConstants;
+import com.tibco.bw.sharedresource.tas.model.helper.TCTAConstants;
 import com.tibco.neo.localized.LocalizedMessage;
 
 public class TctaConnectionResourceFactory extends BaseSharedResourceFactory

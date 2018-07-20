@@ -15,23 +15,21 @@
  -->
 
     <property name="release-unit" value="palette.runtime" />
-    <property name="feature" value="com.tibco.bw.palette.tcta.runtime.feature" />
+    <property name="feature" value="com.tibco.bw.palette.tas.runtime.feature" />
     
     <!--
    	if your product the final path in svn like this:
-     ...amxext/tags/bw6plugins/tcta/palette/palette.runtime-6.0.0.001/runtime
+     ...amxext/tags/bw6plugins/tas/palette/palette.runtime-6.0.0.001/runtime
     then property configuration as below:  
     -->
     <property name="autobuild.repository" value="amxext" />
-    <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tcta/palette" />
+    <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tas/palette" />
     <property name="autobuild.svn.tag-pattern" value="runtime" />
     
     <property name="autobuild.version.eclipse" value="4.4" />
     <property name="autobuild.version.developer.eclipse" value="4.4" />
 
     <property name="autobuild.obfuscator.style" value="none"/> <!--whether want to obfuscate class-->
-    <property name="pdms.virtual.product" value="tcta" />      <!--product name in pdms-->
-    <property name="pdms.release.unit" value="tcta_runtime" /> <!--unit name in pdms-->
     <property name="site.type" value="release"/>
     <property name="reldist.download.enable" value="true"/>
 

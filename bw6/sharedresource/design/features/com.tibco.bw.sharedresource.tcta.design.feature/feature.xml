@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="com.tibco.bw.sharedresource.tcta.design.feature"
+      id="com.tibco.bw.sharedresource.tas.design.feature"
       label="%featureName"
       version="6.0.0.qualifier"
       provider-name="%providerName">
@@ -26,11 +26,11 @@
       <import feature="com.tibco.tibcoxml.xml.eclipse" version="5.60.100" match="compatible"/>
       <import feature="com.tibco.tpcl.javax.jms.feature.eclipse" version="1.10.0" match="compatible"/> 
       <import feature="com.tibco.bw.core.design.feature" version="6.3.0" match="compatible"/>
-   	  <import feature="com.tibco.bw.sharedresource.tcta.model.feature" version="6.0.0" match="compatible"/>
+   	  <import feature="com.tibco.bw.sharedresource.tas.model.feature" version="6.0.0" match="compatible"/>
    </requires>
 
    <plugin
-         id="com.tibco.bw.sharedresource.tcta.design"
+         id="com.tibco.bw.sharedresource.tas.design"
          download-size="0"
          install-size="0"
          version="6.0.0.qualifier"

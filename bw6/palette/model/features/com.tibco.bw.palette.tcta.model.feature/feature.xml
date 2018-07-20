@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="com.tibco.bw.palette.tcta.model.feature"
+      id="com.tibco.bw.palette.tas.model.feature"
       label="%featureName"
       version="6.0.0.qualifier"
       provider-name="%providerName">
@@ -18,7 +18,7 @@
    </license>
 
    <plugin
-         id="com.tibco.bw.palette.tcta.model"
+         id="com.tibco.bw.palette.tas.model"
          download-size="0"
          install-size="0"
          version="6.0.0.qualifier"

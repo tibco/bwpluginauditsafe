@@ -15,9 +15,9 @@
  -->
 
     <property name="release-unit" value="sharedresource.design" />
-    <property name="feature" value="com.tibco.bw.sharedresource.tcta.design.feature" />
+    <property name="feature" value="com.tibco.bw.sharedresource.tas.design.feature" />
     <property name="autobuild.repository" value="amxext" />
-    <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tcta/sharedresource" />
+    <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tas/sharedresource" />
     <property name="autobuild.svn.tag-pattern" value="design" />
 
     <property name="autobuild.version.eclipse" value="4.4" />

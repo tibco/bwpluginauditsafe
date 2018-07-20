@@ -1,17 +1,17 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: com.tibco.bw.palette.tcta.model;singleton:=true
+Bundle-SymbolicName: com.tibco.bw.palette.tas.model;singleton:=true
 Bundle-Version: 6.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: 
- com.tibco.bw.palette.tcta.model.tcta;version="6.0.0",
- com.tibco.bw.palette.tcta.model.tcta.impl;version="6.0.0",
- com.tibco.bw.palette.tcta.model.tcta.util;version="6.0.0",
- com.tibco.bw.palette.tcta.model.utils
+ com.tibco.bw.palette.tas.model.utils,
+ com.tibco.bw.palette.tas.model.tas;version="6.0.0",
+ com.tibco.bw.palette.tas.model.tas.impl;version="6.0.0",
+ com.tibco.bw.palette.tas.model.tas.util;version="6.0.0"
 Import-Package: com.tibco.bw.config;version="[6.0.0,7.0.0)",
  com.tibco.bw.config.provider;version="[6.0.0,7.0.0)",
  com.tibco.bw.config.provider.impl;version="[6.0.0,7.0.0)",
@@ -30,4 +30,4 @@ Import-Package: com.tibco.bw.config;version="[6.0.0,7.0.0)",
  org.eclipse.emf.ecore.util;version="[0.0.0,3.0.0)",
  org.eclipse.emf.ecore.xml.type;version="[0.0.0,3.0.0)",
   org.eclipse.osgi.util;version="[0.0.0,2.0.0)"
-Provide-Capability: com.tibco.bw.model; name=bw.tcta
+Provide-Capability: com.tibco.bw.model; name=bw.tas

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="tcta" nsURI="http://ns.tibco.com/bw/palette/tcta" nsPrefix="tcta">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="tas" nsURI="http://ns.tibco.com/bw/palette/tas" nsPrefix="tas">
   <eClassifiers xsi:type="ecore:EClass" name="TctaAbstractObject" instanceTypeName="TctaAbstractObject"
       abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tctaConnection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tasConnection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="cbgeneralcontrol">
         <details key="label" value="TCTA Connection:"/>
         <details key="type" value="text"/>

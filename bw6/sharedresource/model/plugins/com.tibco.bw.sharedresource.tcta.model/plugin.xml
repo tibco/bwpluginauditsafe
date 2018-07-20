@@ -15,16 +15,16 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://ns.tibco.com/bw/sharedresource/tcta"
-            class="com.tibco.bw.sharedresource.tcta.model.tcta.TctaPackage"
-            genModel="model/tcta.sharedresource.genmodel"/>
+            uri="http://ns.tibco.com/bw/sharedresource/tas"
+            class="com.tibco.bw.sharedresource.tas.model.tas.TctaPackage"
+            genModel="model/tas.sharedresource.genmodel"/>
    </extension>
    
    <extension
          point="org.eclipse.emf.ecore.extension_parser">
       <parser
             class="com.tibco.amf.model.sharedresource.jndi.util.JndiResourceFactoryImpl"
-            type="tctaconnectionResource">
+            type="tasconnectionResource">
       </parser>
    </extension>
 

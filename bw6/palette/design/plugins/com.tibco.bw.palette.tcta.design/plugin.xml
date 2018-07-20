@@ -17,35 +17,35 @@
          point="com.tibco.bw.design.Palette">
       <paletteDrawer
             expanded="false"
-            paletteID="bw.tcta"
-            name="%tcta.palette.name"
+            paletteID="bw.tas"
+            name="%tas.palette.name"
             priority="500"
-            smallIcon="icons/obj16/tcta_16x16.png"
-            productID="bw.tcta.product"
-            tooltip="%tcta.palette.tooltip">
+            smallIcon="icons/obj16/tas_16x16.png"
+            productID="bw.tas.product"
+            tooltip="%tas.palette.tooltip">
       </paletteDrawer>
    </extension>
 
    <extension
          point="com.tibco.bw.design.ActivityType">
       <activityType
-            activityTypeID="bw.tcta.TctaCreateTransaction"
-            name="%tcta.activity.TctaCreateTransaction.name"
+            activityTypeID="bw.tas.TctaCreateTransaction"
+            name="%tas.activity.TctaCreateTransaction.name"
             priority="100"
-            tooltip="%tcta.activity.TctaCreateTransaction.tooltip"
+            tooltip="%tas.activity.TctaCreateTransaction.tooltip"
             visible="true">
          <palette
-               paletteID="bw.tcta">
+               paletteID="bw.tas">
          </palette>
       </activityType>
       <activityType
-            activityTypeID="bw.tcta.TctaGetToken"
-            name="%tcta.activity.TctaGetToken.name"
+            activityTypeID="bw.tas.TctaGetToken"
+            name="%tas.activity.TctaGetToken.name"
             priority="100"
-            tooltip="%tcta.activity.TctaGetToken.tooltip"
+            tooltip="%tas.activity.TctaGetToken.tooltip"
             visible="true">
          <palette
-               paletteID="bw.tcta">
+               paletteID="bw.tas">
          </palette>
       </activityType>
 
@@ -55,30 +55,30 @@
    <extension
          point="com.tibco.bw.design.ActivitySignature">
       <signature
-            activityTypeID="bw.tcta.TctaCreateTransaction"
-            signatureClass="com.tibco.bw.palette.tcta.design.createtransaction.TctaCreateTransactionSignature">
+            activityTypeID="bw.tas.TctaCreateTransaction"
+            signatureClass="com.tibco.bw.palette.tas.design.createtransaction.TctaCreateTransactionSignature">
       </signature>
       <signature
-            activityTypeID="bw.tcta.TctaGetToken"
-            signatureClass="com.tibco.bw.palette.tcta.design.gettoken.TctaGetTokenSignature">
+            activityTypeID="bw.tas.TctaGetToken"
+            signatureClass="com.tibco.bw.palette.tas.design.gettoken.TctaGetTokenSignature">
       </signature>
    </extension>
 
    <extension
          point="com.tibco.bw.design.ActivityTypeConfigEMF">
       <config
-            activityTypeID="bw.tcta.TctaCreateTransaction"
+            activityTypeID="bw.tas.TctaCreateTransaction"
             eClassName="TctaCreateTransaction"
-            ePackageNSURI="http://ns.tibco.com/bw/palette/tcta"
-            instanceName="%tcta.activity.default.TctaCreateTransaction.name"
-            modelHelperClass="com.tibco.bw.palette.tcta.design.createtransaction.TctaCreateTransactionModelHelper">
+            ePackageNSURI="http://ns.tibco.com/bw/palette/tas"
+            instanceName="%tas.activity.default.TctaCreateTransaction.name"
+            modelHelperClass="com.tibco.bw.palette.tas.design.createtransaction.TctaCreateTransactionModelHelper">
       </config>
       <config
-            activityTypeID="bw.tcta.TctaGetToken"
+            activityTypeID="bw.tas.TctaGetToken"
             eClassName="TctaGetToken"
-            ePackageNSURI="http://ns.tibco.com/bw/palette/tcta"
-            instanceName="%tcta.activity.default.TctaGetToken.name"
-            modelHelperClass="com.tibco.bw.palette.tcta.design.gettoken.TctaGetTokenModelHelper">
+            ePackageNSURI="http://ns.tibco.com/bw/palette/tas"
+            instanceName="%tas.activity.default.TctaGetToken.name"
+            modelHelperClass="com.tibco.bw.palette.tas.design.gettoken.TctaGetTokenModelHelper">
       </config>
    </extension>
 
@@ -88,16 +88,16 @@
             contributorId="com.tibco.bw.core.design.process.editor">
          <propertySection
                afterSection="com.tibco.bw.design.activity.general"
-               class="com.tibco.bw.palette.tcta.design.createtransaction.TctaCreateTransactionGeneralSection"
-               filter="com.tibco.bw.palette.tcta.design.createtransaction.TctaCreateTransactionGeneralSection"
-               id="bw.tcta.TctaCreateTransaction.general"
+               class="com.tibco.bw.palette.tas.design.createtransaction.TctaCreateTransactionGeneralSection"
+               filter="com.tibco.bw.palette.tas.design.createtransaction.TctaCreateTransactionGeneralSection"
+               id="bw.tas.TctaCreateTransaction.general"
                tab="tibco.bw.activity.property.tab.general">
          </propertySection>
          <propertySection
                afterSection="com.tibco.bw.design.activity.general"
-               class="com.tibco.bw.palette.tcta.design.gettoken.TctaGetTokenGeneralSection"
-               filter="com.tibco.bw.palette.tcta.design.gettoken.TctaGetTokenGeneralSection"
-               id="bw.tcta.TctaGetToken.general"
+               class="com.tibco.bw.palette.tas.design.gettoken.TctaGetTokenGeneralSection"
+               filter="com.tibco.bw.palette.tas.design.gettoken.TctaGetTokenGeneralSection"
+               id="bw.tas.TctaGetToken.general"
                tab="tibco.bw.activity.property.tab.general">
          </propertySection>
       </propertySections>
@@ -106,8 +106,8 @@
    <extension
          point="com.tibco.bw.design.BWContextHelp">
       <plugin
-            defaultURL="https://docs.tibco.com/pub/activematrix-businessworks-plugin-for-tcta/6.0.0-february-2014/doc/html/index.html"
-            id="bw.tcta.product"
+            defaultURL="https://docs.tibco.com/pub/activematrix-businessworks-plugin-for-tas/6.0.0-february-2014/doc/html/index.html"
+            id="bw.tas.product"
             name="BusinessWorks TCTA Plugin">
       </plugin>
    </extension>

@@ -15,22 +15,22 @@
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://ns.tibco.com/bw/palette/tcta"
-            class="com.tibco.bw.palette.tcta.model.tcta.TctaPackage"/>
+            uri="http://ns.tibco.com/bw/palette/tas"
+            class="com.tibco.bw.palette.tas.model.tas.TctaPackage"/>
    </extension>
    <extension
          point="com.tibco.bw.model.ActivityIcon">
       <activityIcon
-            activityTypeID="bw.tcta.TctaCreateTransaction"
-            diagramIcon="icons/obj48/tcta_48x48.png"
-            largeIcon="icons/obj32/tcta_32x32.png"
-            smallIcon="icons/obj16/tcta_16x16.png">
+            activityTypeID="bw.tas.TctaCreateTransaction"
+            diagramIcon="icons/obj48/createtransaction_48x48.png"
+            largeIcon="icons/obj32/createtransaction_32x32.png"
+            smallIcon="icons/obj16/createtransaction_16x16.png">
       </activityIcon>
       <activityIcon
-            activityTypeID="bw.tcta.TctaGetToken"
-            diagramIcon="icons/obj48/tcta_gettoken_48x48.png"
-            largeIcon="icons/obj32/tcta_gettoken_32x32.png"
-            smallIcon="icons/obj16/tcta_gettoken_16x16.png">
+            activityTypeID="bw.tas.TctaGetToken"
+            diagramIcon="icons/obj48/gettoken_48x48.png"
+            largeIcon="icons/obj32/gettoken_32x32.png"
+            smallIcon="icons/obj16/gettoken_16x16.png">
       </activityIcon>
     </extension>
 </plugin>

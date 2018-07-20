@@ -1,17 +1,17 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: com.tibco.bw.sharedresource.tcta.model;singleton:=true
+Bundle-SymbolicName: com.tibco.bw.sharedresource.tas.model;singleton:=true
 Bundle-Version: 6.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
-Export-Package: com.tibco.bw.sharedresource.tcta.model.tcta;version="6.0.0",
- com.tibco.bw.sharedresource.tcta.model.tcta.impl;version="6.0.0",
- com.tibco.bw.sharedresource.tcta.model.tcta.util;version="6.0.0",
- com.tibco.bw.sharedresource.tcta.model.helper;version="6.0.0"
+Export-Package: com.tibco.bw.sharedresource.tas.model.helper;version="6.0.0",
+ com.tibco.bw.sharedresource.tas.model.tas;version="6.0.0",
+ com.tibco.bw.sharedresource.tas.model.tas.impl;version="6.0.0",
+ com.tibco.bw.sharedresource.tas.model.tas.util;version="6.0.0"
 Import-Package: com.fasterxml.jackson.core;version="[2.6.1,3.0.0)",
  com.fasterxml.jackson.databind;version="[2.6.1,3.0.0)",
  com.tibco.amf.model.sharedresource.jndi;version="[1.4.0,2.0.0)",
@@ -35,4 +35,4 @@ Import-Package: com.fasterxml.jackson.core;version="[2.6.1,3.0.0)",
  org.eclipse.osgi.util;version="[0.0.0,2.0.0)",
  org.eclipse.xsd;version="[0.0.0,3.0.0)",
  org.eclipse.xsd.util;version="[0.0.0,3.0.0)"
-Provide-Capability: com.tibco.bw.sharedresource.model; name=bw.tctaconnection
+Provide-Capability: com.tibco.bw.sharedresource.model; name=bw.tasconnection

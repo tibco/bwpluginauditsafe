@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.tibco.com/bw/plugins/tcta/6.0/TCTAPluginExceptions" elementFormDefault="unqualified" targetNamespace="http://schemas.tibco.com/bw/plugins/tcta/6.0/TCTAPluginExceptions">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.tibco.com/bw/plugins/tas/6.0/TCTAPluginExceptions" elementFormDefault="unqualified" targetNamespace="http://schemas.tibco.com/bw/plugins/tas/6.0/TCTAPluginExceptions">
 	<complexType name="BaseExceptionType">
 		<sequence>
 			<element name="msg" type="string"/>

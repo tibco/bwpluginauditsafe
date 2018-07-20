@@ -15,40 +15,40 @@
    <extension
          point="com.tibco.amf.design.sr.core.sharedResourceExtension">
       <srExtension
-            fileExtension="tctaconnectionResource"
-            name="tctaConnection"
-            typeQName="{http://ns.tibco.com/bw/sharedresource/tcta}tctaConnection">
+            fileExtension="tasconnectionResource"
+            name="tasConnection"
+            typeQName="{http://ns.tibco.com/bw/sharedresource/tas}tasConnection">
       </srExtension>
    </extension>
    <extension
          point="com.tibco.amf.design.sr.core.sharedResourceCreator">
       <sharedResourceCreator
-            sharedResourceType="tctaconnectionResource"
-            wizard="com.tibco.bw.sharedresource.tcta.design.wizard.tctaconnection.TctaConnectionWizard">
+            sharedResourceType="tasconnectionResource"
+            wizard="com.tibco.bw.sharedresource.tas.design.wizard.TctaConnectionWizard">
       </sharedResourceCreator>
    </extension>
    <extension
          point="com.tibco.bw.design.propertyType">
       <propertyTypeToITBinding
             implementationTypeID="implementation.bw"
-            supportedPropertyType="{http://ns.tibco.com/bw/sharedresource/tcta}tctaConnection">
+            supportedPropertyType="{http://ns.tibco.com/bw/sharedresource/tas}tasConnection">
       </propertyTypeToITBinding>
       <propertyType
-            QName="{http://ns.tibco.com/bw/sharedresource/tcta}tctaConnection"
-            cellEditor="com.tibco.bw.sharedresource.common.design.internal.picker.SharedResourceCellEditor:tctaconnectionResource"
-            editControl="com.tibco.amf.design.sr.ui.internal.picker.SharedResourcePropertyValueViewer:tctaconnectionResource"
-            icon="icons/obj16/tctaResource_16x16.png"
-            typeDescription="%tctaconnection.sharedresource.name"
-            typeLabel="%tctaconnection.display.activity.name">
+            QName="{http://ns.tibco.com/bw/sharedresource/tas}tasConnection"
+            cellEditor="com.tibco.bw.sharedresource.common.design.internal.picker.SharedResourceCellEditor:tasconnectionResource"
+            editControl="com.tibco.amf.design.sr.ui.internal.picker.SharedResourcePropertyValueViewer:tasconnectionResource"
+            icon="icons/obj16/tasResource_16x16.png"
+            typeDescription="%tasconnection.sharedresource.name"
+            typeLabel="%tasconnection.display.activity.name">
       </propertyType>
    </extension>
    <extension
          point="com.tibco.bw.sharedresource.common.design.BWSharedResource">
       <resourcetype
-            productID="bw.tcta.product"
-            resourceQName="{http://ns.tibco.com/bw/sharedresource/tcta}tctaConnection">
+            productID="bw.tas.product"
+            resourceQName="{http://ns.tibco.com/bw/sharedresource/tas}tasConnection">
          <requirement
-               requirementName="bw.tctaconnection"
+               requirementName="bw.tasconnection"
                requirementNamespace="com.tibco.bw.sharedresource.model">
          </requirement>
       </resourcetype>
@@ -56,8 +56,8 @@
    <extension
          point="com.tibco.xpd.resources.workingCopyIndexer">
       <indexer
-            filePattern="tctaconnectionResource"
-            indexID="sr.index.tctaconnectionResource"
+            filePattern="tasconnectionResource"
+            indexID="sr.index.tasconnectionResource"
             indexerClass="com.tibco.amf.design.sr.core.internal.wc.GenericSharedResourceIndexProvider">
       </indexer>
    </extension>
@@ -65,23 +65,23 @@
          point="org.eclipse.ui.newWizards">
       <wizard
             category="com.tibco.new"
-            class="com.tibco.bw.sharedresource.tcta.design.wizard.tctaconnection.TctaConnectionWizard"
-            descriptionImage="icons/obj48/tcta_48x48.png"
-            icon="icons/obj16/tctaResource_16x16.png"
-            id="com.tibco.bw.sharedresource.tcta.design.tctaconnectionwizard"
-            name="%tctaconnection.sharedresource.name">
+            class="com.tibco.bw.sharedresource.tas.design.wizard.TctaConnectionWizard"
+            descriptionImage="icons/obj48/tas_48x48.png"
+            icon="icons/obj16/tasResource_16x16.png"
+            id="com.tibco.bw.sharedresource.tas.design.tasconnectionwizard"
+            name="%tasconnection.sharedresource.name">
       </wizard>
    </extension>
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="com.tibco.bw.sharedresource.tcta.design.wizard.tctaconnection.TctaConnectionSharedResourceEditor"
+            class="com.tibco.bw.sharedresource.tas.design.wizard.TctaConnectionSharedResourceEditor"
             contributorClass="com.tibco.bw.sharedresource.common.design.forms.SREditorContributor"
             default="false"
-            extensions="tctaconnectionResource"
-            icon="icons/obj16/tctaResource_16x16.png"
-            id="com.tibco.bw.sharedresource.tcta.design.tctaconnectioneditor"
-            name="%tctaconnection.display.activity.name">
+            extensions="tasconnectionResource"
+            icon="icons/obj16/tasResource_16x16.png"
+            id="com.tibco.bw.sharedresource.tas.design.tasconnectioneditor"
+            name="%tasconnection.display.activity.name">
       </editor>
    </extension>
    <extension
@@ -90,7 +90,7 @@
             associatedExtensionId="com.tibco.xpd.projectExplorer.compositeContent"
             menuGroupId="shared-resources"
             type="new"
-            wizardId="com.tibco.bw.sharedresource.tcta.design.tctaconnectionwizard">
+            wizardId="com.tibco.bw.sharedresource.tas.design.tasconnectionwizard">
          <enablement>
             <or>
                <and>
@@ -118,8 +118,8 @@
    <extension
          point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            class="com.tibco.bw.sharedresource.tcta.design.provider.TctaItemProviderAdapterFactory"
-            uri="http://ns.tibco.com/bw/sharedresource/tcta"
+            class="com.tibco.bw.sharedresource.tas.design.provider.TctaItemProviderAdapterFactory"
+            uri="http://ns.tibco.com/bw/sharedresource/tas"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

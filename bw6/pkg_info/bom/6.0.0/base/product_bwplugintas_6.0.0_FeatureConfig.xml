@@ -26,7 +26,7 @@
 		<localVariable name="bwplugintas.palette.short.name" value="tas"/>
 		<localVariable name="bwplugintas.palette.package.name" value="com.tibco.bw.palette"/>
 
-		<localVariable name="bwplugintas.palette.ius" value="com.tibco.bw.palette.tcta.design.feature.feature.group,com.tibco.bw.palette.tcta.model.feature.feature.group,com.tibco.bw.sharedresource.tcta.design.feature.feature.group,com.tibco.bw.sharedresource.tcta.model.feature.feature.group"/>
+		<localVariable name="bwplugintas.palette.ius" value="com.tibco.bw.palette.tas.design.feature.feature.group,com.tibco.bw.palette.tas.model.feature.feature.group,com.tibco.bw.sharedresource.tas.design.feature.feature.group,com.tibco.bw.sharedresource.tas.model.feature.feature.group"/>
 		<localVariable name="bwplugintas.palette.install.tag" value="TIBCO BW TAS Palette Features Installation"/>
 		<localVariable name="bwplugintas.palette.uninstall.tag" value="TIBCO BW TAS Palette Features Uninstallation"/>
 
@@ -40,10 +40,10 @@
 
     <installerFeature name="runtime" visible="true" version="6.0.0" parentNode="runtime-node" profileUID="runtime-profile" dependencyOperator="OR">
         <assemblyList>
-			<assembly uid="assembly_tibco_com_tibco_bw_palette_tcta_model_feature" overrideTargetDirectory="$L{bwplugintas.extension.palettes.runtime.home}" version="6.0.0" />
-			<assembly uid="assembly_tibco_com_tibco_bw_palette_tcta_runtime_feature" overrideTargetDirectory="$L{bwplugintas.extension.palettes.runtime.home}" version="6.0.0" />
-			<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tcta_model_feature" overrideTargetDirectory="$L{bwplugintas.extension.palettes.runtime.home}" version="6.0.0" />
-			<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tcta_runtime_feature"  overrideTargetDirectory="$L{bwplugintas.extension.palettes.runtime.home}" version="6.0.0"/>
+			<assembly uid="assembly_tibco_com_tibco_bw_palette_tas_model_feature" overrideTargetDirectory="$L{bwplugintas.extension.palettes.runtime.home}" version="6.0.0" />
+			<assembly uid="assembly_tibco_com_tibco_bw_palette_tas_runtime_feature" overrideTargetDirectory="$L{bwplugintas.extension.palettes.runtime.home}" version="6.0.0" />
+			<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_model_feature" overrideTargetDirectory="$L{bwplugintas.extension.palettes.runtime.home}" version="6.0.0" />
+			<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_runtime_feature"  overrideTargetDirectory="$L{bwplugintas.extension.palettes.runtime.home}" version="6.0.0"/>
 			<assembly uid="product_tibco_bwplugintas_runtime" overrideTargetDirectory="$L{bwplugintas.extension.palettes.home}" version="6.0.0"/>
 			<assembly uid="product_tibco_bwplugintas_samples" overrideTargetDirectory="$L{bwplugintas.extension.palettes.home}" version="6.0.0"/>
         </assemblyList>
@@ -106,10 +106,10 @@
     <installerFeature name="design" visible="true" version="6.0.0" parentNode="design-node" profileUID="typical" dependencyOperator="OR">
 
 		<assemblyList>
-			<assembly overrideTargetDirectory="$L{bwplugintas.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_palette_tcta_design_feature" version="6.0.0"/>
-			<assembly overrideTargetDirectory="$L{bwplugintas.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tcta_design_feature" version="6.0.0"/>
-			<assembly additionalTargetDirectory="$L{bwplugintas.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tcta_model_feature" version="6.0.0"/>
-			<assembly additionalTargetDirectory="$L{bwplugintas.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_palette_tcta_model_feature" version="6.0.0"/>
+			<assembly overrideTargetDirectory="$L{bwplugintas.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_palette_tas_design_feature" version="6.0.0"/>
+			<assembly overrideTargetDirectory="$L{bwplugintas.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tas_design_feature" version="6.0.0"/>
+			<assembly additionalTargetDirectory="$L{bwplugintas.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tas_model_feature" version="6.0.0"/>
+			<assembly additionalTargetDirectory="$L{bwplugintas.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_palette_tas_model_feature" version="6.0.0"/>
 
 		</assemblyList>
 
@@ -166,7 +166,7 @@
       <property version="1.0.0"/>
       </condition>
       <property variableToSet="bwplugintas.palette.ius"/>
-      <property variableValue="com.tibco.bw.palette.tcta.design.feature.feature.group,com.tibco.bw.palette.tcta.model.feature.feature.group,com.tibco.bw.sharedresource.tcta.design.feature.feature.group,com.tibco.bw.sharedresource.tcta.model.feature.feature.group"/>
+      <property variableValue="com.tibco.bw.palette.tas.design.feature.feature.group,com.tibco.bw.palette.tas.model.feature.feature.group,com.tibco.bw.sharedresource.tas.design.feature.feature.group,com.tibco.bw.sharedresource.tas.model.feature.feature.group"/>
 </wizardAction>
 
 <wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOSetVariableWizardAction">
@@ -176,7 +176,7 @@
       <property version="1.0.0"/>
       </condition>
       <property variableToSet="bwplugintas.palette.ius"/>
-      <property variableValue="com.tibco.bw.palette.tcta.design.feature.feature.group,com.tibco.bw.palette.tcta.model.feature.feature.group,com.tibco.bw.sharedresource.tcta.design.feature.feature.group,com.tibco.bw.sharedresource.tcta.model.feature.feature.group"/>
+      <property variableValue="com.tibco.bw.palette.tas.design.feature.feature.group,com.tibco.bw.palette.tas.model.feature.feature.group,com.tibco.bw.sharedresource.tas.design.feature.feature.group,com.tibco.bw.sharedresource.tas.model.feature.feature.group"/>
 </wizardAction> -->
 
 

@@ -6,7 +6,7 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>TCTA Get Token</b></em>'.
+ * A representation of the model object '<em><b>TAS Get Token</b></em>'.
  * <!-- end-user-doc -->
  *
  *

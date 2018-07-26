@@ -13,6 +13,7 @@ import org.eclipse.xsd.XSDModelGroup;
 import org.eclipse.xsd.XSDSchema;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.tibco.bw.core.design.resource.util.EncryptionService;
 import com.tibco.bw.design.api.BWActivitySignature;
 import com.tibco.bw.design.api.BWActivitySignatureUnknown;
 import com.tibco.bw.design.util.XSDUtility;
@@ -109,26 +110,29 @@ public abstract class TctaBasicSignature extends BWActivitySignature {
 	private void createSchema(XSDModelGroup rootInput,
 			TctaConnection conn, EObject obj) {
 		//String token = TctaClientUtils.getToken(conn.getUsername(), conn.getPassword());
-		String body = "{\"path\": \"/tas/dataserver/transactions/intercom\", \"method\": \"POST\"}";
-		JsonNode  requestNode = TctaClientUtils.getSchema(conn.getServerUrl(), body, 1);
+		String body = "{\"path\": \"/tcta/dataserver/transactions/intercom\", \"method\": \"POST\"}";
+		String token = TctaClientUtils.getToken(conn.getUsername(), decryptPassword(conn.getPassword()));
+		JsonNode  requestNode = TctaClientUtils.getSchema(conn.getServerUrl(), token, body, 1);
 		JsonNode properties = requestNode.get("properties");
 
 		Iterator<String> ite = properties.fieldNames();
-		while(ite.hasNext()){
-			String key = ite.next();
-			JsonNode field = properties.get(key);
-			if("string".equals(field.get("type").textValue())){
-				XSDUtility.addSimpleTypeElement(rootInput, key, "string", 0, 1);
-			} else {
-				JsonNode extra_props = properties.get("extra_props").get("items").get("properties");
-			    XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(rootInput, "extra_props", "extra_props", 0, -1, XSDCompositor.SEQUENCE_LITERAL);
-			    Iterator<String> extraIte = extra_props.fieldNames();
-			    while(extraIte.hasNext()){
-			    	String extraKey = extraIte.next();
-			    	XSDUtility.addSimpleTypeElement(extraGroup, extraKey, "string", 1, 1);
-			    }
+		try {
+			while(ite.hasNext()){
+				String key = ite.next();
+				JsonNode field = properties.get(key);
+				if("string".equals(field.get("type").textValue())){
+					XSDUtility.addSimpleTypeElement(rootInput, key, "string", 0, 1);
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(rootInput, "extra_props", "extra_props", 0, -1, XSDCompositor.SEQUENCE_LITERAL);
+		XSDUtility.addSimpleTypeElement(extraGroup, "prop_name", "string", 1, 1);
+		XSDUtility.addSimpleTypeElement(extraGroup, "prop_value", "string", 1, 1);
+	}
 
+	protected String decryptPassword(String password){
+		return EncryptionService.INSTANCE.getEncryptor().decrypt(password);
 	}
 }

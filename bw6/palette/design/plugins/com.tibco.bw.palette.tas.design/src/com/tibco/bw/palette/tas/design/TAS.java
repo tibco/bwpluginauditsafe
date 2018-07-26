@@ -4,18 +4,18 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 
-public class TCTA extends AbstractUIPlugin {
+public class TAS extends AbstractUIPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "com.tibco.bw.palette.tas.design"; //$NON-NLS-1$
 
 	// The shared instance
-	private static TCTA plugin;
-	
+	private static TAS plugin;
+
 	/**
 	 * The constructor
 	 */
-	public TCTA() {
+	public TAS() {
 	}
 
 	/*
@@ -41,7 +41,7 @@ public class TCTA extends AbstractUIPlugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static TCTA getDefault() {
+	public static TAS getDefault() {
 		return plugin;
 	}
 

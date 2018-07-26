@@ -9,5 +9,5 @@
 package com.tibco.bw.sharedresource.tas.model.helper;
 
 public interface MessageCode {
-	public static final String PARAMETER_NOT_SPECIFIED= "BW-TCTA-100001";
+	public static final String PARAMETER_NOT_SPECIFIED= "BW-TAS-100001";
 }

@@ -4,14 +4,15 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: com.tibco.bw.palette.tas.design;singleton:=true
 Bundle-Version: 6.0.0.qualifier
 Bundle-Localization: plugin
-Bundle-Activator: com.tibco.bw.palette.tas.design.TCTA
+Bundle-Activator: com.tibco.bw.palette.tas.design.TAS
 Bundle-Vendor: %providerName
 Require-Bundle: com.tibco.bw.palette.tas.model;bundle-version="[6.0.0,7.0.0)",
  com.tibco.bw.design;bundle-version="[6.0.0,7.0.0)",
  com.tibco.amf.sca.model.validation;bundle-version="[3.0.0,4.0.0)",
  com.tibco.bw.model.eclipse;bundle-version="[6.0.0,7.0.0)",
  com.tibco.bw.sharedresource.tas.model,
- com.tibco.bw.tpcl.com.fasterxml.jackson.eclipse
+ com.tibco.bw.tpcl.com.fasterxml.jackson.eclipse,
+ com.tibco.bw.core.design.resource
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: com.tibco.bw.palette.tas.design;version="6.0.0",

@@ -69,12 +69,12 @@ public class TestConnectionButtonHelper {
 					Color blue = new Color(composite.getShell().getDisplay(),
 							0, 0, 255);
 					testLabel.setForeground(blue);
-					testLabel.setText("Test TCTA Connection successful!");
+					testLabel.setText("Test TAS Connection successful!");
 				} else {
 					Color red = new Color(composite.getShell().getDisplay(),
 							255, 0, 0);
 					testLabel.setForeground(red);
-					testLabel.setText("Test TCTA Connection failed");
+					testLabel.setText("Test TAS Connection failed");
 				}
 
 				testConnection.setText(Messages.TEST_CONNECTION_LABEL_TEXT);

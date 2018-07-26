@@ -108,7 +108,7 @@
       <plugin
             defaultURL="https://docs.tibco.com/pub/activematrix-businessworks-plugin-for-tas/6.0.0-february-2014/doc/html/index.html"
             id="bw.tas.product"
-            name="BusinessWorks TCTA Plugin">
+            name="BusinessWorks TAS Plugin">
       </plugin>
    </extension>
 

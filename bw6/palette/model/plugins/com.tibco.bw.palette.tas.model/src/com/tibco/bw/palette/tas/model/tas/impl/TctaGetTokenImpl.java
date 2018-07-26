@@ -9,7 +9,7 @@ import com.tibco.bw.palette.tas.model.tas.TctaPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>TCTA Get Token</b></em>'.
+ * An implementation of the model object '<em><b>TAS Get Token</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>

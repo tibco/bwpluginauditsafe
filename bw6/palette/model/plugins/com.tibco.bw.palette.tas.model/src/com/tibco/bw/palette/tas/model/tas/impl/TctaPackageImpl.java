@@ -241,7 +241,7 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 		  (getTctaAbstractObject_TctaConnection(),
 		   source,
 		   new String[] {
-			 "label", "TCTA Connection:",
+			 "label", "TAS Connection:",
 			 "type", "text"
 		   });
 	}

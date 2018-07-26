@@ -35,13 +35,13 @@ public class TctaClientUtils {
 		try {
 			Map<String, String> params = new HashMap<String,String>();
 			params.put("AccessToken", token);
-			params.put("TenantId", "tas");
+			params.put("TenantId", "tcta");
 			httpConn = buildpostHttpUrlConnection(idmUrl, params, getsettingMap());
 			String messagebody = getHttpRequestBody(httpConn);
 			int statusCode = httpConn.getResponseCode();
 
 			if(statusCode == HttpURLConnection.HTTP_OK){
-				String transactionUrl = tasBaseUrl + "/tas/dataserver/transactions";
+				String transactionUrl = tasBaseUrl + "/tcta/dataserver/transactions";
 				httpConn = buildpostHttpUrlConnectionWithJson(transactionUrl, body,
 						getsettingMap("application/json","application/json"));
 				result = getHttpRequestBody(httpConn);
@@ -65,7 +65,7 @@ public class TctaClientUtils {
 //				MediaType.APPLICATION_FORM_URLENCODED_TYPE);
 //		Response response = invocationBuilder.post(formEntity);
 //		if (response.getStatus() == 200) {
-//			WebTarget transaction = base.path("/tas/dataserver/transactions");
+//			WebTarget transaction = base.path("/tcta/dataserver/transactions");
 //			invocationBuilder = transaction
 //					.request(MediaType.APPLICATION_JSON_TYPE);
 //			Entity content = Entity.json(body);
@@ -128,33 +128,47 @@ public class TctaClientUtils {
 		return token;
 	}
 
-	public static JsonNode getSchema(String tasBaseUrl, String body, int type){
+	public static JsonNode getSchema(String tasBaseUrl, String token, String body, int type){
+		CookieManager cookiemanager = new CookieManager();
+		cookiemanager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+		CookieHandler.setDefault(cookiemanager);
 		if(tasBaseUrl.endsWith("/")){
 			tasBaseUrl = tasBaseUrl.substring(0,tasBaseUrl.length()-1);
 		}
-		String schemaUrl = tasBaseUrl + "/tas/dataserver/schema";
+
+		String idmUrl = tasBaseUrl + "/idm/v2/login-oauth";
 		HttpURLConnection httpConn;
 		try {
-
-			httpConn = buildpostHttpUrlConnectionWithJson(schemaUrl, body,
-					getsettingMap("application/json","application/json"));
+			Map<String, String> params = new HashMap<String,String>();
+			params.put("AccessToken", token);
+			params.put("TenantId", "tcta");
+			httpConn = buildpostHttpUrlConnection(idmUrl, params, getsettingMap());
 			String messagebody = getHttpRequestBody(httpConn);
 			int statusCode = httpConn.getResponseCode();
 
 			if(statusCode == HttpURLConnection.HTTP_OK){
-				JsonReader node = new JsonReader(messagebody);
-				if(type == 1 && node.getNode("requestSchema")!=null){
-					return node.getNode("requestSchema");
-				}else if(type == 2 && node.getNode("responseSchema")!=null){
-					return node.getNode("responseSchema");
-				}
-			}
+				String schemaUrl = tasBaseUrl + "/tcta/dataserver/schema";
+				httpConn = buildpostHttpUrlConnectionWithJson(schemaUrl, body,
+						getsettingMap("application/json","application/json"));
+				messagebody = getHttpRequestBody(httpConn);
+				statusCode = httpConn.getResponseCode();
 
+				if(statusCode == HttpURLConnection.HTTP_OK){
+					JsonReader node = new JsonReader(messagebody);
+					if(type == 1 && node.getNode("requestSchema")!=null){
+						return node.getNode("requestSchema");
+					}else if(type == 2 && node.getNode("responseSchema")!=null){
+						return node.getNode("responseSchema");
+					}
+				}
+
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 
 		}
+
 		return null;
 	}
 

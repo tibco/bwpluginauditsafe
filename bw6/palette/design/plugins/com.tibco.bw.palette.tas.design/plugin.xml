@@ -38,16 +38,6 @@
                paletteID="bw.tas">
          </palette>
       </activityType>
-      <activityType
-            activityTypeID="bw.tas.TctaGetToken"
-            name="%tas.activity.TctaGetToken.name"
-            priority="100"
-            tooltip="%tas.activity.TctaGetToken.tooltip"
-            visible="true">
-         <palette
-               paletteID="bw.tas">
-         </palette>
-      </activityType>
 
 
    </extension>
@@ -57,10 +47,6 @@
       <signature
             activityTypeID="bw.tas.TctaCreateTransaction"
             signatureClass="com.tibco.bw.palette.tas.design.createtransaction.TctaCreateTransactionSignature">
-      </signature>
-      <signature
-            activityTypeID="bw.tas.TctaGetToken"
-            signatureClass="com.tibco.bw.palette.tas.design.gettoken.TctaGetTokenSignature">
       </signature>
    </extension>
 
@@ -73,13 +59,6 @@
             instanceName="%tas.activity.default.TctaCreateTransaction.name"
             modelHelperClass="com.tibco.bw.palette.tas.design.createtransaction.TctaCreateTransactionModelHelper">
       </config>
-      <config
-            activityTypeID="bw.tas.TctaGetToken"
-            eClassName="TctaGetToken"
-            ePackageNSURI="http://ns.tibco.com/bw/palette/tas"
-            instanceName="%tas.activity.default.TctaGetToken.name"
-            modelHelperClass="com.tibco.bw.palette.tas.design.gettoken.TctaGetTokenModelHelper">
-      </config>
    </extension>
 
    <extension
@@ -91,13 +70,6 @@
                class="com.tibco.bw.palette.tas.design.createtransaction.TctaCreateTransactionGeneralSection"
                filter="com.tibco.bw.palette.tas.design.createtransaction.TctaCreateTransactionGeneralSection"
                id="bw.tas.TctaCreateTransaction.general"
-               tab="tibco.bw.activity.property.tab.general">
-         </propertySection>
-         <propertySection
-               afterSection="com.tibco.bw.design.activity.general"
-               class="com.tibco.bw.palette.tas.design.gettoken.TctaGetTokenGeneralSection"
-               filter="com.tibco.bw.palette.tas.design.gettoken.TctaGetTokenGeneralSection"
-               id="bw.tas.TctaGetToken.general"
                tab="tibco.bw.activity.property.tab.general">
          </propertySection>
       </propertySections>

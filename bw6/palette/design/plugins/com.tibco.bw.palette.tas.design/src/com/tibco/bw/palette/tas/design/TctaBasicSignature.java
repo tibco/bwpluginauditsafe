@@ -3,6 +3,7 @@ package com.tibco.bw.palette.tas.design;
 
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
@@ -120,14 +121,25 @@ public abstract class TctaBasicSignature extends BWActivitySignature {
 		String token = TctaClientUtils.getToken(conn.getUsername(), decryptPassword(conn.getPassword()));
 		JsonNode requestNode = TctaClientUtils.getSchema(conn.getServerUrl(), token, body, 1);
 		JsonNode properties = requestNode.get("properties");
+		JsonNode required = requestNode.get("required");
+		HashSet<String> requiredSet = new HashSet<String>();
+		if (required.isArray()) {
+		    for (final JsonNode objNode : required) {
+		    	String fieldName = objNode.asText();
+		    	requiredSet.add(fieldName);
+		    	XSDUtility.addSimpleTypeElement(rootInput, fieldName, "string", 1, 1);
+		    }
+		}
 
 		Iterator<String> ite = properties.fieldNames();
 
 		while(ite.hasNext()){
 			String key = ite.next();
-			JsonNode field = properties.get(key);
-			if("string".equals(field.get("type").textValue())){
-				XSDUtility.addSimpleTypeElement(rootInput, key, "string", 0, 1);
+			if(!requiredSet.contains(key)){
+				JsonNode field = properties.get(key);
+				if("string".equals(field.get("type").textValue())){
+					XSDUtility.addSimpleTypeElement(rootInput, key, "string", 0, 1);
+				}
 			}
 		}
 

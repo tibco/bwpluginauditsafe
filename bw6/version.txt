@@ -1,1 +1,1 @@
-BASELINE::BWPluginTas 1.0.0 V7
+BASELINE::BWPluginTas 1.0.0 V8

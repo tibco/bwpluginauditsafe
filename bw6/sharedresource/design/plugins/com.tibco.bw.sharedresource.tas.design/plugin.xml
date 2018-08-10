@@ -66,7 +66,7 @@
       <wizard
             category="com.tibco.new"
             class="com.tibco.bw.sharedresource.tas.design.wizard.TctaConnectionWizard"
-            descriptionImage="icons/obj48/tas_48x48.png"
+            descriptionImage="icons/obj48/tasResource_48x48.png"
             icon="icons/obj16/tasResource_16x16.png"
             id="com.tibco.bw.sharedresource.tas.design.tasconnectionwizard"
             name="%tasconnection.sharedresource.name">

@@ -27,23 +27,26 @@ public class TctaClientUtils {
 		cookiemanager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
 		CookieHandler.setDefault(cookiemanager);
 
-		if(tasBaseUrl.endsWith("/")){
-			tasBaseUrl = tasBaseUrl.substring(0,tasBaseUrl.length()-1);
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
 		}
 		String idmUrl = tasBaseUrl + "/idm/v2/login-oauth";
 		HttpURLConnection httpConn;
 		try {
-			Map<String, String> params = new HashMap<String,String>();
+			Map<String, String> params = new HashMap<String, String>();
 			params.put("AccessToken", token);
 			params.put("TenantId", "tcta");
-			httpConn = buildpostHttpUrlConnection(idmUrl, params, getsettingMap());
+			httpConn = buildpostHttpUrlConnection(idmUrl, params,
+					getsettingMap());
 			String messagebody = getHttpRequestBody(httpConn);
 			int statusCode = httpConn.getResponseCode();
 
-			if(statusCode == HttpURLConnection.HTTP_OK){
-				String transactionUrl = tasBaseUrl + "/tcta/dataserver/transactions";
-				httpConn = buildpostHttpUrlConnectionWithJson(transactionUrl, body,
-						getsettingMap("application/json","application/json"));
+			if (statusCode == HttpURLConnection.HTTP_OK) {
+				String transactionUrl = tasBaseUrl
+						+ "/tcta/dataserver/transactions";
+				httpConn = buildpostHttpUrlConnectionWithJson(transactionUrl,
+						body,
+						getsettingMap("application/json", "application/json"));
 				result = getHttpRequestBody(httpConn);
 			}
 		} catch (IOException e) {
@@ -51,58 +54,58 @@ public class TctaClientUtils {
 			e.printStackTrace();
 
 		}
-//		Client client = ClientBuilder.newBuilder().build();
-//
-//		WebTarget base = client.target(tasBaseUtl);
-//		WebTarget idm = base.path("/idm/v2/login-oauth");
-//		Invocation.Builder invocationBuilder = idm.request();
-//
-//		Form form = new Form();
-//		form.param("AccessToken", token);
-//		form.param("TenantId", "tas");
-//
-//		Entity<Form> formEntity = Entity.entity(form,
-//				MediaType.APPLICATION_FORM_URLENCODED_TYPE);
-//		Response response = invocationBuilder.post(formEntity);
-//		if (response.getStatus() == 200) {
-//			WebTarget transaction = base.path("/tcta/dataserver/transactions");
-//			invocationBuilder = transaction
-//					.request(MediaType.APPLICATION_JSON_TYPE);
-//			Entity content = Entity.json(body);
-//			response = invocationBuilder.post(content);
-//			if (response.getStatus() == 200) {
-//				result = response.readEntity(String.class);
-//			}
-//		}
+		// Client client = ClientBuilder.newBuilder().build();
+		//
+		// WebTarget base = client.target(tasBaseUtl);
+		// WebTarget idm = base.path("/idm/v2/login-oauth");
+		// Invocation.Builder invocationBuilder = idm.request();
+		//
+		// Form form = new Form();
+		// form.param("AccessToken", token);
+		// form.param("TenantId", "tas");
+		//
+		// Entity<Form> formEntity = Entity.entity(form,
+		// MediaType.APPLICATION_FORM_URLENCODED_TYPE);
+		// Response response = invocationBuilder.post(formEntity);
+		// if (response.getStatus() == 200) {
+		// WebTarget transaction = base.path("/tcta/dataserver/transactions");
+		// invocationBuilder = transaction
+		// .request(MediaType.APPLICATION_JSON_TYPE);
+		// Entity content = Entity.json(body);
+		// response = invocationBuilder.post(content);
+		// if (response.getStatus() == 200) {
+		// result = response.readEntity(String.class);
+		// }
+		// }
 		return result;
 	}
 
 	public static String getToken(String username, String password) {
 		String token = null;
-//		Client client = ClientBuilder.newBuilder().build();
-//
-//		String taUrl = "https://sso-awsqa.tibco.com/as/token.oauth2";
-//		WebTarget taTarget = client.target(taUrl);
-//		Invocation.Builder invocationBuilder = taTarget.request();
-//
-//		Form form = new Form();
-//		form.param("username", username);
-//		form.param("password", password);
-//		form.param("grant_type", "password");
-//		form.param("client_id", "ropc_ipass");
-//		Entity<Form> formEntity = Entity.entity(form,
-//				MediaType.APPLICATION_FORM_URLENCODED_TYPE);
-//
-//		Response response = invocationBuilder.post(formEntity);
-//		int statusCode = response.getStatus();
-//		if (statusCode == 200) {
-//			JsonReader node = new JsonReader(response.readEntity(String.class));
-//			if (node.getNode("access_token") != null) {
-//				token = node.getNode("access_token").textValue();
-//			}
-//		}
+		// Client client = ClientBuilder.newBuilder().build();
+		//
+		// String taUrl = "https://sso-awsqa.tibco.com/as/token.oauth2";
+		// WebTarget taTarget = client.target(taUrl);
+		// Invocation.Builder invocationBuilder = taTarget.request();
+		//
+		// Form form = new Form();
+		// form.param("username", username);
+		// form.param("password", password);
+		// form.param("grant_type", "password");
+		// form.param("client_id", "ropc_ipass");
+		// Entity<Form> formEntity = Entity.entity(form,
+		// MediaType.APPLICATION_FORM_URLENCODED_TYPE);
+		//
+		// Response response = invocationBuilder.post(formEntity);
+		// int statusCode = response.getStatus();
+		// if (statusCode == 200) {
+		// JsonReader node = new JsonReader(response.readEntity(String.class));
+		// if (node.getNode("access_token") != null) {
+		// token = node.getNode("access_token").textValue();
+		// }
+		// }
 		String taUrl = "https://sso-awsqa.tibco.com/as/token.oauth2";
-		Map<String, String> params = new HashMap<String,String>();
+		Map<String, String> params = new HashMap<String, String>();
 		params.put("username", username);
 		params.put("password", password);
 		params.put("grant_type", "password");
@@ -110,13 +113,14 @@ public class TctaClientUtils {
 
 		HttpURLConnection httpConn;
 		try {
-			httpConn = buildpostHttpUrlConnection(taUrl, params, getsettingMap());
+			httpConn = buildpostHttpUrlConnection(taUrl, params,
+					getsettingMap());
 			String messagebody = getHttpRequestBody(httpConn);
 			int statusCode = httpConn.getResponseCode();
 
-			if(statusCode == HttpURLConnection.HTTP_OK){
+			if (statusCode == HttpURLConnection.HTTP_OK) {
 				JsonReader node = new JsonReader(messagebody);
-				if(node.getNode("access_token")!=null){
+				if (node.getNode("access_token") != null) {
 					token = node.getNode("access_token").textValue();
 				}
 			}
@@ -128,44 +132,61 @@ public class TctaClientUtils {
 		return token;
 	}
 
-	public static JsonNode getSchema(String tasBaseUrl, String token, String body, int type){
+	public static boolean testConnection(String tasBaseUrl, String token) throws IOException {
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+		}
+		String idmUrl = tasBaseUrl + "/idm/v2/login-oauth";
+		HttpURLConnection httpConn;
+
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("AccessToken", token);
+		params.put("TenantId", "tcta");
+		httpConn = buildpostHttpUrlConnection(idmUrl, params, getsettingMap());
+		String messagebody = getHttpRequestBody(httpConn);
+		int statusCode = httpConn.getResponseCode();
+
+		if (statusCode == HttpURLConnection.HTTP_OK || statusCode == 300) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public static JsonNode getSchema(String tasBaseUrl, String token,
+			String body, int type) throws IOException {
 		CookieManager cookiemanager = new CookieManager();
 		cookiemanager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
 		CookieHandler.setDefault(cookiemanager);
-		if(tasBaseUrl.endsWith("/")){
-			tasBaseUrl = tasBaseUrl.substring(0,tasBaseUrl.length()-1);
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
 		}
 
 		String idmUrl = tasBaseUrl + "/idm/v2/login-oauth";
 		HttpURLConnection httpConn;
-		try {
-			Map<String, String> params = new HashMap<String,String>();
-			params.put("AccessToken", token);
-			params.put("TenantId", "tcta");
-			httpConn = buildpostHttpUrlConnection(idmUrl, params, getsettingMap());
-			String messagebody = getHttpRequestBody(httpConn);
-			int statusCode = httpConn.getResponseCode();
 
-			if(statusCode == HttpURLConnection.HTTP_OK){
-				String schemaUrl = tasBaseUrl + "/tcta/dataserver/schema";
-				httpConn = buildpostHttpUrlConnectionWithJson(schemaUrl, body,
-						getsettingMap("application/json","application/json"));
-				messagebody = getHttpRequestBody(httpConn);
-				statusCode = httpConn.getResponseCode();
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("AccessToken", token);
+		params.put("TenantId", "tcta");
+		httpConn = buildpostHttpUrlConnection(idmUrl, params, getsettingMap());
+		String messagebody = getHttpRequestBody(httpConn);
+		int statusCode = httpConn.getResponseCode();
 
-				if(statusCode == HttpURLConnection.HTTP_OK){
-					JsonReader node = new JsonReader(messagebody);
-					if(type == 1 && node.getNode("requestSchema")!=null){
-						return node.getNode("requestSchema");
-					}else if(type == 2 && node.getNode("responseSchema")!=null){
-						return node.getNode("responseSchema");
-					}
+		if (statusCode == HttpURLConnection.HTTP_OK) {
+			String schemaUrl = tasBaseUrl + "/tcta/dataserver/schema";
+			httpConn = buildpostHttpUrlConnectionWithJson(schemaUrl, body,
+					getsettingMap("application/json", "application/json"));
+			messagebody = getHttpRequestBody(httpConn);
+			statusCode = httpConn.getResponseCode();
+
+			if (statusCode == HttpURLConnection.HTTP_OK) {
+				JsonReader node = new JsonReader(messagebody);
+				if (type == 1 && node.getNode("requestSchema") != null) {
+					return node.getNode("requestSchema");
+				} else if (type == 2 && node.getNode("responseSchema") != null) {
+					return node.getNode("responseSchema");
 				}
-
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 
 		}
 
@@ -173,32 +194,34 @@ public class TctaClientUtils {
 	}
 
 	public static Map<String, String> getsettingMap() {
-		return getsettingMap("application/x-www-form-urlencoded", "application/json");
+		return getsettingMap("application/x-www-form-urlencoded",
+				"application/json");
 	}
 
-	public static Map<String, String> getsettingMap(String contentType, String acceptType) {
+	public static Map<String, String> getsettingMap(String contentType,
+			String acceptType) {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("Content-Type", contentType);
 		params.put("Accept", acceptType);
 		return params;
 	}
 
-	public static HttpURLConnection buildpostHttpUrlConnection(String urlstring,
-			Map<String, String> formparams, Map<String, String> settingparams)
-			throws IOException {
+	public static HttpURLConnection buildpostHttpUrlConnection(
+			String urlstring, Map<String, String> formparams,
+			Map<String, String> settingparams) throws IOException {
 		HttpURLConnection connection = null;
 		URL url = new URL(urlstring);
 		connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod("POST");
 		addUrlConnectionSetting(connection, settingparams);
-		if(formparams != null){
+		if (formparams != null) {
 			addUrlConnectionParameter(connection, formparams);
 		}
 		return connection;
 	}
 
-	public static HttpURLConnection buildpostHttpUrlConnectionWithJson(String urlstring,
-			String json, Map<String, String> settingparams)
+	public static HttpURLConnection buildpostHttpUrlConnectionWithJson(
+			String urlstring, String json, Map<String, String> settingparams)
 			throws IOException {
 		HttpURLConnection connection = null;
 		URL url = new URL(urlstring);
@@ -231,8 +254,7 @@ public class TctaClientUtils {
 	}
 
 	public static void addUrlConnectionJson(HttpURLConnection connection,
-			String json)
-			throws UnsupportedEncodingException, IOException {
+			String json) throws UnsupportedEncodingException, IOException {
 		connection.setDoOutput(true);
 		OutputStream os = connection.getOutputStream();
 		BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os,
@@ -268,6 +290,7 @@ public class TctaClientUtils {
 			br = new BufferedReader(new InputStreamReader(
 					(connection.getInputStream())));
 		} else {
+			if(connection.getErrorStream()!= null)
 			br = new BufferedReader(new InputStreamReader(
 					(connection.getErrorStream())));
 		}

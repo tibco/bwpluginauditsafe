@@ -1,5 +1,7 @@
 package com.tibco.bw.sharedresource.tas.design.sections;
 
+import java.io.IOException;
+
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -42,7 +44,8 @@ public class TestConnectionButtonHelper {
 				TctaConnection connection = tasConnectionSection
 						.getTctaConnection();
 
-				String serverUrl = "https://sso-awsqa.tibco.com/as/token.oauth2";
+				String taUrl = "https://sso-awsqa.tibco.com/as/token.oauth2";
+				String serverUtl = tasConnectionSection.getServerUrl(connection);
 
 				String username = tasConnectionSection.getUserName(connection);
 
@@ -50,7 +53,7 @@ public class TestConnectionButtonHelper {
 
 				testConnection.setText(Messages.CONNECT_BUTTON_TEXT);
 
-				if (missRequiredFields(serverUrl, username, password)) {
+				if (missRequiredFields(taUrl, username, password)) {
 					testLabel.setForeground(red);
 					testLabel
 							.setText("The field of Server Url, User Name and Password is required");
@@ -60,7 +63,19 @@ public class TestConnectionButtonHelper {
 				testLabel.setText("Testing...");
 
 				String token = TctaClientUtils.getToken(username, password);
+				boolean testSuccess = false;
 				if (token != null) {
+					try {
+						testSuccess = TctaClientUtils.testConnection(serverUtl, token);
+					} catch (IOException e1) {
+						MessageDialog messageDialog = new MessageDialog(composite
+								.getShell(), "Test AuditSafe Connection failed", null,
+								e1.getMessage(), MessageDialog.ERROR,
+								new String[] { "Ok" }, 0);
+						messageDialog.open();
+					}
+				}
+				if (testSuccess) {
 					MessageDialog messageDialog = new MessageDialog(composite
 							.getShell(), Messages.CONNECTED_TO_TCTA, null,
 							Messages.CONNECTED_TO_TCTA, MessageDialog.NONE,
@@ -69,12 +84,12 @@ public class TestConnectionButtonHelper {
 					Color blue = new Color(composite.getShell().getDisplay(),
 							0, 0, 255);
 					testLabel.setForeground(blue);
-					testLabel.setText("Test TAS Connection successful!");
+					testLabel.setText("Test AuditSafe Connection successful!");
 				} else {
 					Color red = new Color(composite.getShell().getDisplay(),
 							255, 0, 0);
 					testLabel.setForeground(red);
-					testLabel.setText("Test TAS Connection failed");
+					testLabel.setText("Test AuditSafe Connection failed");
 				}
 
 				testConnection.setText(Messages.TEST_CONNECTION_LABEL_TEXT);

@@ -2,6 +2,7 @@ package com.tibco.bw.palette.tas.design;
 
 
 
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -99,7 +100,12 @@ public abstract class TctaBasicSignature extends BWActivitySignature {
 			throw new RuntimeException("Create activity Input schema failure !");
 		}
 
-	    createSchema(rootInput , conn ,  obj);
+	    try {
+			createSchema(rootInput , conn ,  obj);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		inputSchema = compileSchema(inputSchema);
 		inputType = inputSchema.resolveElementDeclaration("ActivityInput");
@@ -108,25 +114,23 @@ public abstract class TctaBasicSignature extends BWActivitySignature {
 
 
 	private void createSchema(XSDModelGroup rootInput,
-			TctaConnection conn, EObject obj) {
+			TctaConnection conn, EObject obj) throws IOException {
 		//String token = TctaClientUtils.getToken(conn.getUsername(), conn.getPassword());
 		String body = "{\"path\": \"/tcta/dataserver/transactions/intercom\", \"method\": \"POST\"}";
 		String token = TctaClientUtils.getToken(conn.getUsername(), decryptPassword(conn.getPassword()));
-		JsonNode  requestNode = TctaClientUtils.getSchema(conn.getServerUrl(), token, body, 1);
+		JsonNode requestNode = TctaClientUtils.getSchema(conn.getServerUrl(), token, body, 1);
 		JsonNode properties = requestNode.get("properties");
 
 		Iterator<String> ite = properties.fieldNames();
-		try {
-			while(ite.hasNext()){
-				String key = ite.next();
-				JsonNode field = properties.get(key);
-				if("string".equals(field.get("type").textValue())){
-					XSDUtility.addSimpleTypeElement(rootInput, key, "string", 0, 1);
-				}
+
+		while(ite.hasNext()){
+			String key = ite.next();
+			JsonNode field = properties.get(key);
+			if("string".equals(field.get("type").textValue())){
+				XSDUtility.addSimpleTypeElement(rootInput, key, "string", 0, 1);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
+
 		XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(rootInput, "extra_props", "extra_props", 0, -1, XSDCompositor.SEQUENCE_LITERAL);
 		XSDUtility.addSimpleTypeElement(extraGroup, "prop_name", "string", 1, 1);
 		XSDUtility.addSimpleTypeElement(extraGroup, "prop_value", "string", 1, 1);

@@ -1,7 +1,7 @@
 <?xml  version="1.0"?>
 <components>
-	<component name="bwplugintas_samples" type="common">
-		<include file="aliases_bwplugintas.xml" />
+	<component name="bwpluginauditsafe_samples" type="common">
+		<include file="aliases_bwpluginauditsafe.xml" />
 		<dir src="${bldsrcdir}/samples" dest="" plat="${ALL}"/>
 	</component>
 </components>

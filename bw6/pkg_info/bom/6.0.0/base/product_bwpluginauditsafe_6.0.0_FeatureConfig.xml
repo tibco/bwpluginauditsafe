@@ -40,17 +40,22 @@
 
     <installerFeature name="runtime" visible="true" version="6.0.0" parentNode="runtime-node" profileUID="runtime-profile" dependencyOperator="OR">
         <assemblyList>
-			<assembly uid="assembly_tibco_com_tibco_bw_palette_tas_model_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.0.0" />
 			<assembly uid="assembly_tibco_com_tibco_bw_palette_tas_runtime_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.0.0" />
-			<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_model_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.0.0" />
 			<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_runtime_feature"  overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.0.0"/>
 			<assembly uid="product_tibco_bwpluginauditsafe_runtime" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.home}" version="6.0.0"/>
 			<assembly uid="product_tibco_bwpluginauditsafe_samples" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.home}" version="6.0.0"/>
         </assemblyList>
 
         <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime" type="feature" uid="Runtime_BW" version="6.4.0"/>
-	<dependency description="TIBCO BusinessWorks Cloud Runtime" type="assembly" uid="product_tibco_bwplugin_cloud_runtime_dependency" version="1.0.0"/>
+		<dependency description="TIBCO BusinessWorks Cloud Runtime" type="assembly" uid="product_tibco_bwplugin_cloud_runtime_dependency" version="1.0.0"/>
 
+		<wizardAction class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction" sequence="post-selection">
+			<property featureUID="required_bwpluginauditsafe"/>
+			<property isEnabled="true"/>
+			<property isVisible="false"/>
+			<property isSelected="true"/>
+		</wizardAction>
+		
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
 			<property minimumVersion="$L{bwpluginauditsafe.minimum.bw.version}"/>
@@ -108,22 +113,25 @@
 		<assemblyList>
 			<assembly overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_palette_tas_design_feature" version="6.0.0"/>
 			<assembly overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tas_design_feature" version="6.0.0"/>
-			<assembly additionalTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tas_model_feature" version="6.0.0"/>
-			<assembly additionalTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_palette_tas_model_feature" version="6.0.0"/>
-
 		</assemblyList>
 
         <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design" type="feature" uid="Design_BW" version="6.4.0"/>
-	<dependency description="TIBCO BusinessWorks Cloud Design" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="1.0.0"/>
-		<!-- <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) AuditSafe - Runtime" type="feature" uid="runtime_bwpluginauditsafe" version="6.0.0"/> -->
+		<dependency description="TIBCO BusinessWorks Cloud Design" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="1.0.0"/>
+		
 		
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction">
-                        <property featureUID="runtime_bwpluginauditsafe"/>
-                        <property isEnabled="true"/>
-                        <property isVisible="true"/>
-                        <property isSelected="true"/>
-                </wizardAction>
+            <property featureUID="runtime_bwpluginauditsafe"/>
+            <property isEnabled="true"/>
+            <property isVisible="true"/>
+            <property isSelected="true"/>
+        </wizardAction>
 
+		<wizardAction class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction" sequence="post-selection">
+			<property featureUID="required_bwpluginauditsafe"/>
+			<property isEnabled="true"/>
+			<property isVisible="false"/>
+			<property isSelected="true"/>
+		</wizardAction>
 				
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
@@ -144,41 +152,6 @@
 			<property showProgress="true"/>
 			<property description="Get install location for Cloud Design"/>
 		</wizardAction>
-
-		<!-- <wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction">
-			<condition class="com.tibco.installer.wizard.condition.TIBCOCheckDependencyWizardCondition">
-				<property mustBeMet="true"/>
-				<property uid="Design_BW"/>
-				<property type="feature"/>
-				<property version="6.0.0"/>
-				<property mustBeInstalled="true"/>
-				</condition>
-			<property featureUID="migration_bwpluginauditsafe"/>
-			<property isEnabled="true"/>
-			<property isVisible="false"/>
-			<property isSelected="true"/>
-		</wizardAction>
-
-  <wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOSetVariableWizardAction">
-      <condition class="com.tibco.installer.wizard.condition.TIBCOIsAssemblyInstalledWizardCondition">
-      <property mustBeMet="true"/>
-      <property assemblyID="product_tibco_bwplugin_cloud_design_dependency"/>
-      <property version="1.0.0"/>
-      </condition>
-      <property variableToSet="bwpluginauditsafe.palette.ius"/>
-      <property variableValue="com.tibco.bw.palette.tas.design.feature.feature.group,com.tibco.bw.palette.tas.model.feature.feature.group,com.tibco.bw.sharedresource.tas.design.feature.feature.group,com.tibco.bw.sharedresource.tas.model.feature.feature.group"/>
-</wizardAction>
-
-<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOSetVariableWizardAction">
-      <condition class="com.tibco.installer.wizard.condition.TIBCOIsAssemblyInstalledWizardCondition">
-      <property mustBeMet="true"/>
-      <property assemblyID="product_tibco_com_tibco_bw_enterprise_runtime"/>
-      <property version="1.0.0"/>
-      </condition>
-      <property variableToSet="bwpluginauditsafe.palette.ius"/>
-      <property variableValue="com.tibco.bw.palette.tas.design.feature.feature.group,com.tibco.bw.palette.tas.model.feature.feature.group,com.tibco.bw.sharedresource.tas.design.feature.feature.group,com.tibco.bw.sharedresource.tas.model.feature.feature.group"/>
-</wizardAction> -->
-
 
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCreateP2AssemblyList">
 			<property variableToSet="tibco.p2.assemblies" />
@@ -220,5 +193,16 @@
 		</postInstallAction>
 
     </installerFeature>
+	
+	<installerFeature name="required" version="6.0.0" visible="false">
+		<install location="$L{bwpluginauditsafe.extension.palettes.design.home}">
+		<condition class="com.tibco.installer.wizard.condition.TIBCOFeatureSelectedWizardCondition">
+		<property mustBeMet="true"/>
+		<property featureID="design_bwpluginauditsafe"/>
+		</condition>
+		</install>
+		<assembly uid="assembly_tibco_com_tibco_bw_palette_tas_model_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.0.0" />
+		<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_model_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.0.0" />
+	</installerFeature>
 
 </TIBCOInstallerFeatures>

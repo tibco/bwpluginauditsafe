@@ -12,12 +12,12 @@
    		universalinstallerrelease="3.6.4"
    		universalinstallerversion="L"/>
 
-        <packagingProperties createp2installer="true" supportedBWVersion="6.4" createcloudartifacts="epaas" bundle_analysis="true"/>
+        <packagingProperties createp2installer="true" supportedBWVersion="6.5" createcloudartifacts="epaas" bundle_analysis="true"/>
 
     <customVariables>
-		<localVariable name="bwpluginauditsafecloud.minimum.bw.version" value="1.0.0"/>
+		<localVariable name="bwpluginauditsafecloud.minimum.bw.version" value="1.1.0"/>
 
-        <localVariable name="bwpluginauditsafe.minimum.bw.version" value="6.4.0"/>
+        <localVariable name="bwpluginauditsafe.minimum.bw.version" value="6.5.0"/>
 		<localVariable name="bwpluginauditsafe.extension.palettes.home" value="${tibco.BW.home}/../palettes/auditsafe/6.0"/>
 		<localVariable name="bwpluginauditsafe.extension.palettes.runtime.home" value="${tibco.BW.home}/../palettes/auditsafe/6.0/runtime"/>
 		<localVariable name="bwpluginauditsafe.extension.palettes.design.home" value="${tibco.BW.home}/../palettes/auditsafe/6.0/design"/>
@@ -46,7 +46,7 @@
 			<assembly uid="product_tibco_bwpluginauditsafe_samples" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.home}" version="6.0.0"/>
         </assemblyList>
 
-        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime" type="feature" uid="Runtime_BW" version="6.4.0"/>
+        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime" type="feature" uid="Runtime_BW" version="6.5.0"/>
 		<dependency description="TIBCO BusinessWorks Cloud Runtime" type="assembly" uid="product_tibco_bwplugin_cloud_runtime_dependency" version="1.0.0"/>
 
 		<wizardAction class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction" sequence="post-selection">
@@ -115,7 +115,7 @@
 			<assembly overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tas_design_feature" version="6.0.0"/>
 		</assemblyList>
 
-        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design" type="feature" uid="Design_BW" version="6.4.0"/>
+        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design" type="feature" uid="Design_BW" version="6.5.0"/>
 		<dependency description="TIBCO BusinessWorks Cloud Design" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="1.0.0"/>
 		
 		

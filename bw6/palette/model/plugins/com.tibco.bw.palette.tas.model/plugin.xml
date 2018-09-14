@@ -21,13 +21,13 @@
    <extension
          point="com.tibco.bw.model.ActivityIcon">
       <activityIcon
-            activityTypeID="bw.tas.TctaCreateTransaction"
+            activityTypeID="bw.auditsafe.TctaCreateTransaction"
             diagramIcon="icons/obj48/createtransaction_48x48.png"
             largeIcon="icons/obj32/createtransaction_32x32.png"
             smallIcon="icons/obj16/createtransaction_16x16.png">
       </activityIcon>
       <activityIcon
-            activityTypeID="bw.tas.TctaGetToken"
+            activityTypeID="bw.auditsafe.TctaGetToken"
             diagramIcon="icons/obj48/gettoken_48x48.png"
             largeIcon="icons/obj32/gettoken_32x32.png"
             smallIcon="icons/obj16/gettoken_16x16.png">

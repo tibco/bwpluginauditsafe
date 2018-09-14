@@ -30,4 +30,4 @@ Import-Package: com.tibco.bw.config;version="[6.0.0,7.0.0)",
  org.eclipse.emf.ecore.util;version="[0.0.0,3.0.0)",
  org.eclipse.emf.ecore.xml.type;version="[0.0.0,3.0.0)",
   org.eclipse.osgi.util;version="[0.0.0,2.0.0)"
-Provide-Capability: com.tibco.bw.model; name=bw.tas
+Provide-Capability: com.tibco.bw.model; name=bw.auditsafe

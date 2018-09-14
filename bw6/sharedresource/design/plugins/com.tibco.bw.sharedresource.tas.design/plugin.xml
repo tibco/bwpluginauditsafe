@@ -45,7 +45,7 @@
    <extension
          point="com.tibco.bw.sharedresource.common.design.BWSharedResource">
       <resourcetype
-            productID="bw.tas.product"
+            productID="bw.auditsafe.product"
             resourceQName="{http://ns.tibco.com/bw/sharedresource/tas}tasConnection">
          <requirement
                requirementName="bw.tasconnection"

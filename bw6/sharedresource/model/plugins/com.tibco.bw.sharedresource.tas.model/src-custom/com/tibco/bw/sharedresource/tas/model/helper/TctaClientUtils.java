@@ -17,11 +17,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 
 public class TctaClientUtils {
 
-	public static String requestCreateTransaction(String token,
-			String tasBaseUrl, String body) {
+	public static String requestCreateTransaction(String tasBaseUrl, String token,
+			String accountId, String body) {
 		String result = null;
 		CookieManager cookiemanager = new CookieManager();
 		cookiemanager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
@@ -36,6 +37,9 @@ public class TctaClientUtils {
 			Map<String, String> params = new HashMap<String, String>();
 			params.put("AccessToken", token);
 			params.put("TenantId", "tcta");
+			if(accountId != null && !accountId.isEmpty()){
+				params.put("AccountId", accountId);
+			}
 			httpConn = buildpostHttpUrlConnection(idmUrl, params,
 					getsettingMap());
 			String messagebody = getHttpRequestBody(httpConn);
@@ -132,7 +136,7 @@ public class TctaClientUtils {
 		return token;
 	}
 
-	public static boolean testConnection(String tasBaseUrl, String token) throws IOException {
+	public static HashMap<String,String> testConnection(String tasBaseUrl, String token) throws IOException {
 		if (tasBaseUrl.endsWith("/")) {
 			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
 		}
@@ -146,14 +150,24 @@ public class TctaClientUtils {
 		String messagebody = getHttpRequestBody(httpConn);
 		int statusCode = httpConn.getResponseCode();
 
-		if (statusCode == HttpURLConnection.HTTP_OK || statusCode == 300) {
-			return true;
+		HashMap<String,String> accountsInfo = new HashMap<String,String>();
+		if (statusCode == HttpURLConnection.HTTP_OK) {
+			//if return 200, means there is no multiple organization, just put 1 as key and value
+			accountsInfo.put("1", "1");
+		}else if(statusCode == 300) {
+			JsonReader node = new JsonReader(messagebody);
+			ArrayNode info = (ArrayNode) node.getNode("accountsInfo");
+			for (JsonNode jsonNode : info) {
+				String orgName =  jsonNode.get("accountDisplayName").asText();
+				String ownerEmail = jsonNode.get("ownerInfo").get("email").asText();
+				String accountId = jsonNode.get("accountId").asText();
+				accountsInfo.put(orgName + "/(Owner Email: )" +ownerEmail, accountId);
+			}
 		}
-
-		return false;
+		return accountsInfo;
 	}
 
-	public static JsonNode getSchema(String tasBaseUrl, String token,
+	public static JsonNode getSchema(String tasBaseUrl, String token,String accountId,
 			String body, int type) throws IOException {
 		CookieManager cookiemanager = new CookieManager();
 		cookiemanager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
@@ -168,6 +182,9 @@ public class TctaClientUtils {
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("AccessToken", token);
 		params.put("TenantId", "tcta");
+		if(accountId != null && !accountId.isEmpty()){
+			params.put("AccountId", accountId);
+		}
 		httpConn = buildpostHttpUrlConnection(idmUrl, params, getsettingMap());
 		String messagebody = getHttpRequestBody(httpConn);
 		int statusCode = httpConn.getResponseCode();
@@ -286,7 +303,7 @@ public class TctaClientUtils {
 	public static String getHttpRequestBody(HttpURLConnection connection)
 			throws IOException {
 		BufferedReader br = null;
-		if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+		if (connection.getResponseCode() == HttpURLConnection.HTTP_OK || connection.getResponseCode() == 300) {
 			br = new BufferedReader(new InputStreamReader(
 					(connection.getInputStream())));
 		} else {

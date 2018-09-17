@@ -24,6 +24,7 @@ import com.tibco.neo.svar.svarmodel.impl.SubstitutableObjectImpl;
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TctaConnectionImpl#getServerUrl <em>Server Url</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TctaConnectionImpl#getUsername <em>Username</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TctaConnectionImpl#getPassword <em>Password</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TctaConnectionImpl#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -90,6 +91,26 @@ public class TctaConnectionImpl extends SubstitutableObjectImpl implements TctaC
 	 * @ordered
 	 */
 	protected String password = PASSWORD_EDEFAULT;
+
+		/**
+	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getId() <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String id = ID_EDEFAULT;
 
 		/**
 	 * <!-- begin-user-doc -->
@@ -177,6 +198,27 @@ public class TctaConnectionImpl extends SubstitutableObjectImpl implements TctaC
 
 		/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getId() {
+		return id;
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setId(String newId) {
+		String oldId = id;
+		id = newId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TctaPackage.TCTA_CONNECTION__ID, oldId, id));
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -190,6 +232,8 @@ public class TctaConnectionImpl extends SubstitutableObjectImpl implements TctaC
 				return getUsername();
 			case TctaPackage.TCTA_CONNECTION__PASSWORD:
 				return getPassword();
+			case TctaPackage.TCTA_CONNECTION__ID:
+				return getId();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -211,6 +255,9 @@ public class TctaConnectionImpl extends SubstitutableObjectImpl implements TctaC
 				return;
 			case TctaPackage.TCTA_CONNECTION__PASSWORD:
 				setPassword((String)newValue);
+				return;
+			case TctaPackage.TCTA_CONNECTION__ID:
+				setId((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -234,6 +281,9 @@ public class TctaConnectionImpl extends SubstitutableObjectImpl implements TctaC
 			case TctaPackage.TCTA_CONNECTION__PASSWORD:
 				setPassword(PASSWORD_EDEFAULT);
 				return;
+			case TctaPackage.TCTA_CONNECTION__ID:
+				setId(ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -253,6 +303,8 @@ public class TctaConnectionImpl extends SubstitutableObjectImpl implements TctaC
 				return USERNAME_EDEFAULT == null ? username != null : !USERNAME_EDEFAULT.equals(username);
 			case TctaPackage.TCTA_CONNECTION__PASSWORD:
 				return PASSWORD_EDEFAULT == null ? password != null : !PASSWORD_EDEFAULT.equals(password);
+			case TctaPackage.TCTA_CONNECTION__ID:
+				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -274,6 +326,8 @@ public class TctaConnectionImpl extends SubstitutableObjectImpl implements TctaC
 		result.append(username);
 		result.append(", password: ");
 		result.append(password);
+		result.append(", id: ");
+		result.append(id);
 		result.append(')');
 		return result.toString();
 	}

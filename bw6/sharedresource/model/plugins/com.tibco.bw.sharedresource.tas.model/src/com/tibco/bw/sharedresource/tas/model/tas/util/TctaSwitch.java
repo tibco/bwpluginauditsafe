@@ -6,6 +6,7 @@
  */
 package com.tibco.bw.sharedresource.tas.model.tas.util;
 
+import com.tibco.bw.sharedresource.tas.model.tas.*;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
@@ -95,9 +96,9 @@ public class TctaSwitch<T>
   {
 		switch (classifierID) {
 			case TctaPackage.TCTA_CONNECTION: {
-				TctaConnection tasConnection = (TctaConnection)theEObject;
-				T result = casetasConnection(tasConnection);
-				if (result == null) result = caseSubstitutableObject(tasConnection);
+				TctaConnection tctaConnection = (TctaConnection)theEObject;
+				T result = caseTctaConnection(tctaConnection);
+				if (result == null) result = caseSubstitutableObject(tctaConnection);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -106,22 +107,21 @@ public class TctaSwitch<T>
 	}
 
   /**
-	 * Returns the result of interpreting the object as an instance of '<em>tas Connection</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Connection</em>'.
 	 * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>tas Connection</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Connection</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-  public T casetasConnection(TctaConnection object)
-  {
+	public T caseTctaConnection(TctaConnection object) {
 		return null;
 	}
 
-  /**
+		/**
 	 * Returns the result of interpreting the object as an instance of '<em>Substitutable Object</em>'.
 	 * <!-- begin-user-doc -->
    * This implementation returns null;

@@ -6,6 +6,7 @@
  */
 package com.tibco.bw.sharedresource.tas.model.tas.util;
 
+import com.tibco.bw.sharedresource.tas.model.tas.*;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
@@ -75,8 +76,8 @@ public class TctaAdapterFactory extends AdapterFactoryImpl
   protected TctaSwitch<Adapter> modelSwitch =
     new TctaSwitch<Adapter>() {
 			@Override
-			public Adapter casetasConnection(TctaConnection object) {
-				return createtasConnectionAdapter();
+			public Adapter caseTctaConnection(TctaConnection object) {
+				return createTctaConnectionAdapter();
 			}
 			@Override
 			public Adapter caseSubstitutableObject(SubstitutableObject object) {
@@ -104,21 +105,20 @@ public class TctaAdapterFactory extends AdapterFactoryImpl
 
 
   /**
-	 * Creates a new adapter for an object of class '{@link com.tibco.bw.sharedresource.tas.model.tas.TctaConnection <em>tas Connection</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.tibco.bw.sharedresource.tas.model.tas.TctaConnection <em>Connection</em>}'.
 	 * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
 	 * @return the new adapter.
 	 * @see com.tibco.bw.sharedresource.tas.model.tas.TctaConnection
 	 * @generated
 	 */
-  public Adapter createtasConnectionAdapter()
-  {
+	public Adapter createTctaConnectionAdapter() {
 		return null;
 	}
 
-  /**
+		/**
 	 * Creates a new adapter for an object of class '{@link com.tibco.neo.svar.svarmodel.SubstitutableObject <em>Substitutable Object</em>}'.
 	 * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;

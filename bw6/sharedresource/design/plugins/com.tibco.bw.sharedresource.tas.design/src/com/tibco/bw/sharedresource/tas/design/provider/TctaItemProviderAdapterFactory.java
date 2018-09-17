@@ -41,7 +41,7 @@ public class TctaItemProviderAdapterFactory extends TctaAdapterFactory implement
 
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
@@ -53,29 +53,29 @@ public class TctaItemProviderAdapterFactory extends TctaAdapterFactory implement
 		supportedTypes.add(IItemPropertySource.class);
 	}
 
-	
+
 	protected TctaConnectionItemProvider tasconnectionItemProvider;
 
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createtasConnectionAdapter() {
+	public Adapter createTctaConnectionAdapter() {
 		if (tasconnectionItemProvider == null) {
 			tasconnectionItemProvider = new TctaConnectionItemProvider(this);
 		}
 
 		return tasconnectionItemProvider;
 	}
-	
-	
-	
+
+
+
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
@@ -85,7 +85,7 @@ public class TctaItemProviderAdapterFactory extends TctaAdapterFactory implement
 
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
@@ -95,7 +95,7 @@ public class TctaItemProviderAdapterFactory extends TctaAdapterFactory implement
 
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
@@ -106,7 +106,7 @@ public class TctaItemProviderAdapterFactory extends TctaAdapterFactory implement
 
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
@@ -117,7 +117,7 @@ public class TctaItemProviderAdapterFactory extends TctaAdapterFactory implement
 
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
@@ -135,7 +135,7 @@ public class TctaItemProviderAdapterFactory extends TctaAdapterFactory implement
 
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
@@ -145,7 +145,7 @@ public class TctaItemProviderAdapterFactory extends TctaAdapterFactory implement
 
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
@@ -155,7 +155,7 @@ public class TctaItemProviderAdapterFactory extends TctaAdapterFactory implement
 
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
@@ -169,11 +169,11 @@ public class TctaItemProviderAdapterFactory extends TctaAdapterFactory implement
 
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
-	public void dispose() {	
+	public void dispose() {
 		if (tasconnectionItemProvider != null) tasconnectionItemProvider.dispose();
 	}
 }

@@ -24,7 +24,7 @@ public class TctaConnectionWizard extends SharedResourceWizard {
 
 	@Override
 	protected EObject createConfigurationModelInstance() {
-		TctaConnection tasconnection = TctaFactory.eINSTANCE.createtasConnection();
+		TctaConnection tasconnection = TctaFactory.eINSTANCE.createTctaConnection();
 		//set default value for the object if need
 		return tasconnection;
 	}
@@ -46,7 +46,7 @@ public class TctaConnectionWizard extends SharedResourceWizard {
 
 	@Override
 	protected QName getType() {
-		return TCTAConstants.TCTACONNECTION_QNAME;		
+		return TCTAConstants.TCTACONNECTION_QNAME;
 	}
 
 	@Override

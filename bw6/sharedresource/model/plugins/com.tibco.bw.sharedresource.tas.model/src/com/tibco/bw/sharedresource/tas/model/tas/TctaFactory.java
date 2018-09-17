@@ -27,15 +27,15 @@ public interface TctaFactory extends EFactory
   TctaFactory eINSTANCE = com.tibco.bw.sharedresource.tas.model.tas.impl.TctaFactoryImpl.init();
 
   /**
-	 * Returns a new object of class '<em>tas Connection</em>'.
+	 * Returns a new object of class '<em>Connection</em>'.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @return a new object of class '<em>tas Connection</em>'.
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Connection</em>'.
 	 * @generated
 	 */
-  TctaConnection createtasConnection();
+	TctaConnection createTctaConnection();
 
-  /**
+		/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

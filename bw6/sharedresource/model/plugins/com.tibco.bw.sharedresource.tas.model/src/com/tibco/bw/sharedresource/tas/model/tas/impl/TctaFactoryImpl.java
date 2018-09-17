@@ -6,6 +6,7 @@
  */
 package com.tibco.bw.sharedresource.tas.model.tas.impl;
 
+import com.tibco.bw.sharedresource.tas.model.tas.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -64,7 +65,7 @@ public class TctaFactoryImpl extends EFactoryImpl implements TctaFactory
   public EObject create(EClass eClass)
   {
 		switch (eClass.getClassifierID()) {
-			case TctaPackage.TCTA_CONNECTION: return createtasConnection();
+			case TctaPackage.TCTA_CONNECTION: return createTctaConnection();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -72,16 +73,15 @@ public class TctaFactoryImpl extends EFactoryImpl implements TctaFactory
 
   /**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public TctaConnection createtasConnection()
-  {
-		TctaConnectionImpl tasConnection = new TctaConnectionImpl();
-		return tasConnection;
+	public TctaConnection createTctaConnection() {
+		TctaConnectionImpl tctaConnection = new TctaConnectionImpl();
+		return tctaConnection;
 	}
 
-  /**
+		/**
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
 	 * @generated

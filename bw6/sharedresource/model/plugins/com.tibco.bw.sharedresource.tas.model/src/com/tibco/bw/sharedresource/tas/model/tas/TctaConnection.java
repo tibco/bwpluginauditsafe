@@ -19,10 +19,11 @@ import com.tibco.neo.svar.svarmodel.SubstitutableObject;
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TctaConnection#getServerUrl <em>Server Url</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TctaConnection#getUsername <em>Username</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TctaConnection#getPassword <em>Password</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TctaConnection#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
- * @see com.tibco.bw.sharedresource.tas.model.tas.TctaPackage#gettasConnection()
+ * @see com.tibco.bw.sharedresource.tas.model.tas.TctaPackage#getTctaConnection()
  * @model
  * @generated
  */
@@ -38,7 +39,7 @@ public interface TctaConnection extends SubstitutableObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Server Url</em>' attribute.
 	 * @see #setServerUrl(String)
-	 * @see com.tibco.bw.sharedresource.tas.model.tas.TctaPackage#gettasConnection_ServerUrl()
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TctaPackage#getTctaConnection_ServerUrl()
 	 * @model
 	 * @generated
 	 */
@@ -64,7 +65,7 @@ public interface TctaConnection extends SubstitutableObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Username</em>' attribute.
 	 * @see #setUsername(String)
-	 * @see com.tibco.bw.sharedresource.tas.model.tas.TctaPackage#gettasConnection_Username()
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TctaPackage#getTctaConnection_Username()
 	 * @model
 	 * @generated
 	 */
@@ -90,7 +91,7 @@ public interface TctaConnection extends SubstitutableObject
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Password</em>' attribute.
 	 * @see #setPassword(String)
-	 * @see com.tibco.bw.sharedresource.tas.model.tas.TctaPackage#gettasConnection_Password()
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TctaPackage#getTctaConnection_Password()
 	 * @model
 	 * @generated
 	 */
@@ -105,5 +106,31 @@ public interface TctaConnection extends SubstitutableObject
 	 * @generated
 	 */
 	void setPassword(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Id</em>' attribute.
+	 * @see #setId(String)
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TctaPackage#getTctaConnection_Id()
+	 * @model
+	 * @generated
+	 */
+	String getId();
+
+	/**
+	 * Sets the value of the '{@link com.tibco.bw.sharedresource.tas.model.tas.TctaConnection#getId <em>Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Id</em>' attribute.
+	 * @see #getId()
+	 * @generated
+	 */
+	void setId(String value);
 
 } // tasConnection

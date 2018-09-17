@@ -62,25 +62,25 @@ public interface TctaPackage extends EPackage
   TctaPackage eINSTANCE = com.tibco.bw.sharedresource.tas.model.tas.impl.TctaPackageImpl.init();
 
   /**
-	 * The meta object id for the '{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TctaConnectionImpl <em>tas Connection</em>}' class.
+	 * The meta object id for the '{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TctaConnectionImpl <em>Connection</em>}' class.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @see com.tibco.bw.sharedresource.tas.model.tas.impl.TctaConnectionImpl
-	 * @see com.tibco.bw.sharedresource.tas.model.tas.impl.TctaPackageImpl#gettasConnection()
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.impl.TctaPackageImpl#getTctaConnection()
 	 * @generated
 	 */
-  int TCTA_CONNECTION = 0;
+	int TCTA_CONNECTION = 0;
 
-  /**
+		/**
 	 * The feature id for the '<em><b>Substitution Bindings</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-  int TCTA_CONNECTION__SUBSTITUTION_BINDINGS = SvarmodelPackage.SUBSTITUTABLE_OBJECT__SUBSTITUTION_BINDINGS;
+	int TCTA_CONNECTION__SUBSTITUTION_BINDINGS = SvarmodelPackage.SUBSTITUTABLE_OBJECT__SUBSTITUTION_BINDINGS;
 
-  /**
+		/**
 	 * The feature id for the '<em><b>Server Url</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -108,35 +108,43 @@ public interface TctaPackage extends EPackage
 	int TCTA_CONNECTION__PASSWORD = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 2;
 
 		/**
-	 * The number of structural features of the '<em>tas Connection</em>' class.
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-  int TCTA_CONNECTION_FEATURE_COUNT = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 3;
+	int TCTA_CONNECTION__ID = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 3;
 
-
-  /**
-	 * Returns the meta object for class '{@link com.tibco.bw.sharedresource.tas.model.tas.TctaConnection <em>tas Connection</em>}'.
+		/**
+	 * The number of structural features of the '<em>Connection</em>' class.
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>tas Connection</em>'.
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TCTA_CONNECTION_FEATURE_COUNT = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 4;
+
+		/**
+	 * Returns the meta object for class '{@link com.tibco.bw.sharedresource.tas.model.tas.TctaConnection <em>Connection</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Connection</em>'.
 	 * @see com.tibco.bw.sharedresource.tas.model.tas.TctaConnection
 	 * @generated
 	 */
-  EClass gettasConnection();
+	EClass getTctaConnection();
 
-  /**
+		/**
 	 * Returns the meta object for the attribute '{@link com.tibco.bw.sharedresource.tas.model.tas.TctaConnection#getServerUrl <em>Server Url</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Server Url</em>'.
 	 * @see com.tibco.bw.sharedresource.tas.model.tas.TctaConnection#getServerUrl()
-	 * @see #gettasConnection()
+	 * @see #getTctaConnection()
 	 * @generated
 	 */
-	EAttribute gettasConnection_ServerUrl();
+	EAttribute getTctaConnection_ServerUrl();
 
 		/**
 	 * Returns the meta object for the attribute '{@link com.tibco.bw.sharedresource.tas.model.tas.TctaConnection#getUsername <em>Username</em>}'.
@@ -144,10 +152,10 @@ public interface TctaPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Username</em>'.
 	 * @see com.tibco.bw.sharedresource.tas.model.tas.TctaConnection#getUsername()
-	 * @see #gettasConnection()
+	 * @see #getTctaConnection()
 	 * @generated
 	 */
-	EAttribute gettasConnection_Username();
+	EAttribute getTctaConnection_Username();
 
 		/**
 	 * Returns the meta object for the attribute '{@link com.tibco.bw.sharedresource.tas.model.tas.TctaConnection#getPassword <em>Password</em>}'.
@@ -155,10 +163,21 @@ public interface TctaPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Password</em>'.
 	 * @see com.tibco.bw.sharedresource.tas.model.tas.TctaConnection#getPassword()
-	 * @see #gettasConnection()
+	 * @see #getTctaConnection()
 	 * @generated
 	 */
-	EAttribute gettasConnection_Password();
+	EAttribute getTctaConnection_Password();
+
+		/**
+	 * Returns the meta object for the attribute '{@link com.tibco.bw.sharedresource.tas.model.tas.TctaConnection#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TctaConnection#getId()
+	 * @see #getTctaConnection()
+	 * @generated
+	 */
+	EAttribute getTctaConnection_Id();
 
 		/**
 	 * Returns the factory that creates the instances of the model.
@@ -184,38 +203,46 @@ public interface TctaPackage extends EPackage
   interface Literals
   {
     /**
-		 * The meta object literal for the '{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TctaConnectionImpl <em>tas Connection</em>}' class.
+		 * The meta object literal for the '{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TctaConnectionImpl <em>Connection</em>}' class.
 		 * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+		 * <!-- end-user-doc -->
 		 * @see com.tibco.bw.sharedresource.tas.model.tas.impl.TctaConnectionImpl
-		 * @see com.tibco.bw.sharedresource.tas.model.tas.impl.TctaPackageImpl#gettasConnection()
+		 * @see com.tibco.bw.sharedresource.tas.model.tas.impl.TctaPackageImpl#getTctaConnection()
 		 * @generated
 		 */
-    EClass TCTA_CONNECTION = eINSTANCE.gettasConnection();
+		EClass TCTA_CONNECTION = eINSTANCE.getTctaConnection();
 
-    /**
+			/**
 		 * The meta object literal for the '<em><b>Server Url</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TCTA_CONNECTION__SERVER_URL = eINSTANCE.gettasConnection_ServerUrl();
+		EAttribute TCTA_CONNECTION__SERVER_URL = eINSTANCE.getTctaConnection_ServerUrl();
 
-				/**
+			/**
 		 * The meta object literal for the '<em><b>Username</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TCTA_CONNECTION__USERNAME = eINSTANCE.gettasConnection_Username();
+		EAttribute TCTA_CONNECTION__USERNAME = eINSTANCE.getTctaConnection_Username();
 
-				/**
+			/**
 		 * The meta object literal for the '<em><b>Password</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TCTA_CONNECTION__PASSWORD = eINSTANCE.gettasConnection_Password();
+		EAttribute TCTA_CONNECTION__PASSWORD = eINSTANCE.getTctaConnection_Password();
+
+			/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TCTA_CONNECTION__ID = eINSTANCE.getTctaConnection_Id();
 
   }
 

@@ -1,14 +1,23 @@
 package com.tibco.bw.sharedresource.tas.design.sections;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.HashMap;
 
+import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.window.Window;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 
 import com.tibco.bw.design.field.BWFieldFactory;
 import com.tibco.bw.sharedresource.tas.model.helper.Messages;
@@ -63,10 +72,10 @@ public class TestConnectionButtonHelper {
 				testLabel.setText("Testing...");
 
 				String token = TctaClientUtils.getToken(username, password);
-				boolean testSuccess = false;
+				HashMap<String,String> accountInfo = null;
 				if (token != null) {
 					try {
-						testSuccess = TctaClientUtils.testConnection(serverUtl, token);
+						accountInfo = TctaClientUtils.testConnection(serverUtl, token);
 					} catch (IOException e1) {
 						MessageDialog messageDialog = new MessageDialog(composite
 								.getShell(), "Test AuditSafe Connection failed", null,
@@ -75,12 +84,24 @@ public class TestConnectionButtonHelper {
 						messageDialog.open();
 					}
 				}
-				if (testSuccess) {
-					MessageDialog messageDialog = new MessageDialog(composite
-							.getShell(), Messages.CONNECTED_TO_TCTA, null,
-							Messages.CONNECTED_TO_TCTA, MessageDialog.NONE,
-							new String[] { "Ok" }, 0);
-					messageDialog.open();
+				if (accountInfo.size()>0) {
+					if(accountInfo.keySet().size()==1){
+						MessageDialog messageDialog = new MessageDialog(composite
+								.getShell(), Messages.CONNECTED_TO_TCTA, null,
+								Messages.CONNECTED_TO_TCTA, MessageDialog.NONE,
+								new String[] { "Ok" }, 0);
+						messageDialog.open();
+						tasConnectionSection.setAccountId("");
+					} else {
+						AccountDialog dialog = new AccountDialog(composite.getShell());
+
+						dialog.initData(accountInfo.keySet().toArray(new String[accountInfo.size()]));
+						int eventkey = dialog.open();
+						if (eventkey == Window.OK) {
+							String selectedAccount = dialog.selectedValue;
+							tasConnectionSection.setAccountId(accountInfo.get(selectedAccount));
+						}
+					}
 					Color blue = new Color(composite.getShell().getDisplay(),
 							0, 0, 255);
 					testLabel.setForeground(blue);
@@ -105,6 +126,56 @@ public class TestConnectionButtonHelper {
 		return ((url == null || "".equals(url))
 				|| (username == null || "".equals(username)) || (password == null || ""
 				.equals(password)));
+	}
+
+	class AccountDialog extends Dialog implements ActionListener {
+	    protected org.eclipse.swt.widgets.List list;
+	    protected String[] accountList;
+	    protected String selectedValue;
+		protected AccountDialog(Shell parentShell) {
+			super(parentShell);
+		}
+
+		@Override
+		protected Point getInitialSize() {
+		   return new Point(400, 300);
+		}
+
+		@Override
+		protected void configureShell(Shell newShell) {
+		   super.configureShell(newShell);
+		   newShell.setText("Account Information");
+		}
+
+		@Override
+		protected Control createDialogArea(final Composite parent) {
+			final Composite composite = (Composite) super.createDialogArea(parent);
+			Composite account = new Composite(composite, SWT.None);
+			list = new org.eclipse.swt.widgets.List(account,SWT.BORDER|SWT.READ_ONLY|SWT.V_SCROLL);
+			list.setItems(accountList);
+			list.setVisible(true);
+			list.setSize(500, 150);
+			list.setSelection(0);
+			list.addSelectionListener(new SelectionAdapter(){
+				public void widgetSelected(SelectionEvent event) {
+					int index = list.getSelectionIndex();
+					if(index != -1){
+						selectedValue = accountList[index];
+					}
+				}
+			});
+			return composite;
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+
+		}
+
+		public void initData(String[] accountList){
+			this.accountList = accountList ;
+			selectedValue = accountList[0];
+		}
 	}
 
 

@@ -35,10 +35,12 @@ public class TctaConnectionSection extends AbstractBWSharedResourceSection {
 	private Text serverUrl;
 	private Text username;
 	private PasswordField password;
+	private Text accountId;
 
 	private SRAttributeBindingField serverUrlAttribute;
 	private SRAttributeBindingField usernameAttribute;
 	private SRAttributeBindingField passwordAttribute;
+	private SRAttributeBindingField accountIdAttribute;
 
 	private TctaConnection tasConnection;
 
@@ -53,6 +55,7 @@ public class TctaConnectionSection extends AbstractBWSharedResourceSection {
         getBindingManager().bind(serverUrlAttribute, tasConnection, TctaPackage.Literals.TCTA_CONNECTION__SERVER_URL);
         getBindingManager().bind(usernameAttribute, tasConnection, TctaPackage.Literals.TCTA_CONNECTION__USERNAME);
         getBindingManager().bind(passwordAttribute, tasConnection, TctaPackage.Literals.TCTA_CONNECTION__PASSWORD);
+        getBindingManager().bind(accountIdAttribute, tasConnection, TctaPackage.Literals.TCTA_CONNECTION__ID);
 	    // begin-custom-code
         // end-custom-code
 	}
@@ -83,6 +86,12 @@ public class TctaConnectionSection extends AbstractBWSharedResourceSection {
    	    password = BWFieldFactory.getInstance().createPasswordField(sectionComposite);
 	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TCTACONNECTION_PASSWORD, false);
 	    passwordAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, password, PropertyTypeQnameConstants.STRING_PRIMITIVE);
+
+	    accountId = BWFieldFactory.getInstance().createTextBox(sectionComposite);
+	    accountId.setEnabled(false);
+   	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TCTACONNECTION_ACCOUNTID, false);
+   	    accountIdAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, accountId, PropertyTypeQnameConstants.STRING_PRIMITIVE);
+
 
 	    Composite buttonComposite = new Composite(sectionComposite, 0);
 		buttonComposite.setLocation(0, 0);
@@ -154,5 +163,24 @@ public class TctaConnectionSection extends AbstractBWSharedResourceSection {
 		}
 		return EncryptionService.INSTANCE.getEncryptor().decrypt(password);
     }
+
+	public String getAccountId(TctaConnection connection) {
+    	String accountId = connection.getId();
+		EList<SubstitutionBinding> ds_substvars = connection.getSubstitutionBindings();
+		for (SubstitutionBinding substitutionBinding : ds_substvars) {
+			String propName = substitutionBinding.getPropName();
+			String templateName = substitutionBinding.getTemplate();
+			if (templateName.equals(TctaPackage.Literals.TCTA_CONNECTION__ID.getName())){
+				accountId = ModelHelper.INSTANCE.getModulePropertyValue(connection, propName);
+                break;
+			}
+		}
+
+		return accountId;
+    }
+
+	public void setAccountId(String id){
+		accountId.setText(id);
+	}
 
 }

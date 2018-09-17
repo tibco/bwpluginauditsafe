@@ -26,12 +26,11 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 {
   /**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-  private EClass tasConnectionEClass = null;
-
-  /**
+	private EClass tctaConnectionEClass = null;
+		/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -60,7 +59,7 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 
   /**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link TctaPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -91,7 +90,7 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 		// Mark meta-data to indicate it can't be changed
 		theTctaPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(TctaPackage.eNS_URI, theTctaPackage);
 		return theTctaPackage;
@@ -99,21 +98,11 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 
   /**
 	 * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-	 * @generated
-	 */
-  public EClass gettasConnection()
-  {
-		return tasConnectionEClass;
-	}
-
-  /**
-	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute gettasConnection_ServerUrl() {
-		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(0);
+	public EClass getTctaConnection() {
+		return tctaConnectionEClass;
 	}
 
 		/**
@@ -121,8 +110,8 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute gettasConnection_Username() {
-		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(1);
+	public EAttribute getTctaConnection_ServerUrl() {
+		return (EAttribute)tctaConnectionEClass.getEStructuralFeatures().get(0);
 	}
 
 		/**
@@ -130,8 +119,26 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute gettasConnection_Password() {
-		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(2);
+	public EAttribute getTctaConnection_Username() {
+		return (EAttribute)tctaConnectionEClass.getEStructuralFeatures().get(1);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTctaConnection_Password() {
+		return (EAttribute)tctaConnectionEClass.getEStructuralFeatures().get(2);
+	}
+
+		/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTctaConnection_Id() {
+		return (EAttribute)tctaConnectionEClass.getEStructuralFeatures().get(3);
 	}
 
 		/**
@@ -164,10 +171,11 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 		isCreated = true;
 
 		// Create classes and their features
-		tasConnectionEClass = createEClass(TCTA_CONNECTION);
-		createEAttribute(tasConnectionEClass, TCTA_CONNECTION__SERVER_URL);
-		createEAttribute(tasConnectionEClass, TCTA_CONNECTION__USERNAME);
-		createEAttribute(tasConnectionEClass, TCTA_CONNECTION__PASSWORD);
+		tctaConnectionEClass = createEClass(TCTA_CONNECTION);
+		createEAttribute(tctaConnectionEClass, TCTA_CONNECTION__SERVER_URL);
+		createEAttribute(tctaConnectionEClass, TCTA_CONNECTION__USERNAME);
+		createEAttribute(tctaConnectionEClass, TCTA_CONNECTION__PASSWORD);
+		createEAttribute(tctaConnectionEClass, TCTA_CONNECTION__ID);
 	}
 
   /**
@@ -202,13 +210,14 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		tasConnectionEClass.getESuperTypes().add(theSvarmodelPackage.getSubstitutableObject());
+		tctaConnectionEClass.getESuperTypes().add(theSvarmodelPackage.getSubstitutableObject());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(tasConnectionEClass, TctaConnection.class, "tasConnection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(gettasConnection_ServerUrl(), ecorePackage.getEString(), "serverUrl", null, 0, 1, TctaConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(gettasConnection_Username(), ecorePackage.getEString(), "username", null, 0, 1, TctaConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(gettasConnection_Password(), ecorePackage.getEString(), "password", null, 0, 1, TctaConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(tctaConnectionEClass, TctaConnection.class, "TctaConnection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTctaConnection_ServerUrl(), ecorePackage.getEString(), "serverUrl", null, 0, 1, TctaConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTctaConnection_Username(), ecorePackage.getEString(), "username", null, 0, 1, TctaConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTctaConnection_Password(), ecorePackage.getEString(), "password", null, 0, 1, TctaConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTctaConnection_Id(), ecorePackage.getEString(), "id", null, 0, 1, TctaConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -226,10 +235,10 @@ public class TctaPackageImpl extends EPackageImpl implements TctaPackage
 	 */
   protected void createConfigurationAnnotations()
   {
-		String source = "http://tns.tibco.com/bw/annotations/configuration";	
+		String source = "http://tns.tibco.com/bw/annotations/configuration";
 		addAnnotation
-		  (tasConnectionEClass, 
-		   source, 
+		  (tctaConnectionEClass,
+		   source,
 		   new String[] {
 		   });
 	}

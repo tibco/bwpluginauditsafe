@@ -101,6 +101,7 @@ public class TctaConnectionResourceFactory extends BaseSharedResourceFactory
 	    resource.setServerUrl((String) toSet.get("serverUrl"));
 	    resource.setUsername((String)toSet.get("username"));
 	    resource.setPassword(context.getDecryptedPasswordValue((String) toSet.get("password")));
+	    resource.setId((String)toSet.get("id"));
 	    // begin-custom-code
         // end-custom-code
 	}

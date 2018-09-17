@@ -95,7 +95,7 @@ public class TctaCreateTransactionActivity<N> extends BaseSyncActivity<N> implem
 			}
 			request.set("extra_props", extraPropsNode);
 			String body = mapper.writeValueAsString(request);
-			result = TctaClientUtils.requestCreateTransaction(token, sharedResource.getServerUrl(), body);
+			result = TctaClientUtils.requestCreateTransaction(sharedResource.getServerUrl(), token, sharedResource.getId(), body);
 		}
 
 		mutableModel.appendChild(output,noteFactory.createText(result));

@@ -117,9 +117,10 @@ public abstract class TctaBasicSignature extends BWActivitySignature {
 	private void createSchema(XSDModelGroup rootInput,
 			TctaConnection conn, EObject obj) throws IOException {
 		//String token = TctaClientUtils.getToken(conn.getUsername(), conn.getPassword());
-		String body = "{\"path\": \"/tcta/dataserver/transactions/intercom\", \"method\": \"POST\"}";
+		String body = "{\"path\": \"/tcta/dataserver/transactions\", \"method\": \"POST\"}";
 		String token = TctaClientUtils.getToken(conn.getUsername(), decryptPassword(conn.getPassword()));
-		JsonNode requestNode = TctaClientUtils.getSchema(conn.getServerUrl(), token, body, 1);
+		String accountId = conn.getId();
+		JsonNode requestNode = TctaClientUtils.getSchema(conn.getServerUrl(), token, accountId, body, 1);
 		JsonNode properties = requestNode.get("properties");
 		JsonNode required = requestNode.get("required");
 		HashSet<String> requiredSet = new HashSet<String>();

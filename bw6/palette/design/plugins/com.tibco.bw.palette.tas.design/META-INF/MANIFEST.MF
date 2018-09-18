@@ -16,8 +16,7 @@ Require-Bundle: com.tibco.bw.palette.tas.model;bundle-version="[6.0.0,7.0.0)",
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: com.tibco.bw.palette.tas.design;version="6.0.0",
- com.tibco.bw.palette.tas.design.createtransaction;version="6.0.0",
- com.tibco.bw.palette.tas.design.gettoken;version="6.0.0"
+ com.tibco.bw.palette.tas.design.postauditevent;version="6.0.0"
 Import-Package: com.tibco.amf.model.sharedresource.jndi;version="[1.4.0,2.0.0)",
  com.tibco.neo.svar.svarmodel;version="[2.1.0,3.0.0)"
 Bundle-ClassPath: .

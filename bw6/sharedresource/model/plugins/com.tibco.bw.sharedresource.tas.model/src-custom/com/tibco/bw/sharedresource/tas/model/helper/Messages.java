@@ -30,10 +30,10 @@ public class Messages extends NLS {
 	}
 
 
-	public static String TCTACONNECTION_SERVERURL;
-	public static String TCTACONNECTION_USERNAME;
-	public static String TCTACONNECTION_PASSWORD;
-	public static String TCTACONNECTION_ACCOUNTID;
+	public static String TASCONNECTION_SERVERURL;
+	public static String TASCONNECTION_USERNAME;
+	public static String TASCONNECTION_PASSWORD;
+	public static String TASCONNECTION_ACCOUNTID;
 	public static String SHAREDRESOURCE_PARAMETER_VALUE_INVALID;
 
 	public static String TEST_CONNECTION_LABEL_TEXT;
@@ -41,6 +41,6 @@ public class Messages extends NLS {
 	public static String CONNECT_BUTTON_TEXT;
 	public static String DISCONNECT_BUTTON_TEXT;
 
-	public static String CONNECTED_TO_TCTA;
+	public static String CONNECTED_TO_TAS;
 
 }

@@ -24,7 +24,7 @@
          point="com.tibco.amf.design.sr.core.sharedResourceCreator">
       <sharedResourceCreator
             sharedResourceType="tasconnectionResource"
-            wizard="com.tibco.bw.sharedresource.tas.design.wizard.TctaConnectionWizard">
+            wizard="com.tibco.bw.sharedresource.tas.design.wizard.TasConnectionWizard">
       </sharedResourceCreator>
    </extension>
    <extension
@@ -65,7 +65,7 @@
          point="org.eclipse.ui.newWizards">
       <wizard
             category="com.tibco.new"
-            class="com.tibco.bw.sharedresource.tas.design.wizard.TctaConnectionWizard"
+            class="com.tibco.bw.sharedresource.tas.design.wizard.TasConnectionWizard"
             descriptionImage="icons/obj48/tasResource_48x48.png"
             icon="icons/obj16/tasResource_16x16.png"
             id="com.tibco.bw.sharedresource.tas.design.tasconnectionwizard"
@@ -75,7 +75,7 @@
    <extension
          point="org.eclipse.ui.editors">
       <editor
-            class="com.tibco.bw.sharedresource.tas.design.wizard.TctaConnectionSharedResourceEditor"
+            class="com.tibco.bw.sharedresource.tas.design.wizard.TasConnectionSharedResourceEditor"
             contributorClass="com.tibco.bw.sharedresource.common.design.forms.SREditorContributor"
             default="false"
             extensions="tasconnectionResource"
@@ -118,7 +118,7 @@
    <extension
          point="org.eclipse.emf.edit.itemProviderAdapterFactories">
       <factory
-            class="com.tibco.bw.sharedresource.tas.design.provider.TctaItemProviderAdapterFactory"
+            class="com.tibco.bw.sharedresource.tas.design.provider.TasItemProviderAdapterFactory"
             uri="http://ns.tibco.com/bw/sharedresource/tas"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider

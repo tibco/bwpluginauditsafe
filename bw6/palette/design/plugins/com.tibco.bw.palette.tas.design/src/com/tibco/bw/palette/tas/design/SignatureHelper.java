@@ -5,11 +5,11 @@ import org.eclipse.emf.ecore.EObject;
 import com.tibco.amf.model.sharedresource.jndi.NamedResource;
 import com.tibco.bw.design.util.ModelHelper;
 import com.tibco.bw.design.util.ProcessProperty;
-import com.tibco.bw.sharedresource.tas.model.tas.TctaConnection;
+import com.tibco.bw.sharedresource.tas.model.tas.TasConnection;
 
 public class SignatureHelper {
 
-	public static TctaConnection getConnectionFromSharedResource(String connection, EObject model) {
+	public static TasConnection getConnectionFromSharedResource(String connection, EObject model) {
 		ProcessProperty pProperty = ModelHelper.INSTANCE.getProperty(model, connection);
 		String propertyValue = null;
 		if (pProperty != null) {
@@ -20,7 +20,7 @@ public class SignatureHelper {
 					if (eo != null && eo instanceof NamedResource) {
 						NamedResource nameResource = (NamedResource) eo;
 						EObject objectRef = nameResource.getConfiguration();
-						TctaConnection conn = (TctaConnection)objectRef;
+						TasConnection conn = (TasConnection)objectRef;
 						return conn;
 					}
 				} catch (Exception e) {

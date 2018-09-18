@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="tas" nsURI="http://ns.tibco.com/bw/sharedresource/tas" nsPrefix="tas">
-  <eClassifiers xsi:type="ecore:EClass" name="TctaConnection" eSuperTypes="platform:/plugin/com.tibco.neo.model.core.eclipse/model/SvarModel.ecore#//SubstitutableObject">
+  <eClassifiers xsi:type="ecore:EClass" name="TasConnection" eSuperTypes="platform:/plugin/com.tibco.neo.model.core.eclipse/model/SvarModel.ecore#//SubstitutableObject">
     <eAnnotations source="http://tns.tibco.com/bw/annotations/configuration"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="serverUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

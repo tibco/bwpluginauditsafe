@@ -29,10 +29,10 @@
    <extension
          point="com.tibco.bw.design.ActivityType">
       <activityType
-            activityTypeID="bw.auditsafe.TctaCreateTransaction"
-            name="%tas.activity.TctaCreateTransaction.name"
+            activityTypeID="bw.auditsafe.PostAuditEvent"
+            name="%tas.activity.PostAuditEvent.name"
             priority="100"
-            tooltip="%tas.activity.TctaCreateTransaction.tooltip"
+            tooltip="%tas.activity.PostAuditEvent.tooltip"
             visible="true">
          <palette
                paletteID="bw.auditsafe">
@@ -45,19 +45,19 @@
    <extension
          point="com.tibco.bw.design.ActivitySignature">
       <signature
-            activityTypeID="bw.auditsafe.TctaCreateTransaction"
-            signatureClass="com.tibco.bw.palette.tas.design.createtransaction.TctaCreateTransactionSignature">
+            activityTypeID="bw.auditsafe.PostAuditEvent"
+            signatureClass="com.tibco.bw.palette.tas.design.postauditevent.PostAuditEventSignature">
       </signature>
    </extension>
 
    <extension
          point="com.tibco.bw.design.ActivityTypeConfigEMF">
       <config
-            activityTypeID="bw.auditsafe.TctaCreateTransaction"
-            eClassName="TctaCreateTransaction"
+            activityTypeID="bw.auditsafe.PostAuditEvent"
+            eClassName="PostAuditEvent"
             ePackageNSURI="http://ns.tibco.com/bw/palette/tas"
-            instanceName="%tas.activity.default.TctaCreateTransaction.name"
-            modelHelperClass="com.tibco.bw.palette.tas.design.createtransaction.TctaCreateTransactionModelHelper">
+            instanceName="%tas.activity.default.PostAuditEvent.name"
+            modelHelperClass="com.tibco.bw.palette.tas.design.postauditevent.PostAuditEventModelHelper">
       </config>
    </extension>
 
@@ -67,9 +67,9 @@
             contributorId="com.tibco.bw.core.design.process.editor">
          <propertySection
                afterSection="com.tibco.bw.design.activity.general"
-               class="com.tibco.bw.palette.tas.design.createtransaction.TctaCreateTransactionGeneralSection"
-               filter="com.tibco.bw.palette.tas.design.createtransaction.TctaCreateTransactionGeneralSection"
-               id="bw.auditsafe.TctaCreateTransaction.general"
+               class="com.tibco.bw.palette.tas.design.postauditevent.PostAuditEventGeneralSection"
+               filter="com.tibco.bw.palette.tas.design.postauditevent.PostAuditEventGeneralSection"
+               id="bw.auditsafe.PostAuditEvent.general"
                tab="tibco.bw.activity.property.tab.general">
          </propertySection>
       </propertySections>

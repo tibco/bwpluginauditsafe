@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: com.tibco.bw.sharedresource.tas.design;singleton:=true
 Bundle-Version: 6.0.0.qualifier
-Bundle-Activator: com.tibco.bw.sharedresource.tas.design.TCTAUIPlugin
+Bundle-Activator: com.tibco.bw.sharedresource.tas.design.TASUIPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

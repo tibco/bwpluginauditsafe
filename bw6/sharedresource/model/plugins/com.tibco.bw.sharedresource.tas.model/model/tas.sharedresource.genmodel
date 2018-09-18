@@ -5,7 +5,7 @@
     modelPluginID="com.tibco.bw.sharedresource.tas.model" importerID="org.eclipse.emf.importer.ecore"
     bundleManifest="false" complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.4"
     usedGenPackages="platform:/plugin/com.tibco.neo.model.core.eclipse/model/SvarModel.genmodel#//svarmodel platform:/plugin/com.tibco.neo.model.core.eclipse/model/ComponentJar.genmodel#//componentjar">
-  <genPackages prefix="Tcta" basePackage="com.tibco.bw.sharedresource.tas.model"
+  <genPackages prefix="Tas" basePackage="com.tibco.bw.sharedresource.tas.model"
       disposableProviderFactory="true" ecorePackage="tas.sharedresource.ecore#/">
     <genClasses ecoreClass="tas.sharedresource.ecore#//tasConnection">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute tas.sharedresource.ecore#//tasConnection/textBox"/>

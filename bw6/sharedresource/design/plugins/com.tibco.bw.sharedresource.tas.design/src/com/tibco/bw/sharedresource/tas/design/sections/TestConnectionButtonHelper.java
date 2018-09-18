@@ -21,16 +21,16 @@ import org.eclipse.swt.widgets.Shell;
 
 import com.tibco.bw.design.field.BWFieldFactory;
 import com.tibco.bw.sharedresource.tas.model.helper.Messages;
-import com.tibco.bw.sharedresource.tas.model.helper.TctaClientUtils;
-import com.tibco.bw.sharedresource.tas.model.tas.TctaConnection;
+import com.tibco.bw.sharedresource.tas.model.helper.TasClientUtils;
+import com.tibco.bw.sharedresource.tas.model.tas.TasConnection;
 
 public class TestConnectionButtonHelper {
-	private TctaConnectionSection tasConnectionSection;
+	private TasConnectionSection tasConnectionSection;
 
 	private Label testLabel;
 
 	public TestConnectionButtonHelper(
-			TctaConnectionSection tasConnectionSection) {
+			TasConnectionSection tasConnectionSection) {
 		this.tasConnectionSection = tasConnectionSection;
 	}
 
@@ -50,8 +50,8 @@ public class TestConnectionButtonHelper {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 
-				TctaConnection connection = tasConnectionSection
-						.getTctaConnection();
+				TasConnection connection = tasConnectionSection
+						.getTasConnection();
 
 				String taUrl = "https://sso-awsqa.tibco.com/as/token.oauth2";
 				String serverUtl = tasConnectionSection.getServerUrl(connection);
@@ -71,11 +71,11 @@ public class TestConnectionButtonHelper {
 				testLabel.setForeground(black);
 				testLabel.setText("Testing...");
 
-				String token = TctaClientUtils.getToken(username, password);
+				String token = TasClientUtils.getToken(username, password);
 				HashMap<String,String> accountInfo = null;
 				if (token != null) {
 					try {
-						accountInfo = TctaClientUtils.testConnection(serverUtl, token);
+						accountInfo = TasClientUtils.testConnection(serverUtl, token);
 					} catch (IOException e1) {
 						MessageDialog messageDialog = new MessageDialog(composite
 								.getShell(), "Test AuditSafe Connection failed", null,
@@ -87,8 +87,8 @@ public class TestConnectionButtonHelper {
 				if (accountInfo.size()>0) {
 					if(accountInfo.keySet().size()==1){
 						MessageDialog messageDialog = new MessageDialog(composite
-								.getShell(), Messages.CONNECTED_TO_TCTA, null,
-								Messages.CONNECTED_TO_TCTA, MessageDialog.NONE,
+								.getShell(), Messages.CONNECTED_TO_TAS, null,
+								Messages.CONNECTED_TO_TAS, MessageDialog.NONE,
 								new String[] { "Ok" }, 0);
 						messageDialog.open();
 						tasConnectionSection.setAccountId("");

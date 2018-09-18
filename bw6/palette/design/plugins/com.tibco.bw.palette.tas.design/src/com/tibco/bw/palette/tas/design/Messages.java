@@ -21,7 +21,7 @@ public class Messages extends NLS {
 	private Messages() {
 	}
 
-	public static String TCTA_CONNECTION_LABEL;
+	public static String TAS_CONNECTION_LABEL;
 	public static String STARTBATCH_BEFORE;
 	public static String STARTBATCH_AFTER;
 	public static String GETBATCHRESULT_TYPE;

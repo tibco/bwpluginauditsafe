@@ -20,27 +20,28 @@ import com.tibco.bw.sharedresource.runtime.builder.ResourceReferenceDescriptorBu
 import com.tibco.bw.sharedresource.runtime.configuration.SharedResourceContext;
 import com.tibco.bw.sharedresource.runtime.configuration.SharedResourceLifeCycleFault;
 import com.tibco.bw.sharedresource.runtime.exception.ResourceException;
-import com.tibco.bw.sharedresource.tas.model.helper.TCTAConstants;
 import com.tibco.neo.localized.LocalizedMessage;
 
-public class TctaConnectionResourceFactory extends BaseSharedResourceFactory
+import com.tibco.bw.sharedresource.tas.model.helper.TasConstants;
+
+public class TasConnectionResourceFactory extends BaseSharedResourceFactory
 {
     @Override
     protected String getCustomizeName() {
-        return "ManagedServiceFactory for TCTA ResourceManager";
+        return "ManagedServiceFactory for TAS ResourceManager";
     }
 
     private ResourceReferenceDescriptor buildResourceReference(SharedResourceContext context) throws ResourceException {
-        TctaConnectionResource resource = new TctaConnectionResource();
+        TasConnectionResource resource = new TasConnectionResource();
 		Map<String, ?> properties = context.getSharedResourceConfiguration();
 		setProperties(context, properties, resource);
 		@SuppressWarnings("unchecked")
         ResourceReferenceDescriptor reference = ResourceReferenceDescriptorBuilder.builder()
             .withName((String) properties.get(".name"))
-            .withType(TCTAConstants.TCTACONNECTION_QNAME.toString())
+            .withType(TasConstants.TASCONNECTION_QNAME.toString())
             .withResource(resource)
             .withConfiguration((Map<String, Object>) properties)
-            .withBusinessInterface(TctaConnectionResource.class.getName())
+            .withBusinessInterface(TasConnectionResource.class.getName())
             .build();
         return reference;
     }
@@ -54,7 +55,7 @@ public class TctaConnectionResourceFactory extends BaseSharedResourceFactory
             return handler;
         } catch (ResourceException e) {
         	LocalizedMessage message = new LocalizedMessage(RuntimeMessageBundle.ERROR_CREATE_SHAREDRESOURCE_FAILED, new String[] {context.getSharedResourceName()});
-            throw new TCTAPluginSRException(message, e);
+            throw new TASPluginSRException(message, e);
         }
 	}
 
@@ -62,7 +63,7 @@ public class TctaConnectionResourceFactory extends BaseSharedResourceFactory
 	protected void customizeDelete(SharedResourceContext context)
 			throws SharedResourceLifeCycleFault {
 		if(context.getSharedResourceLogger().isDebugEnabled()) {
-		    context.getSharedResourceLogger().debug(RuntimeMessageBundle.DEBUG_DELETE_SHAREDRESOURCE, new String[] {TCTAConstants.TCTACONNECTION_QNAME.toString()});
+		    context.getSharedResourceLogger().debug(RuntimeMessageBundle.DEBUG_DELETE_SHAREDRESOURCE, new String[] {TasConstants.TASCONNECTION_QNAME.toString()});
 	    }
 	}
 
@@ -70,7 +71,7 @@ public class TctaConnectionResourceFactory extends BaseSharedResourceFactory
 	protected void customizeStart(SharedResourceContext context)
 			throws SharedResourceLifeCycleFault {
 		if(context.getSharedResourceLogger().isDebugEnabled()) {
-			context.getSharedResourceLogger().debug(RuntimeMessageBundle.DEBUG_START_SHAREDRESOURCE, new String[] {TCTAConstants.TCTACONNECTION_QNAME.toString()});
+			context.getSharedResourceLogger().debug(RuntimeMessageBundle.DEBUG_START_SHAREDRESOURCE, new String[] {TasConstants.TASCONNECTION_QNAME.toString()});
 		}
 	}
 
@@ -78,7 +79,7 @@ public class TctaConnectionResourceFactory extends BaseSharedResourceFactory
 	protected void customizeStop(SharedResourceContext context)
 			throws SharedResourceLifeCycleFault {
 		if(context.getSharedResourceLogger().isDebugEnabled()) {
-		    context.getSharedResourceLogger().debug(RuntimeMessageBundle.DEBUG_START_SHAREDRESOURCE, new String[] {TCTAConstants.TCTACONNECTION_QNAME.toString()});
+		    context.getSharedResourceLogger().debug(RuntimeMessageBundle.DEBUG_START_SHAREDRESOURCE, new String[] {TasConstants.TASCONNECTION_QNAME.toString()});
 	    }
 	}
 
@@ -86,7 +87,7 @@ public class TctaConnectionResourceFactory extends BaseSharedResourceFactory
 	protected ResourceDependencyHandler customizeUpdate(SharedResourceContext context)
 			throws SharedResourceLifeCycleFault {
 		if(context.getSharedResourceLogger().isDebugEnabled()) {
-		    context.getSharedResourceLogger().debug(RuntimeMessageBundle.DEBUG_UPDATE_SHAREDRESOURCE, new String[] {TCTAConstants.TCTACONNECTION_QNAME.toString()});
+		    context.getSharedResourceLogger().debug(RuntimeMessageBundle.DEBUG_UPDATE_SHAREDRESOURCE, new String[] {TasConstants.TASCONNECTION_QNAME.toString()});
 		}
 		return create(context);
 	}
@@ -97,7 +98,7 @@ public class TctaConnectionResourceFactory extends BaseSharedResourceFactory
      * <!-- end-custom-doc -->
      * @generated
      */
-	private void setProperties(SharedResourceContext context ,final Map<String, ?> toSet, final TctaConnectionResource resource) {
+	private void setProperties(SharedResourceContext context ,final Map<String, ?> toSet, final TasConnectionResource resource) {
 	    resource.setServerUrl((String) toSet.get("serverUrl"));
 	    resource.setUsername((String)toSet.get("username"));
 	    resource.setPassword(context.getDecryptedPasswordValue((String) toSet.get("password")));

@@ -37,6 +37,6 @@ Import-Package: com.fasterxml.jackson.databind;version="2.6.1",
  org.genxdm.xs.resolve;version="[1.0.0,2.0.0)",
  org.genxdm.xs.types;version="[1.0.0,2.0.0)"
 Bundle-Vendor: %providerName
-Service-Component:  OSGI-INF/createtransaction.xml,OSGI-INF/gettoken.xml
+Service-Component:  OSGI-INF/postauditevent.xml
 Provide-Capability: com.tibco.bw.palette; name=bw.auditsafe
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7

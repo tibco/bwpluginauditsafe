@@ -20,18 +20,18 @@ import org.genxdm.mutable.NodeFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.tibco.bw.palette.tas.model.tas.TctaCreateTransaction;
+import com.tibco.bw.palette.tas.model.tas.PostAuditEvent;
 import com.tibco.bw.runtime.ActivityFault;
 import com.tibco.bw.runtime.ProcessContext;
 import com.tibco.bw.runtime.annotation.Property;
-import com.tibco.bw.sharedresource.tas.model.helper.TctaClientUtils;
-import com.tibco.bw.sharedresource.tas.runtime.TctaConnectionResource;
+import com.tibco.bw.sharedresource.tas.model.helper.TasClientUtils;
+import com.tibco.bw.sharedresource.tas.runtime.TasConnectionResource;
 import com.tibco.neo.localized.LocalizedMessage;
 
-public class TctaCreateTransactionActivity<N> extends BaseSyncActivity<N> implements TCTAContants{
+public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TASContants{
 
 	@Property
-	public TctaCreateTransaction activityConfig;
+	public PostAuditEvent activityConfig;
 
     /**
      * <!-- begin-custom-doc -->
@@ -40,7 +40,7 @@ public class TctaCreateTransactionActivity<N> extends BaseSyncActivity<N> implem
      * @generated
     */
 	@Property(name = "tasConnection")
-    public TctaConnectionResource sharedResource;
+    public TasConnectionResource sharedResource;
 
 	@Override
 	protected N customizeExecute(N input, ProcessContext<N> processContext) throws ActivityFault {
@@ -68,7 +68,7 @@ public class TctaCreateTransactionActivity<N> extends BaseSyncActivity<N> implem
         mutableModel.appendChild(outputType, output);
 
         // add your own business code here
-		String token = TctaClientUtils.getToken(sharedResource.getUsername(), sharedResource.getPassword());
+		String token = TasClientUtils.getToken(sharedResource.getUsername(), sharedResource.getPassword());
 		String result  = "";
 
 		if(token != null){
@@ -95,7 +95,7 @@ public class TctaCreateTransactionActivity<N> extends BaseSyncActivity<N> implem
 			}
 			request.set("extra_props", extraPropsNode);
 			String body = mapper.writeValueAsString(request);
-			result = TctaClientUtils.requestCreateTransaction(sharedResource.getServerUrl(), token, sharedResource.getId(), body);
+			result = TasClientUtils.postAuditEvent(sharedResource.getServerUrl(), token, sharedResource.getId(), body);
 		}
 
 		mutableModel.appendChild(output,noteFactory.createText(result));

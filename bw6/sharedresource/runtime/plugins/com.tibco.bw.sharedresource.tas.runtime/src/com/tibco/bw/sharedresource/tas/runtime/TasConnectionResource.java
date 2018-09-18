@@ -9,7 +9,7 @@
 package com.tibco.bw.sharedresource.tas.runtime;
 
 
-public class TctaConnectionResource {
+public class TasConnectionResource {
 	private String serverUrl;
 	private String username;
 	private String password;

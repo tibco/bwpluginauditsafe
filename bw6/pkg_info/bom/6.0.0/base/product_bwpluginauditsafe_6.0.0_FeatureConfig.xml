@@ -15,7 +15,7 @@
         <packagingProperties createp2installer="true" supportedBWVersion="6.5" createcloudartifacts="epaas" bundle_analysis="true"/>
 
     <customVariables>
-		<localVariable name="bwpluginauditsafecloud.minimum.bw.version" value="1.1.0"/>
+		<localVariable name="bwpluginauditsafecloud.minimum.bw.version" value="1.0.0"/>
 	    <localVariable name="bwpluginauditsafe.minimum.bw.version" value="6.5.0"/>
 	    <!--<localVariable name="bwpluginauditsafe.minimum.bwce.version" value="2.4.0"/>-->
 		<localVariable name="bwpluginauditsafe.extension.palettes.home" value="${tibco.BW.home}/../palettes/auditsafe/6.0"/>

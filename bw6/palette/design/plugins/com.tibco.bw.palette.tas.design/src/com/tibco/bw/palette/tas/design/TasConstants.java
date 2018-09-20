@@ -9,6 +9,8 @@ public interface TasConstants {
 	public static final String TAS_ACTIVITY_INPUT = "ActivityInput";
 	public static final String TAS_ACTIVITY_OUTPUT = "ActivityOutput";
 
+	String TAG_NAME = "Event";
+
 	public static final String START_STAUTS = "status";
 	public static final String PROJECT_NAME = "projectName";
 	public static final String TOKEN = "token";

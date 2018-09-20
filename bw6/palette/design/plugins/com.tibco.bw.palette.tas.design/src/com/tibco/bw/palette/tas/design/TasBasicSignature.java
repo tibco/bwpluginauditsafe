@@ -94,6 +94,8 @@ public abstract class TasBasicSignature extends BWActivitySignature {
 		XSDElementDeclaration inputType = null;
 	    XSDSchema inputSchema = XSDUtility.createSchema(namespace);
 	    inputSchema.setElementFormDefault(XSDForm.UNQUALIFIED_LITERAL);
+
+
 		XSDModelGroup rootInput = XSDUtility.addComplexTypeElement(inputSchema, TasConstants.TAS_ACTIVITY_INPUT, "ActivityInput", XSDCompositor.SEQUENCE_LITERAL);
 
 
@@ -116,7 +118,8 @@ public abstract class TasBasicSignature extends BWActivitySignature {
 
 	private void createSchema(XSDModelGroup rootInput,
 			TasConnection conn, EObject obj) throws IOException {
-		//String token = TasClientUtils.getToken(conn.getUsername(), conn.getPassword());
+		XSDModelGroup event = null ;
+		event = XSDUtility.addComplexTypeElement(rootInput, TasConstants.TAG_NAME, TasConstants.TAG_NAME, 1, -1, XSDCompositor.SEQUENCE_LITERAL);
 		//TODO change path
 		String body = "{\"path\": \"/tcta/dataserver/transactions\", \"method\": \"POST\"}";
 		String token = TasClientUtils.getToken(conn.getUsername(), decryptPassword(conn.getPassword()));
@@ -129,7 +132,7 @@ public abstract class TasBasicSignature extends BWActivitySignature {
 		    for (final JsonNode objNode : required) {
 		    	String fieldName = objNode.asText();
 		    	requiredSet.add(fieldName);
-		    	XSDUtility.addSimpleTypeElement(rootInput, fieldName, "string", 1, 1);
+		    	XSDUtility.addSimpleTypeElement(event, fieldName, "string", 1, 1);
 		    }
 		}
 
@@ -140,12 +143,12 @@ public abstract class TasBasicSignature extends BWActivitySignature {
 			if(!requiredSet.contains(key)){
 				JsonNode field = properties.get(key);
 				if("string".equals(field.get("type").textValue())){
-					XSDUtility.addSimpleTypeElement(rootInput, key, "string", 0, 1);
+					XSDUtility.addSimpleTypeElement(event, key, "string", 0, 1);
 				}
 			}
 		}
 
-		XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(rootInput, "extra_props", "extra_props", 0, -1, XSDCompositor.SEQUENCE_LITERAL);
+		XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(event, "extra_props", "extra_props", 0, -1, XSDCompositor.SEQUENCE_LITERAL);
 		XSDUtility.addSimpleTypeElement(extraGroup, "prop_name", "string", 1, 1);
 		XSDUtility.addSimpleTypeElement(extraGroup, "prop_value", "string", 1, 1);
 	}

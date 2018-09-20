@@ -22,41 +22,58 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
 public class TasClientUtils {
-
+	public static final String ENV_INTERNAL_URL = "TIBCO_INTERNAL_INTERCOM_URL";
+	public static final String ENV_SUBSCRIPTION_ID = "TIBCO_INTERNAL_TCI_SUBSCRIPTION_ID";
 
 	public static String postAuditEvent(String tasBaseUrl, String token,
 			String accountId, String body) {
 		String result = null;
-		CookieManager cookiemanager = new CookieManager();
-		cookiemanager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
-		CookieHandler.setDefault(cookiemanager);
-
-		if (tasBaseUrl.endsWith("/")) {
-			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
-		}
-		String idmUrl = tasBaseUrl + "/idm/v2/login-oauth";
 		HttpURLConnection httpConn;
+		String internalUrl = System.getenv(ENV_INTERNAL_URL);
 		try {
-			Map<String, String> params = new HashMap<String, String>();
-			params.put("AccessToken", token);
-			params.put("TenantId", TENANT_ID);
-			if(accountId != null && !accountId.isEmpty()){
-				params.put("AccountId", accountId);
-			}
-			httpConn = buildpostHttpUrlConnection(idmUrl, params,
-					getsettingMap());
-			String messagebody = getHttpRequestBody(httpConn);
-			int statusCode = httpConn.getResponseCode();
-
-			if (statusCode == HttpURLConnection.HTTP_OK) {
-				//TODO path change
-				String transactionUrl = tasBaseUrl
-						+ "/tcta/dataserver/transactions";
+			if(internalUrl != null && !internalUrl.isEmpty()){
+				String subId = System.getenv(ENV_SUBSCRIPTION_ID);
+				String transactionUrl = internalUrl
+						+ "/tcta/dataserver/transactions/intercom/batch?tscSubscriptionId="
+						+ subId;
 				httpConn = buildpostHttpUrlConnectionWithJson(transactionUrl,
 						body,
 						getsettingMap("application/json", "application/json"));
 				result = getHttpRequestBody(httpConn);
+			} else {
+				CookieManager cookiemanager = new CookieManager();
+				cookiemanager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+				CookieHandler.setDefault(cookiemanager);
+
+				if (tasBaseUrl.endsWith("/")) {
+					tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+				}
+				String idmUrl = tasBaseUrl + "/idm/v2/login-oauth";
+
+
+				Map<String, String> params = new HashMap<String, String>();
+				params.put("AccessToken", token);
+				params.put("TenantId", TENANT_ID);
+				if(accountId != null && !accountId.isEmpty()){
+					params.put("AccountId", accountId);
+				}
+				httpConn = buildpostHttpUrlConnection(idmUrl, params,
+						getsettingMap());
+				String messagebody = getHttpRequestBody(httpConn);
+				int statusCode = httpConn.getResponseCode();
+
+				if (statusCode == HttpURLConnection.HTTP_OK) {
+					//TODO path change
+					String transactionUrl = tasBaseUrl
+							+ "/tcta/dataserver/transactions/batch";
+					httpConn = buildpostHttpUrlConnectionWithJson(transactionUrl,
+							body,
+							getsettingMap("application/json", "application/json"));
+					result = getHttpRequestBody(httpConn);
+				}
 			}
+
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

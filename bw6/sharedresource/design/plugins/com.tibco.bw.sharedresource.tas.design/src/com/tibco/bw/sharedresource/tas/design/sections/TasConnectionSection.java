@@ -23,6 +23,7 @@ import com.tibco.bw.design.field.SRAttributeBindingField;
 import com.tibco.bw.design.util.ModelHelper;
 import com.tibco.bw.design.util.PropertyTypeQnameConstants;
 import com.tibco.bw.sharedresource.common.design.sr.AbstractBWSharedResourceSection;
+import com.tibco.bw.sharedresource.tas.design.wizard.TasConnectionPage;
 import com.tibco.bw.sharedresource.tas.model.helper.Messages;
 import com.tibco.bw.sharedresource.tas.model.helper.TasConstants;
 import com.tibco.bw.sharedresource.tas.model.tas.TasConnection;
@@ -35,14 +36,24 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 	private Text serverUrl;
 	private Text username;
 	private PasswordField password;
-	private Text accountId;
+	//private Text accountId;
 
 	private SRAttributeBindingField serverUrlAttribute;
 	private SRAttributeBindingField usernameAttribute;
 	private SRAttributeBindingField passwordAttribute;
-	private SRAttributeBindingField accountIdAttribute;
+	//private SRAttributeBindingField accountIdAttribute;
 
 	private TasConnection tasConnection;
+
+	private TasConnectionPage page;
+
+	public TasConnectionPage getPage() {
+		return page;
+	}
+
+	public TasConnectionSection(TasConnectionPage page){
+		this.page = page;
+	}
 
     /**
 	 * <!-- begin-custom-doc -->
@@ -55,7 +66,7 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
         getBindingManager().bind(serverUrlAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__SERVER_URL);
         getBindingManager().bind(usernameAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__USERNAME);
         getBindingManager().bind(passwordAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__PASSWORD);
-        getBindingManager().bind(accountIdAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__ID);
+        //getBindingManager().bind(accountIdAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__ID);
 	    // begin-custom-code
         // end-custom-code
 	}
@@ -87,10 +98,10 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_PASSWORD, false);
 	    passwordAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, password, PropertyTypeQnameConstants.STRING_PRIMITIVE);
 
-	    accountId = BWFieldFactory.getInstance().createTextBox(sectionComposite);
-	    accountId.setEnabled(false);
-   	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_ACCOUNTID, false);
-   	    accountIdAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, accountId, PropertyTypeQnameConstants.STRING_PRIMITIVE);
+//	    accountId = BWFieldFactory.getInstance().createTextBox(sectionComposite);
+//	    accountId.setEnabled(false);
+//   	BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_ACCOUNTID, false);
+//   	accountIdAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, accountId, PropertyTypeQnameConstants.STRING_PRIMITIVE);
 
 
 	    Composite buttonComposite = new Composite(sectionComposite, 0);
@@ -164,23 +175,23 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 		return EncryptionService.INSTANCE.getEncryptor().decrypt(password);
     }
 
-	public String getAccountId(TasConnection connection) {
-    	String accountId = connection.getId();
-		EList<SubstitutionBinding> ds_substvars = connection.getSubstitutionBindings();
-		for (SubstitutionBinding substitutionBinding : ds_substvars) {
-			String propName = substitutionBinding.getPropName();
-			String templateName = substitutionBinding.getTemplate();
-			if (templateName.equals(TasPackage.Literals.TAS_CONNECTION__ID.getName())){
-				accountId = ModelHelper.INSTANCE.getModulePropertyValue(connection, propName);
-                break;
-			}
-		}
-
-		return accountId;
-    }
-
+//	public String getAccountId(TasConnection connection) {
+//    	String accountId = connection.getId();
+//		EList<SubstitutionBinding> ds_substvars = connection.getSubstitutionBindings();
+//		for (SubstitutionBinding substitutionBinding : ds_substvars) {
+//			String propName = substitutionBinding.getPropName();
+//			String templateName = substitutionBinding.getTemplate();
+//			if (templateName.equals(TasPackage.Literals.TAS_CONNECTION__ID.getName())){
+//				accountId = ModelHelper.INSTANCE.getModulePropertyValue(connection, propName);
+//                break;
+//			}
+//		}
+//
+//		return accountId;
+//    }
+//
 	public void setAccountId(String id){
-		accountId.setText(id);
+		tasConnection.setId(id);
 	}
 
 }

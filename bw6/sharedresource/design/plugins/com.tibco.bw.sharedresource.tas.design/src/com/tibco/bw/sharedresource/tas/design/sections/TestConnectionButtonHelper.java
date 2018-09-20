@@ -5,6 +5,9 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.HashMap;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
@@ -23,6 +26,7 @@ import com.tibco.bw.design.field.BWFieldFactory;
 import com.tibco.bw.sharedresource.tas.model.helper.Messages;
 import com.tibco.bw.sharedresource.tas.model.helper.TasClientUtils;
 import com.tibco.bw.sharedresource.tas.model.tas.TasConnection;
+import com.tibco.xpd.resources.WorkingCopy;
 
 public class TestConnectionButtonHelper {
 	private TasConnectionSection tasConnectionSection;
@@ -50,7 +54,7 @@ public class TestConnectionButtonHelper {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 
-				TasConnection connection = tasConnectionSection
+				final TasConnection connection = tasConnectionSection
 						.getTasConnection();
 
 				String taUrl = "https://sso-awsqa.tibco.com/as/token.oauth2";
@@ -85,13 +89,14 @@ public class TestConnectionButtonHelper {
 					}
 				}
 				if (accountInfo.size()>0) {
+					String accountId ="";
 					if(accountInfo.keySet().size()==1){
 						MessageDialog messageDialog = new MessageDialog(composite
 								.getShell(), Messages.CONNECTED_TO_TAS, null,
 								Messages.CONNECTED_TO_TAS, MessageDialog.NONE,
 								new String[] { "Ok" }, 0);
 						messageDialog.open();
-						tasConnectionSection.setAccountId("");
+
 					} else {
 						AccountDialog dialog = new AccountDialog(composite.getShell());
 
@@ -99,9 +104,19 @@ public class TestConnectionButtonHelper {
 						int eventkey = dialog.open();
 						if (eventkey == Window.OK) {
 							String selectedAccount = dialog.selectedValue;
-							tasConnectionSection.setAccountId(accountInfo.get(selectedAccount));
+							accountId = accountInfo.get(selectedAccount);
 						}
 					}
+					final String localAccountId = accountId;
+					final WorkingCopy workingCopy = (WorkingCopy)tasConnectionSection.getPage().getEditor().getAdapter(WorkingCopy.class);
+	            	TransactionalEditingDomain ed = (TransactionalEditingDomain) workingCopy.getEditingDomain();
+					Command cmd = new RecordingCommand(ed) {
+						@Override
+						protected void doExecute() {
+							connection.setId(localAccountId);
+						}
+					};
+					ed.getCommandStack().execute(cmd);
 					Color blue = new Color(composite.getShell().getDisplay(),
 							0, 0, 255);
 					testLabel.setForeground(blue);

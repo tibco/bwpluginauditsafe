@@ -24,7 +24,7 @@ public class TasConnectionPage extends AbstractBWSharedResourceFormPage {
 
 	/**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
@@ -36,12 +36,12 @@ public class TasConnectionPage extends AbstractBWSharedResourceFormPage {
 
 	/**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
 	protected void addSections(Composite body) {
-	    TasConnectionSection tasconnectionSection = new TasConnectionSection();
+	    TasConnectionSection tasconnectionSection = new TasConnectionSection(this);
 		addSectionControl(body, tasconnectionSection);
 	    // begin-custom-code
 	    // end-custom-code
@@ -49,12 +49,12 @@ public class TasConnectionPage extends AbstractBWSharedResourceFormPage {
 
 	/**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
 	protected String getSharedResourcePageHeader() {
 		return TasConstants.TASCONNECTION_PAGE_HEADER;
 	}
-	
+
 }

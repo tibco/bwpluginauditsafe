@@ -73,28 +73,35 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
 
 		if(token != null){
 			ObjectMapper mapper = new ObjectMapper();
-			ObjectNode request = mapper.createObjectNode();
-			ArrayNode extraPropsNode = mapper.createArrayNode();
+
+			ArrayNode eventArray = mapper.createArrayNode();
 
 			Model<N> model = processContext.getModel();
-			Iterable<N> ite = model.getChildElements(inputData);
-			for (N node : ite) {
-				String name = model.getLocalName(node);
-				if(!"extra_props".equals(name)){
-					request.put(name, model.getStringValue(node));
-				} else {
-					ObjectNode propNode = mapper.createObjectNode();
-					N nameNode = model.getFirstChildElementByName(node, null, "prop_name");
-					if(nameNode != null && model.getStringValue(nameNode)!=null){
-						propNode.put("prop_name", model.getStringValue(nameNode));
-						propNode.put("prop_value", model.getStringValue(model.getFirstChildElementByName(node, null, "prop_value")));
-						extraPropsNode.add(propNode);
-					}
+			Iterable<N> eventIte = model.getChildElements(inputData);
+			for (N event : eventIte) {
 
+				ObjectNode eventNode = mapper.createObjectNode();
+				ArrayNode extraPropsNode = mapper.createArrayNode();
+				Iterable<N> ite = model.getChildElements(event);
+				for (N node : ite) {
+					String name = model.getLocalName(node);
+					if(!"extra_props".equals(name)){
+						eventNode.put(name, model.getStringValue(node));
+					} else {
+						ObjectNode propNode = mapper.createObjectNode();
+						N nameNode = model.getFirstChildElementByName(node, null, "prop_name");
+						if(nameNode != null && model.getStringValue(nameNode)!=null){
+							propNode.put("prop_name", model.getStringValue(nameNode));
+							propNode.put("prop_value", model.getStringValue(model.getFirstChildElementByName(node, null, "prop_value")));
+							extraPropsNode.add(propNode);
+						}
+					}
 				}
+				eventNode.set("extra_props", extraPropsNode);
+				eventArray.add(eventNode);
 			}
-			request.set("extra_props", extraPropsNode);
-			String body = mapper.writeValueAsString(request);
+
+			String body = mapper.writeValueAsString(eventArray);
 			result = TasClientUtils.postAuditEvent(sharedResource.getServerUrl(), token, sharedResource.getId(), body);
 		}
 

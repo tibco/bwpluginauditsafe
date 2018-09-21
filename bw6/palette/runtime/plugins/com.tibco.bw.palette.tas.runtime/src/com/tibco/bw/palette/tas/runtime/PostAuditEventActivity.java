@@ -24,7 +24,7 @@ import com.tibco.bw.palette.tas.model.tas.PostAuditEvent;
 import com.tibco.bw.runtime.ActivityFault;
 import com.tibco.bw.runtime.ProcessContext;
 import com.tibco.bw.runtime.annotation.Property;
-import com.tibco.bw.sharedresource.tas.model.helper.TasClientUtils;
+import com.tibco.bw.sharedresource.tas.model.helper.TasClient;
 import com.tibco.bw.sharedresource.tas.runtime.TasConnectionResource;
 import com.tibco.neo.localized.LocalizedMessage;
 
@@ -68,42 +68,41 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
         mutableModel.appendChild(outputType, output);
 
         // add your own business code here
-		String token = TasClientUtils.getToken(sharedResource.getUsername(), sharedResource.getPassword());
 		String result  = "";
 
-		if(token != null){
-			ObjectMapper mapper = new ObjectMapper();
 
-			ArrayNode eventArray = mapper.createArrayNode();
+		ObjectMapper mapper = new ObjectMapper();
 
-			Model<N> model = processContext.getModel();
-			Iterable<N> eventIte = model.getChildElements(inputData);
-			for (N event : eventIte) {
+		ArrayNode eventArray = mapper.createArrayNode();
 
-				ObjectNode eventNode = mapper.createObjectNode();
-				ArrayNode extraPropsNode = mapper.createArrayNode();
-				Iterable<N> ite = model.getChildElements(event);
-				for (N node : ite) {
-					String name = model.getLocalName(node);
-					if(!"extra_props".equals(name)){
-						eventNode.put(name, model.getStringValue(node));
-					} else {
-						ObjectNode propNode = mapper.createObjectNode();
-						N nameNode = model.getFirstChildElementByName(node, null, "prop_name");
-						if(nameNode != null && model.getStringValue(nameNode)!=null){
-							propNode.put("prop_name", model.getStringValue(nameNode));
-							propNode.put("prop_value", model.getStringValue(model.getFirstChildElementByName(node, null, "prop_value")));
-							extraPropsNode.add(propNode);
-						}
+		Model<N> model = processContext.getModel();
+		Iterable<N> eventIte = model.getChildElements(inputData);
+		for (N event : eventIte) {
+
+			ObjectNode eventNode = mapper.createObjectNode();
+			ArrayNode extraPropsNode = mapper.createArrayNode();
+			Iterable<N> ite = model.getChildElements(event);
+			for (N node : ite) {
+				String name = model.getLocalName(node);
+				if(!"extra_props".equals(name)){
+					eventNode.put(name, model.getStringValue(node));
+				} else {
+					ObjectNode propNode = mapper.createObjectNode();
+					N nameNode = model.getFirstChildElementByName(node, null, "prop_name");
+					if(nameNode != null && model.getStringValue(nameNode)!=null){
+						propNode.put("prop_name", model.getStringValue(nameNode));
+						propNode.put("prop_value", model.getStringValue(model.getFirstChildElementByName(node, null, "prop_value")));
+						extraPropsNode.add(propNode);
 					}
 				}
-				eventNode.set("extra_props", extraPropsNode);
-				eventArray.add(eventNode);
 			}
-
-			String body = mapper.writeValueAsString(eventArray);
-			result = TasClientUtils.postAuditEvent(sharedResource.getServerUrl(), token, sharedResource.getId(), body);
+			eventNode.set("extra_props", extraPropsNode);
+			eventArray.add(eventNode);
 		}
+
+		String body = mapper.writeValueAsString(eventArray);
+		result = TasClient.postAuditEvent(sharedResource.getServerUrl(), sharedResource.getUsername(), sharedResource.getPassword(), sharedResource.getId(), body, true);
+
 
 		mutableModel.appendChild(output,noteFactory.createText(result));
 

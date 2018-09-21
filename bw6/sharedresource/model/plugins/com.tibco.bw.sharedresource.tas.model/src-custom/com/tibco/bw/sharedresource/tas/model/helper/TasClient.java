@@ -10,76 +10,117 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.CookieHandler;
-import java.net.CookieManager;
-import java.net.CookiePolicy;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.net.ssl.HttpsURLConnection;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
-public class TasClientUtils {
+public class TasClient {
 	public static final String ENV_INTERNAL_URL = "TIBCO_INTERNAL_INTERCOM_URL";
 	public static final String ENV_SUBSCRIPTION_ID = "TIBCO_INTERNAL_TCI_SUBSCRIPTION_ID";
 
-	public static String postAuditEvent(String tasBaseUrl, String token,
-			String accountId, String body) {
-		String result = null;
-		HttpURLConnection httpConn;
-		String internalUrl = System.getenv(ENV_INTERNAL_URL);
+	protected static UserAwareCookieManager cookieManager;
+
+	public synchronized static UserAwareCookieManager getCookieManager() {
+		if (cookieManager == null) {
+			cookieManager = new UserAwareCookieManager();
+			CookieHandler.setDefault(cookieManager);
+		}
+		return cookieManager;
+	}
+
+	protected static void switchUserOn(String username) {
 		try {
-			if(internalUrl != null && !internalUrl.isEmpty()){
+			getCookieManager().acquire(username);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	protected static void switchUserOff() {
+		try {
+			getCookieManager().release();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static String postAuditEvent(String tasBaseUrl, String username,
+			String password, String accountId, String body,
+			boolean retry) {
+		switchUserOn(username);
+		String result = null;
+		try {
+			String internalUrl = System.getenv(ENV_INTERNAL_URL);
+			HttpURLConnection httpConn;
+			String postEventUrl = "";
+			if (internalUrl != null && !internalUrl.isEmpty()) {
 				String subId = System.getenv(ENV_SUBSCRIPTION_ID);
-				String transactionUrl = internalUrl
+				postEventUrl = internalUrl
 						+ "/tcta/dataserver/transactions/intercom/batch?tscSubscriptionId="
 						+ subId;
-				httpConn = buildpostHttpUrlConnectionWithJson(transactionUrl,
-						body,
-						getsettingMap("application/json", "application/json"));
-				result = getHttpRequestBody(httpConn);
 			} else {
-				CookieManager cookiemanager = new CookieManager();
-				cookiemanager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
-				CookieHandler.setDefault(cookiemanager);
+				// TODO path change
+				postEventUrl = tasBaseUrl
+						+ "/tcta/dataserver/transactions/batch";
 
-				if (tasBaseUrl.endsWith("/")) {
-					tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
-				}
-				String idmUrl = tasBaseUrl + "/idm/v2/login-oauth";
-
-
-				Map<String, String> params = new HashMap<String, String>();
-				params.put("AccessToken", token);
-				params.put("TenantId", TENANT_ID);
-				if(accountId != null && !accountId.isEmpty()){
-					params.put("AccountId", accountId);
-				}
-				httpConn = buildpostHttpUrlConnection(idmUrl, params,
-						getsettingMap());
-				String messagebody = getHttpRequestBody(httpConn);
-				int statusCode = httpConn.getResponseCode();
-
-				if (statusCode == HttpURLConnection.HTTP_OK) {
-					//TODO path change
-					String transactionUrl = tasBaseUrl
-							+ "/tcta/dataserver/transactions/batch";
-					httpConn = buildpostHttpUrlConnectionWithJson(transactionUrl,
-							body,
-							getsettingMap("application/json", "application/json"));
-					result = getHttpRequestBody(httpConn);
-				}
 			}
+			httpConn = buildpostHttpUrlConnectionWithJson(postEventUrl, body,
+					getsettingMap("application/json", "application/json"));
+			int statusCode = httpConn.getResponseCode();
 
+			if (statusCode == HttpURLConnection.HTTP_OK) {
+				result = getHttpRequestBody(httpConn);
+			} else if (retry == true) {
+				auth(tasBaseUrl, username, password, accountId);
+				postAuditEvent(tasBaseUrl, username, password,
+						accountId, body, false);
+			}
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 
+		} finally {
+			switchUserOff();
 		}
+
 		return result;
+	}
+
+	public static boolean auth(String tasBaseUrl, String username,
+			String password, String accountId) {
+		boolean isAuth = false;
+		try {
+			String token = getToken(username, password);
+			if (tasBaseUrl.endsWith("/")) {
+				tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+			}
+			String idmUrl = tasBaseUrl + "/idm/v2/login-oauth";
+			HttpURLConnection httpConn;
+
+			Map<String, String> params = new HashMap<String, String>();
+			params.put("AccessToken", token);
+			params.put("TenantId", TENANT_ID);
+			if(accountId != null && !accountId.isEmpty()){
+				params.put("AccountId", accountId);
+			}
+			httpConn = buildpostHttpUrlConnection(idmUrl, params, getsettingMap());
+			getHttpRequestBody(httpConn);
+			int statusCode = httpConn.getResponseCode();
+			if (statusCode == HttpURLConnection.HTTP_OK){
+				isAuth = true;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return isAuth;
 	}
 
 	public static String getToken(String username, String password) {
@@ -112,7 +153,8 @@ public class TasClientUtils {
 		return token;
 	}
 
-	public static HashMap<String,String> testConnection(String tasBaseUrl, String token) throws IOException {
+	public static HashMap<String, String> testConnection(String tasBaseUrl,
+			String token) throws IOException {
 		if (tasBaseUrl.endsWith("/")) {
 			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
 		}
@@ -126,65 +168,60 @@ public class TasClientUtils {
 		String messagebody = getHttpRequestBody(httpConn);
 		int statusCode = httpConn.getResponseCode();
 
-		HashMap<String,String> accountsInfo = new HashMap<String,String>();
+		HashMap<String, String> accountsInfo = new HashMap<String, String>();
 		if (statusCode == HttpURLConnection.HTTP_OK) {
-			//if return 200, means there is no multiple organization, just put 1 as key and value
+			// if return 200, means there is no multiple organization, just put
+			// 1 as key and value
 			accountsInfo.put("1", "1");
-		}else if(statusCode == 300) {
+		} else if (statusCode == 300) {
 			JsonReader node = new JsonReader(messagebody);
 			ArrayNode info = (ArrayNode) node.getNode("accountsInfo");
 			for (JsonNode jsonNode : info) {
-				String orgName =  jsonNode.get("accountDisplayName").asText();
-				String ownerEmail = jsonNode.get("ownerInfo").get("email").asText();
+				String orgName = jsonNode.get("accountDisplayName").asText();
+				String ownerEmail = jsonNode.get("ownerInfo").get("email")
+						.asText();
 				String accountId = jsonNode.get("accountId").asText();
-				accountsInfo.put(orgName + "/(Owner Email: )" +ownerEmail, accountId);
+				accountsInfo.put(orgName + "/(Owner Email: )" + ownerEmail,
+						accountId);
 			}
 		}
 		return accountsInfo;
 	}
 
-	public static JsonNode getSchema(String tasBaseUrl, String token,String accountId,
-			String body, int type) throws IOException {
-		CookieManager cookiemanager = new CookieManager();
-		cookiemanager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
-		CookieHandler.setDefault(cookiemanager);
-		if (tasBaseUrl.endsWith("/")) {
-			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
-		}
-
-		String idmUrl = tasBaseUrl + "/idm/v2/login-oauth";
-		HttpURLConnection httpConn;
-
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("AccessToken", token);
-		params.put("TenantId", TENANT_ID);
-		if(accountId != null && !accountId.isEmpty()){
-			params.put("AccountId", accountId);
-		}
-		httpConn = buildpostHttpUrlConnection(idmUrl, params, getsettingMap());
-		String messagebody = getHttpRequestBody(httpConn);
-		int statusCode = httpConn.getResponseCode();
-
-		if (statusCode == HttpURLConnection.HTTP_OK) {
-			//TODO path change
+	public static JsonNode getSchema(String tasBaseUrl, String username,
+			String password, String accountId, String body, int type, boolean retry) {
+		switchUserOn(username);
+		JsonNode result = null;
+		try {
 			String schemaUrl = tasBaseUrl + "/tcta/dataserver/schema";
-			httpConn = buildpostHttpUrlConnectionWithJson(schemaUrl, body,
+			HttpURLConnection httpConn = buildpostHttpUrlConnectionWithJson(
+					schemaUrl, body,
 					getsettingMap("application/json", "application/json"));
-			messagebody = getHttpRequestBody(httpConn);
-			statusCode = httpConn.getResponseCode();
+			String messagebody = getHttpRequestBody(httpConn);
+			int statusCode = httpConn.getResponseCode();
 
 			if (statusCode == HttpURLConnection.HTTP_OK) {
 				JsonReader node = new JsonReader(messagebody);
 				if (type == 1 && node.getNode("requestSchema") != null) {
-					return node.getNode("requestSchema");
+					result = node.getNode("requestSchema");
 				} else if (type == 2 && node.getNode("responseSchema") != null) {
-					return node.getNode("responseSchema");
+					result = node.getNode("responseSchema");
+				}
+			} else if(retry) {
+
+				boolean isAuth = auth(tasBaseUrl, username, password, accountId);
+				if (isAuth) {
+					result = getSchema(tasBaseUrl, username, password, accountId, body, type, false);
 				}
 			}
-
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			switchUserOff();
 		}
 
-		return null;
+		return result;
 	}
 
 	public static Map<String, String> getsettingMap() {
@@ -280,13 +317,14 @@ public class TasClientUtils {
 	public static String getHttpRequestBody(HttpURLConnection connection)
 			throws IOException {
 		BufferedReader br = null;
-		if (connection.getResponseCode() == HttpURLConnection.HTTP_OK || connection.getResponseCode() == 300) {
+		if (connection.getResponseCode() == HttpURLConnection.HTTP_OK
+				|| connection.getResponseCode() == 300) {
 			br = new BufferedReader(new InputStreamReader(
 					(connection.getInputStream())));
 		} else {
-			if(connection.getErrorStream()!= null)
-			br = new BufferedReader(new InputStreamReader(
-					(connection.getErrorStream())));
+			if (connection.getErrorStream() != null)
+				br = new BufferedReader(new InputStreamReader(
+						(connection.getErrorStream())));
 		}
 		StringBuilder sb = new StringBuilder();
 		String output;
@@ -295,6 +333,15 @@ public class TasClientUtils {
 		}
 
 		return sb.toString();
+	}
+
+	public static void main(String[] args) {
+		String body = "{\"path\": \"/tcta/dataserver/transactions\", \"method\": \"POST\"}";
+		String tasBaseUrl ="https://auditsafe.ax-qa.tcie.pro";
+		String username = "george5@grr.la";
+		String password = "tibco123";
+		JsonNode node = getSchema(tasBaseUrl, username, password, null, body, 1, true);
+		System.out.println(node.toString());
 	}
 
 }

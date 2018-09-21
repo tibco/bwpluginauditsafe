@@ -24,7 +24,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import com.tibco.bw.design.field.BWFieldFactory;
 import com.tibco.bw.sharedresource.tas.model.helper.Messages;
-import com.tibco.bw.sharedresource.tas.model.helper.TasClientUtils;
+import com.tibco.bw.sharedresource.tas.model.helper.TasClient;
 import com.tibco.bw.sharedresource.tas.model.tas.TasConnection;
 import com.tibco.xpd.resources.WorkingCopy;
 
@@ -75,11 +75,11 @@ public class TestConnectionButtonHelper {
 				testLabel.setForeground(black);
 				testLabel.setText("Testing...");
 
-				String token = TasClientUtils.getToken(username, password);
+				String token = TasClient.getToken(username, password);
 				HashMap<String,String> accountInfo = null;
 				if (token != null) {
 					try {
-						accountInfo = TasClientUtils.testConnection(serverUtl, token);
+						accountInfo = TasClient.testConnection(serverUtl, token);
 					} catch (IOException e1) {
 						MessageDialog messageDialog = new MessageDialog(composite
 								.getShell(), "Test AuditSafe Connection failed", null,

@@ -20,6 +20,7 @@ import com.tibco.bw.design.api.BWActivitySignature;
 import com.tibco.bw.design.api.BWActivitySignatureUnknown;
 import com.tibco.bw.design.util.XSDUtility;
 import com.tibco.bw.model.activityconfig.Configuration;
+import com.tibco.bw.sharedresource.tas.model.helper.JsonReader;
 import com.tibco.bw.sharedresource.tas.model.helper.TasClient;
 import com.tibco.bw.sharedresource.tas.model.tas.TasConnection;
 
@@ -120,14 +121,9 @@ public abstract class TasBasicSignature extends BWActivitySignature {
 			TasConnection conn, EObject obj) throws IOException {
 		XSDModelGroup event = null ;
 		event = XSDUtility.addComplexTypeElement(rootInput, TasConstants.TAG_NAME, TasConstants.TAG_NAME, 1, -1, XSDCompositor.SEQUENCE_LITERAL);
-		//TODO change path
-		String body = "{\"path\": \"/tcta/dataserver/transactions\", \"method\": \"POST\"}";
-		String username = conn.getUsername();
-		String password = decryptPassword(conn.getPassword());
-		String accountId = conn.getId();
-		JsonNode requestNode = TasClient.getSchema(conn.getServerUrl(),username, password, accountId, body, 1, true);
-		JsonNode properties = requestNode.get("properties");
-		JsonNode required = requestNode.get("required");
+		JsonReader requestNode = new JsonReader(conn.getSchema());
+		JsonNode properties = requestNode.getNode("properties");
+		JsonNode required = requestNode.getNode("required");
 		HashSet<String> requiredSet = new HashSet<String>();
 		if (required.isArray()) {
 		    for (final JsonNode objNode : required) {

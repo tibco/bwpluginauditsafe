@@ -28,12 +28,5 @@
       </parser>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated tas.sharedresource -->
-      <package
-            uri="http://ns.tibco.com/bw/sharedresource/tas"
-            class="com.tibco.bw.sharedresource.tas.model.tas.TasPackage"
-            genModel="model/tas.sharedresource.genmodel"/>
-   </extension>
-
+null
 </plugin>

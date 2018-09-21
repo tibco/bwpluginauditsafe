@@ -107,6 +107,8 @@ public class TestConnectionButtonHelper {
 							accountId = accountInfo.get(selectedAccount);
 						}
 					}
+					String body = "{\"path\": \"/tcta/dataserver/transactions\", \"method\": \"POST\"}";
+					final String schema = TasClient.getSchema(serverUtl, username, password, accountId, body, 1, true);
 					final String localAccountId = accountId;
 					final WorkingCopy workingCopy = (WorkingCopy)tasConnectionSection.getPage().getEditor().getAdapter(WorkingCopy.class);
 	            	TransactionalEditingDomain ed = (TransactionalEditingDomain) workingCopy.getEditingDomain();
@@ -114,6 +116,7 @@ public class TestConnectionButtonHelper {
 						@Override
 						protected void doExecute() {
 							connection.setId(localAccountId);
+							connection.setSchema(schema);
 						}
 					};
 					ed.getCommandStack().execute(cmd);

@@ -188,10 +188,10 @@ public class TasClient {
 		return accountsInfo;
 	}
 
-	public static JsonNode getSchema(String tasBaseUrl, String username,
+	public static String getSchema(String tasBaseUrl, String username,
 			String password, String accountId, String body, int type, boolean retry) {
 		switchUserOn(username);
-		JsonNode result = null;
+		String result = null;
 		try {
 			String schemaUrl = tasBaseUrl + "/tcta/dataserver/schema";
 			HttpURLConnection httpConn = buildpostHttpUrlConnectionWithJson(
@@ -203,9 +203,9 @@ public class TasClient {
 			if (statusCode == HttpURLConnection.HTTP_OK) {
 				JsonReader node = new JsonReader(messagebody);
 				if (type == 1 && node.getNode("requestSchema") != null) {
-					result = node.getNode("requestSchema");
+					result = node.getNode("requestSchema").toString();
 				} else if (type == 2 && node.getNode("responseSchema") != null) {
-					result = node.getNode("responseSchema");
+					result = node.getNode("responseSchema").toString();
 				}
 			} else if(retry) {
 
@@ -338,10 +338,11 @@ public class TasClient {
 	public static void main(String[] args) {
 		String body = "{\"path\": \"/tcta/dataserver/transactions\", \"method\": \"POST\"}";
 		String tasBaseUrl ="https://auditsafe.ax-qa.tcie.pro";
-		String username = "george5@grr.la";
+		String username = "george6@grr.la";
 		String password = "tibco123";
-		JsonNode node = getSchema(tasBaseUrl, username, password, null, body, 1, true);
-		System.out.println(node.toString());
+		String accountId = "01CP0J0N9KEDM77ZSFHX2TW62Y";
+		String node = getSchema(tasBaseUrl, username, password, accountId, body, 1, true);
+		System.out.println(node);
 	}
 
 }

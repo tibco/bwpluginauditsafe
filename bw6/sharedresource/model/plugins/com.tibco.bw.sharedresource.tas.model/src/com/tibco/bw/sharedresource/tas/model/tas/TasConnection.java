@@ -17,6 +17,7 @@ import com.tibco.neo.svar.svarmodel.SubstitutableObject;
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getPassword <em>Password</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getId <em>Id</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getSchema <em>Schema</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getOutput <em>Output</em>}</li>
  * </ul>
  * </p>
  *
@@ -154,5 +155,31 @@ public interface TasConnection extends SubstitutableObject {
 	 * @generated
 	 */
 	void setSchema(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Output</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Output</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Output</em>' attribute.
+	 * @see #setOutput(String)
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasPackage#getTasConnection_Output()
+	 * @model
+	 * @generated
+	 */
+	String getOutput();
+
+	/**
+	 * Sets the value of the '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getOutput <em>Output</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Output</em>' attribute.
+	 * @see #getOutput()
+	 * @generated
+	 */
+	void setOutput(String value);
 
 } // TasConnection

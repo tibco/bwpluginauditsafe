@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getPassword <em>Password</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getId <em>Id</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getSchema <em>Schema</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getOutput <em>Output</em>}</li>
  * </ul>
  * </p>
  *
@@ -130,6 +131,26 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * @ordered
 	 */
 	protected String schema = SCHEMA_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getOutput() <em>Output</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOutput()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String OUTPUT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getOutput() <em>Output</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOutput()
+	 * @generated
+	 * @ordered
+	 */
+	protected String output = OUTPUT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -260,6 +281,27 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getOutput() {
+		return output;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOutput(String newOutput) {
+		String oldOutput = output;
+		output = newOutput;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.TAS_CONNECTION__OUTPUT, oldOutput, output));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -273,6 +315,8 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return getId();
 			case TasPackage.TAS_CONNECTION__SCHEMA:
 				return getSchema();
+			case TasPackage.TAS_CONNECTION__OUTPUT:
+				return getOutput();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -299,6 +343,9 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return;
 			case TasPackage.TAS_CONNECTION__SCHEMA:
 				setSchema((String)newValue);
+				return;
+			case TasPackage.TAS_CONNECTION__OUTPUT:
+				setOutput((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -327,6 +374,9 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 			case TasPackage.TAS_CONNECTION__SCHEMA:
 				setSchema(SCHEMA_EDEFAULT);
 				return;
+			case TasPackage.TAS_CONNECTION__OUTPUT:
+				setOutput(OUTPUT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -349,6 +399,8 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case TasPackage.TAS_CONNECTION__SCHEMA:
 				return SCHEMA_EDEFAULT == null ? schema != null : !SCHEMA_EDEFAULT.equals(schema);
+			case TasPackage.TAS_CONNECTION__OUTPUT:
+				return OUTPUT_EDEFAULT == null ? output != null : !OUTPUT_EDEFAULT.equals(output);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -373,6 +425,8 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 		result.append(id);
 		result.append(", schema: ");
 		result.append(schema);
+		result.append(", output: ");
+		result.append(output);
 		result.append(')');
 		return result.toString();
 	}

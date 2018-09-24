@@ -16,8 +16,6 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.net.ssl.HttpsURLConnection;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
@@ -73,13 +71,12 @@ public class TasClient {
 			}
 			httpConn = buildpostHttpUrlConnectionWithJson(postEventUrl, body,
 					getsettingMap("application/json", "application/json"));
+			result = getHttpRequestBody(httpConn);
 			int statusCode = httpConn.getResponseCode();
 
-			if (statusCode == HttpURLConnection.HTTP_OK) {
-				result = getHttpRequestBody(httpConn);
-			} else if (retry == true) {
+			if (statusCode != HttpURLConnection.HTTP_OK && retry == true) {
 				auth(tasBaseUrl, username, password, accountId);
-				postAuditEvent(tasBaseUrl, username, password,
+				result = postAuditEvent(tasBaseUrl, username, password,
 						accountId, body, false);
 			}
 

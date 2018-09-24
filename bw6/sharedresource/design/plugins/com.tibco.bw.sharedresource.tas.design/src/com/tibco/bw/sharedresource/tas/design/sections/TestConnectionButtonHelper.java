@@ -29,6 +29,9 @@ import com.tibco.bw.sharedresource.tas.model.tas.TasConnection;
 import com.tibco.xpd.resources.WorkingCopy;
 
 public class TestConnectionButtonHelper {
+	private static final int INPUT_TYPE = 1;
+	private static final int OUTPUT_TYPE = 2;
+
 	private TasConnectionSection tasConnectionSection;
 
 	private Label testLabel;
@@ -107,8 +110,9 @@ public class TestConnectionButtonHelper {
 							accountId = accountInfo.get(selectedAccount);
 						}
 					}
-					String body = "{\"path\": \"/tcta/dataserver/transactions\", \"method\": \"POST\"}";
-					final String schema = TasClient.getSchema(serverUtl, username, password, accountId, body, 1, true);
+					String body = "{\"path\": \"/tcta/dataserver/transactions/batch\", \"method\": \"POST\"}";
+					final String schema = TasClient.getSchema(serverUtl, username, password, accountId, body, INPUT_TYPE, true);
+					final String output = TasClient.getSchema(serverUtl, username, password, accountId, body, OUTPUT_TYPE, true);
 					final String localAccountId = accountId;
 					final WorkingCopy workingCopy = (WorkingCopy)tasConnectionSection.getPage().getEditor().getAdapter(WorkingCopy.class);
 	            	TransactionalEditingDomain ed = (TransactionalEditingDomain) workingCopy.getEditingDomain();
@@ -117,6 +121,7 @@ public class TestConnectionButtonHelper {
 						protected void doExecute() {
 							connection.setId(localAccountId);
 							connection.setSchema(schema);
+							connection.setOutput(output);
 						}
 					};
 					ed.getCommandStack().execute(cmd);

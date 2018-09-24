@@ -14,7 +14,21 @@ public class TasConnectionResource {
 	private String username;
 	private String password;
 	private String id;
+	private String schema;
+	private String output;
 
+	public String getSchema() {
+		return schema;
+	}
+	public void setSchema(String schema) {
+		this.schema = schema;
+	}
+	public String getOutput() {
+		return output;
+	}
+	public void setOutput(String output) {
+		this.output = output;
+	}
 	public String getServerUrl() {
 		return serverUrl;
 	}

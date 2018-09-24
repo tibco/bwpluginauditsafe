@@ -12,11 +12,18 @@
  */
 package com.tibco.bw.palette.tas.runtime;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 import org.genxdm.Model;
 import org.genxdm.ProcessingContext;
 import org.genxdm.mutable.MutableModel;
 import org.genxdm.mutable.NodeFactory;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -24,6 +31,7 @@ import com.tibco.bw.palette.tas.model.tas.PostAuditEvent;
 import com.tibco.bw.runtime.ActivityFault;
 import com.tibco.bw.runtime.ProcessContext;
 import com.tibco.bw.runtime.annotation.Property;
+import com.tibco.bw.sharedresource.tas.model.helper.JsonReader;
 import com.tibco.bw.sharedresource.tas.model.helper.TasClient;
 import com.tibco.bw.sharedresource.tas.runtime.TasConnectionResource;
 import com.tibco.neo.localized.LocalizedMessage;
@@ -59,13 +67,13 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
 	@Override
     protected <N, A> N evalOutput(N inputData,ProcessingContext<N> processContext) throws Exception {
         // add your own business code here
-		N outputType = getOutputRootElement(processContext);
+		N output = getOutputRootElement(processContext);
 
         MutableModel<N> mutableModel = processContext.getMutableContext().getModel();
-        NodeFactory<N> noteFactory = mutableModel.getFactory(outputType);
+        NodeFactory<N> noteFactory = mutableModel.getFactory(output);
 
-        N output = noteFactory.createElement("", "Response", "");
-        mutableModel.appendChild(outputType, output);
+//        N output = noteFactory.createElement("", "ActivityOutput", "");
+//        mutableModel.appendChild(outputType, output);
 
         // add your own business code here
 		String result  = "";
@@ -99,15 +107,33 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
 			eventNode.set("extra_props", extraPropsNode);
 			eventArray.add(eventNode);
 		}
-
+		//send post request
 		String body = mapper.writeValueAsString(eventArray);
 		result = TasClient.postAuditEvent(sharedResource.getServerUrl(), sharedResource.getUsername(), sharedResource.getPassword(), sharedResource.getId(), body, true);
 
+		// get output schema and put properties in a set
+		JsonReader requestNode = new JsonReader(sharedResource.getOutput());
+		JsonNode item = requestNode.getNode("items");
+		JsonNode properties = item.get("properties");
+		List<String>  fieldSet  = new ArrayList<String>();
+		Iterator<String> ite = properties.fieldNames();
+		while(ite.hasNext()){
+			String key = ite.next();
+			fieldSet.add(key);
+		}
 
-		mutableModel.appendChild(output,noteFactory.createText(result));
-
-
-        return outputType;
+		ArrayNode resultArray = (ArrayNode)mapper.readTree(result);
+		for (JsonNode jsonNode : resultArray) {
+			N event = noteFactory.createElement("", "Event", "");
+			for(String fieldName : fieldSet){
+				N fieldNode = noteFactory.createElement("", fieldName,"");
+				N valueNode = noteFactory.createText(jsonNode.get(fieldName).asText());
+				mutableModel.appendChild(fieldNode, valueNode);
+				mutableModel.appendChild(event, fieldNode);
+			}
+			mutableModel.appendChild(output,event);
+		}
+        return output;
     }
 
 	@Override

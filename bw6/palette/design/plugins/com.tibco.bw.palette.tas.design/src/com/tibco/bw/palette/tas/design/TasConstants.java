@@ -2,7 +2,8 @@ package com.tibco.bw.palette.tas.design;
 
 import javax.xml.namespace.QName;
 
-import com.tibco.bw.palette.tas.model.tas.TasPackage;
+import com.tibco.bw.sharedresource.tas.model.tas.TasPackage;
+
 
 public interface TasConstants {
 

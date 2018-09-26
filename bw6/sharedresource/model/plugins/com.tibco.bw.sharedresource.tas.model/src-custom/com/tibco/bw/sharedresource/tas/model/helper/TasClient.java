@@ -55,11 +55,11 @@ public class TasClient {
 		switchUserOn(username);
 		String result = null;
 		try {
-			String internalUrl = System.getenv(ENV_INTERNAL_URL);
+			String internalUrl = System.getProperty(ENV_INTERNAL_URL);
 			HttpURLConnection httpConn;
 			String postEventUrl = "";
 			if (internalUrl != null && !internalUrl.isEmpty()) {
-				String subId = System.getenv(ENV_SUBSCRIPTION_ID);
+				String subId = System.getProperty(ENV_SUBSCRIPTION_ID);
 				postEventUrl = internalUrl
 						+ "/tcta/dataserver/transactions/intercom/batch?tscSubscriptionId="
 						+ subId;

@@ -91,7 +91,7 @@ public class TestConnectionButtonHelper {
 						messageDialog.open();
 					}
 				}
-				if (accountInfo.size()>0) {
+				if (accountInfo != null && accountInfo.size()>0) {
 					String accountId ="";
 					if(accountInfo.keySet().size()==1){
 						MessageDialog messageDialog = new MessageDialog(composite

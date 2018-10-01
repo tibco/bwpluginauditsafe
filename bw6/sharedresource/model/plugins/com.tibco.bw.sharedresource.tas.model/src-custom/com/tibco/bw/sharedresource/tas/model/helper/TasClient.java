@@ -54,6 +54,9 @@ public class TasClient {
 			boolean retry) {
 		switchUserOn(username);
 		String result = null;
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+		}
 		try {
 			String internalUrl = System.getProperty(ENV_INTERNAL_URL);
 			HttpURLConnection httpConn;
@@ -189,6 +192,9 @@ public class TasClient {
 			String password, String accountId, String body, int type, boolean retry) {
 		switchUserOn(username);
 		String result = null;
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+		}
 		try {
 			String schemaUrl = tasBaseUrl + "/tcta/dataserver/schema";
 			HttpURLConnection httpConn = buildpostHttpUrlConnectionWithJson(
@@ -332,14 +338,5 @@ public class TasClient {
 		return sb.toString();
 	}
 
-	public static void main(String[] args) {
-		String body = "{\"path\": \"/tcta/dataserver/transactions\", \"method\": \"POST\"}";
-		String tasBaseUrl ="https://auditsafe.ax-qa.tcie.pro";
-		String username = "george6@grr.la";
-		String password = "tibco123";
-		String accountId = "01CP0J0N9KEDM77ZSFHX2TW62Y";
-		String node = getSchema(tasBaseUrl, username, password, accountId, body, 1, true);
-		System.out.println(node);
-	}
 
 }

@@ -58,8 +58,9 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
         try {
             result = evalOutput(input, processContext.getXMLProcessingContext());
         } catch (Exception e) {
+        	activityLogger.error(RuntimeMessageBundle.ERROR_POST_EVENT, new Object[] {activityContext.getActivityName()});
             throw new ActivityFault(activityContext, new LocalizedMessage(
-						RuntimeMessageBundle.ERROR_OCCURED_RETRIEVE_RESULT, new Object[] {activityContext.getActivityName()}));
+						RuntimeMessageBundle.ERROR_POST_EVENT, new Object[] {activityContext.getActivityName()}));
         }
         return result;
 	}
@@ -109,10 +110,16 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
 		}
 		//send post request
 		String body = mapper.writeValueAsString(eventArray);
+		activityLogger.debug(body);
 		result = TasClient.postAuditEvent(sharedResource.getServerUrl(), sharedResource.getUsername(), sharedResource.getPassword(), sharedResource.getId(), body, true);
 
+		if(result == null){
+			activityLogger.error(RuntimeMessageBundle.ERROR_REQUEST_FAILED, new Object[] {activityContext.getActivityName()});
+			return null;
+		}
 		// get output schema and put properties in a set
 		JsonReader requestNode = new JsonReader(sharedResource.getOutput());
+		activityLogger.debug(requestNode.toString());
 		JsonNode item = requestNode.getNode("items");
 		JsonNode properties = item.get("properties");
 		List<String>  fieldSet  = new ArrayList<String>();

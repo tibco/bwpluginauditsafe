@@ -103,9 +103,17 @@ public class TasConnectionResourceFactory extends BaseSharedResourceFactory
 	    resource.setUsername((String)toSet.get("username"));
 	    resource.setPassword(context.getDecryptedPasswordValue((String) toSet.get("password")));
 	    resource.setId((String)toSet.get("id"));
-	    resource.setSchema((String)toSet.get("schema"));
+	    if(toSet.get("schema")==null){
+	    	resource.setSchema((String)toSet.get("schema"));
+	    }else{
+	    	context.getSharedResourceLogger().error(RuntimeMessageBundle.ERROR_EMPTY_INPUT_SCHEMA);
+	    }
+
 	    resource.setOutput((String)toSet.get("output"));
 	    // begin-custom-code
+	    if(context.getSharedResourceLogger().isDebugEnabled()) {
+	    	context.getSharedResourceLogger().debug(RuntimeMessageBundle.MESSAGE_FORMAT1, new String[]{resource.getId(),resource.getSchema()});
+	    }
         // end-custom-code
 	}
 }

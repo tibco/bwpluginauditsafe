@@ -23,6 +23,6 @@ public class RuntimeMessageBundle extends MessageBundle {
     }
     public static BundleMessage DEBUG_PLUGIN_ACTIVITY_INPUT;
     public static BundleMessage DEBUG_PLUGIN_ACTIVITY_OUTPUT;
-    public static BundleMessage ERROR_OCCURED_RETRIEVE_RESULT;
-    public static BundleMessage ERROR_OCCURED_INVOKE_EXECUTE_METHOD;
+    public static BundleMessage ERROR_POST_EVENT;
+    public static BundleMessage ERROR_REQUEST_FAILED;
 }

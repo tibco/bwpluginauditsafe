@@ -33,6 +33,7 @@ import com.tibco.bw.runtime.ProcessContext;
 import com.tibco.bw.runtime.annotation.Property;
 import com.tibco.bw.sharedresource.tas.model.helper.JsonReader;
 import com.tibco.bw.sharedresource.tas.model.helper.TasClient;
+import com.tibco.bw.sharedresource.tas.model.helper.TasResponse;
 import com.tibco.bw.sharedresource.tas.runtime.TasConnectionResource;
 import com.tibco.neo.localized.LocalizedMessage;
 
@@ -77,7 +78,7 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
 //        mutableModel.appendChild(outputType, output);
 
         // add your own business code here
-		String result  = "";
+        TasResponse result  = new TasResponse();
 
 
 		ObjectMapper mapper = new ObjectMapper();
@@ -113,8 +114,8 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
 		activityLogger.debug(body);
 		result = TasClient.postAuditEvent(sharedResource.getServerUrl(), sharedResource.getUsername(), sharedResource.getPassword(), sharedResource.getId(), body, true);
 
-		if(result == null){
-			activityLogger.error(RuntimeMessageBundle.ERROR_REQUEST_FAILED, new Object[] {activityContext.getActivityName()});
+		if(result == null || result.isHasError()){
+			activityLogger.error(RuntimeMessageBundle.ERROR_REQUEST_FAILED, new Object[] { result.getStatusCode(), result.getMessage()});
 			return null;
 		}
 		// get output schema and put properties in a set
@@ -129,7 +130,7 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
 			fieldSet.add(key);
 		}
 
-		ArrayNode resultArray = (ArrayNode)mapper.readTree(result);
+		ArrayNode resultArray = (ArrayNode)mapper.readTree(result.getMessage());
 		for (JsonNode jsonNode : resultArray) {
 			N event = noteFactory.createElement("", "Event", "");
 			for(String fieldName : fieldSet){

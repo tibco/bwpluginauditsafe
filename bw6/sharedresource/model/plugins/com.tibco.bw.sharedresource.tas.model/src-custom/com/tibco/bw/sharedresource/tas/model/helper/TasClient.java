@@ -49,11 +49,11 @@ public class TasClient {
 		}
 	}
 
-	public static String postAuditEvent(String tasBaseUrl, String username,
+	public static TasResponse postAuditEvent(String tasBaseUrl, String username,
 			String password, String accountId, String body,
 			boolean retry) {
-		switchUserOn(username);
-		String result = null;
+		switchUserOn(username+accountId);
+		TasResponse result = new TasResponse();
 		if (tasBaseUrl.endsWith("/")) {
 			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
 		}
@@ -67,25 +67,32 @@ public class TasClient {
 						+ "/tcta/dataserver/transactions/intercom/batch?tscSubscriptionId="
 						+ subId;
 			} else {
-				// TODO path change
 				postEventUrl = tasBaseUrl
 						+ "/tcta/dataserver/transactions/batch";
 
 			}
 			httpConn = buildpostHttpUrlConnectionWithJson(postEventUrl, body,
 					getsettingMap("application/json", "application/json"));
-			result = getHttpRequestBody(httpConn);
+			String message = getHttpRequestBody(httpConn);
 			int statusCode = httpConn.getResponseCode();
+			result.setStatusCode(statusCode);
 
-			if (statusCode != HttpURLConnection.HTTP_OK && retry == true) {
-				auth(tasBaseUrl, username, password, accountId);
-				result = postAuditEvent(tasBaseUrl, username, password,
-						accountId, body, false);
+			if(statusCode == HttpURLConnection.HTTP_OK){
+				result.setSuccessfulResponse(message);
+			} else if (retry) {
+				TasResponse authResponse = auth(tasBaseUrl, username, password, accountId);
+				if (!authResponse.isHasError()) {
+					result = postAuditEvent(tasBaseUrl, username, password,
+							accountId, body, false);
+				} else {
+					return authResponse;
+				}
+			} else {
+				result.setErrorMessage(message);
 			}
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			result.setErrorMessage(e.getMessage());
 
 		} finally {
 			switchUserOff();
@@ -94,11 +101,14 @@ public class TasClient {
 		return result;
 	}
 
-	public static boolean auth(String tasBaseUrl, String username,
+	public static TasResponse auth(String tasBaseUrl, String username,
 			String password, String accountId) {
-		boolean isAuth = false;
+		TasResponse tr = new TasResponse();
 		try {
-			String token = getToken(username, password);
+			TasResponse taResponse = getToken(username, password);
+			if(taResponse.isHasError()){
+				return taResponse;
+			}
 			if (tasBaseUrl.endsWith("/")) {
 				tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
 			}
@@ -106,25 +116,28 @@ public class TasClient {
 			HttpURLConnection httpConn;
 
 			Map<String, String> params = new HashMap<String, String>();
-			params.put("AccessToken", token);
+			params.put("AccessToken", taResponse.getMessage());
 			params.put("TenantId", TENANT_ID);
 			if(accountId != null && !accountId.isEmpty()){
 				params.put("AccountId", accountId);
 			}
 			httpConn = buildpostHttpUrlConnection(idmUrl, params, getsettingMap());
-			getHttpRequestBody(httpConn);
+			String message = getHttpRequestBody(httpConn);
 			int statusCode = httpConn.getResponseCode();
+			tr.setStatusCode(statusCode);
 			if (statusCode == HttpURLConnection.HTTP_OK){
-				isAuth = true;
+				tr.setSuccessfulResponse(message);
+			} else {
+				tr.setErrorMessage(message);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			tr.setErrorMessage(e.getMessage());
 		}
-		return isAuth;
+		return tr;
 	}
 
-	public static String getToken(String username, String password) {
-		String token = null;
+	public static TasResponse getToken(String username, String password) {
+		TasResponse response = new TasResponse();
 		String taUrl = "https://sso-awsqa.tibco.com/as/token.oauth2";
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("username", username);
@@ -139,21 +152,23 @@ public class TasClient {
 			String messagebody = getHttpRequestBody(httpConn);
 			int statusCode = httpConn.getResponseCode();
 
+			response.setStatusCode(statusCode);
 			if (statusCode == HttpURLConnection.HTTP_OK) {
 				JsonReader node = new JsonReader(messagebody);
 				if (node.getNode("access_token") != null) {
-					token = node.getNode("access_token").textValue();
+					response.setSuccessfulResponse(node.getNode("access_token").textValue());
 				}
+			} else {
+				response.setErrorMessage(messagebody);
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			response.setErrorMessage(e.getMessage());
 		}
 
-		return token;
+		return response;
 	}
 
-	public static HashMap<String, String> testConnection(String tasBaseUrl,
+	public static HashMap<String, String> getAccountIds(String tasBaseUrl,
 			String token) throws IOException {
 		if (tasBaseUrl.endsWith("/")) {
 			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
@@ -188,38 +203,39 @@ public class TasClient {
 		return accountsInfo;
 	}
 
-	public static String getSchema(String tasBaseUrl, String username,
-			String password, String accountId, String body, int type, boolean retry) {
-		switchUserOn(username);
-		String result = null;
+	public static TasResponse getSchema(String tasBaseUrl, String username,
+			String password, String accountId, String body, int type) {
+		switchUserOn(username+accountId);
+		TasResponse result = new TasResponse();
 		if (tasBaseUrl.endsWith("/")) {
 			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
 		}
 		try {
-			String schemaUrl = tasBaseUrl + "/tcta/dataserver/schema";
-			HttpURLConnection httpConn = buildpostHttpUrlConnectionWithJson(
-					schemaUrl, body,
-					getsettingMap("application/json", "application/json"));
-			String messagebody = getHttpRequestBody(httpConn);
-			int statusCode = httpConn.getResponseCode();
+			TasResponse authResponse = auth(tasBaseUrl, username, password, accountId);
+			if (authResponse.isHasError()) {
+				return authResponse;
+			} else{
+				String schemaUrl = tasBaseUrl + "/tcta/dataserver/schema";
+				HttpURLConnection httpConn = buildpostHttpUrlConnectionWithJson(
+						schemaUrl, body,
+						getsettingMap("application/json", "application/json"));
+				String messagebody = getHttpRequestBody(httpConn);
+				int statusCode = httpConn.getResponseCode();
+				result.setStatusCode(statusCode);
 
-			if (statusCode == HttpURLConnection.HTTP_OK) {
-				JsonReader node = new JsonReader(messagebody);
-				if (type == 1 && node.getNode("requestSchema") != null) {
-					result = node.getNode("requestSchema").toString();
-				} else if (type == 2 && node.getNode("responseSchema") != null) {
-					result = node.getNode("responseSchema").toString();
-				}
-			} else if(retry) {
-
-				boolean isAuth = auth(tasBaseUrl, username, password, accountId);
-				if (isAuth) {
-					result = getSchema(tasBaseUrl, username, password, accountId, body, type, false);
+				if (statusCode == HttpURLConnection.HTTP_OK) {
+					JsonReader node = new JsonReader(messagebody);
+					if (type == 1 && node.getNode("requestSchema") != null) {
+						result.setSuccessfulResponse(node.getNode("requestSchema").toString());
+					} else if (type == 2 && node.getNode("responseSchema") != null) {
+						result.setSuccessfulResponse(node.getNode("responseSchema").toString());
+					}
+				} else {
+					result.setErrorMessage(messagebody);
 				}
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
+			result.setErrorMessage("Get schema failed! " + e.getMessage());
 		} finally {
 			switchUserOff();
 		}

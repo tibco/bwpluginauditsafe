@@ -12,21 +12,21 @@ public class JsonReader {
 	    protected ObjectMapper m_mapper = new ObjectMapper();
 	    protected JsonNode m_rootNode;
 
-	    public JsonReader(String json) {
+	    public JsonReader(String json) throws JsonParseException, JsonMappingException, IOException {
 	    	m_json = json;
 	    	if (m_json != null) {
-	    		 try {
+//	    		 try {
 					m_rootNode = m_mapper.readValue(m_json, JsonNode.class);
-				} catch (JsonParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (JsonMappingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+//				} catch (JsonParseException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				} catch (JsonMappingException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 	    	}
 	    }
 

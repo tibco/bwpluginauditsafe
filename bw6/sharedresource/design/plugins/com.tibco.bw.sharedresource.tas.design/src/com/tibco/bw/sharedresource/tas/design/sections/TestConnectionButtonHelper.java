@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.Shell;
 import com.tibco.bw.design.field.BWFieldFactory;
 import com.tibco.bw.sharedresource.tas.model.helper.Messages;
 import com.tibco.bw.sharedresource.tas.model.helper.TasClient;
+import com.tibco.bw.sharedresource.tas.model.helper.TasResponse;
 import com.tibco.bw.sharedresource.tas.model.tas.TasConnection;
 import com.tibco.xpd.resources.WorkingCopy;
 
@@ -78,11 +79,11 @@ public class TestConnectionButtonHelper {
 				testLabel.setForeground(black);
 				testLabel.setText("Testing...");
 
-				String token = TasClient.getToken(username, password);
+				TasResponse taResponse = TasClient.getToken(username, password);
 				HashMap<String,String> accountInfo = null;
-				if (token != null) {
+				if (!taResponse.isHasError()) {
 					try {
-						accountInfo = TasClient.testConnection(serverUtl, token);
+						accountInfo = TasClient.getAccountIds(serverUtl, taResponse.getMessage());
 					} catch (IOException e1) {
 						MessageDialog messageDialog = new MessageDialog(composite
 								.getShell(), "Test AuditSafe Connection failed", null,
@@ -93,14 +94,8 @@ public class TestConnectionButtonHelper {
 				}
 				if (accountInfo != null && accountInfo.size()>0) {
 					String accountId ="";
-					if(accountInfo.keySet().size()==1){
-						MessageDialog messageDialog = new MessageDialog(composite
-								.getShell(), Messages.CONNECTED_TO_TAS, null,
-								Messages.CONNECTED_TO_TAS, MessageDialog.NONE,
-								new String[] { "Ok" }, 0);
-						messageDialog.open();
 
-					} else {
+					if(accountInfo.keySet().size() > 1){
 						AccountDialog dialog = new AccountDialog(composite.getShell());
 
 						dialog.initData(accountInfo.keySet().toArray(new String[accountInfo.size()]));
@@ -110,25 +105,40 @@ public class TestConnectionButtonHelper {
 							accountId = accountInfo.get(selectedAccount);
 						}
 					}
+
 					String body = "{\"path\": \"/tcta/dataserver/transactions/batch\", \"method\": \"POST\"}";
-					final String schema = TasClient.getSchema(serverUtl, username, password, accountId, body, INPUT_TYPE, true);
-					final String output = TasClient.getSchema(serverUtl, username, password, accountId, body, OUTPUT_TYPE, true);
-					final String localAccountId = accountId;
-					final WorkingCopy workingCopy = (WorkingCopy)tasConnectionSection.getPage().getEditor().getAdapter(WorkingCopy.class);
-	            	TransactionalEditingDomain ed = (TransactionalEditingDomain) workingCopy.getEditingDomain();
-					Command cmd = new RecordingCommand(ed) {
-						@Override
-						protected void doExecute() {
-							connection.setId(localAccountId);
-							connection.setSchema(schema);
-							connection.setOutput(output);
-						}
-					};
-					ed.getCommandStack().execute(cmd);
-					Color blue = new Color(composite.getShell().getDisplay(),
-							0, 0, 255);
-					testLabel.setForeground(blue);
-					testLabel.setText("Test AuditSafe Connection successful!");
+					TasResponse inputSchemaResponse = TasClient.getSchema(serverUtl, username, password, accountId, body, INPUT_TYPE);
+					TasResponse outputSchemaResponse =  TasClient.getSchema(serverUtl, username, password, accountId, body, OUTPUT_TYPE);
+					if(inputSchemaResponse.isHasError() || outputSchemaResponse.isHasError()){
+						Color red = new Color(composite.getShell().getDisplay(),
+								255, 0, 0);
+						testLabel.setForeground(red);
+						testLabel.setText(inputSchemaResponse.isHasError()?inputSchemaResponse.getMessage():outputSchemaResponse.getMessage());
+					}else {
+						final String schema = inputSchemaResponse.getMessage();
+						final String output = outputSchemaResponse.getMessage();
+						final String localAccountId = accountId;
+						final WorkingCopy workingCopy = (WorkingCopy)tasConnectionSection.getPage().getEditor().getAdapter(WorkingCopy.class);
+		            	TransactionalEditingDomain ed = (TransactionalEditingDomain) workingCopy.getEditingDomain();
+						Command cmd = new RecordingCommand(ed) {
+							@Override
+							protected void doExecute() {
+								connection.setId(localAccountId);
+								connection.setSchema(schema);
+								connection.setOutput(output);
+							}
+						};
+						ed.getCommandStack().execute(cmd);
+						MessageDialog messageDialog = new MessageDialog(composite
+								.getShell(), Messages.CONNECTED_TO_TAS, null,
+								Messages.CONNECTED_TO_TAS, MessageDialog.NONE,
+								new String[] { "Ok" }, 0);
+						messageDialog.open();
+						Color blue = new Color(composite.getShell().getDisplay(),
+								0, 0, 255);
+						testLabel.setForeground(blue);
+						testLabel.setText("Test AuditSafe Connection successful!");
+					}
 				} else {
 					Color red = new Color(composite.getShell().getDisplay(),
 							255, 0, 0);

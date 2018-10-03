@@ -11,6 +11,8 @@ import org.eclipse.xsd.XSDForm;
 import org.eclipse.xsd.XSDModelGroup;
 import org.eclipse.xsd.XSDSchema;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.tibco.bw.design.api.BWActivitySignatureUnknown;
 import com.tibco.bw.design.util.XSDUtility;
@@ -114,23 +116,29 @@ public class PostAuditEventSignature extends TasBasicSignature {
 			throw new RuntimeException("Create activity Output schema failure !");
 		}
 
-		JsonReader requestNode = new JsonReader(conn.getOutput());
+		JsonReader requestNode;
+		try {
+			requestNode = new JsonReader(conn.getOutput());
+			XSDModelGroup event = null ;
+			event = XSDUtility.addComplexTypeElement(rootOutput, TasConstants.TAG_NAME,
+					TasConstants.TAG_NAME, 1, -1, XSDCompositor.SEQUENCE_LITERAL);
 
-		XSDModelGroup event = null ;
-		event = XSDUtility.addComplexTypeElement(rootOutput, TasConstants.TAG_NAME,
-				TasConstants.TAG_NAME, 1, -1, XSDCompositor.SEQUENCE_LITERAL);
+			JsonNode item = requestNode.getNode("items");
+			JsonNode properties = item.get("properties");
+			Iterator<String> ite = properties.fieldNames();
 
-		JsonNode item = requestNode.getNode("items");
-		JsonNode properties = item.get("properties");
-		Iterator<String> ite = properties.fieldNames();
+			while(ite.hasNext()){
+				String key = ite.next();
+				XSDUtility.addSimpleTypeElement(event, key, "string", 0, 1);
+			}
 
-		while(ite.hasNext()){
-			String key = ite.next();
-			XSDUtility.addSimpleTypeElement(event, key, "string", 0, 1);
+			outputSchema = compileSchema(outputSchema);
+			outputType = outputSchema.resolveElementDeclaration("ActivityOutput");
+		} catch (Exception e) {
+			throw new RuntimeException("Build activity Output schema failure !" + e.getMessage());
 		}
 
-		outputSchema = compileSchema(outputSchema);
-		outputType = outputSchema.resolveElementDeclaration("ActivityOutput");
+
 		return outputType;
 	}
 
@@ -153,46 +161,51 @@ public class PostAuditEventSignature extends TasBasicSignature {
 			throw new RuntimeException("Create activity Input schema failure !");
 		}
 
+    	JsonReader requestNode;
+		try {
+			requestNode = new JsonReader(conn.getSchema());
+			int maxItem = requestNode.getNode("maxItems").asInt();
+			if(maxItem <1) maxItem =100;
 
-    	JsonReader requestNode = new JsonReader(conn.getSchema());
-		int maxItem = requestNode.getNode("maxItems").asInt();
-		if(maxItem <1) maxItem =100;
+			XSDModelGroup event = null ;
+			event = XSDUtility.addComplexTypeElement(rootInput, TasConstants.TAG_NAME,
+					TasConstants.TAG_NAME, 1, maxItem, XSDCompositor.SEQUENCE_LITERAL);
 
-		XSDModelGroup event = null ;
-		event = XSDUtility.addComplexTypeElement(rootInput, TasConstants.TAG_NAME,
-				TasConstants.TAG_NAME, 1, maxItem, XSDCompositor.SEQUENCE_LITERAL);
+			JsonNode item = requestNode.getNode("items");
+			JsonNode properties = item.get("properties");
+			JsonNode required = item.get("required");
+			HashSet<String> requiredSet = new HashSet<String>();
+			if (required.isArray()) {
+			    for (final JsonNode objNode : required) {
+			    	String fieldName = objNode.asText();
+			    	requiredSet.add(fieldName);
+			    	XSDUtility.addSimpleTypeElement(event, fieldName, "string", 1, 1);
+			    }
+			}
 
-		JsonNode item = requestNode.getNode("items");
-		JsonNode properties = item.get("properties");
-		JsonNode required = item.get("required");
-		HashSet<String> requiredSet = new HashSet<String>();
-		if (required.isArray()) {
-		    for (final JsonNode objNode : required) {
-		    	String fieldName = objNode.asText();
-		    	requiredSet.add(fieldName);
-		    	XSDUtility.addSimpleTypeElement(event, fieldName, "string", 1, 1);
-		    }
-		}
+			Iterator<String> ite = properties.fieldNames();
 
-		Iterator<String> ite = properties.fieldNames();
-
-		while(ite.hasNext()){
-			String key = ite.next();
-			if(!requiredSet.contains(key)){
-				JsonNode field = properties.get(key);
-				if("string".equals(field.get("type").textValue())){
-					XSDUtility.addSimpleTypeElement(event, key, "string", 0, 1);
+			while(ite.hasNext()){
+				String key = ite.next();
+				if(!requiredSet.contains(key)){
+					JsonNode field = properties.get(key);
+					if("string".equals(field.get("type").textValue())){
+						XSDUtility.addSimpleTypeElement(event, key, "string", 0, 1);
+					}
 				}
 			}
+
+			XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(event, "extra_props", "extra_props", 0, -1, XSDCompositor.SEQUENCE_LITERAL);
+			XSDUtility.addSimpleTypeElement(extraGroup, "prop_name", "string", 1, 1);
+			XSDUtility.addSimpleTypeElement(extraGroup, "prop_value", "string", 1, 1);
+
+
+			inputSchema = compileSchema(inputSchema);
+			inputType = inputSchema.resolveElementDeclaration("ActivityInput");
+		} catch (Exception e) {
+			throw new RuntimeException("Build activity Output schema failure !" + e.getMessage());
 		}
 
-		XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(event, "extra_props", "extra_props", 0, -1, XSDCompositor.SEQUENCE_LITERAL);
-		XSDUtility.addSimpleTypeElement(extraGroup, "prop_name", "string", 1, 1);
-		XSDUtility.addSimpleTypeElement(extraGroup, "prop_value", "string", 1, 1);
-
-
-		inputSchema = compileSchema(inputSchema);
-		inputType = inputSchema.resolveElementDeclaration("ActivityInput");
 		return inputType;
 	}
 

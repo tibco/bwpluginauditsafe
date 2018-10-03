@@ -27,8 +27,11 @@ public class RuntimeMessageBundle extends MessageBundle {
     public static BundleMessage DEBUG_DELETE_SHAREDRESOURCE;
     public static BundleMessage DEBUG_STOP_SHAREDRESOURCE;
     public static BundleMessage DEBUG_START_SHAREDRESOURCE;
-    public static BundleMessage ERROR_CREATE_SHAREDRESOURCE_FAILED;
 
+    public static BundleMessage DEBUG_SHAREDRESOURCE_INPUT_SCHEMA;
+    public static BundleMessage DEBUG_SHAREDRESOURCE_OUTPUT_SCHEMA;
+
+    public static BundleMessage ERROR_CREATE_SHAREDRESOURCE_FAILED;
     public static BundleMessage ERROR_EMPTY_INPUT_SCHEMA;
     public static BundleMessage ERROR_EMPTY_OUTPUT_SCHEMA;
 

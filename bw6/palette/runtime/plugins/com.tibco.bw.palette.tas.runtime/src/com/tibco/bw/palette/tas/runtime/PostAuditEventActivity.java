@@ -120,7 +120,7 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
 		}
 		// get output schema and put properties in a set
 		JsonReader requestNode = new JsonReader(sharedResource.getOutput());
-		activityLogger.debug(requestNode.toString());
+		//activityLogger.debug(requestNode.toString());
 		JsonNode item = requestNode.getNode("items");
 		JsonNode properties = item.get("properties");
 		List<String>  fieldSet  = new ArrayList<String>();

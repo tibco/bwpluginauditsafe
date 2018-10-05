@@ -28,6 +28,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.tibco.bw.palette.tas.model.tas.PostAuditEvent;
+import com.tibco.bw.palette.tas.runtime.fault.TasActivityFault;
 import com.tibco.bw.runtime.ActivityFault;
 import com.tibco.bw.runtime.ProcessContext;
 import com.tibco.bw.runtime.annotation.Property;
@@ -59,9 +60,7 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
         try {
             result = evalOutput(input, processContext.getXMLProcessingContext());
         } catch (Exception e) {
-        	activityLogger.error(RuntimeMessageBundle.ERROR_POST_EVENT, new Object[] {activityContext.getActivityName()});
-            throw new ActivityFault(activityContext, new LocalizedMessage(
-						RuntimeMessageBundle.ERROR_POST_EVENT, new Object[] {activityContext.getActivityName()}));
+            throw new TasActivityFault(activityContext, RuntimeMessageBundle.ERROR_POST_EVENT.getErrorCode(), e.getLocalizedMessage());
         }
         return result;
 	}
@@ -115,8 +114,8 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
 		result = TasClient.postAuditEvent(sharedResource.getServerUrl(), sharedResource.getUsername(), sharedResource.getPassword(), sharedResource.getId(), body, true);
 
 		if(result == null || result.isHasError()){
-			activityLogger.error(RuntimeMessageBundle.ERROR_REQUEST_FAILED, new Object[] { result.getStatusCode(), result.getMessage()});
-			return null;
+			String errorMessage = (result == null? "Result is empty": result.getMessage());
+			throw new TasActivityFault(activityContext, RuntimeMessageBundle.ERROR_REQUEST_FAILED.getErrorCode(), errorMessage);
 		}
 		// get output schema and put properties in a set
 		JsonReader requestNode = new JsonReader(sharedResource.getOutput());

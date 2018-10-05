@@ -12,11 +12,11 @@ import com.tibco.bw.design.api.BWExtensionActivitySchema;
 public class TasExceptionsSchema extends BWExtensionActivitySchema {
    private static String SCHEMA_FILE_PATH = "/schema/TASExceptions.xsd"; //$NON-NLS-1$
    private static TasExceptionsSchema INSTANCE = new TasExceptionsSchema();
-   private static final String[] TAS_PLUGIN_FAULT_TYPE_ELEMENT_NAMES = new String[] { "TASPluginException" }; //$NON-NLS-1$
+   private static final String[] TAS_PLUGIN_FAULT_TYPE_ELEMENT_NAMES = new String[] { "TASPluginExceptions" }; //$NON-NLS-1$
 
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
@@ -26,10 +26,10 @@ public class TasExceptionsSchema extends BWExtensionActivitySchema {
       // end-custom-code
       return getClass().getResourceAsStream(TasExceptionsSchema.SCHEMA_FILE_PATH);
    }
-   
+
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
@@ -41,13 +41,13 @@ public class TasExceptionsSchema extends BWExtensionActivitySchema {
 
     /**
 	 * <!-- begin-custom-doc -->
-	 * 
+	 *
 	 * <!-- end-custom-doc -->
 	 * @generated
 	 */
    private static List<XSDElementDeclaration> getFaultElements(final String[] faultNames) {
       List<XSDElementDeclaration> faultTypeElements = new ArrayList<XSDElementDeclaration>();
-      XSDSchema fileExceptionsSchema = TasExceptionsSchema.INSTANCE.loadSchema();  
+      XSDSchema fileExceptionsSchema = TasExceptionsSchema.INSTANCE.loadSchema();
       if(fileExceptionsSchema != null) {
          for (String faultElementName : faultNames) {
             XSDElementDeclaration faultTypesElement = fileExceptionsSchema.resolveElementDeclaration(faultElementName);

@@ -12,5 +12,5 @@
 			</extension>
 		</complexContent>
 	</complexType>
-	<element name="TASPluginException" type="tns:PluginExceptionType"/>
+	<element name="TASPluginExceptions" type="tns:PluginExceptionType"/>
 </schema>

@@ -106,7 +106,7 @@ public class TestConnectionButtonHelper {
 						}
 					}
 
-					String body = "{\"path\": \"/tcta/dataserver/transactions/batch\", \"method\": \"POST\"}";
+					String body = "{\"path\": \"/tas/dataserver/transactions\", \"method\": \"POST\"}";
 					TasResponse inputSchemaResponse = TasClient.getSchema(serverUtl, username, password, accountId, body, INPUT_TYPE);
 					TasResponse outputSchemaResponse =  TasClient.getSchema(serverUtl, username, password, accountId, body, OUTPUT_TYPE);
 					if(inputSchemaResponse.isHasError() || outputSchemaResponse.isHasError()){

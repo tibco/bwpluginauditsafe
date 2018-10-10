@@ -64,11 +64,11 @@ public class TasClient {
 			if (internalUrl != null && !internalUrl.isEmpty()) {
 				String subId = System.getProperty(ENV_SUBSCRIPTION_ID);
 				postEventUrl = internalUrl
-						+ "/tcta/dataserver/transactions/intercom/batch?tscSubscriptionId="
+						+ "/tas/dataserver/intercom/transactions?sbsc="
 						+ subId;
 			} else {
 				postEventUrl = tasBaseUrl
-						+ "/tcta/dataserver/transactions/batch";
+						+ "/tas/dataserver/transactions";
 
 			}
 			httpConn = buildpostHttpUrlConnectionWithJson(postEventUrl, body,
@@ -215,7 +215,7 @@ public class TasClient {
 			if (authResponse.isHasError()) {
 				return authResponse;
 			} else{
-				String schemaUrl = tasBaseUrl + "/tcta/dataserver/schema";
+				String schemaUrl = tasBaseUrl + "/tas/dataserver/schema";
 				HttpURLConnection httpConn = buildpostHttpUrlConnectionWithJson(
 						schemaUrl, body,
 						getsettingMap("application/json", "application/json"));

@@ -64,7 +64,7 @@ public class TasClient {
 			if (internalUrl != null && !internalUrl.isEmpty()) {
 				String subId = System.getProperty(ENV_SUBSCRIPTION_ID);
 				postEventUrl = internalUrl
-						+ "/tas/dataserver/intercom/transactions?sbsc="
+						+ "/tas/dataserver/intercom/transactions?tscSubscriptionId="
 						+ subId;
 			} else {
 				postEventUrl = tasBaseUrl

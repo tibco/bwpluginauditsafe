@@ -67,7 +67,7 @@ public class TestConnectionButtonHelper {
 
 				String password = tasConnectionSection.getPassword(connection);
 
-				testConnection.setText(Messages.CONNECT_BUTTON_TEXT);
+
 
 				if (serverUrl == null || serverUrl.isEmpty()) {
 					testLabel.setForeground(red);
@@ -82,6 +82,7 @@ public class TestConnectionButtonHelper {
 					testLabel.setText("Password is required");
 					return;
 				}
+				testConnection.setText(Messages.CONNECT_BUTTON_TEXT);
 				testLabel.setForeground(black);
 				testLabel.setText("Testing...");
 

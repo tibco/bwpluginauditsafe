@@ -78,7 +78,7 @@
    <extension
          point="com.tibco.bw.design.BWContextHelp">
       <plugin
-            defaultURL="https://docs.tibco.com/pub/activematrix-businessworks-plugin-for-tas/6.0.0-february-2014/doc/html/index.html"
+            defaultURL="https://docs.tibco.com/go/bwpluginauditsafe/6.0.0/doc/html"
             id="bw.auditsafe.product"
             name="BusinessWorks TAS Plugin">
       </plugin>

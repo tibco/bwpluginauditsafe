@@ -22,7 +22,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 public class TasClient {
 	public static final String ENV_INTERNAL_URL = "TIBCO_INTERNAL_INTERCOM_URL";
 	public static final String ENV_SUBSCRIPTION_ID = "TIBCO_INTERNAL_TCI_SUBSCRIPTION_ID";
-	public static final String PROD_TIBCO_CLOUD = "cloud.tibco.com";
+	public static final String PROD_TIBCO_CLOUD = "auditsafe.cloud.tibco.com";
 
 	protected static UserAwareCookieManager cookieManager;
 

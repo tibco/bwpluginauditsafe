@@ -86,7 +86,7 @@ public class TestConnectionButtonHelper {
 				testLabel.setForeground(black);
 				testLabel.setText("Testing...");
 
-				TasResponse taResponse = TasClient.getToken(username, password);
+				TasResponse taResponse = TasClient.getToken(serverUrl, username, password);
 				HashMap<String,String> accountInfo = null;
 				if (!taResponse.isHasError()) {
 					try {

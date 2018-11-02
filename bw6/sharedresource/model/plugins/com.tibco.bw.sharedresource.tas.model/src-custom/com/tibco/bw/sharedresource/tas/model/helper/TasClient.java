@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 public class TasClient {
 	public static final String ENV_INTERNAL_URL = "TIBCO_INTERNAL_INTERCOM_URL";
 	public static final String ENV_SUBSCRIPTION_ID = "TIBCO_INTERNAL_TCI_SUBSCRIPTION_ID";
+	public static final String PROD_TIBCO_CLOUD = "cloud.tibco.com";
 
 	protected static UserAwareCookieManager cookieManager;
 
@@ -105,7 +106,7 @@ public class TasClient {
 			String password, String accountId) {
 		TasResponse tr = new TasResponse();
 		try {
-			TasResponse taResponse = getToken(username, password);
+			TasResponse taResponse = getToken(tasBaseUrl, username, password);
 			if(taResponse.isHasError()){
 				return taResponse;
 			}
@@ -136,9 +137,12 @@ public class TasClient {
 		return tr;
 	}
 
-	public static TasResponse getToken(String username, String password) {
+	public static TasResponse getToken(String tasUrl, String username, String password) {
 		TasResponse response = new TasResponse();
 		String taUrl = "https://sso-awsqa.tibco.com/as/token.oauth2";
+		if(tasUrl.contains(PROD_TIBCO_CLOUD)){
+			taUrl = "https://sso-ext.tibco.com/as/token.oauth2";
+		}
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("username", username);
 		params.put("password", password);

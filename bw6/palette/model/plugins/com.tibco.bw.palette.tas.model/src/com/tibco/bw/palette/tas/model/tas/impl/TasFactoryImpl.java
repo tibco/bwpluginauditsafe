@@ -58,6 +58,7 @@ public class TasFactoryImpl extends EFactoryImpl implements TasFactory {
 		switch (eClass.getClassifierID()) {
 			case TasPackage.POST_AUDIT_EVENT: return createPostAuditEvent();
 			case TasPackage.POST_BATCH_AUDIT_EVENTS: return createPostBatchAuditEvents();
+			case TasPackage.QUERY_AUDIT_EVENT: return createQueryAuditEvent();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -81,6 +82,16 @@ public class TasFactoryImpl extends EFactoryImpl implements TasFactory {
 	public PostBatchAuditEvents createPostBatchAuditEvents() {
 		PostBatchAuditEventsImpl postBatchAuditEvents = new PostBatchAuditEventsImpl();
 		return postBatchAuditEvents;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public QueryAuditEvent createQueryAuditEvent() {
+		QueryAuditEventImpl queryAuditEvent = new QueryAuditEventImpl();
+		return queryAuditEvent;
 	}
 
 	/**

@@ -12,6 +12,21 @@ public interface TasConstants {
 
 	String TAG_NAME = "Event";
 
+	String TAG_CRITERIA = "criteria";
+	String CRITERIA_BUSINESS_PROCESS = "biz_proc";
+	String CRITERIA_TRANS_ID = "transaction_id";
+	String CRITERIA_EVENT_SOURCE = "event_source";
+	String CRITERIA_EVENT_DEST = "event_destination";
+	String CRITERIA_EVENT_STATUS = "event_status";
+	String CRITERIA_AUDIT_EVENT = "audit_event";
+	String CRITERIA_BEGIN = "begin_timestamp";
+	String CRITERIA_END = "end_timestamp";
+
+	String TAG_DATA = "data";
+	String TAS_EVENT_ID = "tas_event_id";
+	String BLOCKCHAIN_TRANS_ID = "bc_trans_id";
+	String EVENT_TIMESTAMP = "event_timestamp";
+
 	public static final String START_STAUTS = "status";
 	public static final String PROJECT_NAME = "projectName";
 	public static final String TOKEN = "token";

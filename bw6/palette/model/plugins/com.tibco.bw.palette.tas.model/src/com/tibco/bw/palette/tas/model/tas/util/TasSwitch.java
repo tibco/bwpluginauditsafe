@@ -103,6 +103,13 @@ public class TasSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TasPackage.QUERY_AUDIT_EVENT: {
+				QueryAuditEvent queryAuditEvent = (QueryAuditEvent)theEObject;
+				T result = caseQueryAuditEvent(queryAuditEvent);
+				if (result == null) result = caseTasAbstractObject(queryAuditEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -149,6 +156,21 @@ public class TasSwitch<T> {
 	 * @generated
 	 */
 	public T casePostBatchAuditEvents(PostBatchAuditEvents object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Query Audit Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Query Audit Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseQueryAuditEvent(QueryAuditEvent object) {
 		return null;
 	}
 

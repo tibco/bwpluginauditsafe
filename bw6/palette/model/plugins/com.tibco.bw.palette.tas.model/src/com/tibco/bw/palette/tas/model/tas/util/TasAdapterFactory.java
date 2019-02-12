@@ -80,8 +80,8 @@ public class TasAdapterFactory extends AdapterFactoryImpl {
 				return createPostBatchAuditEventsAdapter();
 			}
 			@Override
-			public Adapter caseQueryAuditEvent(QueryAuditEvent object) {
-				return createQueryAuditEventAdapter();
+			public Adapter caseGetAuditEvent(GetAuditEvent object) {
+				return createGetAuditEventAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -146,16 +146,16 @@ public class TasAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link com.tibco.bw.palette.tas.model.tas.QueryAuditEvent <em>Query Audit Event</em>}'.
+	 * Creates a new adapter for an object of class '{@link com.tibco.bw.palette.tas.model.tas.GetAuditEvent <em>Get Audit Event</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see com.tibco.bw.palette.tas.model.tas.QueryAuditEvent
+	 * @see com.tibco.bw.palette.tas.model.tas.GetAuditEvent
 	 * @generated
 	 */
-	public Adapter createQueryAuditEventAdapter() {
+	public Adapter createGetAuditEventAdapter() {
 		return null;
 	}
 

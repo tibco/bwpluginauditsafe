@@ -2,7 +2,7 @@
  */
 package com.tibco.bw.palette.tas.model.tas.impl;
 
-import com.tibco.bw.palette.tas.model.tas.QueryAuditEvent;
+import com.tibco.bw.palette.tas.model.tas.GetAuditEvent;
 import com.tibco.bw.palette.tas.model.tas.TasPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -13,39 +13,39 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Query Audit Event</b></em>'.
+ * An implementation of the model object '<em><b>Get Audit Event</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.tibco.bw.palette.tas.model.tas.impl.QueryAuditEventImpl#getSort_column <em>Sort column</em>}</li>
- *   <li>{@link com.tibco.bw.palette.tas.model.tas.impl.QueryAuditEventImpl#isDescOrder <em>Desc Order</em>}</li>
- *   <li>{@link com.tibco.bw.palette.tas.model.tas.impl.QueryAuditEventImpl#isExact_search <em>Exact search</em>}</li>
+ *   <li>{@link com.tibco.bw.palette.tas.model.tas.impl.GetAuditEventImpl#getSortColumn <em>Sort Column</em>}</li>
+ *   <li>{@link com.tibco.bw.palette.tas.model.tas.impl.GetAuditEventImpl#isDescOrder <em>Desc Order</em>}</li>
+ *   <li>{@link com.tibco.bw.palette.tas.model.tas.impl.GetAuditEventImpl#isExactMatch <em>Exact Match</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class QueryAuditEventImpl extends TasAbstractObjectImpl implements QueryAuditEvent {
+public class GetAuditEventImpl extends TasAbstractObjectImpl implements GetAuditEvent {
 	/**
-	 * The default value of the '{@link #getSort_column() <em>Sort column</em>}' attribute.
+	 * The default value of the '{@link #getSortColumn() <em>Sort Column</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSort_column()
+	 * @see #getSortColumn()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String SORT_COLUMN_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getSort_column() <em>Sort column</em>}' attribute.
+	 * The cached value of the '{@link #getSortColumn() <em>Sort Column</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getSort_column()
+	 * @see #getSortColumn()
 	 * @generated
 	 * @ordered
 	 */
-	protected String sort_column = SORT_COLUMN_EDEFAULT;
+	protected String sortColumn = SORT_COLUMN_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #isDescOrder() <em>Desc Order</em>}' attribute.
@@ -68,31 +68,31 @@ public class QueryAuditEventImpl extends TasAbstractObjectImpl implements QueryA
 	protected boolean descOrder = DESC_ORDER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isExact_search() <em>Exact search</em>}' attribute.
+	 * The default value of the '{@link #isExactMatch() <em>Exact Match</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isExact_search()
+	 * @see #isExactMatch()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean EXACT_SEARCH_EDEFAULT = false;
+	protected static final boolean EXACT_MATCH_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isExact_search() <em>Exact search</em>}' attribute.
+	 * The cached value of the '{@link #isExactMatch() <em>Exact Match</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isExact_search()
+	 * @see #isExactMatch()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean exact_search = EXACT_SEARCH_EDEFAULT;
+	protected boolean exactMatch = EXACT_MATCH_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected QueryAuditEventImpl() {
+	protected GetAuditEventImpl() {
 		super();
 	}
 
@@ -103,7 +103,7 @@ public class QueryAuditEventImpl extends TasAbstractObjectImpl implements QueryA
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return TasPackage.Literals.QUERY_AUDIT_EVENT;
+		return TasPackage.Literals.GET_AUDIT_EVENT;
 	}
 
 	/**
@@ -111,8 +111,8 @@ public class QueryAuditEventImpl extends TasAbstractObjectImpl implements QueryA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getSort_column() {
-		return sort_column;
+	public String getSortColumn() {
+		return sortColumn;
 	}
 
 	/**
@@ -120,11 +120,11 @@ public class QueryAuditEventImpl extends TasAbstractObjectImpl implements QueryA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSort_column(String newSort_column) {
-		String oldSort_column = sort_column;
-		sort_column = newSort_column;
+	public void setSortColumn(String newSortColumn) {
+		String oldSortColumn = sortColumn;
+		sortColumn = newSortColumn;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.QUERY_AUDIT_EVENT__SORT_COLUMN, oldSort_column, sort_column));
+			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.GET_AUDIT_EVENT__SORT_COLUMN, oldSortColumn, sortColumn));
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class QueryAuditEventImpl extends TasAbstractObjectImpl implements QueryA
 		boolean oldDescOrder = descOrder;
 		descOrder = newDescOrder;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.QUERY_AUDIT_EVENT__DESC_ORDER, oldDescOrder, descOrder));
+			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.GET_AUDIT_EVENT__DESC_ORDER, oldDescOrder, descOrder));
 	}
 
 	/**
@@ -153,8 +153,8 @@ public class QueryAuditEventImpl extends TasAbstractObjectImpl implements QueryA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isExact_search() {
-		return exact_search;
+	public boolean isExactMatch() {
+		return exactMatch;
 	}
 
 	/**
@@ -162,11 +162,11 @@ public class QueryAuditEventImpl extends TasAbstractObjectImpl implements QueryA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExact_search(boolean newExact_search) {
-		boolean oldExact_search = exact_search;
-		exact_search = newExact_search;
+	public void setExactMatch(boolean newExactMatch) {
+		boolean oldExactMatch = exactMatch;
+		exactMatch = newExactMatch;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.QUERY_AUDIT_EVENT__EXACT_SEARCH, oldExact_search, exact_search));
+			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.GET_AUDIT_EVENT__EXACT_MATCH, oldExactMatch, exactMatch));
 	}
 
 	/**
@@ -177,12 +177,12 @@ public class QueryAuditEventImpl extends TasAbstractObjectImpl implements QueryA
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case TasPackage.QUERY_AUDIT_EVENT__SORT_COLUMN:
-				return getSort_column();
-			case TasPackage.QUERY_AUDIT_EVENT__DESC_ORDER:
+			case TasPackage.GET_AUDIT_EVENT__SORT_COLUMN:
+				return getSortColumn();
+			case TasPackage.GET_AUDIT_EVENT__DESC_ORDER:
 				return isDescOrder();
-			case TasPackage.QUERY_AUDIT_EVENT__EXACT_SEARCH:
-				return isExact_search();
+			case TasPackage.GET_AUDIT_EVENT__EXACT_MATCH:
+				return isExactMatch();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -195,14 +195,14 @@ public class QueryAuditEventImpl extends TasAbstractObjectImpl implements QueryA
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case TasPackage.QUERY_AUDIT_EVENT__SORT_COLUMN:
-				setSort_column((String)newValue);
+			case TasPackage.GET_AUDIT_EVENT__SORT_COLUMN:
+				setSortColumn((String)newValue);
 				return;
-			case TasPackage.QUERY_AUDIT_EVENT__DESC_ORDER:
+			case TasPackage.GET_AUDIT_EVENT__DESC_ORDER:
 				setDescOrder((Boolean)newValue);
 				return;
-			case TasPackage.QUERY_AUDIT_EVENT__EXACT_SEARCH:
-				setExact_search((Boolean)newValue);
+			case TasPackage.GET_AUDIT_EVENT__EXACT_MATCH:
+				setExactMatch((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -216,14 +216,14 @@ public class QueryAuditEventImpl extends TasAbstractObjectImpl implements QueryA
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case TasPackage.QUERY_AUDIT_EVENT__SORT_COLUMN:
-				setSort_column(SORT_COLUMN_EDEFAULT);
+			case TasPackage.GET_AUDIT_EVENT__SORT_COLUMN:
+				setSortColumn(SORT_COLUMN_EDEFAULT);
 				return;
-			case TasPackage.QUERY_AUDIT_EVENT__DESC_ORDER:
+			case TasPackage.GET_AUDIT_EVENT__DESC_ORDER:
 				setDescOrder(DESC_ORDER_EDEFAULT);
 				return;
-			case TasPackage.QUERY_AUDIT_EVENT__EXACT_SEARCH:
-				setExact_search(EXACT_SEARCH_EDEFAULT);
+			case TasPackage.GET_AUDIT_EVENT__EXACT_MATCH:
+				setExactMatch(EXACT_MATCH_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -237,12 +237,12 @@ public class QueryAuditEventImpl extends TasAbstractObjectImpl implements QueryA
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case TasPackage.QUERY_AUDIT_EVENT__SORT_COLUMN:
-				return SORT_COLUMN_EDEFAULT == null ? sort_column != null : !SORT_COLUMN_EDEFAULT.equals(sort_column);
-			case TasPackage.QUERY_AUDIT_EVENT__DESC_ORDER:
+			case TasPackage.GET_AUDIT_EVENT__SORT_COLUMN:
+				return SORT_COLUMN_EDEFAULT == null ? sortColumn != null : !SORT_COLUMN_EDEFAULT.equals(sortColumn);
+			case TasPackage.GET_AUDIT_EVENT__DESC_ORDER:
 				return descOrder != DESC_ORDER_EDEFAULT;
-			case TasPackage.QUERY_AUDIT_EVENT__EXACT_SEARCH:
-				return exact_search != EXACT_SEARCH_EDEFAULT;
+			case TasPackage.GET_AUDIT_EVENT__EXACT_MATCH:
+				return exactMatch != EXACT_MATCH_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -257,14 +257,14 @@ public class QueryAuditEventImpl extends TasAbstractObjectImpl implements QueryA
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (sort_column: ");
-		result.append(sort_column);
+		result.append(" (sortColumn: ");
+		result.append(sortColumn);
 		result.append(", descOrder: ");
 		result.append(descOrder);
-		result.append(", exact_search: ");
-		result.append(exact_search);
+		result.append(", exactMatch: ");
+		result.append(exactMatch);
 		result.append(')');
 		return result.toString();
 	}
 
-} //QueryAuditEventImpl
+} //GetAuditEventImpl

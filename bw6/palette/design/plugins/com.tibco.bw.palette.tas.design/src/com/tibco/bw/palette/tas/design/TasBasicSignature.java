@@ -20,6 +20,7 @@ import com.tibco.bw.design.api.BWActivitySignature;
 import com.tibco.bw.design.api.BWActivitySignatureUnknown;
 import com.tibco.bw.design.util.XSDUtility;
 import com.tibco.bw.model.activityconfig.Configuration;
+import com.tibco.bw.palette.tas.model.tas.TasConstants;
 import com.tibco.bw.sharedresource.tas.model.helper.JsonReader;
 import com.tibco.bw.sharedresource.tas.model.helper.TasClient;
 import com.tibco.bw.sharedresource.tas.model.tas.TasConnection;

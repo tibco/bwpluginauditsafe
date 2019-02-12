@@ -1,4 +1,4 @@
-package com.tibco.bw.palette.tas.design.queryauditevent;
+package com.tibco.bw.palette.tas.design.getauditevent;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xsd.XSDCompositor;
@@ -10,16 +10,14 @@ import org.eclipse.xsd.XSDSchema;
 import com.tibco.bw.design.api.BWActivitySignatureUnknown;
 import com.tibco.bw.design.util.XSDUtility;
 import com.tibco.bw.model.activityconfig.Configuration;
-import com.tibco.bw.palette.tas.design.SignatureHelper;
 import com.tibco.bw.palette.tas.design.TasBasicSignature;
-import com.tibco.bw.palette.tas.design.TasConstants;
-import com.tibco.bw.palette.tas.model.tas.QueryAuditEvent;
-import com.tibco.bw.sharedresource.tas.model.tas.TasConnection;
+import com.tibco.bw.palette.tas.model.tas.GetAuditEvent;
+import com.tibco.bw.palette.tas.model.tas.TasConstants;
 
-public class QueryAuditEventSignature extends TasBasicSignature {
-	private static final String SCHEMA_INPUT_ROOT_NAME = "queryAuditEventInput";
+public class GetAuditEventSignature extends TasBasicSignature {
+	private static final String SCHEMA_INPUT_ROOT_NAME = "GetAuditEventInput";
 
-	private static final String SCHEMA_OUTPUT_ROOT_NAME = "queryAuditEventOutput";
+	private static final String SCHEMA_OUTPUT_ROOT_NAME = "GetAuditEventOutput";
 
 	@Override
 	public boolean hasInput() {
@@ -51,11 +49,11 @@ public class QueryAuditEventSignature extends TasBasicSignature {
 	public XSDElementDeclaration getInputType(Configuration config)
 			throws BWActivitySignatureUnknown {
 
-		QueryAuditEvent queryAuditEvent = (QueryAuditEvent) getDefaultEMFConfigObject(config);
+		GetAuditEvent GetAuditEvent = (GetAuditEvent) getDefaultEMFConfigObject(config);
 		String namespace = createNamespace(new Object[] { BASIC_NS,
 				SCHEMA_INPUT_ROOT_NAME});
 		return buildInputType(namespace,
-				queryAuditEvent.getTasConnection(), queryAuditEvent);
+				GetAuditEvent.getTasConnection(), GetAuditEvent);
 
 	}
 
@@ -68,12 +66,12 @@ public class QueryAuditEventSignature extends TasBasicSignature {
 	public XSDElementDeclaration getOutputType(Configuration config)
 			throws BWActivitySignatureUnknown {
 
-		QueryAuditEvent queryAuditEvent = (QueryAuditEvent) getDefaultEMFConfigObject(config);
+		GetAuditEvent GetAuditEvent = (GetAuditEvent) getDefaultEMFConfigObject(config);
 
 		String namespace = createNamespace(new Object[] { BASIC_NS,
 				SCHEMA_OUTPUT_ROOT_NAME});
 		return buildOutputType(namespace,
-				queryAuditEvent.getTasConnection(), queryAuditEvent);
+				GetAuditEvent.getTasConnection(), GetAuditEvent);
 
 
 	}
@@ -89,9 +87,10 @@ public class QueryAuditEventSignature extends TasBasicSignature {
 			throw new RuntimeException("Create activity Output schema failure !");
 		}
 
-		XSDUtility.addSimpleTypeElement(rootOutput, "totalResults", "string", 1, 1);
-		XSDModelGroup data = XSDUtility.addComplexTypeElement(rootOutput, TasConstants.TAG_NAME,
-				TasConstants.TAG_NAME, 1, -1, XSDCompositor.SEQUENCE_LITERAL);
+		XSDUtility.addSimpleTypeElement(rootOutput, TasConstants.TAG_TOAL_NUMBER, "string", 1, 1);
+		XSDUtility.addSimpleTypeElement(rootOutput, TasConstants.TAG_ERROR_MESSAGE, "string", 1, 1);
+		XSDModelGroup data = XSDUtility.addComplexTypeElement(rootOutput, TasConstants.TAG_DATA,
+				TasConstants.TAG_DATA, 1, -1, XSDCompositor.SEQUENCE_LITERAL);
 
 		XSDUtility.addSimpleTypeElement(data, TasConstants.TAS_EVENT_ID, "string", 1, 1);
 		XSDUtility.addSimpleTypeElement(data, TasConstants.CRITERIA_EVENT_SOURCE, "string", 1, 1);
@@ -102,6 +101,7 @@ public class QueryAuditEventSignature extends TasBasicSignature {
 		XSDUtility.addSimpleTypeElement(data, TasConstants.CRITERIA_EVENT_STATUS, "string", 1, 1);
 		XSDUtility.addSimpleTypeElement(data, TasConstants.CRITERIA_AUDIT_EVENT, "string", 1, 1);
 		XSDUtility.addSimpleTypeElement(data, TasConstants.BLOCKCHAIN_TRANS_ID, "string", 1, 1);
+		XSDUtility.addSimpleTypeElement(data, TasConstants.EVENT_DESCRIPTION, "string", 1, 1);
 
 		outputSchema = compileSchema(outputSchema);
 		outputType = outputSchema.resolveElementDeclaration("ActivityOutput");
@@ -125,7 +125,7 @@ public class QueryAuditEventSignature extends TasBasicSignature {
 		}
 
 		XSDModelGroup criteria = XSDUtility.addComplexTypeElement(rootInput, TasConstants.TAG_CRITERIA,
-				TasConstants.TAG_CRITERIA, 1, 1, XSDCompositor.SEQUENCE_LITERAL);
+				TasConstants.TAG_CRITERIA, 0, 1, XSDCompositor.SEQUENCE_LITERAL);
 
 		XSDUtility.addSimpleTypeElement(criteria, TasConstants.CRITERIA_BUSINESS_PROCESS, "string", 0, -1);
 		XSDUtility.addSimpleTypeElement(criteria, TasConstants.CRITERIA_TRANS_ID, "string", 0, -1);
@@ -134,7 +134,7 @@ public class QueryAuditEventSignature extends TasBasicSignature {
 		XSDUtility.addSimpleTypeElement(criteria, TasConstants.CRITERIA_EVENT_STATUS, "string", 0, -1);
 		XSDUtility.addSimpleTypeElement(criteria, TasConstants.CRITERIA_AUDIT_EVENT, "string", 0, -1);
 		XSDUtility.addSimpleTypeElement(criteria, TasConstants.CRITERIA_BEGIN, "string", 0, 1);
-		XSDUtility.addSimpleTypeElement(criteria, TasConstants.CRITERIA_BEGIN, "string", 0, 1);
+		XSDUtility.addSimpleTypeElement(criteria, TasConstants.CRITERIA_END, "string", 0, 1);
 
 		inputSchema = compileSchema(inputSchema);
 		inputType = inputSchema.resolveElementDeclaration("ActivityInput");

@@ -1,15 +1,15 @@
-package com.tibco.bw.palette.tas.design.queryauditevent;
+package com.tibco.bw.palette.tas.design.getauditevent;
 
 import org.eclipse.emf.ecore.EObject;
 
 import com.tibco.bw.design.api.BWAbstractModelHelper;
 import com.tibco.bw.design.util.ModelHelper;
 import com.tibco.bw.design.util.ProcessProperty;
-import com.tibco.bw.palette.tas.design.TasConstants;
-import com.tibco.bw.palette.tas.model.tas.QueryAuditEvent;
+import com.tibco.bw.palette.tas.model.tas.GetAuditEvent;
+import com.tibco.bw.palette.tas.model.tas.TasConstants;
 import com.tibco.bw.palette.tas.model.tas.TasFactory;
 
-public class QueryAuditEventModelHelper extends BWAbstractModelHelper {
+public class GetAuditEventModelHelper extends BWAbstractModelHelper {
 
 	/**
 	* <!-- begin-custom-doc -->
@@ -19,7 +19,7 @@ public class QueryAuditEventModelHelper extends BWAbstractModelHelper {
 	*/
     @Override
     public EObject createInstance() {
-    	QueryAuditEvent activity = TasFactory.eINSTANCE.createQueryAuditEvent();
+    	GetAuditEvent activity = TasFactory.eINSTANCE.createGetAuditEvent();
         // begin-custom-code
         // end-custom-code
         return activity;
@@ -31,7 +31,7 @@ public class QueryAuditEventModelHelper extends BWAbstractModelHelper {
 		boolean found = false;
 		for (ProcessProperty property : ModelHelper.INSTANCE.getProperties(container)) {
 			if (ModelHelper.INSTANCE.isEqual(property.getType(), TasConstants.SHAREDRESOURCE_QNAME)) {
-				((QueryAuditEvent) model).setTasConnection(property.getName());
+				((GetAuditEvent) model).setTasConnection(property.getName());
 				found = true;
 				break;
 			}
@@ -40,7 +40,7 @@ public class QueryAuditEventModelHelper extends BWAbstractModelHelper {
 		if (!found) {
 			ProcessProperty property = ModelHelper.INSTANCE.createProperty(container, "tasConnectionProperty", TasConstants.SHAREDRESOURCE_QNAME, "");
 			if (property != null) {
-				((QueryAuditEvent) model).setTasConnection(property.getName());
+				((GetAuditEvent) model).setTasConnection(property.getName());
 			}
 		}
 

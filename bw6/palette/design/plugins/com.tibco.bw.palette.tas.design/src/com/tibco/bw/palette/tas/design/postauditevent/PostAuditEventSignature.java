@@ -1,6 +1,5 @@
 package com.tibco.bw.palette.tas.design.postauditevent;
 
-import java.io.IOException;
 import java.util.HashSet;
 import java.util.Iterator;
 
@@ -11,16 +10,14 @@ import org.eclipse.xsd.XSDForm;
 import org.eclipse.xsd.XSDModelGroup;
 import org.eclipse.xsd.XSDSchema;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.tibco.bw.design.api.BWActivitySignatureUnknown;
 import com.tibco.bw.design.util.XSDUtility;
 import com.tibco.bw.model.activityconfig.Configuration;
 import com.tibco.bw.palette.tas.design.SignatureHelper;
 import com.tibco.bw.palette.tas.design.TasBasicSignature;
-import com.tibco.bw.palette.tas.design.TasConstants;
 import com.tibco.bw.palette.tas.model.tas.PostAuditEvent;
+import com.tibco.bw.palette.tas.model.tas.TasConstants;
 import com.tibco.bw.sharedresource.tas.model.helper.JsonReader;
 import com.tibco.bw.sharedresource.tas.model.tas.TasConnection;
 

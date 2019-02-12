@@ -5,8 +5,8 @@ import org.eclipse.emf.ecore.EObject;
 import com.tibco.bw.design.api.BWAbstractModelHelper;
 import com.tibco.bw.design.util.ModelHelper;
 import com.tibco.bw.design.util.ProcessProperty;
-import com.tibco.bw.palette.tas.design.TasConstants;
 import com.tibco.bw.palette.tas.model.tas.PostAuditEvent;
+import com.tibco.bw.palette.tas.model.tas.TasConstants;
 import com.tibco.bw.palette.tas.model.tas.TasFactory;
 
 public class PostAuditEventModelHelper extends BWAbstractModelHelper {

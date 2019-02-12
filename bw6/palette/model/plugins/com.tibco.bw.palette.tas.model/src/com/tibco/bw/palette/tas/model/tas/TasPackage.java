@@ -140,14 +140,14 @@ public interface TasPackage extends EPackage {
 
 
 	/**
-	 * The meta object id for the '{@link com.tibco.bw.palette.tas.model.tas.impl.QueryAuditEventImpl <em>Query Audit Event</em>}' class.
+	 * The meta object id for the '{@link com.tibco.bw.palette.tas.model.tas.impl.GetAuditEventImpl <em>Get Audit Event</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see com.tibco.bw.palette.tas.model.tas.impl.QueryAuditEventImpl
-	 * @see com.tibco.bw.palette.tas.model.tas.impl.TasPackageImpl#getQueryAuditEvent()
+	 * @see com.tibco.bw.palette.tas.model.tas.impl.GetAuditEventImpl
+	 * @see com.tibco.bw.palette.tas.model.tas.impl.TasPackageImpl#getGetAuditEvent()
 	 * @generated
 	 */
-	int QUERY_AUDIT_EVENT = 3;
+	int GET_AUDIT_EVENT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Tas Connection</b></em>' attribute.
@@ -156,16 +156,16 @@ public interface TasPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_AUDIT_EVENT__TAS_CONNECTION = TAS_ABSTRACT_OBJECT__TAS_CONNECTION;
+	int GET_AUDIT_EVENT__TAS_CONNECTION = TAS_ABSTRACT_OBJECT__TAS_CONNECTION;
 
 	/**
-	 * The feature id for the '<em><b>Sort column</b></em>' attribute.
+	 * The feature id for the '<em><b>Sort Column</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_AUDIT_EVENT__SORT_COLUMN = TAS_ABSTRACT_OBJECT_FEATURE_COUNT + 0;
+	int GET_AUDIT_EVENT__SORT_COLUMN = TAS_ABSTRACT_OBJECT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Desc Order</b></em>' attribute.
@@ -174,26 +174,25 @@ public interface TasPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_AUDIT_EVENT__DESC_ORDER = TAS_ABSTRACT_OBJECT_FEATURE_COUNT + 1;
+	int GET_AUDIT_EVENT__DESC_ORDER = TAS_ABSTRACT_OBJECT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Exact search</b></em>' attribute.
+	 * The feature id for the '<em><b>Exact Match</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_AUDIT_EVENT__EXACT_SEARCH = TAS_ABSTRACT_OBJECT_FEATURE_COUNT + 2;
+	int GET_AUDIT_EVENT__EXACT_MATCH = TAS_ABSTRACT_OBJECT_FEATURE_COUNT + 2;
 
 	/**
-	 * The number of structural features of the '<em>Query Audit Event</em>' class.
+	 * The number of structural features of the '<em>Get Audit Event</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int QUERY_AUDIT_EVENT_FEATURE_COUNT = TAS_ABSTRACT_OBJECT_FEATURE_COUNT + 3;
-
+	int GET_AUDIT_EVENT_FEATURE_COUNT = TAS_ABSTRACT_OBJECT_FEATURE_COUNT + 3;
 
 	/**
 	 * Returns the meta object for class '{@link com.tibco.bw.palette.tas.model.tas.TasAbstractObject <em>Abstract Object</em>}'.
@@ -237,47 +236,47 @@ public interface TasPackage extends EPackage {
 	EClass getPostBatchAuditEvents();
 
 	/**
-	 * Returns the meta object for class '{@link com.tibco.bw.palette.tas.model.tas.QueryAuditEvent <em>Query Audit Event</em>}'.
+	 * Returns the meta object for class '{@link com.tibco.bw.palette.tas.model.tas.GetAuditEvent <em>Get Audit Event</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Query Audit Event</em>'.
-	 * @see com.tibco.bw.palette.tas.model.tas.QueryAuditEvent
+	 * @return the meta object for class '<em>Get Audit Event</em>'.
+	 * @see com.tibco.bw.palette.tas.model.tas.GetAuditEvent
 	 * @generated
 	 */
-	EClass getQueryAuditEvent();
+	EClass getGetAuditEvent();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.tibco.bw.palette.tas.model.tas.QueryAuditEvent#getSort_column <em>Sort column</em>}'.
+	 * Returns the meta object for the attribute '{@link com.tibco.bw.palette.tas.model.tas.GetAuditEvent#getSortColumn <em>Sort Column</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Sort column</em>'.
-	 * @see com.tibco.bw.palette.tas.model.tas.QueryAuditEvent#getSort_column()
-	 * @see #getQueryAuditEvent()
+	 * @return the meta object for the attribute '<em>Sort Column</em>'.
+	 * @see com.tibco.bw.palette.tas.model.tas.GetAuditEvent#getSortColumn()
+	 * @see #getGetAuditEvent()
 	 * @generated
 	 */
-	EAttribute getQueryAuditEvent_Sort_column();
+	EAttribute getGetAuditEvent_SortColumn();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.tibco.bw.palette.tas.model.tas.QueryAuditEvent#isDescOrder <em>Desc Order</em>}'.
+	 * Returns the meta object for the attribute '{@link com.tibco.bw.palette.tas.model.tas.GetAuditEvent#isDescOrder <em>Desc Order</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Desc Order</em>'.
-	 * @see com.tibco.bw.palette.tas.model.tas.QueryAuditEvent#isDescOrder()
-	 * @see #getQueryAuditEvent()
+	 * @see com.tibco.bw.palette.tas.model.tas.GetAuditEvent#isDescOrder()
+	 * @see #getGetAuditEvent()
 	 * @generated
 	 */
-	EAttribute getQueryAuditEvent_DescOrder();
+	EAttribute getGetAuditEvent_DescOrder();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.tibco.bw.palette.tas.model.tas.QueryAuditEvent#isExact_search <em>Exact search</em>}'.
+	 * Returns the meta object for the attribute '{@link com.tibco.bw.palette.tas.model.tas.GetAuditEvent#isExactMatch <em>Exact Match</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Exact search</em>'.
-	 * @see com.tibco.bw.palette.tas.model.tas.QueryAuditEvent#isExact_search()
-	 * @see #getQueryAuditEvent()
+	 * @return the meta object for the attribute '<em>Exact Match</em>'.
+	 * @see com.tibco.bw.palette.tas.model.tas.GetAuditEvent#isExactMatch()
+	 * @see #getGetAuditEvent()
 	 * @generated
 	 */
-	EAttribute getQueryAuditEvent_Exact_search();
+	EAttribute getGetAuditEvent_ExactMatch();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -340,22 +339,22 @@ public interface TasPackage extends EPackage {
 		EClass POST_BATCH_AUDIT_EVENTS = eINSTANCE.getPostBatchAuditEvents();
 
 		/**
-		 * The meta object literal for the '{@link com.tibco.bw.palette.tas.model.tas.impl.QueryAuditEventImpl <em>Query Audit Event</em>}' class.
+		 * The meta object literal for the '{@link com.tibco.bw.palette.tas.model.tas.impl.GetAuditEventImpl <em>Get Audit Event</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see com.tibco.bw.palette.tas.model.tas.impl.QueryAuditEventImpl
-		 * @see com.tibco.bw.palette.tas.model.tas.impl.TasPackageImpl#getQueryAuditEvent()
+		 * @see com.tibco.bw.palette.tas.model.tas.impl.GetAuditEventImpl
+		 * @see com.tibco.bw.palette.tas.model.tas.impl.TasPackageImpl#getGetAuditEvent()
 		 * @generated
 		 */
-		EClass QUERY_AUDIT_EVENT = eINSTANCE.getQueryAuditEvent();
+		EClass GET_AUDIT_EVENT = eINSTANCE.getGetAuditEvent();
 
 		/**
-		 * The meta object literal for the '<em><b>Sort column</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Sort Column</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute QUERY_AUDIT_EVENT__SORT_COLUMN = eINSTANCE.getQueryAuditEvent_Sort_column();
+		EAttribute GET_AUDIT_EVENT__SORT_COLUMN = eINSTANCE.getGetAuditEvent_SortColumn();
 
 		/**
 		 * The meta object literal for the '<em><b>Desc Order</b></em>' attribute feature.
@@ -363,15 +362,15 @@ public interface TasPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute QUERY_AUDIT_EVENT__DESC_ORDER = eINSTANCE.getQueryAuditEvent_DescOrder();
+		EAttribute GET_AUDIT_EVENT__DESC_ORDER = eINSTANCE.getGetAuditEvent_DescOrder();
 
 		/**
-		 * The meta object literal for the '<em><b>Exact search</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Exact Match</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute QUERY_AUDIT_EVENT__EXACT_SEARCH = eINSTANCE.getQueryAuditEvent_Exact_search();
+		EAttribute GET_AUDIT_EVENT__EXACT_MATCH = eINSTANCE.getGetAuditEvent_ExactMatch();
 
 	}
 

@@ -8,9 +8,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PostAuditEvent" eSuperTypes="#//TasAbstractObject"/>
   <eClassifiers xsi:type="ecore:EClass" name="PostBatchAuditEvents" eSuperTypes="#//TasAbstractObject"/>
-  <eClassifiers xsi:type="ecore:EClass" name="QueryAuditEvent" eSuperTypes="#//TasAbstractObject">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sort_column" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GetAuditEvent" eSuperTypes="#//TasAbstractObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sortColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="descOrder" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exact_search" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exactMatch" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
 </ecore:EPackage>

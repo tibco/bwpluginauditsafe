@@ -40,13 +40,13 @@ public interface TasFactory extends EFactory {
 	PostBatchAuditEvents createPostBatchAuditEvents();
 
 	/**
-	 * Returns a new object of class '<em>Query Audit Event</em>'.
+	 * Returns a new object of class '<em>Get Audit Event</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Query Audit Event</em>'.
+	 * @return a new object of class '<em>Get Audit Event</em>'.
 	 * @generated
 	 */
-	QueryAuditEvent createQueryAuditEvent();
+	GetAuditEvent createGetAuditEvent();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -2,7 +2,10 @@ package com.tibco.bw.palette.tas.design;
 
 import javax.xml.namespace.QName;
 
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 
 import com.tibco.bw.design.field.BWFieldFactory;
 import com.tibco.bw.design.field.PropertyField;
@@ -32,9 +35,15 @@ public abstract class TasBasicGeneralSection extends
 		tasConnection = BWFieldFactory.getInstance().createPropertyField(parent, BWDesignConstants.PROPERTY,
 				SHAREDRESOURCE_QNAME);
 		tasConnection.setDefaultPropertyPrefix("tasConnection");
-		 return parent;
+		return parent;
 	}
 
+	protected void bind(Control control , EAttribute attr){
+		getBindingManager().bind(control, getInput(), attr);
+	}
 
-
+	protected Button createCheckboxAttr(Composite parent , String labelName){
+		BWFieldFactory.getInstance().createLabel(parent, labelName, false);
+		return BWFieldFactory.getInstance().createCheckBox(parent);
+	}
 }

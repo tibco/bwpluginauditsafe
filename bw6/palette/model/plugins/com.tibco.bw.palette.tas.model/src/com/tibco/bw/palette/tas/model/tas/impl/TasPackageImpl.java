@@ -2,9 +2,9 @@
  */
 package com.tibco.bw.palette.tas.model.tas.impl;
 
+import com.tibco.bw.palette.tas.model.tas.GetAuditEvent;
 import com.tibco.bw.palette.tas.model.tas.PostAuditEvent;
 import com.tibco.bw.palette.tas.model.tas.PostBatchAuditEvents;
-import com.tibco.bw.palette.tas.model.tas.QueryAuditEvent;
 import com.tibco.bw.palette.tas.model.tas.TasAbstractObject;
 import com.tibco.bw.palette.tas.model.tas.TasFactory;
 import com.tibco.bw.palette.tas.model.tas.TasPackage;
@@ -48,7 +48,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass queryAuditEventEClass = null;
+	private EClass getAuditEventEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -152,8 +152,8 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getQueryAuditEvent() {
-		return queryAuditEventEClass;
+	public EClass getGetAuditEvent() {
+		return getAuditEventEClass;
 	}
 
 	/**
@@ -161,8 +161,8 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getQueryAuditEvent_Sort_column() {
-		return (EAttribute)queryAuditEventEClass.getEStructuralFeatures().get(0);
+	public EAttribute getGetAuditEvent_SortColumn() {
+		return (EAttribute)getAuditEventEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -170,8 +170,8 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getQueryAuditEvent_DescOrder() {
-		return (EAttribute)queryAuditEventEClass.getEStructuralFeatures().get(1);
+	public EAttribute getGetAuditEvent_DescOrder() {
+		return (EAttribute)getAuditEventEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -179,8 +179,8 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getQueryAuditEvent_Exact_search() {
-		return (EAttribute)queryAuditEventEClass.getEStructuralFeatures().get(2);
+	public EAttribute getGetAuditEvent_ExactMatch() {
+		return (EAttribute)getAuditEventEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -218,10 +218,10 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 
 		postBatchAuditEventsEClass = createEClass(POST_BATCH_AUDIT_EVENTS);
 
-		queryAuditEventEClass = createEClass(QUERY_AUDIT_EVENT);
-		createEAttribute(queryAuditEventEClass, QUERY_AUDIT_EVENT__SORT_COLUMN);
-		createEAttribute(queryAuditEventEClass, QUERY_AUDIT_EVENT__DESC_ORDER);
-		createEAttribute(queryAuditEventEClass, QUERY_AUDIT_EVENT__EXACT_SEARCH);
+		getAuditEventEClass = createEClass(GET_AUDIT_EVENT);
+		createEAttribute(getAuditEventEClass, GET_AUDIT_EVENT__SORT_COLUMN);
+		createEAttribute(getAuditEventEClass, GET_AUDIT_EVENT__DESC_ORDER);
+		createEAttribute(getAuditEventEClass, GET_AUDIT_EVENT__EXACT_MATCH);
 	}
 
 	/**
@@ -254,7 +254,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 		// Add supertypes to classes
 		postAuditEventEClass.getESuperTypes().add(this.getTasAbstractObject());
 		postBatchAuditEventsEClass.getESuperTypes().add(this.getTasAbstractObject());
-		queryAuditEventEClass.getESuperTypes().add(this.getTasAbstractObject());
+		getAuditEventEClass.getESuperTypes().add(this.getTasAbstractObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(tasAbstractObjectEClass, TasAbstractObject.class, "TasAbstractObject", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -264,10 +264,10 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 
 		initEClass(postBatchAuditEventsEClass, PostBatchAuditEvents.class, "PostBatchAuditEvents", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(queryAuditEventEClass, QueryAuditEvent.class, "QueryAuditEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getQueryAuditEvent_Sort_column(), ecorePackage.getEString(), "sort_column", null, 0, 1, QueryAuditEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getQueryAuditEvent_DescOrder(), ecorePackage.getEBoolean(), "descOrder", null, 0, 1, QueryAuditEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getQueryAuditEvent_Exact_search(), ecorePackage.getEBoolean(), "exact_search", null, 0, 1, QueryAuditEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(getAuditEventEClass, GetAuditEvent.class, "GetAuditEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGetAuditEvent_SortColumn(), ecorePackage.getEString(), "sortColumn", null, 0, 1, GetAuditEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGetAuditEvent_DescOrder(), ecorePackage.getEBoolean(), "descOrder", null, 0, 1, GetAuditEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGetAuditEvent_ExactMatch(), ecorePackage.getEBoolean(), "exactMatch", null, 0, 1, GetAuditEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

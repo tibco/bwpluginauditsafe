@@ -83,7 +83,7 @@ public class TasClient {
 			} else if (retry) {
 				TasResponse authResponse = auth(tasBaseUrl, username, password, accountId);
 				if (!authResponse.isHasError()) {
-					result = postAuditEvent(tasBaseUrl, username, password,
+					result = getAuditEvent(tasBaseUrl, username, password,
 							accountId, body, false);
 				} else {
 					return authResponse;

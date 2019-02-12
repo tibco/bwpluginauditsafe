@@ -158,17 +158,6 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 			String errorMessage = (result == null? "Result is empty": result.getMessage());
 			throw new TasActivityFault(activityContext, RuntimeMessageBundle.ERROR_REQUEST_FAILED.getErrorCode(), errorMessage);
 		}
-		// get output schema and put properties in a set
-//		JsonReader ouputNode = new JsonReader(sharedResource.getOutput());
-//		//activityLogger.debug(requestNode.toString());
-//		JsonNode item = ouputNode.getNode("items");
-//		JsonNode properties = item.get("properties");
-//		List<String>  fieldSet  = new ArrayList<String>();
-//		Iterator<String> ite = properties.fieldNames();
-//		while(ite.hasNext()){
-//			String key = ite.next();
-//			fieldSet.add(key);
-//		}
 
 		JsonNode resultNode = mapper.readTree(result.getMessage());
 		N totalN = noteFactory.createElement("", TasConstants.TAG_TOAL_NUMBER, "");

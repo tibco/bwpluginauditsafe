@@ -124,17 +124,17 @@ public class GetAuditEventSignature extends TasBasicSignature {
 			throw new RuntimeException("Create activity Input schema failure !");
 		}
 
-		XSDModelGroup criteria = XSDUtility.addComplexTypeElement(rootInput, TasConstants.TAG_CRITERIA,
-				TasConstants.TAG_CRITERIA, 0, 1, XSDCompositor.SEQUENCE_LITERAL);
+//		XSDModelGroup criteria = XSDUtility.addComplexTypeElement(rootInput, TasConstants.TAG_CRITERIA,
+//				TasConstants.TAG_CRITERIA, 0, 1, XSDCompositor.SEQUENCE_LITERAL);
 
-		XSDUtility.addSimpleTypeElement(criteria, TasConstants.CRITERIA_BUSINESS_PROCESS, "string", 0, -1);
-		XSDUtility.addSimpleTypeElement(criteria, TasConstants.CRITERIA_TRANS_ID, "string", 0, -1);
-		XSDUtility.addSimpleTypeElement(criteria, TasConstants.CRITERIA_EVENT_SOURCE, "string", 0, -1);
-		XSDUtility.addSimpleTypeElement(criteria, TasConstants.CRITERIA_EVENT_DEST, "string", 0, -1);
-		XSDUtility.addSimpleTypeElement(criteria, TasConstants.CRITERIA_EVENT_STATUS, "string", 0, -1);
-		XSDUtility.addSimpleTypeElement(criteria, TasConstants.CRITERIA_AUDIT_EVENT, "string", 0, -1);
-		XSDUtility.addSimpleTypeElement(criteria, TasConstants.CRITERIA_BEGIN, "string", 0, 1);
-		XSDUtility.addSimpleTypeElement(criteria, TasConstants.CRITERIA_END, "string", 0, 1);
+		XSDUtility.addSimpleTypeElement(rootInput, TasConstants.CRITERIA_BUSINESS_PROCESS, "string", 0, -1);
+		XSDUtility.addSimpleTypeElement(rootInput, TasConstants.CRITERIA_TRANS_ID, "string", 0, -1);
+		XSDUtility.addSimpleTypeElement(rootInput, TasConstants.CRITERIA_EVENT_SOURCE, "string", 0, -1);
+		XSDUtility.addSimpleTypeElement(rootInput, TasConstants.CRITERIA_EVENT_DEST, "string", 0, -1);
+		XSDUtility.addSimpleTypeElement(rootInput, TasConstants.CRITERIA_EVENT_STATUS, "string", 0, -1);
+		XSDUtility.addSimpleTypeElement(rootInput, TasConstants.CRITERIA_AUDIT_EVENT, "string", 0, -1);
+		XSDUtility.addSimpleTypeElement(rootInput, TasConstants.CRITERIA_BEGIN, "string", 0, 1);
+		XSDUtility.addSimpleTypeElement(rootInput, TasConstants.CRITERIA_END, "string", 0, 1);
 
 		inputSchema = compileSchema(inputSchema);
 		inputType = inputSchema.resolveElementDeclaration("ActivityInput");

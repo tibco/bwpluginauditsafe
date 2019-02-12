@@ -50,6 +50,59 @@ public class TasClient {
 		}
 	}
 
+	public static TasResponse getAuditEvent(String tasBaseUrl, String username,
+			String password, String accountId, String body,
+			boolean retry) {
+		switchUserOn(username+accountId);
+		TasResponse result = new TasResponse();
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+		}
+		try {
+			String internalUrl = System.getProperty(ENV_INTERNAL_URL);
+			HttpURLConnection httpConn;
+			String getEventUrl = "";
+			if (internalUrl != null && !internalUrl.isEmpty()) {
+				String subId = System.getProperty(ENV_SUBSCRIPTION_ID);
+				getEventUrl = internalUrl
+						+ "/tas/dataserver/intercom/transactions/query?tscSubscriptionId="
+						+ subId;
+			} else {
+				getEventUrl = tasBaseUrl
+						+ "/tas/dataserver/transactions/query";
+
+			}
+			httpConn = buildpostHttpUrlConnectionWithJson(getEventUrl, body,
+					getsettingMap("application/json", "application/json"));
+			String message = getHttpRequestBody(httpConn);
+			int statusCode = httpConn.getResponseCode();
+			result.setStatusCode(statusCode);
+
+			if(statusCode == HttpURLConnection.HTTP_OK){
+				result.setSuccessfulResponse(message);
+			} else if (retry) {
+				TasResponse authResponse = auth(tasBaseUrl, username, password, accountId);
+				if (!authResponse.isHasError()) {
+					result = postAuditEvent(tasBaseUrl, username, password,
+							accountId, body, false);
+				} else {
+					return authResponse;
+				}
+			} else {
+				result.setErrorMessage(message);
+			}
+
+		} catch (IOException e) {
+			result.setErrorMessage(e.getMessage());
+
+		} finally {
+			switchUserOff();
+		}
+
+		return result;
+	}
+
+
 	public static TasResponse postAuditEvent(String tasBaseUrl, String username,
 			String password, String accountId, String body,
 			boolean retry) {

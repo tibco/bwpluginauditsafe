@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: com.tibco.bw.palette.tas.design;singleton:=true
-Bundle-Version: 6.0.0.qualifier
+Bundle-Version: 6.1.0.qualifier
 Bundle-Localization: plugin
 Bundle-Activator: com.tibco.bw.palette.tas.design.TAS
 Bundle-Vendor: %providerName
@@ -15,8 +15,8 @@ Require-Bundle: com.tibco.bw.palette.tas.model;bundle-version="[6.0.0,7.0.0)",
  com.tibco.bw.core.design.resource
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
-Export-Package: com.tibco.bw.palette.tas.design;version="6.0.0",
- com.tibco.bw.palette.tas.design.postauditevent;version="6.0.0"
+Export-Package: com.tibco.bw.palette.tas.design;version="6.1.0",
+ com.tibco.bw.palette.tas.design.postauditevent;version="6.1.0"
 Import-Package: com.tibco.amf.model.sharedresource.jndi;version="[1.4.0,2.0.0)",
  com.tibco.neo.svar.svarmodel;version="[2.1.0,3.0.0)"
 Bundle-ClassPath: .

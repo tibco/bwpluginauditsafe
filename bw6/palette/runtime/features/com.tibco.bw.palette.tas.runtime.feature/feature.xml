@@ -2,7 +2,7 @@
 <feature
       id="com.tibco.bw.palette.tas.runtime.feature"
       label="%featureName"
-      version="6.0.0.qualifier"
+      version="6.1.0.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -19,9 +19,6 @@
 
    <requires>
       <import feature="com.tibco.neo.model.core.feature" version="1.902.0" match="compatible"/>
-      <import feature="com.tibco.bw.sharedresource.tas.model.feature" version="6.0.0"/>
-      <import feature="com.tibco.bw.sharedresource.tas.runtime.feature" version="6.0.0"/>
-      <import feature="com.tibco.bw.palette.tas.model.feature" version="6.0.0"/>
       <import feature="com.tibco.bw.api.runtime.feature" version="6.3.0" match="compatible"/>
       <import feature="com.tibco.tpcl.org.genxdm.core.feature" version="1.2.0" match="compatible"/>
       <import feature="com.tibco.tpcl.javax.mail.feature" version="1.10.0" match="compatible"/>
@@ -38,13 +35,17 @@
       <import feature="com.tibco.tpcl.org.eclipse.bpel.feature.rt" version="1.10.0" match="compatible"/>
       <import feature="com.tibco.tpcl.org.apache.commons.pool.feature" version="1.6.0" match="compatible"/>
       <import feature="com.tibco.bw.api.palette.shared.feature" version="6.2.0" match="compatible"/>
+
+      <import feature="com.tibco.bw.sharedresource.tas.model.feature" version="6.1.0"/>
+      <import feature="com.tibco.bw.sharedresource.tas.runtime.feature" version="6.1.0"/>
+      <import feature="com.tibco.bw.palette.tas.model.feature" version="6.1.0"/>
    </requires>
 
    <plugin
          id="com.tibco.bw.palette.tas.runtime"
          download-size="0"
          install-size="0"
-         version="6.0.0.qualifier"
+         version="6.1.0.qualifier"
          unpack="false"/>
 
 </feature>

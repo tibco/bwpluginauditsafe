@@ -90,7 +90,7 @@ public class GetAuditEventSignature extends TasBasicSignature {
 		XSDUtility.addSimpleTypeElement(rootOutput, TasConstants.TAG_TOAL_NUMBER, "string", 1, 1);
 		XSDUtility.addSimpleTypeElement(rootOutput, TasConstants.TAG_ERROR_MESSAGE, "string", 1, 1);
 		XSDModelGroup data = XSDUtility.addComplexTypeElement(rootOutput, TasConstants.TAG_DATA,
-				TasConstants.TAG_DATA, 1, -1, XSDCompositor.SEQUENCE_LITERAL);
+				TasConstants.TAG_DATA, 0, -1, XSDCompositor.SEQUENCE_LITERAL);
 
 		XSDUtility.addSimpleTypeElement(data, TasConstants.TAS_EVENT_ID, "string", 1, 1);
 		XSDUtility.addSimpleTypeElement(data, TasConstants.CRITERIA_EVENT_SOURCE, "string", 1, 1);

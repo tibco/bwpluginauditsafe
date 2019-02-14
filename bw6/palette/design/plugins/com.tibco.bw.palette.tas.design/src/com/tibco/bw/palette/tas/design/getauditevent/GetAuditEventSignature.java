@@ -100,7 +100,7 @@ public class GetAuditEventSignature extends TasBasicSignature {
 		XSDUtility.addSimpleTypeElement(data, TasConstants.CRITERIA_TRANS_ID, "string", 1, 1);
 		XSDUtility.addSimpleTypeElement(data, TasConstants.CRITERIA_EVENT_STATUS, "string", 1, 1);
 		XSDUtility.addSimpleTypeElement(data, TasConstants.CRITERIA_AUDIT_EVENT, "string", 1, 1);
-		XSDUtility.addSimpleTypeElement(data, TasConstants.BLOCKCHAIN_TRANS_ID, "string", 1, 1);
+//		XSDUtility.addSimpleTypeElement(data, TasConstants.BLOCKCHAIN_TRANS_ID, "string", 1, 1);
 		XSDUtility.addSimpleTypeElement(data, TasConstants.EVENT_DESCRIPTION, "string", 1, 1);
 
 		outputSchema = compileSchema(outputSchema);

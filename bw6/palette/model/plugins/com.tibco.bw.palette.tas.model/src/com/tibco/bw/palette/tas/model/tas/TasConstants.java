@@ -26,7 +26,7 @@ public interface TasConstants {
 
 
 	String TAS_EVENT_ID = "tas_event_id";
-	String BLOCKCHAIN_TRANS_ID = "bc_trans_id";
+//	String BLOCKCHAIN_TRANS_ID = "bc_trans_id";
 	String EVENT_TIMESTAMP = "event_timestamp";
 	String EVENT_DESCRIPTION = "event_desc";
 

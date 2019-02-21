@@ -44,7 +44,7 @@ public interface TasConstants {
 	String USER_TRANS_ID = "user_trans_id";
 
 	public static final QName SHAREDRESOURCE_QNAME = new QName(
-			TasPackage.eNS_URI, "tasConnection",TasPackage.eNS_PREFIX);
+			"http://ns.tibco.com/bw/sharedresource/tas", "tasConnection",TasPackage.eNS_PREFIX);
 
 
 

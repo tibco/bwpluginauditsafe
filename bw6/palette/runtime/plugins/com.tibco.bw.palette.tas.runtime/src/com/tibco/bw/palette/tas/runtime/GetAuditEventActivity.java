@@ -12,7 +12,9 @@
  */
 package com.tibco.bw.palette.tas.runtime;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -73,9 +75,6 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
         MutableModel<N> mutableModel = processContext.getMutableContext().getModel();
         NodeFactory<N> noteFactory = mutableModel.getFactory(output);
 
-//        N output = noteFactory.createElement("", "ActivityOutput", "");
-//        mutableModel.appendChild(outputType, output);
-
         // add your own business code here
         HashMap<String, ArrayList<String>> criteriaMap = new HashMap<String, ArrayList<String>>();
         ArrayList<String> biz_proc = new ArrayList<String>();
@@ -84,7 +83,10 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
         ArrayList<String> event_destination = new ArrayList<String>();
         ArrayList<String> event_status = new ArrayList<String>();
         ArrayList<String> audit_event = new ArrayList<String>();
-        String beginTime, endTime;
+
+        //init begin time and end time
+      	String beginTime = "1970-01-01";
+      	String endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 
         criteriaMap.put(TasConstants.CRITERIA_BUSINESS_PROCESS, biz_proc);
         criteriaMap.put(TasConstants.CRITERIA_TRANS_ID, transaction_id);
@@ -98,7 +100,6 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 
 
 		ObjectNode requestNode = mapper.createObjectNode();
-//		ArrayNode eventArray = mapper.createArrayNode();
 		String sortColumn  = activityConfig.getSortColumn();
 		requestNode.put("sort_column", sortColumn);
 		requestNode.put("descOrder", activityConfig.isDescOrder());
@@ -121,9 +122,9 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 				event_status.add(model.getStringValue(node));
 			} else if(TasConstants.CRITERIA_AUDIT_EVENT.equals(name)){
 				audit_event.add(model.getStringValue(node));
-			} else if(TasConstants.CRITERIA_BEGIN.equals(name)){
+			} else if(TasConstants.CRITERIA_BEGIN.equals(name) && model.getStringValue(node)!=null){
 				beginTime = model.getStringValue(node);
-			} else if(TasConstants.CRITERIA_END.equals(name)){
+			} else if(TasConstants.CRITERIA_END.equals(name) && model.getStringValue(node)!= null){
 				endTime = model.getStringValue(node);
 			}
 		}
@@ -147,6 +148,15 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 				criteriaNode.add(columnNode);
 			}
 		}
+		// set timestamp node
+		ObjectNode timeNode = mapper.createObjectNode();
+		timeNode.put("col_name", "event_timestamp");
+		ArrayNode values = mapper.createArrayNode();
+		values.add(beginTime);
+		values.add(endTime);
+		timeNode.set("col_value", values);
+		criteriaNode.add(timeNode);
+
 		requestNode.set("criteria", criteriaNode);
 
 		//send query request

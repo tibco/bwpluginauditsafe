@@ -21,8 +21,8 @@ public interface TasConstants {
 	String CRITERIA_EVENT_DEST = "event_destination";
 	String CRITERIA_EVENT_STATUS = "event_status";
 	String CRITERIA_AUDIT_EVENT = "audit_event";
-	String CRITERIA_BEGIN = "begin_timestamp";
-	String CRITERIA_END = "end_timestamp";
+	String CRITERIA_BEGIN = "event_start_timestamp";
+	String CRITERIA_END = "event_stop_timestamp";
 
 
 	String TAS_EVENT_ID = "tas_event_id";

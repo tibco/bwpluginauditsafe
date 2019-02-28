@@ -86,7 +86,7 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 
         //init begin time and end time
       	String beginTime = "1970-01-01";
-      	String endTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+      	String endTime = "2999-12-31";
 
         criteriaMap.put(TasConstants.CRITERIA_BUSINESS_PROCESS, biz_proc);
         criteriaMap.put(TasConstants.CRITERIA_TRANS_ID, transaction_id);

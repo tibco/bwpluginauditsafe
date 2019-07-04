@@ -62,7 +62,8 @@ public class TasClient {
 			String internalUrl = System.getProperty(ENV_INTERNAL_URL);
 			HttpURLConnection httpConn;
 			String getEventUrl = "";
-			if (internalUrl != null && !internalUrl.isEmpty()) {
+			boolean isIntercom = internalUrl != null && !internalUrl.isEmpty();
+			if (isIntercom) {
 				String subId = System.getProperty(ENV_SUBSCRIPTION_ID);
 				getEventUrl = internalUrl
 						+ "/tas/dataserver/intercom/transactions/query?tscSubscriptionId="
@@ -81,12 +82,17 @@ public class TasClient {
 			if(statusCode == HttpURLConnection.HTTP_OK){
 				result.setSuccessfulResponse(message);
 			} else if (retry) {
-				TasResponse authResponse = auth(tasBaseUrl, username, password, accountId);
-				if (!authResponse.isHasError()) {
+				if(isIntercom){
 					result = getAuditEvent(tasBaseUrl, username, password,
 							accountId, body, false);
-				} else {
-					return authResponse;
+				}else{
+					TasResponse authResponse = auth(tasBaseUrl, username, password, accountId);
+					if (!authResponse.isHasError()) {
+						result = getAuditEvent(tasBaseUrl, username, password,
+								accountId, body, false);
+					} else {
+						return authResponse;
+					}
 				}
 			} else {
 				result.setErrorMessage(message);
@@ -115,7 +121,8 @@ public class TasClient {
 			String internalUrl = System.getProperty(ENV_INTERNAL_URL);
 			HttpURLConnection httpConn;
 			String postEventUrl = "";
-			if (internalUrl != null && !internalUrl.isEmpty()) {
+			boolean isIntercom = internalUrl != null && !internalUrl.isEmpty();
+			if (isIntercom) {
 				String subId = System.getProperty(ENV_SUBSCRIPTION_ID);
 				postEventUrl = internalUrl
 						+ "/tas/dataserver/intercom/transactions?tscSubscriptionId="
@@ -134,12 +141,17 @@ public class TasClient {
 			if(statusCode == HttpURLConnection.HTTP_OK){
 				result.setSuccessfulResponse(message);
 			} else if (retry) {
-				TasResponse authResponse = auth(tasBaseUrl, username, password, accountId);
-				if (!authResponse.isHasError()) {
+				if(isIntercom){
 					result = postAuditEvent(tasBaseUrl, username, password,
 							accountId, body, false);
 				} else {
-					return authResponse;
+					TasResponse authResponse = auth(tasBaseUrl, username, password, accountId);
+					if (!authResponse.isHasError()) {
+						result = postAuditEvent(tasBaseUrl, username, password,
+								accountId, body, false);
+					} else {
+						return authResponse;
+					}
 				}
 			} else {
 				result.setErrorMessage(message);
@@ -151,7 +163,6 @@ public class TasClient {
 		} finally {
 			switchUserOff();
 		}
-
 		return result;
 	}
 
@@ -250,7 +261,7 @@ public class TasClient {
 			ArrayNode info = (ArrayNode) node.getNode("accountsInfo");
 			for (JsonNode jsonNode : info) {
 				String orgName = jsonNode.get("accountDisplayName").asText();
-				String ownerEmail = jsonNode.get("ownerInfo").get("email")
+				String ownerEmail = ((ArrayNode)jsonNode.get("ownersInfo")).get(0).get("email")
 						.asText();
 				String accountId = jsonNode.get("accountId").asText();
 				accountsInfo.put(orgName + "/(Owner Email: )" + ownerEmail,
@@ -316,6 +327,8 @@ public class TasClient {
 	public static HttpURLConnection buildpostHttpUrlConnection(
 			String urlstring, Map<String, String> formparams,
 			Map<String, String> settingparams) throws IOException {
+		//support case 01783858
+		System.setProperty("http.keepAlive","false");
 		HttpURLConnection connection = null;
 		URL url = new URL(urlstring);
 		connection = (HttpURLConnection) url.openConnection();
@@ -330,6 +343,8 @@ public class TasClient {
 	public static HttpURLConnection buildpostHttpUrlConnectionWithJson(
 			String urlstring, String json, Map<String, String> settingparams)
 			throws IOException {
+		//support case 01783858
+		System.setProperty("http.keepAlive","false");
 		HttpURLConnection connection = null;
 		URL url = new URL(urlstring);
 		connection = (HttpURLConnection) url.openConnection();

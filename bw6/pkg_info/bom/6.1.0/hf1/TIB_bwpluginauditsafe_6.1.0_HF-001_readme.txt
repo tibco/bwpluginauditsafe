@@ -1,7 +1,7 @@
 ================================================================================
-Product Name: TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for ActiveSpaces(R)
-Release Version: 6.3.1_HF-002
-Release Date: June 2018
+Product Name: TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for Auditsafe
+Release Version: 6.1.0_HF-001
+Release Date: July 2019
 
 ================================================================================
 Legal Notice
@@ -15,23 +15,20 @@ Legal Notice
 Introduction
 
  Hotfixes are cumulative. This is the first hotfix for TIBCO ActiveMatrix
- BusinessWorks Plug-in for ActiveSpaces 6.3.1.
+ BusinessWorks Plug-in for Auditsafe 6.1.0.
 
 ================================================================================
 Installation 
 
  1. Shut down all running TIBCO applications.
 
- 2. Back up the activespacesplugin.jar file, which is located in the  
-    {TIBCO_HOME}/bw/plugins/lib/palettes directory.
- 
- 3. Copy and unzip the hotfix archive to a temporary location.
+ 2. Copy and unzip the hotfix archive to a temporary location.
 
- 4. Copy TIBCOUniversalInstaller.bin or TIBCOUniversalInstaller.exe from
+ 3. Copy TIBCOUniversalInstaller.bin or TIBCOUniversalInstaller.exe from
     {TIBCO_HOME}/tools/universal_installer to the temporary location where
     you extracted the hotfix.
 
- 5. Run the TIBCOUniversalInstaller program and follow the instructions
+ 4. Run the TIBCOUniversalInstaller program and follow the instructions
     displayed by the installer to complete the hotfix installation into the
     {TIBCO_HOME} directory of your product.
 
@@ -74,49 +71,10 @@ Uninstallation
  10. Restart your TIBCO applications.
  
 ================================================================================
-Affected Files for 6.3.1_HF-002
-
- The following files are installed by this hotfix. 
-
-  {TIBCO_HOME}/release_notes directory:
-  
-   - TIB_bwpluginactivespaces_6.3.1_HF-002_readme.txt
-
-  {TIBCO_HOME}/bw/palettes/activespaces/6.3/hotfix/lib directory:
-   - bwextension.ini
-  {TIBCO_HOME}/bw/palettes/activespaces/6.3/hotfix/p2repos directory:
-   - artifacts.xml
-   - content.xml
-  {TIBCO_HOME}/bw/palettes/activespaces/6.3/hotfix/design/features/
-  {TIBCO_HOME}/bw/palettes/activespaces/6.3/hotfix/p2repos/features directory:
-   - com.tibco.bw.sharedresource.activespace.design.feature_6.3.3.001.jar
-  {TIBCO_HOME}/bw/palettes/activespaces/6.3/hotfix/p2repos/plugin directory:
-   - com.tibco.bw.sharedresource.activespace.design_6.3.2.001.jar
-
-  {TIBCO_HOME}/bw/palettes/activespaces/6.3/hotfix/runtime/features/
-  com.tibco.bw.palette.activespace.runtime.feature_6.3.4.001 directory:
-   - feature.properties
-   - feature.xml
-   - license.txt
-  {TIBCO_HOME}/bw/palettes/activespaces/6.3/hotfix/runtime/plugins directory:
-   - com.tibco.bw.palette.activespace.runtime_6.3.4.001.jar
 
 
-================================================================================
-
-Closed Issues in 6.3.1_HF-002 (This Release)
-
-Defect ID: ASBW-1606
- - Stopping and starting project sometimes causes 
-    "com.tibco.bw.sharedresource.model; filter:="(name=bw.activespaceconnection)"
-    missing.
 
 
-================================================================================
-Closed Issues in 6.3.1_HF-001
-
-Defect ID: ASBW-1030 again
-   [Admin deploy]--> The error such as BW applicaiton is impaired is thrown out
 
 
 ================================================================================
@@ -137,5 +95,5 @@ TIBCO Product Support
 ================================================================================
 Copyright
 
-Copyright(C) 2011-2016 TIBCO Software Inc. ALL RIGHTS RESERVED.
+Copyright(C) 2019 TIBCO Software Inc. ALL RIGHTS RESERVED.
 TIBCO Software Inc. Confidential Information 

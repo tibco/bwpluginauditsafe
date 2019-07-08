@@ -34,7 +34,7 @@
 	<installerFeatureNode name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for Auditsafe Runtime Hotfix 1" nodeID="runtime-node" parentNode="root"/>
 	 <installerFeatureNode name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for Auditsafe Design Hotfix 1" nodeID="design-node" parentNode="root"/>
 	 
-    <installerFeature name="runtime Hotfix 1" visible="true" version="6.1.0" parentNode="runtime-node" profileUID="runtime-profile">
+    <installerFeature name="runtime hotfix 1" visible="true" version="6.1.0" parentNode="runtime-node" profileUID="runtime-profile">
         <assemblyList>
         <assembly uid="product_tibco_bwpluginauditsafe_samples" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.home}" version="6.1.0"/>
         </assemblyList>
@@ -61,7 +61,7 @@
 	
     </installerFeature>
 
-	<installerFeature name="design Hotfix 1" visible="true" version="6.1.0" parentNode="design-node" profileUID="typical">
+	<installerFeature name="design hotfix 1" visible="true" version="6.1.0" parentNode="design-node" profileUID="typical">
 		<assemblyList>
 		
 		</assemblyList>

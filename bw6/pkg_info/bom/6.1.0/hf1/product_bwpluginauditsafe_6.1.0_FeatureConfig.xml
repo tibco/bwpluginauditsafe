@@ -44,7 +44,7 @@
         </assemblyList>
 
         <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for Auditsafe Runtime" type="feature" uid="runtime_bwpluginauditsafe" version="6.1.0"/>
-        <dependency description="TIBCO BusinessWorks Cloud Runtime" type="assembly" uid="product_tibco_bwplugin_cloud_runtime_dependency" version="1.0.0"/>
+        
 
         <wizardAction class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction" sequence="post-selection">
             <property featureUID="required hotfix 1_bwpluginauditsafe"/>
@@ -83,8 +83,7 @@
 
 		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for Auditsafe Runtime" type="feature" uid="runtime hotfix 1_bwpluginauditsafe" version="6.1.0"/>
 		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for Auditsafe Design" type="feature" uid="design_bwpluginauditsafe" version="6.1.0"/>
-		<dependency description="TIBCO BusinessWorks Cloud Design" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="1.0.0"/>
-
+		
 		 
          <wizardAction class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction" sequence="post-selection">
              <property featureUID="required hotfix 1_bwpluginauditsafe"/>

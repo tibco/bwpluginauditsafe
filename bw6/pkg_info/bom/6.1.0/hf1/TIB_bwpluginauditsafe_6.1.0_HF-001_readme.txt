@@ -1,5 +1,5 @@
 ================================================================================
-Product Name: TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for Auditsafe
+Product Name: TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) Auditsafe
 Release Version: 6.1.0_HF-001
 Release Date: July 2019
 

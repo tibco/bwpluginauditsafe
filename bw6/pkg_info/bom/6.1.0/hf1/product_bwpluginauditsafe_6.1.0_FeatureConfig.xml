@@ -7,7 +7,7 @@
    		id="bwpluginauditsafe"
    		releaseType="hotfix"    	
 		productType="hotfix"	
-		hotfixDirToBackup="${tibco.home}/bw/palettes/auditsafe/6.1/hotfix"
+		hotfixDirToBackup="${tibco.BW.home}/../palettes/auditsafe/6.1/hotfix/"
    		supportedPlatforms="platform-independent"
    		compatDisplayName="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) Auditsafe Hotfix 1"
    		compatType="bwpluginauditsafe"
@@ -20,8 +20,8 @@
         <localVariable name="bwpluginauditsafe.minimum.bw.version" value="6.4.2"/>
 
 		<localVariable name="bwpluginauditsafe.extension.palettes.home" value="${tibco.BW.home}/../palettes/auditsafe/6.1"/>
-		<localVariable name="bwpluginauditsafe.extension.palettes.runtime.home" value="${tibco.BW.home}/../palettes/auditsafe/6.1/runtime"/>
-		<localVariable name="bwpluginauditsafe.extension.palettes.design.home" value="${tibco.BW.home}/../palettes/auditsafe/6.1/design"/>
+		<localVariable name="bwpluginauditsafe.extension.palettes.runtime.home" value="${tibco.BW.home}/../palettes/auditsafe/6.1/hotfix/runtime"/>
+		<localVariable name="bwpluginauditsafe.extension.palettes.design.home" value="${tibco.BW.home}/../palettes/auditsafe/6.1/hotfix/design"/>
 
 		<localVariable name="bwpluginauditsafe.palette.full.name" value="TIBCO BW Auditsafe Palette"/>
 		<localVariable name="bwpluginauditsafe.palette.short.name" value="auditsafe"/>

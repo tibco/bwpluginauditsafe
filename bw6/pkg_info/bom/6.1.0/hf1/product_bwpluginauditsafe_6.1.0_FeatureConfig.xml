@@ -91,6 +91,16 @@
              <property isVisible="false"/>
              <property isSelected="true"/>
          </wizardAction>
+		 
+		 <wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
+			<property productAcronym="BW"/>
+			<property minimumVersion="$L{bwpluginauditsafe.minimum.bw.version}"/>
+			<property vpdUID="BW_design"/>
+			<property productAssemblyUID="product_tibco_com_tibco_bw_enterprise_design"/>
+			<property productAssemblyMinVersion="$L{bwpluginauditsafe.minimum.bw.version}"/>
+			<property showProgress="true"/>
+			<property description="Get install location for BW Design"/>
+		</wizardAction>
 
 		 <wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>

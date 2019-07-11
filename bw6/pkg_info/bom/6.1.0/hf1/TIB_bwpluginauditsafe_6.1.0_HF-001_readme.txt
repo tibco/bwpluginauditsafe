@@ -71,11 +71,10 @@ Uninstallation
  10. Restart your TIBCO applications.
  
 ================================================================================
+Closed Issues in 6.1.0_HF-001 (This Release)
 
-
-
-
-
+Defect ID: BWTC-106
+   The Test connection hangs if a user has multiple organizations
 
 ================================================================================
 TIBCO Product Support

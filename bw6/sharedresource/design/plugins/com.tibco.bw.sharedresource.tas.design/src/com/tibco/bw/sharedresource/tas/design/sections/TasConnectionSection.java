@@ -96,7 +96,7 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 
    	    password = BWFieldFactory.getInstance().createPasswordField(sectionComposite);
 	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_PASSWORD, false);
-	    passwordAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, password, PropertyTypeQnameConstants.STRING_PRIMITIVE);
+	    passwordAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, password, PropertyTypeQnameConstants.PASSWORD_PRIMITIVE);
 
 //	    accountId = BWFieldFactory.getInstance().createTextBox(sectionComposite);
 //	    accountId.setEnabled(false);

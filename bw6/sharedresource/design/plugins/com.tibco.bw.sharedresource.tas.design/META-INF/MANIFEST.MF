@@ -2,16 +2,16 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: com.tibco.bw.sharedresource.tas.design;singleton:=true
-Bundle-Version: 6.1.0.qualifier
+Bundle-Version: 6.2.0.qualifier
 Bundle-Activator: com.tibco.bw.sharedresource.tas.design.TASUIPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
-Export-Package: com.tibco.bw.sharedresource.tas.design;version="6.1.0",
- com.tibco.bw.sharedresource.tas.design.provider;version="6.1.0",
- com.tibco.bw.sharedresource.tas.design.sections;version="6.1.0",
- com.tibco.bw.sharedresource.tas.design.wizard;version="6.1.0"
+Export-Package: com.tibco.bw.sharedresource.tas.design;version="6.2.0",
+ com.tibco.bw.sharedresource.tas.design.provider;version="6.2.0",
+ com.tibco.bw.sharedresource.tas.design.sections;version="6.2.0",
+ com.tibco.bw.sharedresource.tas.design.wizard;version="6.2.0"
 Require-Bundle: com.tibco.amf.design.sr.core;bundle-version="[1.5.0,2.0.0)",
  com.tibco.neo.svar.model.edit;bundle-version="[2.5.0,3.0.0)",
  com.tibco.xpd.ui.properties;bundle-version="[4.0.0,5.0.0)",
@@ -21,7 +21,7 @@ Require-Bundle: com.tibco.amf.design.sr.core;bundle-version="[1.5.0,2.0.0)",
  com.tibco.bw.design;bundle-version="[6.0.0,7.0.0)",
  org.eclipse.core.databinding.property;bundle-version="[1.4.0,2.0.0)",
  org.eclipse.jface.databinding;bundle-version="[1.5.0,2.0.0)",
- com.tibco.bw.sharedresource.tas.model;bundle-version="[6.0.0,7.0.0)",
+ com.tibco.bw.sharedresource.tas.model;bundle-version="[6.2.0,7.0.0)",
  com.tibco.bw.sharedresource.common.design;bundle-version="[6.0.0,7.0.0)",
  com.tibco.bw.core.design.resource
 Import-Package: com.tibco.amf.model.sharedresource.jndi;version="1.4.0",

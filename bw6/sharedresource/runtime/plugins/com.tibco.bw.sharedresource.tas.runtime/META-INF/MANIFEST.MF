@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: com.tibco.bw.sharedresource.tas.runtime;singleton:=true
-Bundle-Version: 6.1.0.qualifier
+Bundle-Version: 6.2.0.qualifier
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
@@ -11,13 +11,13 @@ Import-Package: com.tibco.bw.runtime;version="[6.0.0,7.0.0)",
  com.tibco.bw.sharedresource.runtime.builder;version="[6.0.0,7.0.0)",
  com.tibco.bw.sharedresource.runtime.configuration;version="[6.0.0,7.0.0)",
  com.tibco.bw.sharedresource.runtime.exception;version="[6.0.0,7.0.0)",
- com.tibco.bw.sharedresource.tas.model.helper;version="[6.0.0,7.0.0)",
- com.tibco.bw.sharedresource.tas.model.tas;version="[6.0.0,7.0.0)",
+ com.tibco.bw.sharedresource.tas.model.helper;version="[6.2.0,7.0.0)",
+ com.tibco.bw.sharedresource.tas.model.tas;version="[6.2.0,7.0.0)",
  com.tibco.neo.localized;version="[2.5.0,3.0.0)",
  org.genxdm.xs;version="[1.0.0,2.0.0)",
  org.genxdm.xs.components;version="[1.0.0,2.0.0)",
  org.osgi.framework;version="[1.6.0,2.0.0)",
  org.slf4j;version="[1.6.0,2.0.0)"
 Bundle-ActivationPolicy: lazy
-Export-Package: com.tibco.bw.sharedresource.tas.runtime;version="6.1.0"
+Export-Package: com.tibco.bw.sharedresource.tas.runtime;version="6.2.0"
 Service-Component:  OSGI-INF/connectionfactory.xml

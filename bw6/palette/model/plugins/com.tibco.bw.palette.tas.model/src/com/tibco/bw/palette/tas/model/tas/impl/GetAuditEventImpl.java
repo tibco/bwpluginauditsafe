@@ -21,6 +21,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link com.tibco.bw.palette.tas.model.tas.impl.GetAuditEventImpl#getSortColumn <em>Sort Column</em>}</li>
  *   <li>{@link com.tibco.bw.palette.tas.model.tas.impl.GetAuditEventImpl#isDescOrder <em>Desc Order</em>}</li>
  *   <li>{@link com.tibco.bw.palette.tas.model.tas.impl.GetAuditEventImpl#isExactMatch <em>Exact Match</em>}</li>
+ *   <li>{@link com.tibco.bw.palette.tas.model.tas.impl.GetAuditEventImpl#isIncludePayload <em>Include Payload</em>}</li>
+ *   <li>{@link com.tibco.bw.palette.tas.model.tas.impl.GetAuditEventImpl#getLimit <em>Limit</em>}</li>
+ *   <li>{@link com.tibco.bw.palette.tas.model.tas.impl.GetAuditEventImpl#isOnlyGetCount <em>Only Get Count</em>}</li>
  * </ul>
  * </p>
  *
@@ -86,6 +89,66 @@ public class GetAuditEventImpl extends TasAbstractObjectImpl implements GetAudit
 	 * @ordered
 	 */
 	protected boolean exactMatch = EXACT_MATCH_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIncludePayload() <em>Include Payload</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIncludePayload()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean INCLUDE_PAYLOAD_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIncludePayload() <em>Include Payload</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIncludePayload()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean includePayload = INCLUDE_PAYLOAD_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getLimit() <em>Limit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLimit()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int LIMIT_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getLimit() <em>Limit</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getLimit()
+	 * @generated
+	 * @ordered
+	 */
+	protected int limit = LIMIT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isOnlyGetCount() <em>Only Get Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOnlyGetCount()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean ONLY_GET_COUNT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isOnlyGetCount() <em>Only Get Count</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOnlyGetCount()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean onlyGetCount = ONLY_GET_COUNT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -174,6 +237,69 @@ public class GetAuditEventImpl extends TasAbstractObjectImpl implements GetAudit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isIncludePayload() {
+		return includePayload;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIncludePayload(boolean newIncludePayload) {
+		boolean oldIncludePayload = includePayload;
+		includePayload = newIncludePayload;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.GET_AUDIT_EVENT__INCLUDE_PAYLOAD, oldIncludePayload, includePayload));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public int getLimit() {
+		return limit;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setLimit(int newLimit) {
+		int oldLimit = limit;
+		limit = newLimit;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.GET_AUDIT_EVENT__LIMIT, oldLimit, limit));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isOnlyGetCount() {
+		return onlyGetCount;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOnlyGetCount(boolean newOnlyGetCount) {
+		boolean oldOnlyGetCount = onlyGetCount;
+		onlyGetCount = newOnlyGetCount;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.GET_AUDIT_EVENT__ONLY_GET_COUNT, oldOnlyGetCount, onlyGetCount));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -183,6 +309,12 @@ public class GetAuditEventImpl extends TasAbstractObjectImpl implements GetAudit
 				return isDescOrder();
 			case TasPackage.GET_AUDIT_EVENT__EXACT_MATCH:
 				return isExactMatch();
+			case TasPackage.GET_AUDIT_EVENT__INCLUDE_PAYLOAD:
+				return isIncludePayload();
+			case TasPackage.GET_AUDIT_EVENT__LIMIT:
+				return getLimit();
+			case TasPackage.GET_AUDIT_EVENT__ONLY_GET_COUNT:
+				return isOnlyGetCount();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -203,6 +335,15 @@ public class GetAuditEventImpl extends TasAbstractObjectImpl implements GetAudit
 				return;
 			case TasPackage.GET_AUDIT_EVENT__EXACT_MATCH:
 				setExactMatch((Boolean)newValue);
+				return;
+			case TasPackage.GET_AUDIT_EVENT__INCLUDE_PAYLOAD:
+				setIncludePayload((Boolean)newValue);
+				return;
+			case TasPackage.GET_AUDIT_EVENT__LIMIT:
+				setLimit((Integer)newValue);
+				return;
+			case TasPackage.GET_AUDIT_EVENT__ONLY_GET_COUNT:
+				setOnlyGetCount((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -225,6 +366,15 @@ public class GetAuditEventImpl extends TasAbstractObjectImpl implements GetAudit
 			case TasPackage.GET_AUDIT_EVENT__EXACT_MATCH:
 				setExactMatch(EXACT_MATCH_EDEFAULT);
 				return;
+			case TasPackage.GET_AUDIT_EVENT__INCLUDE_PAYLOAD:
+				setIncludePayload(INCLUDE_PAYLOAD_EDEFAULT);
+				return;
+			case TasPackage.GET_AUDIT_EVENT__LIMIT:
+				setLimit(LIMIT_EDEFAULT);
+				return;
+			case TasPackage.GET_AUDIT_EVENT__ONLY_GET_COUNT:
+				setOnlyGetCount(ONLY_GET_COUNT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -243,6 +393,12 @@ public class GetAuditEventImpl extends TasAbstractObjectImpl implements GetAudit
 				return descOrder != DESC_ORDER_EDEFAULT;
 			case TasPackage.GET_AUDIT_EVENT__EXACT_MATCH:
 				return exactMatch != EXACT_MATCH_EDEFAULT;
+			case TasPackage.GET_AUDIT_EVENT__INCLUDE_PAYLOAD:
+				return includePayload != INCLUDE_PAYLOAD_EDEFAULT;
+			case TasPackage.GET_AUDIT_EVENT__LIMIT:
+				return limit != LIMIT_EDEFAULT;
+			case TasPackage.GET_AUDIT_EVENT__ONLY_GET_COUNT:
+				return onlyGetCount != ONLY_GET_COUNT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -263,6 +419,12 @@ public class GetAuditEventImpl extends TasAbstractObjectImpl implements GetAudit
 		result.append(descOrder);
 		result.append(", exactMatch: ");
 		result.append(exactMatch);
+		result.append(", includePayload: ");
+		result.append(includePayload);
+		result.append(", limit: ");
+		result.append(limit);
+		result.append(", onlyGetCount: ");
+		result.append(onlyGetCount);
 		result.append(')');
 		return result.toString();
 	}

@@ -188,6 +188,33 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getGetAuditEvent_IncludePayload() {
+		return (EAttribute)getAuditEventEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGetAuditEvent_Limit() {
+		return (EAttribute)getAuditEventEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGetAuditEvent_OnlyGetCount() {
+		return (EAttribute)getAuditEventEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TasFactory getTasFactory() {
 		return (TasFactory)getEFactoryInstance();
 	}
@@ -222,6 +249,9 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 		createEAttribute(getAuditEventEClass, GET_AUDIT_EVENT__SORT_COLUMN);
 		createEAttribute(getAuditEventEClass, GET_AUDIT_EVENT__DESC_ORDER);
 		createEAttribute(getAuditEventEClass, GET_AUDIT_EVENT__EXACT_MATCH);
+		createEAttribute(getAuditEventEClass, GET_AUDIT_EVENT__INCLUDE_PAYLOAD);
+		createEAttribute(getAuditEventEClass, GET_AUDIT_EVENT__LIMIT);
+		createEAttribute(getAuditEventEClass, GET_AUDIT_EVENT__ONLY_GET_COUNT);
 	}
 
 	/**
@@ -268,6 +298,9 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 		initEAttribute(getGetAuditEvent_SortColumn(), ecorePackage.getEString(), "sortColumn", null, 0, 1, GetAuditEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGetAuditEvent_DescOrder(), ecorePackage.getEBoolean(), "descOrder", null, 0, 1, GetAuditEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getGetAuditEvent_ExactMatch(), ecorePackage.getEBoolean(), "exactMatch", null, 0, 1, GetAuditEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGetAuditEvent_IncludePayload(), ecorePackage.getEBoolean(), "includePayload", null, 0, 1, GetAuditEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGetAuditEvent_Limit(), ecorePackage.getEInt(), "limit", null, 0, 1, GetAuditEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getGetAuditEvent_OnlyGetCount(), ecorePackage.getEBoolean(), "onlyGetCount", null, 0, 1, GetAuditEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

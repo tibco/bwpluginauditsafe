@@ -14,6 +14,8 @@ public interface TasConstants {
 	String TAG_ERROR_MESSAGE = "errorMessage";
 
 	String TAG_CRITERIA = "criteria";
+	String TAG_EXTRA_PROP = "extra_props";
+	
 	String CRITERIA_BUSINESS_PROCESS = "biz_proc";
 	String CRITERIA_TRANS_ID = "transaction_id";
 
@@ -26,9 +28,7 @@ public interface TasConstants {
 
 
 	String TAS_EVENT_ID = "tas_event_id";
-//	String BLOCKCHAIN_TRANS_ID = "bc_trans_id";
-	String EVENT_TIMESTAMP = "event_timestamp";
-	String EVENT_DESCRIPTION = "event_desc";
+	String EVENT_CREATE_TIMESTAMP = "create_timestamp";
 
 	public static final String START_STAUTS = "status";
 	public static final String PROJECT_NAME = "projectName";

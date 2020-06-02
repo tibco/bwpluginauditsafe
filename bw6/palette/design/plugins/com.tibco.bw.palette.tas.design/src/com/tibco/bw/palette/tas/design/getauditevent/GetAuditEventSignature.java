@@ -1,5 +1,8 @@
 package com.tibco.bw.palette.tas.design.getauditevent;
 
+import java.util.HashSet;
+import java.util.Iterator;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xsd.XSDCompositor;
 import org.eclipse.xsd.XSDElementDeclaration;
@@ -7,12 +10,16 @@ import org.eclipse.xsd.XSDForm;
 import org.eclipse.xsd.XSDModelGroup;
 import org.eclipse.xsd.XSDSchema;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.tibco.bw.design.api.BWActivitySignatureUnknown;
 import com.tibco.bw.design.util.XSDUtility;
 import com.tibco.bw.model.activityconfig.Configuration;
+import com.tibco.bw.palette.tas.design.SignatureHelper;
 import com.tibco.bw.palette.tas.design.TasBasicSignature;
 import com.tibco.bw.palette.tas.model.tas.GetAuditEvent;
 import com.tibco.bw.palette.tas.model.tas.TasConstants;
+import com.tibco.bw.sharedresource.tas.model.helper.JsonReader;
+import com.tibco.bw.sharedresource.tas.model.tas.TasConnection;
 
 public class GetAuditEventSignature extends TasBasicSignature {
 	private static final String SCHEMA_INPUT_ROOT_NAME = "GetAuditEventInput";
@@ -91,20 +98,53 @@ public class GetAuditEventSignature extends TasBasicSignature {
 		XSDUtility.addSimpleTypeElement(rootOutput, TasConstants.TAG_ERROR_MESSAGE, "string", 1, 1);
 		XSDModelGroup data = XSDUtility.addComplexTypeElement(rootOutput, TasConstants.TAG_DATA,
 				TasConstants.TAG_DATA, 0, -1, XSDCompositor.SEQUENCE_LITERAL);
+		
+		TasConnection conn = SignatureHelper.getConnectionFromSharedResource(connection, obj);
+		if(conn == null){
+			return null;
+		}
+		
+		JsonReader requestNode;
+		try {
+			XSDUtility.addSimpleTypeElement(data, TasConstants.TAS_EVENT_ID, "string", 1, 1);
+			
+			requestNode = new JsonReader(conn.getSchema());
 
-		XSDUtility.addSimpleTypeElement(data, TasConstants.TAS_EVENT_ID, "string", 1, 1);
-		XSDUtility.addSimpleTypeElement(data, TasConstants.CRITERIA_EVENT_SOURCE, "string", 1, 1);
-		XSDUtility.addSimpleTypeElement(data, TasConstants.CRITERIA_EVENT_DEST, "string", 1, 1);
-		XSDUtility.addSimpleTypeElement(data, TasConstants.CRITERIA_BUSINESS_PROCESS, "string", 1, 1);
-		XSDUtility.addSimpleTypeElement(data, TasConstants.EVENT_TIMESTAMP, "string", 1, 1);
-		XSDUtility.addSimpleTypeElement(data, TasConstants.CRITERIA_TRANS_ID, "string", 1, 1);
-		XSDUtility.addSimpleTypeElement(data, TasConstants.CRITERIA_EVENT_STATUS, "string", 1, 1);
-		XSDUtility.addSimpleTypeElement(data, TasConstants.CRITERIA_AUDIT_EVENT, "string", 1, 1);
-//		XSDUtility.addSimpleTypeElement(data, TasConstants.BLOCKCHAIN_TRANS_ID, "string", 1, 1);
-		XSDUtility.addSimpleTypeElement(data, TasConstants.EVENT_DESCRIPTION, "string", 1, 1);
+			JsonNode item = requestNode.getNode("items");
+			JsonNode properties = item.get("properties");
+			JsonNode required = item.get("required");
+			HashSet<String> requiredSet = new HashSet<String>();
+			if (required.isArray()) {
+			    for (final JsonNode objNode : required) {
+			    	String fieldName = objNode.asText();
+			    	requiredSet.add(fieldName);
+			    	XSDUtility.addSimpleTypeElement(data, fieldName, "string", 1, 1);
+			    }
+			}
 
-		outputSchema = compileSchema(outputSchema);
-		outputType = outputSchema.resolveElementDeclaration("ActivityOutput");
+			Iterator<String> ite = properties.fieldNames();
+
+			while(ite.hasNext()){
+				String key = ite.next();
+				if(!requiredSet.contains(key)){
+					JsonNode field = properties.get(key);
+					if("string".equals(field.get("type").textValue())){
+						XSDUtility.addSimpleTypeElement(data, key, "string", 0, 1);
+					}
+				}
+			}
+			XSDUtility.addSimpleTypeElement(data, TasConstants.EVENT_CREATE_TIMESTAMP, "string", 1, 1);
+			
+			XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(data, "extra_props", "extra_props", 0, -1, XSDCompositor.SEQUENCE_LITERAL);
+			XSDUtility.addSimpleTypeElement(extraGroup, "prop_name", "string", 1, 1);
+			XSDUtility.addSimpleTypeElement(extraGroup, "prop_value", "string", 1, 1);
+			
+			outputSchema = compileSchema(outputSchema);
+			outputType = outputSchema.resolveElementDeclaration("ActivityOutput");
+
+		} catch (Exception e) {
+			throw new RuntimeException("Build activity Output schema failure !" + e.getMessage());
+		}
 
 		return outputType;
 	}
@@ -123,9 +163,7 @@ public class GetAuditEventSignature extends TasBasicSignature {
 		if(rootInput == null ){
 			throw new RuntimeException("Create activity Input schema failure !");
 		}
-
-//		XSDModelGroup criteria = XSDUtility.addComplexTypeElement(rootInput, TasConstants.TAG_CRITERIA,
-//				TasConstants.TAG_CRITERIA, 0, 1, XSDCompositor.SEQUENCE_LITERAL);
+		
 
 		XSDUtility.addSimpleTypeElement(rootInput, TasConstants.CRITERIA_BUSINESS_PROCESS, "string", 0, -1);
 		XSDUtility.addSimpleTypeElement(rootInput, TasConstants.CRITERIA_TRANS_ID, "string", 0, -1);
@@ -135,6 +173,12 @@ public class GetAuditEventSignature extends TasBasicSignature {
 		XSDUtility.addSimpleTypeElement(rootInput, TasConstants.CRITERIA_AUDIT_EVENT, "string", 0, -1);
 		XSDUtility.addSimpleTypeElement(rootInput, TasConstants.CRITERIA_BEGIN, "string", 0, 1);
 		XSDUtility.addSimpleTypeElement(rootInput, TasConstants.CRITERIA_END, "string", 0, 1);
+		
+		
+		XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(rootInput, TasConstants.TAG_EXTRA_PROP,
+				TasConstants.TAG_EXTRA_PROP, 0, -1, XSDCompositor.SEQUENCE_LITERAL);
+		XSDUtility.addSimpleTypeElement(extraGroup, "prop_name", "string", 1, 1);
+		XSDUtility.addSimpleTypeElement(extraGroup, "prop_value", "string", 1, 1);
 
 		inputSchema = compileSchema(inputSchema);
 		inputType = inputSchema.resolveElementDeclaration("ActivityInput");

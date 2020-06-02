@@ -186,13 +186,40 @@ public interface TasPackage extends EPackage {
 	int GET_AUDIT_EVENT__EXACT_MATCH = TAS_ABSTRACT_OBJECT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Include Payload</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GET_AUDIT_EVENT__INCLUDE_PAYLOAD = TAS_ABSTRACT_OBJECT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Limit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GET_AUDIT_EVENT__LIMIT = TAS_ABSTRACT_OBJECT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Only Get Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int GET_AUDIT_EVENT__ONLY_GET_COUNT = TAS_ABSTRACT_OBJECT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Get Audit Event</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int GET_AUDIT_EVENT_FEATURE_COUNT = TAS_ABSTRACT_OBJECT_FEATURE_COUNT + 3;
+	int GET_AUDIT_EVENT_FEATURE_COUNT = TAS_ABSTRACT_OBJECT_FEATURE_COUNT + 6;
 
 	/**
 	 * Returns the meta object for class '{@link com.tibco.bw.palette.tas.model.tas.TasAbstractObject <em>Abstract Object</em>}'.
@@ -277,6 +304,39 @@ public interface TasPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getGetAuditEvent_ExactMatch();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.tibco.bw.palette.tas.model.tas.GetAuditEvent#isIncludePayload <em>Include Payload</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Include Payload</em>'.
+	 * @see com.tibco.bw.palette.tas.model.tas.GetAuditEvent#isIncludePayload()
+	 * @see #getGetAuditEvent()
+	 * @generated
+	 */
+	EAttribute getGetAuditEvent_IncludePayload();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.tibco.bw.palette.tas.model.tas.GetAuditEvent#getLimit <em>Limit</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Limit</em>'.
+	 * @see com.tibco.bw.palette.tas.model.tas.GetAuditEvent#getLimit()
+	 * @see #getGetAuditEvent()
+	 * @generated
+	 */
+	EAttribute getGetAuditEvent_Limit();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.tibco.bw.palette.tas.model.tas.GetAuditEvent#isOnlyGetCount <em>Only Get Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Only Get Count</em>'.
+	 * @see com.tibco.bw.palette.tas.model.tas.GetAuditEvent#isOnlyGetCount()
+	 * @see #getGetAuditEvent()
+	 * @generated
+	 */
+	EAttribute getGetAuditEvent_OnlyGetCount();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -371,6 +431,30 @@ public interface TasPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute GET_AUDIT_EVENT__EXACT_MATCH = eINSTANCE.getGetAuditEvent_ExactMatch();
+
+		/**
+		 * The meta object literal for the '<em><b>Include Payload</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GET_AUDIT_EVENT__INCLUDE_PAYLOAD = eINSTANCE.getGetAuditEvent_IncludePayload();
+
+		/**
+		 * The meta object literal for the '<em><b>Limit</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GET_AUDIT_EVENT__LIMIT = eINSTANCE.getGetAuditEvent_Limit();
+
+		/**
+		 * The meta object literal for the '<em><b>Only Get Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GET_AUDIT_EVENT__ONLY_GET_COUNT = eINSTANCE.getGetAuditEvent_OnlyGetCount();
 
 	}
 

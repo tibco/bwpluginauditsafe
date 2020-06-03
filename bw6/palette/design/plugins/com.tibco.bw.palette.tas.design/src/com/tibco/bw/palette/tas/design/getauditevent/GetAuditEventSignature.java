@@ -106,21 +106,12 @@ public class GetAuditEventSignature extends TasBasicSignature {
 		
 		JsonReader requestNode;
 		try {
-			XSDUtility.addSimpleTypeElement(data, TasConstants.TAS_EVENT_ID, "string", 1, 1);
 			
-			requestNode = new JsonReader(conn.getSchema());
+			requestNode = new JsonReader(conn.getQueryOutput());
 
 			JsonNode item = requestNode.getNode("items");
 			JsonNode properties = item.get("properties");
-			JsonNode required = item.get("required");
 			HashSet<String> requiredSet = new HashSet<String>();
-			if (required.isArray()) {
-			    for (final JsonNode objNode : required) {
-			    	String fieldName = objNode.asText();
-			    	requiredSet.add(fieldName);
-			    	XSDUtility.addSimpleTypeElement(data, fieldName, "string", 1, 1);
-			    }
-			}
 
 			Iterator<String> ite = properties.fieldNames();
 
@@ -129,15 +120,16 @@ public class GetAuditEventSignature extends TasBasicSignature {
 				if(!requiredSet.contains(key)){
 					JsonNode field = properties.get(key);
 					if("string".equals(field.get("type").textValue())){
-						XSDUtility.addSimpleTypeElement(data, key, "string", 0, 1);
+						XSDUtility.addSimpleTypeElement(data, key, "string", 1, 1);
+					}else{
+						XSDModelGroup extrasGroup = XSDUtility.addComplexTypeElement(data, "extra_props", "extra_props", 1, 1, XSDCompositor.SEQUENCE_LITERAL);
+						XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(extrasGroup, TasConstants.TAG_EXTRA_PROP_ITEM,
+								TasConstants.TAG_EXTRA_PROP_ITEM, 0, -1, XSDCompositor.SEQUENCE_LITERAL);
+						XSDUtility.addSimpleTypeElement(extraGroup, "prop_name", "string", 1, 1);
+						XSDUtility.addSimpleTypeElement(extraGroup, "prop_value", "string", 1, 1);
 					}
 				}
 			}
-			XSDUtility.addSimpleTypeElement(data, TasConstants.EVENT_CREATE_TIMESTAMP, "string", 1, 1);
-			
-			XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(data, "extra_props", "extra_props", 0, -1, XSDCompositor.SEQUENCE_LITERAL);
-			XSDUtility.addSimpleTypeElement(extraGroup, "prop_name", "string", 1, 1);
-			XSDUtility.addSimpleTypeElement(extraGroup, "prop_value", "string", 1, 1);
 			
 			outputSchema = compileSchema(outputSchema);
 			outputType = outputSchema.resolveElementDeclaration("ActivityOutput");
@@ -175,11 +167,13 @@ public class GetAuditEventSignature extends TasBasicSignature {
 		XSDUtility.addSimpleTypeElement(rootInput, TasConstants.CRITERIA_END, "string", 0, 1);
 		
 		
-		XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(rootInput, TasConstants.TAG_EXTRA_PROP,
-				TasConstants.TAG_EXTRA_PROP, 0, -1, XSDCompositor.SEQUENCE_LITERAL);
+		XSDModelGroup extrasGroup = XSDUtility.addComplexTypeElement(rootInput, TasConstants.TAG_EXTRA_PROP,
+				TasConstants.TAG_EXTRA_PROP, 0, 1, XSDCompositor.SEQUENCE_LITERAL);
+		XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(extrasGroup, TasConstants.TAG_EXTRA_PROP_ITEM,
+				TasConstants.TAG_EXTRA_PROP_ITEM, 0, -1, XSDCompositor.SEQUENCE_LITERAL);
 		XSDUtility.addSimpleTypeElement(extraGroup, "prop_name", "string", 1, 1);
 		XSDUtility.addSimpleTypeElement(extraGroup, "prop_value", "string", 1, 1);
-
+		
 		inputSchema = compileSchema(inputSchema);
 		inputType = inputSchema.resolveElementDeclaration("ActivityInput");
 

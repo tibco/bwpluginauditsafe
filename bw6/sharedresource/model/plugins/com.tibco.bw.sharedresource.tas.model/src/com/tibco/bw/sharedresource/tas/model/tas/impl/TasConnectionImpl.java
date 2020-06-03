@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getId <em>Id</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getSchema <em>Schema</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getOutput <em>Output</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getQueryOutput <em>Query Output</em>}</li>
  * </ul>
  * </p>
  *
@@ -151,6 +152,26 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * @ordered
 	 */
 	protected String output = OUTPUT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getQueryOutput() <em>Query Output</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQueryOutput()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String QUERY_OUTPUT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getQueryOutput() <em>Query Output</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getQueryOutput()
+	 * @generated
+	 * @ordered
+	 */
+	protected String queryOutput = QUERY_OUTPUT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -302,6 +323,27 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getQueryOutput() {
+		return queryOutput;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setQueryOutput(String newQueryOutput) {
+		String oldQueryOutput = queryOutput;
+		queryOutput = newQueryOutput;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.TAS_CONNECTION__QUERY_OUTPUT, oldQueryOutput, queryOutput));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -317,6 +359,8 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return getSchema();
 			case TasPackage.TAS_CONNECTION__OUTPUT:
 				return getOutput();
+			case TasPackage.TAS_CONNECTION__QUERY_OUTPUT:
+				return getQueryOutput();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -346,6 +390,9 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return;
 			case TasPackage.TAS_CONNECTION__OUTPUT:
 				setOutput((String)newValue);
+				return;
+			case TasPackage.TAS_CONNECTION__QUERY_OUTPUT:
+				setQueryOutput((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -377,6 +424,9 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 			case TasPackage.TAS_CONNECTION__OUTPUT:
 				setOutput(OUTPUT_EDEFAULT);
 				return;
+			case TasPackage.TAS_CONNECTION__QUERY_OUTPUT:
+				setQueryOutput(QUERY_OUTPUT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -401,6 +451,8 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return SCHEMA_EDEFAULT == null ? schema != null : !SCHEMA_EDEFAULT.equals(schema);
 			case TasPackage.TAS_CONNECTION__OUTPUT:
 				return OUTPUT_EDEFAULT == null ? output != null : !OUTPUT_EDEFAULT.equals(output);
+			case TasPackage.TAS_CONNECTION__QUERY_OUTPUT:
+				return QUERY_OUTPUT_EDEFAULT == null ? queryOutput != null : !QUERY_OUTPUT_EDEFAULT.equals(queryOutput);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -427,6 +479,8 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 		result.append(schema);
 		result.append(", output: ");
 		result.append(output);
+		result.append(", queryOutput: ");
+		result.append(queryOutput);
 		result.append(')');
 		return result.toString();
 	}

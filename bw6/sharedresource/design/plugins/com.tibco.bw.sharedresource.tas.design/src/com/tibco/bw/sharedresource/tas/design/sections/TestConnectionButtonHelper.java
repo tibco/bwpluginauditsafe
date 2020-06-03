@@ -114,8 +114,10 @@ public class TestConnectionButtonHelper {
 					}
 
 					String body = "{\"path\": \"/tas/dataserver/transactions\", \"method\": \"POST\"}";
+					String queryBody = "{\"path\": \"/tas/dataserver/transactions/query\", \"method\": \"POST\"}";
 					TasResponse inputSchemaResponse = TasClient.getSchema(serverUrl, username, password, accountId, body, INPUT_TYPE);
 					TasResponse outputSchemaResponse =  TasClient.getSchema(serverUrl, username, password, accountId, body, OUTPUT_TYPE);
+					TasResponse queryOutputSchemaResponse =  TasClient.getSchema(serverUrl, username, password, accountId, queryBody, OUTPUT_TYPE);
 					if(inputSchemaResponse.isHasError() || outputSchemaResponse.isHasError()){
 						Color red = new Color(composite.getShell().getDisplay(),
 								255, 0, 0);
@@ -124,6 +126,7 @@ public class TestConnectionButtonHelper {
 					}else {
 						final String schema = inputSchemaResponse.getMessage();
 						final String output = outputSchemaResponse.getMessage();
+						final String queryOutput = queryOutputSchemaResponse.getMessage();
 						final String localAccountId = accountId;
 						final WorkingCopy workingCopy = (WorkingCopy)tasConnectionSection.getPage().getEditor().getAdapter(WorkingCopy.class);
 		            	TransactionalEditingDomain ed = (TransactionalEditingDomain) workingCopy.getEditingDomain();
@@ -133,6 +136,7 @@ public class TestConnectionButtonHelper {
 								connection.setId(localAccountId);
 								connection.setSchema(schema);
 								connection.setOutput(output);
+								connection.setQueryOutput(queryOutput);
 							}
 						};
 						ed.getCommandStack().execute(cmd);

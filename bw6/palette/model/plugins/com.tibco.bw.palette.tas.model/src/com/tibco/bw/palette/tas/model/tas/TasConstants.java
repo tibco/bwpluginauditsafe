@@ -15,6 +15,9 @@ public interface TasConstants {
 
 	String TAG_CRITERIA = "criteria";
 	String TAG_EXTRA_PROP = "extra_props";
+	String TAG_EXTRA_PROP_ITEM = "extra_prop";
+	String TAG_EXTRA_PROP_NAME = "prop_name";
+	String TAG_EXTRA_PROP_VALUE = "prop_value";
 	
 	String CRITERIA_BUSINESS_PROCESS = "biz_proc";
 	String CRITERIA_TRANS_ID = "transaction_id";
@@ -28,6 +31,8 @@ public interface TasConstants {
 
 
 	String TAS_EVENT_ID = "tas_event_id";
+	String EVENT_TIMESTAMP = "event_timestamp";
+	String EVENT_DESCRIPTION = "event_desc";
 	String EVENT_CREATE_TIMESTAMP = "create_timestamp";
 
 	public static final String START_STAUTS = "status";
@@ -45,11 +50,6 @@ public interface TasConstants {
 
 	public static final QName SHAREDRESOURCE_QNAME = new QName(
 			"http://ns.tibco.com/bw/sharedresource/tas", "tasConnection",TasPackage.eNS_PREFIX);
-
-
-
-
-
 
 
 }

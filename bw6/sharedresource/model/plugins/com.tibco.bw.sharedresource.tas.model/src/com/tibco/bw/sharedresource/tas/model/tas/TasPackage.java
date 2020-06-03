@@ -130,13 +130,22 @@ public interface TasPackage extends EPackage {
 	int TAS_CONNECTION__OUTPUT = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Query Output</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAS_CONNECTION__QUERY_OUTPUT = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Connection</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TAS_CONNECTION_FEATURE_COUNT = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 6;
+	int TAS_CONNECTION_FEATURE_COUNT = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 7;
 
 
 	/**
@@ -214,6 +223,17 @@ public interface TasPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTasConnection_Output();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getQueryOutput <em>Query Output</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Query Output</em>'.
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getQueryOutput()
+	 * @see #getTasConnection()
+	 * @generated
+	 */
+	EAttribute getTasConnection_QueryOutput();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -294,6 +314,14 @@ public interface TasPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TAS_CONNECTION__OUTPUT = eINSTANCE.getTasConnection_Output();
+
+		/**
+		 * The meta object literal for the '<em><b>Query Output</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TAS_CONNECTION__QUERY_OUTPUT = eINSTANCE.getTasConnection_QueryOutput();
 
 	}
 

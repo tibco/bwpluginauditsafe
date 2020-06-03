@@ -160,6 +160,15 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTasConnection_QueryOutput() {
+		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TasFactory getTasFactory() {
 		return (TasFactory)getEFactoryInstance();
 	}
@@ -190,6 +199,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 		createEAttribute(tasConnectionEClass, TAS_CONNECTION__ID);
 		createEAttribute(tasConnectionEClass, TAS_CONNECTION__SCHEMA);
 		createEAttribute(tasConnectionEClass, TAS_CONNECTION__OUTPUT);
+		createEAttribute(tasConnectionEClass, TAS_CONNECTION__QUERY_OUTPUT);
 	}
 
 	/**
@@ -233,6 +243,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 		initEAttribute(getTasConnection_Id(), ecorePackage.getEString(), "id", null, 0, 1, TasConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTasConnection_Schema(), ecorePackage.getEString(), "schema", null, 0, 1, TasConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTasConnection_Output(), ecorePackage.getEString(), "output", null, 0, 1, TasConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTasConnection_QueryOutput(), ecorePackage.getEString(), "queryOutput", null, 0, 1, TasConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

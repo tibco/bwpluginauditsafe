@@ -18,6 +18,7 @@ import com.tibco.neo.svar.svarmodel.SubstitutableObject;
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getId <em>Id</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getSchema <em>Schema</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getOutput <em>Output</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getQueryOutput <em>Query Output</em>}</li>
  * </ul>
  * </p>
  *
@@ -181,5 +182,31 @@ public interface TasConnection extends SubstitutableObject {
 	 * @generated
 	 */
 	void setOutput(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Query Output</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Query Output</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Query Output</em>' attribute.
+	 * @see #setQueryOutput(String)
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasPackage#getTasConnection_QueryOutput()
+	 * @model
+	 * @generated
+	 */
+	String getQueryOutput();
+
+	/**
+	 * Sets the value of the '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getQueryOutput <em>Query Output</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Query Output</em>' attribute.
+	 * @see #getQueryOutput()
+	 * @generated
+	 */
+	void setQueryOutput(String value);
 
 } // TasConnection

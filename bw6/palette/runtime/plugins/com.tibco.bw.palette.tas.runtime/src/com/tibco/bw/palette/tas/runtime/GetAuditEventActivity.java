@@ -12,12 +12,10 @@
  */
 package com.tibco.bw.palette.tas.runtime;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import org.genxdm.Model;
@@ -35,7 +33,6 @@ import com.tibco.bw.palette.tas.runtime.fault.TasActivityFault;
 import com.tibco.bw.runtime.ActivityFault;
 import com.tibco.bw.runtime.ProcessContext;
 import com.tibco.bw.runtime.annotation.Property;
-import com.tibco.bw.sharedresource.tas.model.helper.JsonReader;
 import com.tibco.bw.sharedresource.tas.model.helper.TasClient;
 import com.tibco.bw.sharedresource.tas.model.helper.TasResponse;
 import com.tibco.bw.sharedresource.tas.runtime.TasConnectionResource;
@@ -45,7 +42,7 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 	@Property
 	public GetAuditEvent activityConfig;
 
-    /**
+    /**O
      * <!-- begin-custom-doc -->
      * Shared Resource injected by framework.
      * <!-- end-custom-doc -->
@@ -71,10 +68,10 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
     protected <N, A> N evalOutput(N inputData,ProcessingContext<N> processContext) throws Exception {
         // add your own business code here
 		N output = getOutputRootElement(processContext);
-
+		
         MutableModel<N> mutableModel = processContext.getMutableContext().getModel();
         NodeFactory<N> noteFactory = mutableModel.getFactory(output);
-
+        
         // add your own business code here
         HashMap<String, ArrayList<String>> criteriaMap = new HashMap<String, ArrayList<String>>();
         ArrayList<String> biz_proc = new ArrayList<String>();
@@ -100,6 +97,19 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 
 
 		ObjectNode requestNode = mapper.createObjectNode();
+		int limit = (int)activityConfig.getLimit();
+		boolean isOldProject = false;
+		// if limit not 0, we will use new api. limit=0 means it was old activity
+		if(limit != 0){
+			requestNode.put("newApi", true);
+			requestNode.put("onlyGetCount", activityConfig.isOnlyGetCount());
+			requestNode.put("includePayload", activityConfig.isIncludePayload());
+			requestNode.put("limit", activityConfig.getLimit());
+		} else{
+			isOldProject = true;
+		}
+		
+		
 		String sortColumn  = activityConfig.getSortColumn();
 		requestNode.put("sort_column", sortColumn);
 		requestNode.put("descOrder", activityConfig.isDescOrder());
@@ -126,6 +136,17 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 				beginTime = model.getStringValue(node);
 			} else if(TasConstants.CRITERIA_END.equals(name) && model.getStringValue(node)!= null){
 				endTime = model.getStringValue(node);
+			} else if(TasConstants.TAG_EXTRA_PROP.equals(name)){
+				Iterable<N> extras = model.getChildElements(node);
+				for (N extraNode : extras) {
+					N propNameNode = model.getFirstChildElement(extraNode);
+					String p_name = model.getStringValue(propNameNode);
+					if(!criteriaMap.containsKey(p_name)){
+						criteriaMap.put(p_name, new ArrayList<String>());
+					}
+					N propValueNode = model.getNextSiblingElement(propNameNode);
+					criteriaMap.get(p_name).add(model.getStringValue(propValueNode));
+				}
 			}
 		}
 
@@ -179,21 +200,68 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 		N messageValue = noteFactory.createText(resultNode.get(TasConstants.TAG_ERROR_MESSAGE).asText());
 		mutableModel.appendChild(messageN, messageValue);
 		mutableModel.appendChild(output,messageN);
+		
+		
+		Set<String> oldFieldSet = new HashSet<String>();
+		oldFieldSet.add(TasConstants.TAS_EVENT_ID);
+		oldFieldSet.add(TasConstants.CRITERIA_EVENT_SOURCE);
+		oldFieldSet.add(TasConstants.CRITERIA_EVENT_DEST);
+		oldFieldSet.add(TasConstants.CRITERIA_BUSINESS_PROCESS);
+		oldFieldSet.add(TasConstants.EVENT_TIMESTAMP);
+		oldFieldSet.add(TasConstants.CRITERIA_TRANS_ID);
+		oldFieldSet.add(TasConstants.CRITERIA_EVENT_STATUS);
+		oldFieldSet.add(TasConstants.CRITERIA_AUDIT_EVENT);
+		oldFieldSet.add(TasConstants.EVENT_DESCRIPTION);
 
-		ArrayNode dataArray = (ArrayNode)resultNode.get(TasConstants.TAG_DATA);
+		if(resultNode.get(TasConstants.TAG_DATA)!=null && resultNode.get(TasConstants.TAG_DATA).size()>0){
+			ArrayNode dataArray = (ArrayNode)resultNode.get(TasConstants.TAG_DATA);
 
-		for (JsonNode event : dataArray) {
-			N data = noteFactory.createElement("", TasConstants.TAG_DATA, "");
-			Iterator<String> filedIte  = event.fieldNames();
-			while(filedIte.hasNext()){
-				String fieldName = filedIte.next();
-				N fieldNode = noteFactory.createElement("", fieldName,"");
-				N valueNode = noteFactory.createText(event.get(fieldName).asText());
-				mutableModel.appendChild(fieldNode, valueNode);
-				mutableModel.appendChild(data, fieldNode);
+			for (JsonNode event : dataArray) {
+				N data = noteFactory.createElement("", TasConstants.TAG_DATA, "");
+				Iterator<String> filedIte  = event.fieldNames();
+				while(filedIte.hasNext()){
+					String fieldName = filedIte.next();
+					if(isOldProject && !oldFieldSet.contains(fieldName)){
+						continue;
+					}
+					
+					N fieldNode = noteFactory.createElement("", fieldName,"");
+					
+					if(fieldName.equals(TasConstants.TAG_EXTRA_PROP)){
+						
+						JsonNode extra = event.get(TasConstants.TAG_EXTRA_PROP);
+						
+						if(extra != null && extra.size()>0){
+							
+							ArrayNode extraArray = (ArrayNode)extra;
+							for(JsonNode extraProp: extraArray){
+
+								N extra_props_name = noteFactory.createElement("", TasConstants.TAG_EXTRA_PROP_NAME,"");
+								N extra_props_name_v = noteFactory.createText(extraProp.get(TasConstants.TAG_EXTRA_PROP_NAME).asText());
+								mutableModel.appendChild(extra_props_name, extra_props_name_v);
+								N extra_props_value = noteFactory.createElement("", TasConstants.TAG_EXTRA_PROP_VALUE,"");
+								N extra_props_value_v = noteFactory.createText(extraProp.get(TasConstants.TAG_EXTRA_PROP_VALUE).asText());
+								mutableModel.appendChild(extra_props_value, extra_props_value_v);
+								
+								N extra_propNode = noteFactory.createElement("", TasConstants.TAG_EXTRA_PROP_ITEM, "");
+								mutableModel.appendChild(extra_propNode, extra_props_name);
+								mutableModel.appendChild(extra_propNode, extra_props_value);
+								
+								mutableModel.appendChild(fieldNode, extra_propNode);
+							}
+						}
+						
+					} else {
+						N valueNode = noteFactory.createText(event.get(fieldName).asText());
+						mutableModel.appendChild(fieldNode, valueNode);
+					}
+					
+					mutableModel.appendChild(data, fieldNode);
+				}
+				mutableModel.appendChild(output,data);
 			}
-			mutableModel.appendChild(output,data);
 		}
+		
         return output;
     }
 

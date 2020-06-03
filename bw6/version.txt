@@ -1,1 +1,1 @@
-BASELINE::BWPluginAuditSafe 6.1.0 V7
+BASELINE::BWPluginAuditSafe 6.2.0 V1

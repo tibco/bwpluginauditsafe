@@ -69,7 +69,6 @@ public class GetAuditEventGeneralSection extends TasBasicGeneralSection{
 		limit = BWFieldFactory.getInstance().createSpinner(parent, 2, SWT.BORDER);
 		limit.setMinimum(1);
 		limit.setMaximum(Integer.MAX_VALUE);
-		limit.setSelection(1000);
 		limitAttribute = BWFieldFactory.getInstance().createAttributeBindingField(parent, limit, PropertyTypeQnameConstants.INTEGER_PRIMITIVE, false);
 		return parent;
 	}

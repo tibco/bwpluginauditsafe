@@ -20,6 +20,8 @@ public class GetAuditEventModelHelper extends BWAbstractModelHelper {
     @Override
     public EObject createInstance() {
     	GetAuditEvent activity = TasFactory.eINSTANCE.createGetAuditEvent();
+    	//set default limit for 1000, the old activity will have the default value 0.
+    	activity.setLimit(1000);
         // begin-custom-code
         // end-custom-code
         return activity;

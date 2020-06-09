@@ -100,13 +100,13 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 		int limit = (int)activityConfig.getLimit();
 		boolean isOldProject = false;
 		// if limit not 0, we will use new api. limit=0 means it was old activity
-		if(limit != 0){
+		if(limit == 0 && !activityConfig.isOnlyGetCount() && !activityConfig.isIncludePayload()){
+			isOldProject = true;
+		} else{
 			requestNode.put("newApi", true);
 			requestNode.put("onlyGetCount", activityConfig.isOnlyGetCount());
 			requestNode.put("includePayload", activityConfig.isIncludePayload());
 			requestNode.put("limit", activityConfig.getLimit());
-		} else{
-			isOldProject = true;
 		}
 		
 		

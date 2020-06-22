@@ -113,7 +113,7 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 		String sortColumn  = activityConfig.getSortColumn();
 		requestNode.put("sort_column", sortColumn);
 		requestNode.put("descOrder", activityConfig.isDescOrder());
-		String operator = activityConfig.isExactMatch()? "=" : "*";
+		String operator = activityConfig.isExactMatch()? "=" : "~";
 
 		ArrayNode criteriaNode = mapper.createArrayNode();
 		Model<N> model = processContext.getModel();

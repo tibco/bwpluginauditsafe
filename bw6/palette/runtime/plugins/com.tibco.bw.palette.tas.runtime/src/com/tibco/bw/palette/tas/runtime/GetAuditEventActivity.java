@@ -225,16 +225,16 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 						continue;
 					}
 					
-					N fieldNode = noteFactory.createElement("", fieldName,"");
+					
 					
 					if(fieldName.equals(TasConstants.TAG_EXTRA_PROP)){
-						
 						JsonNode extra = event.get(TasConstants.TAG_EXTRA_PROP);
 						
 						if(extra != null && extra.size()>0){
 							
 							ArrayNode extraArray = (ArrayNode)extra;
 							for(JsonNode extraProp: extraArray){
+								N extraNode = noteFactory.createElement("", fieldName,"");
 
 								N extra_props_name = noteFactory.createElement("", TasConstants.TAG_EXTRA_PROP_NAME,"");
 								N extra_props_name_v = noteFactory.createText(extraProp.get(TasConstants.TAG_EXTRA_PROP_NAME).asText());
@@ -243,20 +243,21 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 								N extra_props_value_v = noteFactory.createText(extraProp.get(TasConstants.TAG_EXTRA_PROP_VALUE).asText());
 								mutableModel.appendChild(extra_props_value, extra_props_value_v);
 								
-								N extra_propNode = noteFactory.createElement("", TasConstants.TAG_EXTRA_PROP_ITEM, "");
-								mutableModel.appendChild(extra_propNode, extra_props_name);
-								mutableModel.appendChild(extra_propNode, extra_props_value);
+								mutableModel.appendChild(extraNode, extra_props_name);
+								mutableModel.appendChild(extraNode, extra_props_value);
 								
-								mutableModel.appendChild(fieldNode, extra_propNode);
+								mutableModel.appendChild(data, extraNode);
 							}
 						}
 						
 					} else {
+						N fieldNode = noteFactory.createElement("", fieldName,"");
 						N valueNode = noteFactory.createText(event.get(fieldName).asText());
 						mutableModel.appendChild(fieldNode, valueNode);
+						mutableModel.appendChild(data, fieldNode);
 					}
 					
-					mutableModel.appendChild(data, fieldNode);
+					
 				}
 				mutableModel.appendChild(output,data);
 			}

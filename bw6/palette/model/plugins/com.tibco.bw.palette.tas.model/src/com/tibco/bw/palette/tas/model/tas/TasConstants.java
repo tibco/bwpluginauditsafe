@@ -15,7 +15,7 @@ public interface TasConstants {
 
 	String TAG_CRITERIA = "criteria";
 	String TAG_EXTRA_PROP = "extra_props";
-	String TAG_EXTRA_PROP_ITEM = "extra_prop";
+//	String TAG_EXTRA_PROP_ITEM = "extra_prop";
 	String TAG_EXTRA_PROP_NAME = "prop_name";
 	String TAG_EXTRA_PROP_VALUE = "prop_value";
 	

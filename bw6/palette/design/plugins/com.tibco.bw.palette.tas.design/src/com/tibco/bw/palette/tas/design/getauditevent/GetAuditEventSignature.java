@@ -122,9 +122,9 @@ public class GetAuditEventSignature extends TasBasicSignature {
 					if("string".equals(field.get("type").textValue())){
 						XSDUtility.addSimpleTypeElement(data, key, "string", 1, 1);
 					}else{
-						XSDModelGroup extrasGroup = XSDUtility.addComplexTypeElement(data, "extra_props", "extra_props", 1, 1, XSDCompositor.SEQUENCE_LITERAL);
-						XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(extrasGroup, TasConstants.TAG_EXTRA_PROP_ITEM,
-								TasConstants.TAG_EXTRA_PROP_ITEM, 0, -1, XSDCompositor.SEQUENCE_LITERAL);
+						XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(data, "extra_props", "extra_props", 0, -1, XSDCompositor.SEQUENCE_LITERAL);
+//						XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(extrasGroup, TasConstants.TAG_EXTRA_PROP_ITEM,
+//								TasConstants.TAG_EXTRA_PROP_ITEM, 0, -1, XSDCompositor.SEQUENCE_LITERAL);
 						XSDUtility.addSimpleTypeElement(extraGroup, "prop_name", "string", 1, 1);
 						XSDUtility.addSimpleTypeElement(extraGroup, "prop_value", "string", 1, 1);
 					}
@@ -168,11 +168,11 @@ public class GetAuditEventSignature extends TasBasicSignature {
 		
 		
 		XSDModelGroup extrasGroup = XSDUtility.addComplexTypeElement(rootInput, TasConstants.TAG_EXTRA_PROP,
-				TasConstants.TAG_EXTRA_PROP, 0, 1, XSDCompositor.SEQUENCE_LITERAL);
-		XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(extrasGroup, TasConstants.TAG_EXTRA_PROP_ITEM,
-				TasConstants.TAG_EXTRA_PROP_ITEM, 0, -1, XSDCompositor.SEQUENCE_LITERAL);
-		XSDUtility.addSimpleTypeElement(extraGroup, "prop_name", "string", 1, 1);
-		XSDUtility.addSimpleTypeElement(extraGroup, "prop_value", "string", 1, 1);
+				TasConstants.TAG_EXTRA_PROP, 0, -1, XSDCompositor.SEQUENCE_LITERAL);
+//		XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(extrasGroup, TasConstants.TAG_EXTRA_PROP_ITEM,
+//				TasConstants.TAG_EXTRA_PROP_ITEM, 0, -1, XSDCompositor.SEQUENCE_LITERAL);
+		XSDUtility.addSimpleTypeElement(extrasGroup, "prop_name", "string", 1, 1);
+		XSDUtility.addSimpleTypeElement(extrasGroup, "prop_value", "string", 1, 1);
 		
 		inputSchema = compileSchema(inputSchema);
 		inputType = inputSchema.resolveElementDeclaration("ActivityInput");

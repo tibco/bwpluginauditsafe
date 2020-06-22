@@ -137,16 +137,15 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 			} else if(TasConstants.CRITERIA_END.equals(name) && model.getStringValue(node)!= null){
 				endTime = model.getStringValue(node);
 			} else if(TasConstants.TAG_EXTRA_PROP.equals(name)){
-				Iterable<N> extras = model.getChildElements(node);
-				for (N extraNode : extras) {
-					N propNameNode = model.getFirstChildElement(extraNode);
+
+					N propNameNode = model.getFirstChildElement(node);
 					String p_name = model.getStringValue(propNameNode);
 					if(!criteriaMap.containsKey(p_name)){
 						criteriaMap.put(p_name, new ArrayList<String>());
 					}
 					N propValueNode = model.getNextSiblingElement(propNameNode);
 					criteriaMap.get(p_name).add(model.getStringValue(propValueNode));
-				}
+
 			}
 		}
 

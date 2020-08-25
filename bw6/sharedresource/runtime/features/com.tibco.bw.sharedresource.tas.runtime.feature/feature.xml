@@ -2,7 +2,7 @@
 <feature
       id="com.tibco.bw.sharedresource.tas.runtime.feature"
       label="%featureName"
-      version="6.2.0.qualifier"
+      version="6.3.0.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -46,7 +46,7 @@
       <import feature="com.tibco.trinity.runtime.core.feature" version="1.6.100" match="compatible"/>
       <import feature="com.tibco.trinity.models" version="3.5.200" match="compatible"/>
 
-      <import feature="com.tibco.bw.sharedresource.tas.model.feature" version="6.2.0" match="compatible"/>
+      <import feature="com.tibco.bw.sharedresource.tas.model.feature" version="6.3.0" match="compatible"/>
       <import feature="com.tibco.bw.tpcl.com.fasterxml.jackson.feature" version="1.0.0" match="compatible"/>
 
    </requires>
@@ -55,7 +55,7 @@
          id="com.tibco.bw.sharedresource.tas.runtime"
          download-size="0"
          install-size="0"
-         version="6.2.0.qualifier"
+         version="6.3.0.qualifier"
          unpack="false"/>
 
 </feature>

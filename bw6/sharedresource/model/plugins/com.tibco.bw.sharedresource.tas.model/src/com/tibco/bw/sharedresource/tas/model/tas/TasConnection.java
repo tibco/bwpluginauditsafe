@@ -19,6 +19,7 @@ import com.tibco.neo.svar.svarmodel.SubstitutableObject;
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getSchema <em>Schema</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getOutput <em>Output</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getQueryOutput <em>Query Output</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#isIsEnterprise <em>Is Enterprise</em>}</li>
  * </ul>
  * </p>
  *
@@ -208,5 +209,32 @@ public interface TasConnection extends SubstitutableObject {
 	 * @generated
 	 */
 	void setQueryOutput(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Is Enterprise</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Is Enterprise</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Is Enterprise</em>' attribute.
+	 * @see #setIsEnterprise(boolean)
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasPackage#getTasConnection_IsEnterprise()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isIsEnterprise();
+
+	/**
+	 * Sets the value of the '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#isIsEnterprise <em>Is Enterprise</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Is Enterprise</em>' attribute.
+	 * @see #isIsEnterprise()
+	 * @generated
+	 */
+	void setIsEnterprise(boolean value);
 
 } // TasConnection

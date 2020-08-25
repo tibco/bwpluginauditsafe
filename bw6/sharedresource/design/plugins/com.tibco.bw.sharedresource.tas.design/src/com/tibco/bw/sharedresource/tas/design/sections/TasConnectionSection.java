@@ -11,6 +11,7 @@ package com.tibco.bw.sharedresource.tas.design.sections;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
@@ -36,12 +37,12 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 	private Text serverUrl;
 	private Text username;
 	private PasswordField password;
-	//private Text accountId;
+	private Button isEnterprise;
 
 	private SRAttributeBindingField serverUrlAttribute;
 	private SRAttributeBindingField usernameAttribute;
 	private SRAttributeBindingField passwordAttribute;
-	//private SRAttributeBindingField accountIdAttribute;
+	private SRAttributeBindingField isEnterpriseAttribute;
 
 	private TasConnection tasConnection;
 
@@ -66,7 +67,7 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
         getBindingManager().bind(serverUrlAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__SERVER_URL);
         getBindingManager().bind(usernameAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__USERNAME);
         getBindingManager().bind(passwordAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__PASSWORD);
-        //getBindingManager().bind(accountIdAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__ID);
+        getBindingManager().bind(isEnterpriseAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__IS_ENTERPRISE);
 	    // begin-custom-code
         // end-custom-code
 	}
@@ -98,6 +99,11 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_PASSWORD, false);
 	    passwordAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, password, PropertyTypeQnameConstants.PASSWORD_PRIMITIVE);
 
+	    isEnterprise = BWFieldFactory.getInstance().createCheckBox(sectionComposite);
+	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_IS_ENTERPRISE, false);
+	    isEnterpriseAttribute  = BWFieldFactory.getInstance().
+	    		createSRAttributeBindingField(sectionComposite, isEnterprise, PropertyTypeQnameConstants.BOOLEAN_PRIMITIVE);
+	    
 //	    accountId = BWFieldFactory.getInstance().createTextBox(sectionComposite);
 //	    accountId.setEnabled(false);
 //   	BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_ACCOUNTID, false);
@@ -173,6 +179,12 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 			}
 		}
 		return EncryptionService.INSTANCE.getEncryptor().decrypt(password);
+    }
+	
+	public boolean isEnterpise(TasConnection connection) {
+
+    	boolean isEnterprise = connection.isIsEnterprise();
+    	return isEnterprise;
     }
 
 //	public String getAccountId(TasConnection connection) {

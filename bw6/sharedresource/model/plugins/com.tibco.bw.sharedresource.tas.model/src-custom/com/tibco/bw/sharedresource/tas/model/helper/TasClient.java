@@ -426,5 +426,53 @@ public class TasClient {
 		return sb.toString();
 	}
 
+	public static TasResponse getStatus(String tasBaseUrl, String username, String password) {
+		TasResponse response = new TasResponse();
 
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("username", username);
+		params.put("password", password);
+		
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+		}
+		String url = tasBaseUrl + "/tas/dataserver/dashboard/health";
+		
+		HttpURLConnection httpConn;
+		try {
+			httpConn = buildGetHttpConnection(url, params,
+					getsettingMap());
+			String messagebody = getHttpRequestBody(httpConn);
+			int statusCode = httpConn.getResponseCode();
+
+			response.setStatusCode(statusCode);
+			if (statusCode == HttpURLConnection.HTTP_OK) {
+				JsonReader node = new JsonReader(messagebody);
+				if (node.getNode("labeledMetrics") != null) {
+					response.setSuccessfulResponse(node.getNode("value").textValue());
+				}
+			} else {
+				response.setErrorMessage(messagebody);
+			}
+		} catch (IOException e) {
+			response.setErrorMessage(e.getMessage());
+		}
+
+		return response;
+	}
+	
+	public static HttpURLConnection buildGetHttpConnection(
+			String urlstring, Map<String, String> formparams,
+			Map<String, String> settingparams) throws IOException {
+		
+		HttpURLConnection connection = null;
+		URL url = new URL(urlstring);
+		connection = (HttpURLConnection) url.openConnection();
+		connection.setRequestMethod("GET");
+//		addUrlConnectionSetting(connection, settingparams);
+//		if (formparams != null) {
+//			addUrlConnectionParameter(connection, formparams);
+//		}
+		return connection;
+	}
 }

@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getSchema <em>Schema</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getOutput <em>Output</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getQueryOutput <em>Query Output</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#isIsEnterprise <em>Is Enterprise</em>}</li>
  * </ul>
  * </p>
  *
@@ -172,6 +173,26 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * @ordered
 	 */
 	protected String queryOutput = QUERY_OUTPUT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isIsEnterprise() <em>Is Enterprise</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsEnterprise()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean IS_ENTERPRISE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIsEnterprise() <em>Is Enterprise</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isIsEnterprise()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean isEnterprise = IS_ENTERPRISE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -344,6 +365,27 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isIsEnterprise() {
+		return isEnterprise;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIsEnterprise(boolean newIsEnterprise) {
+		boolean oldIsEnterprise = isEnterprise;
+		isEnterprise = newIsEnterprise;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.TAS_CONNECTION__IS_ENTERPRISE, oldIsEnterprise, isEnterprise));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -361,6 +403,8 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return getOutput();
 			case TasPackage.TAS_CONNECTION__QUERY_OUTPUT:
 				return getQueryOutput();
+			case TasPackage.TAS_CONNECTION__IS_ENTERPRISE:
+				return isIsEnterprise();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -393,6 +437,9 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return;
 			case TasPackage.TAS_CONNECTION__QUERY_OUTPUT:
 				setQueryOutput((String)newValue);
+				return;
+			case TasPackage.TAS_CONNECTION__IS_ENTERPRISE:
+				setIsEnterprise((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -427,6 +474,9 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 			case TasPackage.TAS_CONNECTION__QUERY_OUTPUT:
 				setQueryOutput(QUERY_OUTPUT_EDEFAULT);
 				return;
+			case TasPackage.TAS_CONNECTION__IS_ENTERPRISE:
+				setIsEnterprise(IS_ENTERPRISE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -453,6 +503,8 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return OUTPUT_EDEFAULT == null ? output != null : !OUTPUT_EDEFAULT.equals(output);
 			case TasPackage.TAS_CONNECTION__QUERY_OUTPUT:
 				return QUERY_OUTPUT_EDEFAULT == null ? queryOutput != null : !QUERY_OUTPUT_EDEFAULT.equals(queryOutput);
+			case TasPackage.TAS_CONNECTION__IS_ENTERPRISE:
+				return isEnterprise != IS_ENTERPRISE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -481,6 +533,8 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 		result.append(output);
 		result.append(", queryOutput: ");
 		result.append(queryOutput);
+		result.append(", isEnterprise: ");
+		result.append(isEnterprise);
 		result.append(')');
 		return result.toString();
 	}

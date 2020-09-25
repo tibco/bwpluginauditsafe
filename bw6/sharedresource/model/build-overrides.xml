@@ -24,6 +24,11 @@
     <property name="autobuild.version.developer.eclipse" value="4.4" />
 
 
+    <property name="javacSource" value="1.8" />
+    <property name="javacTarget" value="1.8" />
+    <property name="autobuild.jdk.force-18" value="true" />
+
+
     <property name="autobuild.p2.packaging" value="true" />
 	
     <property name="autobuild.obfuscator.style" value="package"/>

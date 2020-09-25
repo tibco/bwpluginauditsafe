@@ -139,13 +139,13 @@ public interface TasPackage extends EPackage {
 	int TAS_CONNECTION__QUERY_OUTPUT = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 6;
 
 	/**
-	 * The feature id for the '<em><b>Is Enterprise</b></em>' attribute.
+	 * The feature id for the '<em><b>Enterprise</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TAS_CONNECTION__IS_ENTERPRISE = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 7;
+	int TAS_CONNECTION__ENTERPRISE = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>Connection</em>' class.
@@ -245,15 +245,15 @@ public interface TasPackage extends EPackage {
 	EAttribute getTasConnection_QueryOutput();
 
 	/**
-	 * Returns the meta object for the attribute '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#isIsEnterprise <em>Is Enterprise</em>}'.
+	 * Returns the meta object for the attribute '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#isEnterprise <em>Enterprise</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Enterprise</em>'.
-	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasConnection#isIsEnterprise()
+	 * @return the meta object for the attribute '<em>Enterprise</em>'.
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasConnection#isEnterprise()
 	 * @see #getTasConnection()
 	 * @generated
 	 */
-	EAttribute getTasConnection_IsEnterprise();
+	EAttribute getTasConnection_Enterprise();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -344,12 +344,12 @@ public interface TasPackage extends EPackage {
 		EAttribute TAS_CONNECTION__QUERY_OUTPUT = eINSTANCE.getTasConnection_QueryOutput();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Enterprise</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Enterprise</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TAS_CONNECTION__IS_ENTERPRISE = eINSTANCE.getTasConnection_IsEnterprise();
+		EAttribute TAS_CONNECTION__ENTERPRISE = eINSTANCE.getTasConnection_Enterprise();
 
 	}
 

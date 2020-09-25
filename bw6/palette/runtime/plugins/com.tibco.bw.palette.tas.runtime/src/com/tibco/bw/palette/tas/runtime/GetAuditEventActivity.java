@@ -181,9 +181,16 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 
 		//send query request
 		String body = mapper.writeValueAsString(requestNode);
-		activityLogger.debug(body);
-		result = TasClient.getAuditEvent(sharedResource.getServerUrl(), sharedResource.getUsername(), sharedResource.getPassword(), sharedResource.getId(), body, true);
-
+		boolean isEnterprise = sharedResource.isEnterprise();
+		activityLogger.debug("Is enterprise version:" + isEnterprise + ". Request body:" +body);
+		if(sharedResource.isEnterprise()){
+			result = TasClient.tasEEAction(TasClient.METHOD_GET_EVENT, sharedResource.getServerUrl(), sharedResource.getUsername(),
+					sharedResource.getPassword(), body);
+		} else {
+			result = TasClient.getAuditEvent(sharedResource.getServerUrl(), sharedResource.getUsername(),
+					sharedResource.getPassword(), sharedResource.getId(), body, true);
+		}
+		
 		if(result == null || result.isHasError()){
 			String errorMessage = (result == null? "Result is empty": result.getMessage());
 			throw new TasActivityFault(activityContext, RuntimeMessageBundle.ERROR_REQUEST_FAILED.getErrorCode(), errorMessage);

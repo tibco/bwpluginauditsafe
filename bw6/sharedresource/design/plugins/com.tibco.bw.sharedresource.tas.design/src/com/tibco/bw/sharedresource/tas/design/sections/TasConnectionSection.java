@@ -67,7 +67,7 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
         getBindingManager().bind(serverUrlAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__SERVER_URL);
         getBindingManager().bind(usernameAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__USERNAME);
         getBindingManager().bind(passwordAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__PASSWORD);
-        getBindingManager().bind(isEnterpriseAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__IS_ENTERPRISE);
+        getBindingManager().bind(isEnterpriseAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__ENTERPRISE);
 	    // begin-custom-code
         // end-custom-code
 	}
@@ -183,7 +183,7 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 	
 	public boolean isEnterpise(TasConnection connection) {
 
-    	boolean isEnterprise = connection.isIsEnterprise();
+    	boolean isEnterprise = connection.isEnterprise();
     	return isEnterprise;
     }
 

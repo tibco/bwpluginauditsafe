@@ -110,8 +110,15 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
 		}
 		//send post request
 		String body = mapper.writeValueAsString(eventArray);
-		activityLogger.debug(body);
-		result = TasClient.postAuditEvent(sharedResource.getServerUrl(), sharedResource.getUsername(), sharedResource.getPassword(), sharedResource.getId(), body, true);
+		boolean isEnterprise = sharedResource.isEnterprise();
+		activityLogger.debug("Is enterprise version:" + isEnterprise + ". Request body:" +body);
+		if(sharedResource.isEnterprise()){
+			result = TasClient.tasEEAction(TasClient.METHOD_POST_EVENT, sharedResource.getServerUrl(), sharedResource.getUsername(),
+					sharedResource.getPassword(), body);
+		} else {
+			result = TasClient.postAuditEvent(sharedResource.getServerUrl(), sharedResource.getUsername(), sharedResource.getPassword(), sharedResource.getId(), body, true);
+		}
+		
 
 		if(result == null || result.isHasError()){
 			String errorMessage = (result == null? "Result is empty": result.getMessage());

@@ -16,7 +16,14 @@ public class TasConnectionResource {
 	private String id;
 	private String schema;
 	private String output;
+	private boolean enterprise;
 
+	public boolean isEnterprise() {
+		return enterprise;
+	}
+	public void setEnterprise(boolean enterprise) {
+		this.enterprise = enterprise;
+	}
 	public String getSchema() {
 		return schema;
 	}

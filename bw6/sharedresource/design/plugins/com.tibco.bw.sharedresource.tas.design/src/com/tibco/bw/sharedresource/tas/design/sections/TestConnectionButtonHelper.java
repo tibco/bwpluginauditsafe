@@ -87,7 +87,7 @@ public class TestConnectionButtonHelper {
 				testLabel.setText("Testing...");
 				
 				if(isEnterprise){
-					TasResponse taResponse = TasClient.getStatus(serverUrl, username, password);
+					TasResponse taResponse = TasClient.getJWTToken(serverUrl, username, password);
 					if (taResponse.isHasError()) {
 						Color red = new Color(composite.getShell().getDisplay(),
 								255, 0, 0);
@@ -95,12 +95,12 @@ public class TestConnectionButtonHelper {
 						testLabel.setText("Test AuditSafe Connection failed");
 					} else {
 						//TODO set account id
-						String accountId ="";
+						String token  = taResponse.getMessage();
 						String body = "{\"path\": \"/tas/dataserver/transactions\", \"method\": \"POST\"}";
 						String queryBody = "{\"path\": \"/tas/dataserver/transactions/query\", \"method\": \"POST\"}";
-						TasResponse inputSchemaResponse = TasClient.getSchema(serverUrl, username, password, accountId, body, INPUT_TYPE);
-						TasResponse outputSchemaResponse =  TasClient.getSchema(serverUrl, username, password, accountId, body, OUTPUT_TYPE);
-						TasResponse queryOutputSchemaResponse =  TasClient.getSchema(serverUrl, username, password, accountId, queryBody, OUTPUT_TYPE);
+						TasResponse inputSchemaResponse = TasClient.getSchemaEE(serverUrl, token, body, INPUT_TYPE);
+						TasResponse outputSchemaResponse =  TasClient.getSchemaEE(serverUrl, token, body, OUTPUT_TYPE);
+						TasResponse queryOutputSchemaResponse =  TasClient.getSchemaEE(serverUrl, token, queryBody, OUTPUT_TYPE);
 						if(inputSchemaResponse.isHasError() || outputSchemaResponse.isHasError()){
 							Color red = new Color(composite.getShell().getDisplay(),
 									255, 0, 0);
@@ -110,7 +110,7 @@ public class TestConnectionButtonHelper {
 							final String schema = inputSchemaResponse.getMessage();
 							final String output = outputSchemaResponse.getMessage();
 							final String queryOutput = queryOutputSchemaResponse.getMessage();
-							final String localAccountId = accountId;
+							final String localAccountId = token;
 							final WorkingCopy workingCopy = (WorkingCopy)tasConnectionSection.getPage().getEditor().getAdapter(WorkingCopy.class);
 			            	TransactionalEditingDomain ed = (TransactionalEditingDomain) workingCopy.getEditingDomain();
 							Command cmd = new RecordingCommand(ed) {

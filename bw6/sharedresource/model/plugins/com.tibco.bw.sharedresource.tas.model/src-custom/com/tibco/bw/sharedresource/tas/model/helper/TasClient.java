@@ -13,6 +13,7 @@ import java.net.CookieHandler;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,8 +24,13 @@ public class TasClient {
 	public static final String ENV_INTERNAL_URL = "TIBCO_INTERNAL_INTERCOM_URL";
 	public static final String ENV_SUBSCRIPTION_ID = "TIBCO_INTERNAL_TCI_SUBSCRIPTION_ID";
 	public static final String PROD_TIBCO_CLOUD = "auditsafe.cloud.tibco.com";
+	
+	public static final String METHOD_GET_EVENT = "get";
+	public static final String METHOD_POST_EVENT = "post";
 
 	protected static UserAwareCookieManager cookieManager;
+	
+	private static Map<String, String> tokenMap = new HashMap<String,String>();
 
 	public synchronized static UserAwareCookieManager getCookieManager() {
 		if (cookieManager == null) {
@@ -426,30 +432,30 @@ public class TasClient {
 		return sb.toString();
 	}
 
-	public static TasResponse getStatus(String tasBaseUrl, String username, String password) {
+	public static TasResponse getJWTToken(String tasBaseUrl, String username, String password) {
 		TasResponse response = new TasResponse();
+		
+		String body = "{\"username\": \""+ username 
+				+"\", \"password\": \""+ Base64.getEncoder().encodeToString(password.getBytes())+"\"}";
 
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("username", username);
-		params.put("password", password);
 		
 		if (tasBaseUrl.endsWith("/")) {
 			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
 		}
-		String url = tasBaseUrl + "/tas/dataserver/dashboard/health";
+		String url = tasBaseUrl + "/tas/dataserver/user/auth";
 		
 		HttpURLConnection httpConn;
 		try {
-			httpConn = buildGetHttpConnection(url, params,
-					getsettingMap());
+			httpConn = buildpostHttpUrlConnectionWithJson(url, body,
+					getsettingMap("application/json", "application/json"));
 			String messagebody = getHttpRequestBody(httpConn);
 			int statusCode = httpConn.getResponseCode();
 
 			response.setStatusCode(statusCode);
 			if (statusCode == HttpURLConnection.HTTP_OK) {
 				JsonReader node = new JsonReader(messagebody);
-				if (node.getNode("labeledMetrics") != null) {
-					response.setSuccessfulResponse(node.getNode("value").textValue());
+				if (node.getNode("token") != null) {
+					response.setSuccessfulResponse(node.getNode("token").textValue());
 				}
 			} else {
 				response.setErrorMessage(messagebody);
@@ -459,6 +465,108 @@ public class TasClient {
 		}
 
 		return response;
+	}
+	
+	public static TasResponse getSchemaEE(String tasBaseUrl, String token, String body, int type) {
+
+		TasResponse result = new TasResponse();
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+		}
+		try {
+
+			String schemaUrl = tasBaseUrl + "/tas/dataserver/schema";
+			
+			Map<String, String> params = getsettingMap("application/json", "application/json");
+			params.put("x-atmosphere-token", token);
+			HttpURLConnection httpConn = buildpostHttpUrlConnectionWithJson(schemaUrl, body, params);
+			String messagebody = getHttpRequestBody(httpConn);
+			int statusCode = httpConn.getResponseCode();
+			result.setStatusCode(statusCode);
+
+			if (statusCode == HttpURLConnection.HTTP_OK) {
+				JsonReader node = new JsonReader(messagebody);
+				if (type == 1 && node.getNode("requestSchema") != null) {
+					result.setSuccessfulResponse(node.getNode("requestSchema").toString());
+				} else if (type == 2 && node.getNode("responseSchema") != null) {
+					result.setSuccessfulResponse(node.getNode("responseSchema").toString());
+				}
+			} else {
+				result.setErrorMessage(messagebody);
+			}
+			
+		} catch (Exception e) {
+			result.setErrorMessage("Get schema failed! " + e.getMessage());
+		}
+
+		return result;
+	}
+	
+	public static TasResponse tasEEAction(String method, String tasBaseUrl, String username,
+			String password, String body) {
+		TasResponse result = new TasResponse();
+		String token  = tokenMap.get(username);
+		boolean refreshToken = true;
+		if(token == null) {
+			TasResponse tokenResponse = getJWTToken(tasBaseUrl, username, password);
+			if(tokenResponse.isHasError()){
+				result.setErrorMessage(tokenResponse.getMessage());
+				return result;
+			}else {
+				token  = tokenResponse.getMessage();
+				refreshToken = false;
+			}
+		}
+		
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+		}
+		try {
+			HttpURLConnection httpConn;
+			String actionUrl = "";
+			if(METHOD_GET_EVENT.equals(method)){
+				actionUrl = tasBaseUrl + "/tas/dataserver/events/get";
+			} else if(METHOD_POST_EVENT.equals(method)){
+				actionUrl = tasBaseUrl + "/tas/dataserver/events/post";
+			}
+					
+			Map<String, String> params = getsettingMap("application/json", "application/json");
+			params.put("x-atmosphere-token", token);
+			httpConn = buildpostHttpUrlConnectionWithJson(actionUrl, body, params);
+			String message = getHttpRequestBody(httpConn);
+			int statusCode = httpConn.getResponseCode();
+			result.setStatusCode(statusCode);
+
+			if(statusCode == HttpURLConnection.HTTP_OK){
+				result.setSuccessfulResponse(message);
+			} 
+			else if(refreshToken){
+				TasResponse tokenResponse = getJWTToken(tasBaseUrl, username, password);
+				
+				if(tokenResponse.isHasError()){
+					result.setErrorMessage(tokenResponse.getMessage());
+				}else {
+					token = tokenResponse.getMessage();
+					tokenMap.put(username,token);
+					params.put("x-atmosphere-token", token);
+					httpConn = buildpostHttpUrlConnectionWithJson(actionUrl, body,
+							getsettingMap("application/json", "application/json"));
+					message = getHttpRequestBody(httpConn);
+					statusCode = httpConn.getResponseCode();
+					result.setStatusCode(statusCode);
+					if(statusCode == HttpURLConnection.HTTP_OK){
+						result.setSuccessfulResponse(message);
+					} else {
+						result.setErrorMessage(message);
+					}
+				}
+			}
+
+		} catch (IOException e) {
+			result.setErrorMessage(e.getMessage());
+		}
+
+		return result;
 	}
 	
 	public static HttpURLConnection buildGetHttpConnection(
@@ -476,3 +584,4 @@ public class TasClient {
 		return connection;
 	}
 }
+

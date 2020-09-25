@@ -99,6 +99,7 @@ public class TasConnectionResourceFactory extends BaseSharedResourceFactory
      * @generated
      */
 	private void setProperties(SharedResourceContext context ,final Map<String, ?> toSet, final TasConnectionResource resource) {
+		resource.setEnterprise((Boolean)toSet.get("enterprise"));
 	    resource.setServerUrl((String) toSet.get("serverUrl"));
 	    resource.setUsername((String)toSet.get("username"));
 	    resource.setPassword(context.getDecryptedPasswordValue((String) toSet.get("password")));

@@ -25,7 +25,7 @@
 
     <property name="autobuild.p2.packaging" value="true" />
 	
-    <property name="autobuild.obfuscator.style" value="package"/>
+    <property name="autobuild.obfuscator.style" value="none"/>
 
     <property name="allow.binary.cycles" value="true" />
 

@@ -31,7 +31,7 @@
 
     <!--property name="autobuild.workspace.extra-feature" location="extrafeature.xml"/-->
 	
-    <property name="autobuild.obfuscator.style" value="package"/>
+    <property name="autobuild.obfuscator.style" value="none"/>
 
     <property name="allow.binary.cycles" value="true" />
 

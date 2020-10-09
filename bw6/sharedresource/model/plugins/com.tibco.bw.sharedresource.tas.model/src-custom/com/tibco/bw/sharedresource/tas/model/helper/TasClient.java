@@ -560,6 +560,8 @@ public class TasClient {
 						result.setErrorMessage(message);
 					}
 				}
+			}else {
+				result.setErrorMessage(message);
 			}
 
 		} catch (IOException e) {

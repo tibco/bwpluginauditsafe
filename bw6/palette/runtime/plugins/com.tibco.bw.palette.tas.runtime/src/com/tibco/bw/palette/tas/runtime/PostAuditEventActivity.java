@@ -112,18 +112,34 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
 		String body = mapper.writeValueAsString(eventArray);
 		boolean isEnterprise = sharedResource.isEnterprise();
 		activityLogger.debug("Is enterprise version:" + isEnterprise + ". Request body:" +body);
-		if(sharedResource.isEnterprise()){
-			result = TasClient.tasEEAction(TasClient.METHOD_POST_EVENT, sharedResource.getServerUrl(), sharedResource.getUsername(),
-					sharedResource.getPassword(), body);
-		} else {
-			result = TasClient.postAuditEvent(sharedResource.getServerUrl(), sharedResource.getUsername(), sharedResource.getPassword(), sharedResource.getId(), body, true);
+		
+		int retryTimes = 0;
+
+		while(retryTimes < 5){
+			
+			if(sharedResource.isEnterprise()){
+				result = TasClient.tasEEAction(TasClient.METHOD_POST_EVENT, sharedResource.getServerUrl(), sharedResource.getUsername(),
+						sharedResource.getPassword(), body);
+			} else {
+				result = TasClient.postAuditEvent(sharedResource.getServerUrl(), sharedResource.getUsername(), sharedResource.getPassword(), sharedResource.getId(), body, true);
+			}
+			
+			if(result == null || result.isHasError()){
+				retryTimes++;
+				String errorMessage = (result == null? "Result is empty": result.getMessage());
+				String warnMessage = "Post failed: " + errorMessage + ". Retry time:" + retryTimes;
+				activityLogger.error(RuntimeMessageBundle.WARN_FORMAT1, new Object[] {warnMessage});
+				Thread.sleep(1000*retryTimes);
+			} else {
+				break;
+			}
 		}
 		
-
 		if(result == null || result.isHasError()){
 			String errorMessage = (result == null? "Result is empty": result.getMessage());
 			throw new TasActivityFault(activityContext, RuntimeMessageBundle.ERROR_REQUEST_FAILED.getErrorCode(), errorMessage);
 		}
+
 		// get output schema and put properties in a set
 		JsonReader requestNode = new JsonReader(sharedResource.getOutput());
 		//activityLogger.debug(requestNode.toString());

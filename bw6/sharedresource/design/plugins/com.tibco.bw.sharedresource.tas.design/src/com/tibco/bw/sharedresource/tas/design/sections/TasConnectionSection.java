@@ -184,6 +184,15 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 	public boolean isEnterpise(TasConnection connection) {
 
     	boolean isEnterprise = connection.isEnterprise();
+    	EList<SubstitutionBinding> ds_substvars = connection.getSubstitutionBindings();
+		for (SubstitutionBinding substitutionBinding : ds_substvars) {
+			String propName = substitutionBinding.getPropName();
+			String templateName = substitutionBinding.getTemplate();
+			if (templateName.equals(TasPackage.Literals.TAS_CONNECTION__ENTERPRISE.getName())){
+				isEnterprise = Boolean.valueOf(ModelHelper.INSTANCE.getModulePropertyValue(connection, propName));
+                break;
+			}
+		}
     	return isEnterprise;
     }
 

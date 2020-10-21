@@ -12,7 +12,6 @@
  */
 package com.tibco.bw.palette.tas.runtime;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -259,16 +258,7 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 						
 					} else {
 						N fieldNode = noteFactory.createElement("", fieldName,"");
-						String value = event.get(fieldName).asText();
-						if(fieldName.equals("payload")){
-//							value = event.get(fieldName).toString();
-//							value = event.get(fieldName).textValue();
-//							System.out.println(value);
-//							System.out.println(new String(value.getBytes("UTF-8"), "UTF-8"));
-//							System.out.println(new String(value.getBytes("ISO-8859-1"), "UTF-8"));
-//							value = value.replaceAll("[^\\x00-\\x7F]", "");
-						}					
-						N valueNode = noteFactory.createText(value);
+						N valueNode = noteFactory.createText(event.get(fieldName).asText());
 						mutableModel.appendChild(fieldNode, valueNode);
 						mutableModel.appendChild(data, fieldNode);
 					}

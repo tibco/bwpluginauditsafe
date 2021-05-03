@@ -69,8 +69,8 @@ public class TasClient {
 			HttpURLConnection httpConn;
 			String getEventUrl = "";
 			boolean isIntercom = internalUrl != null && !internalUrl.isEmpty();
+			String subId = System.getProperty(ENV_SUBSCRIPTION_ID);
 			if (isIntercom) {
-				String subId = System.getProperty(ENV_SUBSCRIPTION_ID);
 				getEventUrl = internalUrl
 						+ "/tas/dataserver/intercom/transactions/query?tscSubscriptionId="
 						+ subId;
@@ -81,6 +81,11 @@ public class TasClient {
 			}
 			httpConn = buildpostHttpUrlConnectionWithJson(getEventUrl, body,
 					getsettingMap("application/json", "application/json"));
+			if(isIntercom){
+				httpConn.setRequestProperty("X-Atmosphere-Tenant-Id", "tas");
+				httpConn.setRequestProperty("X-Atmosphere-Subscription-Id", subId);
+			}
+			
 			String message = getHttpRequestBody(httpConn);
 			int statusCode = httpConn.getResponseCode();
 			result.setStatusCode(statusCode);
@@ -128,8 +133,9 @@ public class TasClient {
 			HttpURLConnection httpConn;
 			String postEventUrl = "";
 			boolean isIntercom = internalUrl != null && !internalUrl.isEmpty();
+			String subId = System.getProperty(ENV_SUBSCRIPTION_ID);
 			if (isIntercom) {
-				String subId = System.getProperty(ENV_SUBSCRIPTION_ID);
+				
 				postEventUrl = internalUrl
 						+ "/tas/dataserver/intercom/transactions?tscSubscriptionId="
 						+ subId;
@@ -140,6 +146,12 @@ public class TasClient {
 			}
 			httpConn = buildpostHttpUrlConnectionWithJson(postEventUrl, body,
 					getsettingMap("application/json", "application/json"));
+			if(isIntercom){
+				httpConn.setRequestProperty("X-Atmosphere-Tenant-Id", "tas");
+				httpConn.setRequestProperty("X-Atmosphere-Subscription-Id", subId);
+			}
+			
+			
 			String message = getHttpRequestBody(httpConn);
 			int statusCode = httpConn.getResponseCode();
 			result.setStatusCode(statusCode);

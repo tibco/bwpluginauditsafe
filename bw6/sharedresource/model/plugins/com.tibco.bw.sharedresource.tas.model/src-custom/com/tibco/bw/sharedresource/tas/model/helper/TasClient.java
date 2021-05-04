@@ -27,6 +27,8 @@ public class TasClient {
 	
 	public static final String METHOD_GET_EVENT = "get";
 	public static final String METHOD_POST_EVENT = "post";
+	
+	public static final String TAS_TENANT_ID = "tcta";
 
 	protected static UserAwareCookieManager cookieManager;
 	
@@ -82,7 +84,7 @@ public class TasClient {
 			httpConn = buildpostHttpUrlConnectionWithJson(getEventUrl, body,
 					getsettingMap("application/json", "application/json"));
 			if(isIntercom){
-				httpConn.setRequestProperty("X-Atmosphere-Tenant-Id", "tas");
+				httpConn.setRequestProperty("X-Atmosphere-Tenant-Id", TAS_TENANT_ID);
 				httpConn.setRequestProperty("X-Atmosphere-Subscription-Id", subId);
 			}
 			
@@ -147,7 +149,7 @@ public class TasClient {
 			httpConn = buildpostHttpUrlConnectionWithJson(postEventUrl, body,
 					getsettingMap("application/json", "application/json"));
 			if(isIntercom){
-				httpConn.setRequestProperty("X-Atmosphere-Tenant-Id", "tas");
+				httpConn.setRequestProperty("X-Atmosphere-Tenant-Id", TAS_TENANT_ID);
 				httpConn.setRequestProperty("X-Atmosphere-Subscription-Id", subId);
 			}
 			

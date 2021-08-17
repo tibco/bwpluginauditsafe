@@ -2,16 +2,16 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: com.tibco.bw.sharedresource.tas.model;singleton:=true
-Bundle-Version: 6.3.0.qualifier
+Bundle-Version: 6.3.100.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
-Export-Package: com.tibco.bw.sharedresource.tas.model.helper;version="6.3.0",
- com.tibco.bw.sharedresource.tas.model.tas;version="6.3.0",
- com.tibco.bw.sharedresource.tas.model.tas.impl;version="6.3.0",
- com.tibco.bw.sharedresource.tas.model.tas.util;version="6.3.0"
+Export-Package: com.tibco.bw.sharedresource.tas.model.helper;version="6.3.100",
+ com.tibco.bw.sharedresource.tas.model.tas;version="6.3.100",
+ com.tibco.bw.sharedresource.tas.model.tas.impl;version="6.3.100",
+ com.tibco.bw.sharedresource.tas.model.tas.util;version="6.3.100"
 Import-Package: com.fasterxml.jackson.core;version="[2.6.1,3.0.0)",
  com.fasterxml.jackson.databind;version="[2.6.1,3.0.0)",
  com.fasterxml.jackson.databind.node;version="[2.6.1,3.0.0)",

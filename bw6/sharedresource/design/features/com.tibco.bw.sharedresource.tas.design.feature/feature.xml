@@ -26,7 +26,7 @@
       <import feature="com.tibco.tibcoxml.xml.eclipse" version="5.60.100" match="compatible"/>
       <import feature="com.tibco.tpcl.javax.jms.feature.eclipse" version="1.10.0" match="compatible"/> 
       <import feature="com.tibco.bw.core.design.feature" version="6.3.0" match="compatible"/>
-      <import feature="com.tibco.bw.sharedresource.tas.model.feature" version="6.3.0" match="compatible"/>
+      <import feature="com.tibco.bw.sharedresource.tas.model.feature" version="6.3.100" match="compatible"/>
    </requires>
 
    <plugin

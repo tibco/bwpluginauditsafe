@@ -36,9 +36,9 @@
       <import feature="com.tibco.tpcl.org.apache.commons.pool.feature" version="1.6.0" match="compatible"/>
       <import feature="com.tibco.bw.api.palette.shared.feature" version="6.2.0" match="compatible"/>
 
-      <import feature="com.tibco.bw.sharedresource.tas.model.feature" version="6.3.0"/>
-      <import feature="com.tibco.bw.sharedresource.tas.runtime.feature" version="6.3.0"/>
-      <import feature="com.tibco.bw.palette.tas.model.feature" version="6.3.0"/>
+      <import feature="com.tibco.bw.sharedresource.tas.model.feature" version="6.3.100"/>
+      <import feature="com.tibco.bw.sharedresource.tas.runtime.feature" version="6.3.100"/>
+      <import feature="com.tibco.bw.palette.tas.model.feature" version="6.3.100"/>
    </requires>
 
    <plugin

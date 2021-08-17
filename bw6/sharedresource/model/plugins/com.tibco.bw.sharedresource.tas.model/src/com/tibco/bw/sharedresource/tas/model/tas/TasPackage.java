@@ -148,13 +148,49 @@ public interface TasPackage extends EPackage {
 	int TAS_CONNECTION__ENTERPRISE = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Access Token</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAS_CONNECTION__ACCESS_TOKEN = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 8;
+
+	/**
+	 * The feature id for the '<em><b>Refresh Token</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAS_CONNECTION__REFRESH_TOKEN = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 9;
+
+	/**
+	 * The feature id for the '<em><b>Client Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAS_CONNECTION__CLIENT_ID = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 10;
+
+	/**
+	 * The feature id for the '<em><b>Client Secret</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAS_CONNECTION__CLIENT_SECRET = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 11;
+
+	/**
 	 * The number of structural features of the '<em>Connection</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TAS_CONNECTION_FEATURE_COUNT = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 8;
+	int TAS_CONNECTION_FEATURE_COUNT = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 12;
 
 
 	/**
@@ -256,6 +292,50 @@ public interface TasPackage extends EPackage {
 	EAttribute getTasConnection_Enterprise();
 
 	/**
+	 * Returns the meta object for the attribute '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getAccessToken <em>Access Token</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Access Token</em>'.
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getAccessToken()
+	 * @see #getTasConnection()
+	 * @generated
+	 */
+	EAttribute getTasConnection_AccessToken();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getRefreshToken <em>Refresh Token</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Refresh Token</em>'.
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getRefreshToken()
+	 * @see #getTasConnection()
+	 * @generated
+	 */
+	EAttribute getTasConnection_RefreshToken();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getClientId <em>Client Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Client Id</em>'.
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getClientId()
+	 * @see #getTasConnection()
+	 * @generated
+	 */
+	EAttribute getTasConnection_ClientId();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getClientSecret <em>Client Secret</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Client Secret</em>'.
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getClientSecret()
+	 * @see #getTasConnection()
+	 * @generated
+	 */
+	EAttribute getTasConnection_ClientSecret();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -350,6 +430,38 @@ public interface TasPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TAS_CONNECTION__ENTERPRISE = eINSTANCE.getTasConnection_Enterprise();
+
+		/**
+		 * The meta object literal for the '<em><b>Access Token</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TAS_CONNECTION__ACCESS_TOKEN = eINSTANCE.getTasConnection_AccessToken();
+
+		/**
+		 * The meta object literal for the '<em><b>Refresh Token</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TAS_CONNECTION__REFRESH_TOKEN = eINSTANCE.getTasConnection_RefreshToken();
+
+		/**
+		 * The meta object literal for the '<em><b>Client Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TAS_CONNECTION__CLIENT_ID = eINSTANCE.getTasConnection_ClientId();
+
+		/**
+		 * The meta object literal for the '<em><b>Client Secret</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TAS_CONNECTION__CLIENT_SECRET = eINSTANCE.getTasConnection_ClientSecret();
 
 	}
 

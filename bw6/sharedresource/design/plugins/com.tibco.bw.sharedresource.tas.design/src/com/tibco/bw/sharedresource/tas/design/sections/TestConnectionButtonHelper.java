@@ -62,111 +62,102 @@ public class TestConnectionButtonHelper {
 						.getTasConnection();
 
 				String serverUrl = tasConnectionSection.getServerUrl(connection);
+				
+				String authToken = tasConnectionSection.getAccessToken(connection);
 
 				String username = tasConnectionSection.getUserName(connection);
 
 				String password = tasConnectionSection.getPassword(connection);
 				
 				boolean isEnterprise = tasConnectionSection.isEnterpise(connection);
+				
+				boolean useToken = !isEmpty(authToken);
 
-				if (serverUrl == null || serverUrl.isEmpty()) {
+				if (isEmpty(serverUrl)) {
 					testLabel.setForeground(red);
 					testLabel.setText("Server URL is required");
 					return;
-				}else if(username == null || username.isEmpty()){
-					testLabel.setForeground(red);
-					testLabel.setText("Username is required");
-					return;
-				}else if(password == null || password.isEmpty()){
-					testLabel.setForeground(red);
-					testLabel.setText("Password is required");
-					return;
+				} else if(isEmpty(authToken)){
+					if(isEmpty(username) && isEmpty(password)){
+						testLabel.setForeground(red);
+						testLabel.setText("Please input either Auth Token or Username/Password");
+					}
+					else if(isEmpty(username)){
+						testLabel.setForeground(red);
+						testLabel.setText("Username is required");
+						return;
+					}else if(isEmpty(password)){
+						testLabel.setForeground(red);
+						testLabel.setText("Password is required");
+						return;
+					}
 				}
+				
 				testConnection.setText(Messages.CONNECT_BUTTON_TEXT);
 				testLabel.setForeground(black);
 				testLabel.setText("Testing...");
 				
 				if(isEnterprise){
-					TasResponse taResponse = TasClient.getJWTToken(serverUrl, username, password);
-					if (taResponse.isHasError()) {
-						Color red = new Color(composite.getShell().getDisplay(),
-								255, 0, 0);
-						testLabel.setForeground(red);
-						testLabel.setText("Test AuditSafe Connection failed");
+					String token = null;
+					if(useToken){
+						token = authToken;
 					} else {
-						//TODO set account id
-						String token  = taResponse.getMessage();
-						String body = "{\"path\": \"/tas/dataserver/transactions\", \"method\": \"POST\"}";
-						String queryBody = "{\"path\": \"/tas/dataserver/transactions/query\", \"method\": \"POST\"}";
-						TasResponse inputSchemaResponse = TasClient.getSchemaEE(serverUrl, token, body, INPUT_TYPE);
-						TasResponse outputSchemaResponse =  TasClient.getSchemaEE(serverUrl, token, body, OUTPUT_TYPE);
-						TasResponse queryOutputSchemaResponse =  TasClient.getSchemaEE(serverUrl, token, queryBody, OUTPUT_TYPE);
-						if(inputSchemaResponse.isHasError() || outputSchemaResponse.isHasError()){
+						TasResponse taResponse = TasClient.getJWTToken(serverUrl, username, password);
+						if (taResponse.isHasError()) {
 							Color red = new Color(composite.getShell().getDisplay(),
 									255, 0, 0);
 							testLabel.setForeground(red);
-							testLabel.setText(inputSchemaResponse.isHasError()?inputSchemaResponse.getMessage():outputSchemaResponse.getMessage());
-						}else {
-							final String schema = inputSchemaResponse.getMessage();
-							final String output = outputSchemaResponse.getMessage();
-							final String queryOutput = queryOutputSchemaResponse.getMessage();
-							final String localAccountId = token;
-							final WorkingCopy workingCopy = (WorkingCopy)tasConnectionSection.getPage().getEditor().getAdapter(WorkingCopy.class);
-			            	TransactionalEditingDomain ed = (TransactionalEditingDomain) workingCopy.getEditingDomain();
-							Command cmd = new RecordingCommand(ed) {
-								@Override
-								protected void doExecute() {
-									connection.setId(localAccountId);
-									connection.setSchema(schema);
-									connection.setOutput(output);
-									connection.setQueryOutput(queryOutput);
-								}
-							};
-							ed.getCommandStack().execute(cmd);
-							MessageDialog messageDialog = new MessageDialog(composite
-									.getShell(), Messages.CONNECTED_TO_TAS, null,
-									Messages.CONNECTED_TO_TAS, MessageDialog.NONE,
-									new String[] { "Ok" }, 0);
-							messageDialog.open();
-							Color blue = new Color(composite.getShell().getDisplay(),
-									0, 0, 255);
-							testLabel.setForeground(blue);
-							testLabel.setText("Test AuditSafe Connection successful!");
+							testLabel.setText("Test AuditSafe Connection failed");
+						} else {
+							//TODO set account id
+							token  = taResponse.getMessage();
+							
 						}
+					}
+					String body = "{\"path\": \"/tas/dataserver/transactions\", \"method\": \"POST\"}";
+					String queryBody = "{\"path\": \"/tas/dataserver/transactions/query\", \"method\": \"POST\"}";
+					TasResponse inputSchemaResponse = TasClient.getSchemaEE(serverUrl, token, body, INPUT_TYPE);
+					TasResponse outputSchemaResponse =  TasClient.getSchemaEE(serverUrl, token, body, OUTPUT_TYPE);
+					TasResponse queryOutputSchemaResponse =  TasClient.getSchemaEE(serverUrl, token, queryBody, OUTPUT_TYPE);
+					if(inputSchemaResponse.isHasError() || outputSchemaResponse.isHasError()){
+						Color red = new Color(composite.getShell().getDisplay(),
+								255, 0, 0);
+						testLabel.setForeground(red);
+						testLabel.setText(inputSchemaResponse.isHasError()?inputSchemaResponse.getMessage():outputSchemaResponse.getMessage());
+					}else {
+						final String schema = inputSchemaResponse.getMessage();
+						final String output = outputSchemaResponse.getMessage();
+						final String queryOutput = queryOutputSchemaResponse.getMessage();
+						final String localAccountId = token;
+						final WorkingCopy workingCopy = (WorkingCopy)tasConnectionSection.getPage().getEditor().getAdapter(WorkingCopy.class);
+		            	TransactionalEditingDomain ed = (TransactionalEditingDomain) workingCopy.getEditingDomain();
+						Command cmd = new RecordingCommand(ed) {
+							@Override
+							protected void doExecute() {
+								connection.setId(localAccountId);
+								connection.setSchema(schema);
+								connection.setOutput(output);
+								connection.setQueryOutput(queryOutput);
+							}
+						};
+						ed.getCommandStack().execute(cmd);
+						MessageDialog messageDialog = new MessageDialog(composite
+								.getShell(), Messages.CONNECTED_TO_TAS, null,
+								Messages.CONNECTED_TO_TAS, MessageDialog.NONE,
+								new String[] { "Ok" }, 0);
+						messageDialog.open();
+						Color blue = new Color(composite.getShell().getDisplay(),
+								0, 0, 255);
+						testLabel.setForeground(blue);
+						testLabel.setText("Test AuditSafe Connection successful!");
 					}
 				} else {
-					TasResponse taResponse = TasClient.getToken(serverUrl, username, password);
-					HashMap<String,String> accountInfo = null;
-					if (!taResponse.isHasError()) {
-						try {
-							accountInfo = TasClient.getAccountIds(serverUrl, taResponse.getMessage());
-						} catch (IOException e1) {
-							MessageDialog messageDialog = new MessageDialog(composite
-									.getShell(), "Test AuditSafe Connection failed", null,
-									e1.getMessage(), MessageDialog.ERROR,
-									new String[] { "Ok" }, 0);
-							messageDialog.open();
-						}
-					}
-					if (accountInfo != null && accountInfo.size()>0) {
-						String accountId ="";
-
-						if(accountInfo.keySet().size() > 1){
-							AccountDialog dialog = new AccountDialog(composite.getShell());
-
-							dialog.initData(accountInfo.keySet().toArray(new String[accountInfo.size()]));
-							int eventkey = dialog.open();
-							if (eventkey == Window.OK) {
-								String selectedAccount = dialog.selectedValue;
-								accountId = accountInfo.get(selectedAccount);
-							}
-						}
-
+					if(useToken){
 						String body = "{\"path\": \"/tas/dataserver/transactions\", \"method\": \"POST\"}";
 						String queryBody = "{\"path\": \"/tas/dataserver/transactions/query\", \"method\": \"POST\"}";
-						TasResponse inputSchemaResponse = TasClient.getSchema(serverUrl, username, password, accountId, body, INPUT_TYPE);
-						TasResponse outputSchemaResponse =  TasClient.getSchema(serverUrl, username, password, accountId, body, OUTPUT_TYPE);
-						TasResponse queryOutputSchemaResponse =  TasClient.getSchema(serverUrl, username, password, accountId, queryBody, OUTPUT_TYPE);
+						TasResponse inputSchemaResponse = TasClient.getSchemaWithAuthToken(serverUrl, authToken, body, INPUT_TYPE);
+						TasResponse outputSchemaResponse =  TasClient.getSchemaWithAuthToken(serverUrl,authToken, body, OUTPUT_TYPE);
+						TasResponse queryOutputSchemaResponse =  TasClient.getSchemaWithAuthToken(serverUrl, authToken, queryBody, OUTPUT_TYPE);
 						if(inputSchemaResponse.isHasError() || outputSchemaResponse.isHasError()){
 							Color red = new Color(composite.getShell().getDisplay(),
 									255, 0, 0);
@@ -176,13 +167,12 @@ public class TestConnectionButtonHelper {
 							final String schema = inputSchemaResponse.getMessage();
 							final String output = outputSchemaResponse.getMessage();
 							final String queryOutput = queryOutputSchemaResponse.getMessage();
-							final String localAccountId = accountId;
+
 							final WorkingCopy workingCopy = (WorkingCopy)tasConnectionSection.getPage().getEditor().getAdapter(WorkingCopy.class);
 			            	TransactionalEditingDomain ed = (TransactionalEditingDomain) workingCopy.getEditingDomain();
 							Command cmd = new RecordingCommand(ed) {
 								@Override
 								protected void doExecute() {
-									connection.setId(localAccountId);
 									connection.setSchema(schema);
 									connection.setOutput(output);
 									connection.setQueryOutput(queryOutput);
@@ -199,14 +189,80 @@ public class TestConnectionButtonHelper {
 							testLabel.setForeground(blue);
 							testLabel.setText("Test AuditSafe Connection successful!");
 						}
-					} else {
-						Color red = new Color(composite.getShell().getDisplay(),
-								255, 0, 0);
-						testLabel.setForeground(red);
-						testLabel.setText("Test AuditSafe Connection failed");
-					}
-				}
+					}else {
+						TasResponse taResponse = TasClient.getToken(serverUrl, username, password);
+						HashMap<String,String> accountInfo = null;
+						if (!taResponse.isHasError()) {
+							try {
+								accountInfo = TasClient.getAccountIds(serverUrl, taResponse.getMessage());
+							} catch (IOException e1) {
+								MessageDialog messageDialog = new MessageDialog(composite
+										.getShell(), "Test AuditSafe Connection failed", null,
+										e1.getMessage(), MessageDialog.ERROR,
+										new String[] { "Ok" }, 0);
+								messageDialog.open();
+							}
+						}
+						if (accountInfo != null && accountInfo.size()>0) {
+							String accountId ="";
 
+							if(accountInfo.keySet().size() > 1){
+								AccountDialog dialog = new AccountDialog(composite.getShell());
+
+								dialog.initData(accountInfo.keySet().toArray(new String[accountInfo.size()]));
+								int eventkey = dialog.open();
+								if (eventkey == Window.OK) {
+									String selectedAccount = dialog.selectedValue;
+									accountId = accountInfo.get(selectedAccount);
+								}
+							}
+
+							String body = "{\"path\": \"/tas/dataserver/transactions\", \"method\": \"POST\"}";
+							String queryBody = "{\"path\": \"/tas/dataserver/transactions/query\", \"method\": \"POST\"}";
+							TasResponse inputSchemaResponse = TasClient.getSchema(serverUrl, username, password, accountId, body, INPUT_TYPE);
+							TasResponse outputSchemaResponse =  TasClient.getSchema(serverUrl, username, password, accountId, body, OUTPUT_TYPE);
+							TasResponse queryOutputSchemaResponse =  TasClient.getSchema(serverUrl, username, password, accountId, queryBody, OUTPUT_TYPE);
+							if(inputSchemaResponse.isHasError() || outputSchemaResponse.isHasError()){
+								Color red = new Color(composite.getShell().getDisplay(),
+										255, 0, 0);
+								testLabel.setForeground(red);
+								testLabel.setText(inputSchemaResponse.isHasError()?inputSchemaResponse.getMessage():outputSchemaResponse.getMessage());
+							}else {
+								final String schema = inputSchemaResponse.getMessage();
+								final String output = outputSchemaResponse.getMessage();
+								final String queryOutput = queryOutputSchemaResponse.getMessage();
+								final String localAccountId = accountId;
+								final WorkingCopy workingCopy = (WorkingCopy)tasConnectionSection.getPage().getEditor().getAdapter(WorkingCopy.class);
+				            	TransactionalEditingDomain ed = (TransactionalEditingDomain) workingCopy.getEditingDomain();
+								Command cmd = new RecordingCommand(ed) {
+									@Override
+									protected void doExecute() {
+										connection.setId(localAccountId);
+										connection.setSchema(schema);
+										connection.setOutput(output);
+										connection.setQueryOutput(queryOutput);
+									}
+								};
+								ed.getCommandStack().execute(cmd);
+								MessageDialog messageDialog = new MessageDialog(composite
+										.getShell(), Messages.CONNECTED_TO_TAS, null,
+										Messages.CONNECTED_TO_TAS, MessageDialog.NONE,
+										new String[] { "Ok" }, 0);
+								messageDialog.open();
+								Color blue = new Color(composite.getShell().getDisplay(),
+										0, 0, 255);
+								testLabel.setForeground(blue);
+								testLabel.setText("Test AuditSafe Connection successful!");
+							}
+						} else {
+							Color red = new Color(composite.getShell().getDisplay(),
+									255, 0, 0);
+							testLabel.setForeground(red);
+							testLabel.setText("Test AuditSafe Connection failed");
+						}
+					}
+					
+				}
 				testConnection.setText(Messages.TEST_CONNECTION_LABEL_TEXT);
 			}
 			
@@ -221,6 +277,10 @@ public class TestConnectionButtonHelper {
 		return ((url == null || "".equals(url))
 				|| (username == null || "".equals(username)) || (password == null || ""
 				.equals(password)));
+	}
+	
+	public static boolean isEmpty(String s){
+		return s == null || s.isEmpty();
 	}
 
 	class AccountDialog extends Dialog implements ActionListener {
@@ -272,6 +332,5 @@ public class TestConnectionButtonHelper {
 			selectedValue = accountList[0];
 		}
 	}
-
 
 }

@@ -35,6 +35,12 @@ public class Messages extends NLS {
 	public static String TASCONNECTION_PASSWORD;
 	public static String TASCONNECTION_ACCOUNTID;
 	public static String TASCONNECTION_IS_ENTERPRISE;
+	
+	public static String TASCONNECTION_ACCESS_TOKEN;
+	public static String TASCONNECTION_REFRESH_TOKEN;
+	public static String TASCONNECTION_CLIENT_ID;
+	public static String TASCONNECTION_CLIENT_SECRET;
+	
 	public static String SHAREDRESOURCE_PARAMETER_VALUE_INVALID;
 
 	public static String TEST_CONNECTION_LABEL_TEXT;

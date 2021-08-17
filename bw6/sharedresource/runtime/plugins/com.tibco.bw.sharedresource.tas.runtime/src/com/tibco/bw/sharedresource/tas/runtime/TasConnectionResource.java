@@ -17,6 +17,11 @@ public class TasConnectionResource {
 	private String schema;
 	private String output;
 	private boolean enterprise;
+	
+	private String accessToken;
+	private String refreshToken;
+	private String clientId;
+	private String clientSecret;
 
 	public boolean isEnterprise() {
 		return enterprise;
@@ -60,7 +65,34 @@ public class TasConnectionResource {
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	public String getAccessToken() {
+		return accessToken;
+	}
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
+	}
+	public String getRefreshToken() {
+		return refreshToken;
+	}
+	public void setRefreshToken(String refreshToken) {
+		this.refreshToken = refreshToken;
+	}
+	public String getClientId() {
+		return clientId;
+	}
+	public void setClientId(String clientId) {
+		this.clientId = clientId;
+	}
+	public String getClientSecret() {
+		return clientSecret;
+	}
+	public void setClientSecret(String clientSecret) {
+		this.clientSecret = clientSecret;
+	}
+	
+	public boolean useToken(){
+		return accessToken!=null && !accessToken.isEmpty();
+	}
 //	public String getToken(){
 //		Map<String, String> params = new HashMap<String,String>();
 //		params.put("username", username);

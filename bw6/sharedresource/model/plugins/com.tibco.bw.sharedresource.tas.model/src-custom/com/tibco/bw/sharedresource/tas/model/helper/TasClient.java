@@ -330,6 +330,40 @@ public class TasClient {
 
 		return result;
 	}
+	
+	public static TasResponse getSchemaWithAuthToken(String tasBaseUrl, String token, String body, int type) {
+		TasResponse result = new TasResponse();
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+		}
+		try {
+
+			String schemaUrl = tasBaseUrl + "/tas/dataserver/schema";
+			
+			Map<String, String> headerMap = getsettingMap("application/json", "application/json");
+			headerMap.put("Authorization", "Bearer " + token);
+			
+			HttpURLConnection httpConn = buildpostHttpUrlConnectionWithJson(schemaUrl, body, headerMap);
+			String messagebody = getHttpRequestBody(httpConn);
+			int statusCode = httpConn.getResponseCode();
+			result.setStatusCode(statusCode);
+
+			if (statusCode == HttpURLConnection.HTTP_OK) {
+				JsonReader node = new JsonReader(messagebody);
+				if (type == 1 && node.getNode("requestSchema") != null) {
+					result.setSuccessfulResponse(node.getNode("requestSchema").toString());
+				} else if (type == 2 && node.getNode("responseSchema") != null) {
+					result.setSuccessfulResponse(node.getNode("responseSchema").toString());
+				}
+			} else {
+				result.setErrorMessage(messagebody);
+			}
+			
+		} catch (Exception e) {
+			result.setErrorMessage("Get schema failed! " + e.getMessage());
+		} 
+		return result;
+	}
 
 	public static Map<String, String> getsettingMap() {
 		return getsettingMap("application/x-www-form-urlencoded",
@@ -585,6 +619,41 @@ public class TasClient {
 		return result;
 	}
 	
+	public static TasResponse tasEEActionWithToken(String method, String tasBaseUrl, String token, String body) {
+		TasResponse result = new TasResponse();
+		
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+		}
+		try {
+			HttpURLConnection httpConn;
+			String actionUrl = "";
+			if(METHOD_GET_EVENT.equals(method)){
+				actionUrl = tasBaseUrl + "/tas/dataserver/events/get";
+			} else if(METHOD_POST_EVENT.equals(method)){
+				actionUrl = tasBaseUrl + "/tas/dataserver/events/post";
+			}
+					
+			Map<String, String> params = getsettingMap("application/json", "application/json");
+			params.put("x-atmosphere-token", token);
+			httpConn = buildpostHttpUrlConnectionWithJson(actionUrl, body, params);
+			String message = getHttpRequestBody(httpConn);
+			int statusCode = httpConn.getResponseCode();
+			result.setStatusCode(statusCode);
+
+			if(statusCode == HttpURLConnection.HTTP_OK){
+				result.setSuccessfulResponse(message);
+			}else {
+				result.setErrorMessage(message);
+			}
+
+		} catch (IOException e) {
+			result.setErrorMessage(e.getMessage());
+		}
+
+		return result;
+	}
+	
 	public static HttpURLConnection buildGetHttpConnection(
 			String urlstring, Map<String, String> formparams,
 			Map<String, String> settingparams) throws IOException {
@@ -598,6 +667,100 @@ public class TasClient {
 //			addUrlConnectionParameter(connection, formparams);
 //		}
 		return connection;
+	}
+
+	public static TasResponse postAuditEventWithToken(String tasBaseUrl, String token, String body) {
+		TasResponse result = new TasResponse();
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+		}
+		try {
+			String internalUrl = System.getProperty(ENV_INTERNAL_URL);
+			HttpURLConnection httpConn;
+			String postEventUrl = "";
+			boolean isIntercom = internalUrl != null && !internalUrl.isEmpty();
+			String subId = System.getProperty(ENV_SUBSCRIPTION_ID);
+			if (isIntercom) {
+				
+				postEventUrl = internalUrl
+						+ "/tas/dataserver/intercom/transactions?tscSubscriptionId="
+						+ subId;
+			} else {
+				postEventUrl = tasBaseUrl
+						+ "/tas/dataserver/transactions";
+
+			}
+			httpConn = buildpostHttpUrlConnectionWithJson(postEventUrl, body,
+					getsettingMap("application/json", "application/json"));
+			if(isIntercom){
+				httpConn.setRequestProperty("X-Atmosphere-Tenant-Id", TAS_TENANT_ID);
+				httpConn.setRequestProperty("X-Atmosphere-Subscription-Id", subId);
+			} else {
+				httpConn.setRequestProperty("Authorization", "Bearer " + token);
+			}
+			
+			
+			String message = getHttpRequestBody(httpConn);
+			int statusCode = httpConn.getResponseCode();
+			result.setStatusCode(statusCode);
+
+			if(statusCode == HttpURLConnection.HTTP_OK){
+				result.setSuccessfulResponse(message);
+			}
+			else {
+				result.setErrorMessage(message);
+			}
+
+		} catch (IOException e) {
+			result.setErrorMessage(e.getMessage());
+
+		}
+		return result;
+	}
+
+	public static TasResponse getAuditEventWithToken(String tasBaseUrl, String accessToken, String body) {
+		TasResponse result = new TasResponse();
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+		}
+		try {
+			String internalUrl = System.getProperty(ENV_INTERNAL_URL);
+			HttpURLConnection httpConn;
+			String getEventUrl = "";
+			boolean isIntercom = internalUrl != null && !internalUrl.isEmpty();
+			String subId = System.getProperty(ENV_SUBSCRIPTION_ID);
+			if (isIntercom) {
+				getEventUrl = internalUrl
+						+ "/tas/dataserver/intercom/transactions/query?tscSubscriptionId="
+						+ subId;
+			} else {
+				getEventUrl = tasBaseUrl
+						+ "/tas/dataserver/transactions/query";
+
+			}
+			httpConn = buildpostHttpUrlConnectionWithJson(getEventUrl, body,
+					getsettingMap("application/json", "application/json"));
+			if(isIntercom){
+				httpConn.setRequestProperty("X-Atmosphere-Tenant-Id", TAS_TENANT_ID);
+				httpConn.setRequestProperty("X-Atmosphere-Subscription-Id", subId);
+			} else {
+				httpConn.setRequestProperty("Authorization", "Bearer " + accessToken);
+			}
+			
+			String message = getHttpRequestBody(httpConn);
+			int statusCode = httpConn.getResponseCode();
+			result.setStatusCode(statusCode);
+
+			if(statusCode == HttpURLConnection.HTTP_OK){
+				result.setSuccessfulResponse(message);
+			} else {
+				result.setErrorMessage(message);
+			}
+
+		} catch (IOException e) {
+			result.setErrorMessage(e.getMessage());
+		}
+		return result;
 	}
 }
 

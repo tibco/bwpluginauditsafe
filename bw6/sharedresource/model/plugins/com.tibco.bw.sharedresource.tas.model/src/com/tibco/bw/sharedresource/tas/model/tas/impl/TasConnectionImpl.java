@@ -28,6 +28,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getOutput <em>Output</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getQueryOutput <em>Query Output</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#isEnterprise <em>Enterprise</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getAccessToken <em>Access Token</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getRefreshToken <em>Refresh Token</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getClientId <em>Client Id</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getClientSecret <em>Client Secret</em>}</li>
  * </ul>
  * </p>
  *
@@ -193,6 +197,86 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * @ordered
 	 */
 	protected boolean enterprise = ENTERPRISE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getAccessToken() <em>Access Token</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAccessToken()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ACCESS_TOKEN_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getAccessToken() <em>Access Token</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAccessToken()
+	 * @generated
+	 * @ordered
+	 */
+	protected String accessToken = ACCESS_TOKEN_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getRefreshToken() <em>Refresh Token</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRefreshToken()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String REFRESH_TOKEN_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getRefreshToken() <em>Refresh Token</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRefreshToken()
+	 * @generated
+	 * @ordered
+	 */
+	protected String refreshToken = REFRESH_TOKEN_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getClientId() <em>Client Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getClientId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CLIENT_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getClientId() <em>Client Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getClientId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String clientId = CLIENT_ID_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getClientSecret() <em>Client Secret</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getClientSecret()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CLIENT_SECRET_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getClientSecret() <em>Client Secret</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getClientSecret()
+	 * @generated
+	 * @ordered
+	 */
+	protected String clientSecret = CLIENT_SECRET_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -386,6 +470,90 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getAccessToken() {
+		return accessToken;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAccessToken(String newAccessToken) {
+		String oldAccessToken = accessToken;
+		accessToken = newAccessToken;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.TAS_CONNECTION__ACCESS_TOKEN, oldAccessToken, accessToken));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getRefreshToken() {
+		return refreshToken;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setRefreshToken(String newRefreshToken) {
+		String oldRefreshToken = refreshToken;
+		refreshToken = newRefreshToken;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.TAS_CONNECTION__REFRESH_TOKEN, oldRefreshToken, refreshToken));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getClientId() {
+		return clientId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setClientId(String newClientId) {
+		String oldClientId = clientId;
+		clientId = newClientId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.TAS_CONNECTION__CLIENT_ID, oldClientId, clientId));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getClientSecret() {
+		return clientSecret;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setClientSecret(String newClientSecret) {
+		String oldClientSecret = clientSecret;
+		clientSecret = newClientSecret;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.TAS_CONNECTION__CLIENT_SECRET, oldClientSecret, clientSecret));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -405,6 +573,14 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return getQueryOutput();
 			case TasPackage.TAS_CONNECTION__ENTERPRISE:
 				return isEnterprise();
+			case TasPackage.TAS_CONNECTION__ACCESS_TOKEN:
+				return getAccessToken();
+			case TasPackage.TAS_CONNECTION__REFRESH_TOKEN:
+				return getRefreshToken();
+			case TasPackage.TAS_CONNECTION__CLIENT_ID:
+				return getClientId();
+			case TasPackage.TAS_CONNECTION__CLIENT_SECRET:
+				return getClientSecret();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -440,6 +616,18 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return;
 			case TasPackage.TAS_CONNECTION__ENTERPRISE:
 				setEnterprise((Boolean)newValue);
+				return;
+			case TasPackage.TAS_CONNECTION__ACCESS_TOKEN:
+				setAccessToken((String)newValue);
+				return;
+			case TasPackage.TAS_CONNECTION__REFRESH_TOKEN:
+				setRefreshToken((String)newValue);
+				return;
+			case TasPackage.TAS_CONNECTION__CLIENT_ID:
+				setClientId((String)newValue);
+				return;
+			case TasPackage.TAS_CONNECTION__CLIENT_SECRET:
+				setClientSecret((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -477,6 +665,18 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 			case TasPackage.TAS_CONNECTION__ENTERPRISE:
 				setEnterprise(ENTERPRISE_EDEFAULT);
 				return;
+			case TasPackage.TAS_CONNECTION__ACCESS_TOKEN:
+				setAccessToken(ACCESS_TOKEN_EDEFAULT);
+				return;
+			case TasPackage.TAS_CONNECTION__REFRESH_TOKEN:
+				setRefreshToken(REFRESH_TOKEN_EDEFAULT);
+				return;
+			case TasPackage.TAS_CONNECTION__CLIENT_ID:
+				setClientId(CLIENT_ID_EDEFAULT);
+				return;
+			case TasPackage.TAS_CONNECTION__CLIENT_SECRET:
+				setClientSecret(CLIENT_SECRET_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -505,6 +705,14 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return QUERY_OUTPUT_EDEFAULT == null ? queryOutput != null : !QUERY_OUTPUT_EDEFAULT.equals(queryOutput);
 			case TasPackage.TAS_CONNECTION__ENTERPRISE:
 				return enterprise != ENTERPRISE_EDEFAULT;
+			case TasPackage.TAS_CONNECTION__ACCESS_TOKEN:
+				return ACCESS_TOKEN_EDEFAULT == null ? accessToken != null : !ACCESS_TOKEN_EDEFAULT.equals(accessToken);
+			case TasPackage.TAS_CONNECTION__REFRESH_TOKEN:
+				return REFRESH_TOKEN_EDEFAULT == null ? refreshToken != null : !REFRESH_TOKEN_EDEFAULT.equals(refreshToken);
+			case TasPackage.TAS_CONNECTION__CLIENT_ID:
+				return CLIENT_ID_EDEFAULT == null ? clientId != null : !CLIENT_ID_EDEFAULT.equals(clientId);
+			case TasPackage.TAS_CONNECTION__CLIENT_SECRET:
+				return CLIENT_SECRET_EDEFAULT == null ? clientSecret != null : !CLIENT_SECRET_EDEFAULT.equals(clientSecret);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -535,6 +743,14 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 		result.append(queryOutput);
 		result.append(", enterprise: ");
 		result.append(enterprise);
+		result.append(", accessToken: ");
+		result.append(accessToken);
+		result.append(", refreshToken: ");
+		result.append(refreshToken);
+		result.append(", clientId: ");
+		result.append(clientId);
+		result.append(", clientSecret: ");
+		result.append(clientSecret);
 		result.append(')');
 		return result.toString();
 	}

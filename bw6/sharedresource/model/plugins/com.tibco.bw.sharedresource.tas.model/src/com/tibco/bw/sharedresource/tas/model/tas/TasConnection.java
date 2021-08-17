@@ -20,6 +20,10 @@ import com.tibco.neo.svar.svarmodel.SubstitutableObject;
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getOutput <em>Output</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getQueryOutput <em>Query Output</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#isEnterprise <em>Enterprise</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getAccessToken <em>Access Token</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getRefreshToken <em>Refresh Token</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getClientId <em>Client Id</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getClientSecret <em>Client Secret</em>}</li>
  * </ul>
  * </p>
  *
@@ -236,5 +240,109 @@ public interface TasConnection extends SubstitutableObject {
 	 * @generated
 	 */
 	void setEnterprise(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Access Token</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Access Token</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Access Token</em>' attribute.
+	 * @see #setAccessToken(String)
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasPackage#getTasConnection_AccessToken()
+	 * @model
+	 * @generated
+	 */
+	String getAccessToken();
+
+	/**
+	 * Sets the value of the '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getAccessToken <em>Access Token</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Access Token</em>' attribute.
+	 * @see #getAccessToken()
+	 * @generated
+	 */
+	void setAccessToken(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Refresh Token</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Refresh Token</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Refresh Token</em>' attribute.
+	 * @see #setRefreshToken(String)
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasPackage#getTasConnection_RefreshToken()
+	 * @model
+	 * @generated
+	 */
+	String getRefreshToken();
+
+	/**
+	 * Sets the value of the '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getRefreshToken <em>Refresh Token</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Refresh Token</em>' attribute.
+	 * @see #getRefreshToken()
+	 * @generated
+	 */
+	void setRefreshToken(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Client Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Client Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Client Id</em>' attribute.
+	 * @see #setClientId(String)
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasPackage#getTasConnection_ClientId()
+	 * @model
+	 * @generated
+	 */
+	String getClientId();
+
+	/**
+	 * Sets the value of the '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getClientId <em>Client Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Client Id</em>' attribute.
+	 * @see #getClientId()
+	 * @generated
+	 */
+	void setClientId(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Client Secret</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Client Secret</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Client Secret</em>' attribute.
+	 * @see #setClientSecret(String)
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasPackage#getTasConnection_ClientSecret()
+	 * @model
+	 * @generated
+	 */
+	String getClientSecret();
+
+	/**
+	 * Sets the value of the '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getClientSecret <em>Client Secret</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Client Secret</em>' attribute.
+	 * @see #getClientSecret()
+	 * @generated
+	 */
+	void setClientSecret(String value);
 
 } // TasConnection

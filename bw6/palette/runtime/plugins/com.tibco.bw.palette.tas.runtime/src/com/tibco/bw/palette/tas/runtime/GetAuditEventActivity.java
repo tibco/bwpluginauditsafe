@@ -184,11 +184,23 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 		boolean isEnterprise = sharedResource.isEnterprise();
 		activityLogger.debug("Is enterprise version:" + isEnterprise + ". Request body:" +body);
 		if(sharedResource.isEnterprise()){
-			result = TasClient.tasEEAction(TasClient.METHOD_GET_EVENT, sharedResource.getServerUrl(), sharedResource.getUsername(),
-					sharedResource.getPassword(), body);
+			if(sharedResource.useToken()){
+				//use token
+				result = TasClient.tasEEActionWithToken(TasClient.METHOD_GET_EVENT, sharedResource.getServerUrl(), sharedResource.getAccessToken(), body);
+			}else {
+				// use username/password
+				result = TasClient.tasEEAction(TasClient.METHOD_GET_EVENT, sharedResource.getServerUrl(), sharedResource.getUsername(),
+						sharedResource.getPassword(), body);
+			}
 		} else {
-			result = TasClient.getAuditEvent(sharedResource.getServerUrl(), sharedResource.getUsername(),
-					sharedResource.getPassword(), sharedResource.getId(), body, true);
+			if(sharedResource.useToken()){
+				//use token
+				result = TasClient.getAuditEventWithToken(sharedResource.getServerUrl(), sharedResource.getAccessToken(), body);
+			}else {
+				// use username/password
+				result = TasClient.getAuditEvent(sharedResource.getServerUrl(), sharedResource.getUsername(),
+						sharedResource.getPassword(), sharedResource.getId(), body, true);
+			}
 		}
 		
 		if(result == null || result.isHasError()){

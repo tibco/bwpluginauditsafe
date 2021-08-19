@@ -62,14 +62,15 @@ public class TestConnectionButtonHelper {
 						.getTasConnection();
 
 				String serverUrl = tasConnectionSection.getServerUrl(connection);
-				
-				String authToken = tasConnectionSection.getAccessToken(connection);
 
 				String username = tasConnectionSection.getUserName(connection);
 
 				String password = tasConnectionSection.getPassword(connection);
 				
 				boolean isEnterprise = tasConnectionSection.isEnterpise(connection);
+				
+				//use token
+				String authToken = tasConnectionSection.getTokenSection().getAccessToken(connection);
 				
 				boolean useToken = !isEmpty(authToken);
 

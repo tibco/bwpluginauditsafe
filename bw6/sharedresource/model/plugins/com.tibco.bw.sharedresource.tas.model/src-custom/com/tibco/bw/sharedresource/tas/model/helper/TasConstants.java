@@ -33,7 +33,9 @@ public interface TasConstants {
 	public static final String TASCONNECTION_PAGE_HEADER = "tasconnection Editor";
 	public static final String TASCONNECTION_MAIN = "tasconnection.main";
 
-	public static final String TASCONNECTION_CONFIGURATION_LABEL = "tasconnection Configuration";
+	public static final String TASCONNECTION_CONFIGURATION_LABEL = "AuditSafe Connection Configuration";
+	
+	public static final String TASCONNECTION_TOKEN_CONFIGURATION_LABEL = "OAuth Token Configuration";
 
 	//TODO change tenant id to tas
 	String TENANT_ID = "tcta";

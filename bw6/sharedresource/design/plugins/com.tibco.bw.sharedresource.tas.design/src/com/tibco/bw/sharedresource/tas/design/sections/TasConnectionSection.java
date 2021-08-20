@@ -8,7 +8,12 @@
 
 package com.tibco.bw.sharedresource.tas.design.sections;
 
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -44,28 +49,31 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 	private SRAttributeBindingField passwordAttribute;
 	private SRAttributeBindingField isEnterpriseAttribute;
 	
+	private Button useToken;
+	private Text accessToken;
+	private Text refreshToken;
+	private Text clientId;
+	private Text clientSecret;
+	
+	private SRAttributeBindingField useTokenAttribute;
+	private SRAttributeBindingField accessTokenAttribute;
+	private SRAttributeBindingField refreshTokenAttribute;
+	private SRAttributeBindingField clientIdAttribute;
+	private SRAttributeBindingField clientSecretAttribute;
+	
 	private TasConnection tasConnection;
 
 	private TasConnectionPage page;
-	private TasConnectionTokenSection tokenSection;
 
-	public TasConnectionSection(TasConnectionPage page){
-		this.page = page;
-	}
-	
 	public TasConnectionPage getPage() {
 		return page;
 	}
 
-	public TasConnectionTokenSection getTokenSection() {
-		return tokenSection;
+	public TasConnectionSection(TasConnectionPage page){
+		this.page = page;
 	}
 
-	public void setTokenSection(TasConnectionTokenSection tokenSection) {
-		this.tokenSection = tokenSection;
-	}
-
-	/**
+    /**
 	 * <!-- begin-custom-doc -->
 	 *
 	 * <!-- end-custom-doc -->
@@ -76,8 +84,42 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
         getBindingManager().bind(serverUrlAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__SERVER_URL);
         getBindingManager().bind(usernameAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__USERNAME);
         getBindingManager().bind(passwordAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__PASSWORD);
-        getBindingManager().bind(isEnterpriseAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__ENTERPRISE);
         
+        getBindingManager().bind(accessTokenAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__ACCESS_TOKEN);
+        getBindingManager().bind(refreshTokenAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__REFRESH_TOKEN);
+        getBindingManager().bind(clientIdAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__CLIENT_ID);
+        getBindingManager().bind(clientSecretAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__CLIENT_SECRET);
+        
+        UpdateValueStrategy updateIsEnterpriseValueStrategy = new UpdateValueStrategy() {
+			@Override
+			protected IStatus doSet(final IObservableValue observableValue, final Object value) {
+				boolean isEnterprise = (Boolean)value;
+				boolean useToken = tasConnection.isUseToken();
+				accessTokenAttribute.getControl().setEnabled(useToken);
+				refreshTokenAttribute.getControl().setEnabled(useToken && !isEnterprise);
+				clientIdAttribute.getControl().setEnabled(useToken && !isEnterprise);
+				clientSecretAttribute.getControl().setEnabled(useToken && !isEnterprise);
+				
+				return super.doSet(observableValue, value);
+			}
+		};
+
+		getBindingManager().bind(isEnterpriseAttribute, TasPackage.Literals.TAS_CONNECTION__ENTERPRISE, tasConnection, updateIsEnterpriseValueStrategy, updateIsEnterpriseValueStrategy);
+		
+		UpdateValueStrategy updateUseTokenValueStrategy = new UpdateValueStrategy() {
+			@Override
+			protected IStatus doSet(final IObservableValue observableValue, final Object value) {
+				boolean isEnterprise = tasConnection.isEnterprise();
+				boolean useToken = (Boolean)value;
+				accessTokenAttribute.getControl().setEnabled(useToken);
+				refreshTokenAttribute.getControl().setEnabled(useToken && !isEnterprise);
+				clientIdAttribute.getControl().setEnabled(useToken && !isEnterprise);
+				clientSecretAttribute.getControl().setEnabled(useToken && !isEnterprise);
+				
+				return super.doSet(observableValue, value);
+			}
+		};
+        getBindingManager().bind(useTokenAttribute,  TasPackage.Literals.TAS_CONNECTION__USE_TOKEN, tasConnection, updateUseTokenValueStrategy, updateUseTokenValueStrategy);
 	    // begin-custom-code
         // end-custom-code
 	}
@@ -113,14 +155,36 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_IS_ENTERPRISE, false);
 	    isEnterpriseAttribute  = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, isEnterprise, PropertyTypeQnameConstants.BOOLEAN_PRIMITIVE);
 	    
+	    useToken = BWFieldFactory.getInstance().createCheckBox(sectionComposite);
+	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_USE_TOKEN, false);
+	    useTokenAttribute  = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, useToken, PropertyTypeQnameConstants.BOOLEAN_PRIMITIVE);
+	    
+	    accessToken = BWFieldFactory.getInstance().createTextBox(sectionComposite);
+	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_ACCESS_TOKEN, false);
+	    accessTokenAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, accessToken, PropertyTypeQnameConstants.STRING_PRIMITIVE);
+
+	    
+	    refreshToken = BWFieldFactory.getInstance().createTextBox(sectionComposite);
+	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_REFRESH_TOKEN, false);
+	    refreshTokenAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, refreshToken, PropertyTypeQnameConstants.STRING_PRIMITIVE);
+
+	    
+	    clientId = BWFieldFactory.getInstance().createTextBox(sectionComposite);
+	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_CLIENT_ID, false);
+	    clientIdAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, clientId, PropertyTypeQnameConstants.STRING_PRIMITIVE);
+
+	    
+	    clientSecret = BWFieldFactory.getInstance().createTextBox(sectionComposite);
+	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_CLIENT_SECRET, false);
+	    clientSecretAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, clientSecret, PropertyTypeQnameConstants.STRING_PRIMITIVE);
+
+	    
 	    Composite buttonComposite = new Composite(sectionComposite, 0);
 		buttonComposite.setLocation(0, 0);
 		GridLayout gridLayout = new GridLayout(4, false);
 		buttonComposite.setLayout(gridLayout);
-		
 	 	Label testLabel = paramFormToolkit.createLabel(sectionComposite,"Click test connection");
 	 	testLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-	 	
 		TestConnectionButtonHelper testConnectionButton = new TestConnectionButtonHelper(this);
 		testConnectionButton.settestLabel(testLabel);
 		testConnectionButton.createTestConnectionButton(buttonComposite);
@@ -200,4 +264,76 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 		}
     	return isEnterprise;
     }
+	
+	public boolean userToken(TasConnection connection) {
+
+    	boolean useToken = connection.isUseToken();
+    	EList<SubstitutionBinding> ds_substvars = connection.getSubstitutionBindings();
+		for (SubstitutionBinding substitutionBinding : ds_substvars) {
+			String propName = substitutionBinding.getPropName();
+			String templateName = substitutionBinding.getTemplate();
+			if (templateName.equals(TasPackage.Literals.TAS_CONNECTION__USE_TOKEN.getName())){
+				useToken = Boolean.valueOf(ModelHelper.INSTANCE.getModulePropertyValue(connection, propName));
+                break;
+			}
+		}
+    	return useToken;
+    }
+	
+	public String getAccessToken(TasConnection connection) {
+    	String token = connection.getAccessToken();
+    	EList<SubstitutionBinding> ds_substvars = connection.getSubstitutionBindings();
+		for (SubstitutionBinding substitutionBinding : ds_substvars) {
+			String propName = substitutionBinding.getPropName();
+			String templateName = substitutionBinding.getTemplate();
+			if (templateName.equals(TasPackage.Literals.TAS_CONNECTION__ACCESS_TOKEN.getName())){
+				token = ModelHelper.INSTANCE.getModulePropertyValue(connection, propName);
+                break;
+			}
+		}
+		return token;
+    }
+	
+	public String getRefreshToken(TasConnection connection) {
+    	String refreshToken = connection.getRefreshToken();
+    	EList<SubstitutionBinding> ds_substvars = connection.getSubstitutionBindings();
+		for (SubstitutionBinding substitutionBinding : ds_substvars) {
+			String propName = substitutionBinding.getPropName();
+			String templateName = substitutionBinding.getTemplate();
+			if (templateName.equals(TasPackage.Literals.TAS_CONNECTION__REFRESH_TOKEN.getName())){
+				refreshToken = ModelHelper.INSTANCE.getModulePropertyValue(connection, propName);
+                break;
+			}
+		}
+		return refreshToken;
+    }
+	
+	public String getClientId(TasConnection connection) {
+    	String clientId = connection.getClientId();
+    	EList<SubstitutionBinding> ds_substvars = connection.getSubstitutionBindings();
+		for (SubstitutionBinding substitutionBinding : ds_substvars) {
+			String propName = substitutionBinding.getPropName();
+			String templateName = substitutionBinding.getTemplate();
+			if (templateName.equals(TasPackage.Literals.TAS_CONNECTION__CLIENT_ID.getName())){
+				clientId = ModelHelper.INSTANCE.getModulePropertyValue(connection, propName);
+                break;
+			}
+		}
+		return clientId;
+    }
+	
+	public String getClientSecret(TasConnection connection) {
+    	String clientSecret = connection.getAccessToken();
+    	EList<SubstitutionBinding> ds_substvars = connection.getSubstitutionBindings();
+		for (SubstitutionBinding substitutionBinding : ds_substvars) {
+			String propName = substitutionBinding.getPropName();
+			String templateName = substitutionBinding.getTemplate();
+			if (templateName.equals(TasPackage.Literals.TAS_CONNECTION__CLIENT_SECRET.getName())){
+				clientSecret = ModelHelper.INSTANCE.getModulePropertyValue(connection, propName);
+                break;
+			}
+		}
+		return clientSecret;
+    }
+
 }

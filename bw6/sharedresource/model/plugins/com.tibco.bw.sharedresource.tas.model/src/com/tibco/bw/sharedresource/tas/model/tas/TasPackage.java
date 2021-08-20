@@ -148,13 +148,22 @@ public interface TasPackage extends EPackage {
 	int TAS_CONNECTION__ENTERPRISE = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 7;
 
 	/**
+	 * The feature id for the '<em><b>Use Token</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAS_CONNECTION__USE_TOKEN = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 8;
+
+	/**
 	 * The feature id for the '<em><b>Access Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TAS_CONNECTION__ACCESS_TOKEN = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 8;
+	int TAS_CONNECTION__ACCESS_TOKEN = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Refresh Token</b></em>' attribute.
@@ -163,7 +172,7 @@ public interface TasPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAS_CONNECTION__REFRESH_TOKEN = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 9;
+	int TAS_CONNECTION__REFRESH_TOKEN = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Client Id</b></em>' attribute.
@@ -172,7 +181,7 @@ public interface TasPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAS_CONNECTION__CLIENT_ID = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 10;
+	int TAS_CONNECTION__CLIENT_ID = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Client Secret</b></em>' attribute.
@@ -181,7 +190,7 @@ public interface TasPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAS_CONNECTION__CLIENT_SECRET = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 11;
+	int TAS_CONNECTION__CLIENT_SECRET = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 12;
 
 	/**
 	 * The number of structural features of the '<em>Connection</em>' class.
@@ -190,7 +199,7 @@ public interface TasPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TAS_CONNECTION_FEATURE_COUNT = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 12;
+	int TAS_CONNECTION_FEATURE_COUNT = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 13;
 
 
 	/**
@@ -290,6 +299,17 @@ public interface TasPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTasConnection_Enterprise();
+
+	/**
+	 * Returns the meta object for the attribute '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#isUseToken <em>Use Token</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Use Token</em>'.
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasConnection#isUseToken()
+	 * @see #getTasConnection()
+	 * @generated
+	 */
+	EAttribute getTasConnection_UseToken();
 
 	/**
 	 * Returns the meta object for the attribute '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getAccessToken <em>Access Token</em>}'.
@@ -430,6 +450,14 @@ public interface TasPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TAS_CONNECTION__ENTERPRISE = eINSTANCE.getTasConnection_Enterprise();
+
+		/**
+		 * The meta object literal for the '<em><b>Use Token</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TAS_CONNECTION__USE_TOKEN = eINSTANCE.getTasConnection_UseToken();
 
 		/**
 		 * The meta object literal for the '<em><b>Access Token</b></em>' attribute feature.

@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getOutput <em>Output</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getQueryOutput <em>Query Output</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#isEnterprise <em>Enterprise</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#isUseToken <em>Use Token</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getAccessToken <em>Access Token</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getRefreshToken <em>Refresh Token</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getClientId <em>Client Id</em>}</li>
@@ -197,6 +198,26 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * @ordered
 	 */
 	protected boolean enterprise = ENTERPRISE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isUseToken() <em>Use Token</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUseToken()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean USE_TOKEN_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isUseToken() <em>Use Token</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUseToken()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean useToken = USE_TOKEN_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getAccessToken() <em>Access Token</em>}' attribute.
@@ -470,6 +491,27 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isUseToken() {
+		return useToken;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUseToken(boolean newUseToken) {
+		boolean oldUseToken = useToken;
+		useToken = newUseToken;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.TAS_CONNECTION__USE_TOKEN, oldUseToken, useToken));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getAccessToken() {
 		return accessToken;
 	}
@@ -573,6 +615,8 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return getQueryOutput();
 			case TasPackage.TAS_CONNECTION__ENTERPRISE:
 				return isEnterprise();
+			case TasPackage.TAS_CONNECTION__USE_TOKEN:
+				return isUseToken();
 			case TasPackage.TAS_CONNECTION__ACCESS_TOKEN:
 				return getAccessToken();
 			case TasPackage.TAS_CONNECTION__REFRESH_TOKEN:
@@ -616,6 +660,9 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return;
 			case TasPackage.TAS_CONNECTION__ENTERPRISE:
 				setEnterprise((Boolean)newValue);
+				return;
+			case TasPackage.TAS_CONNECTION__USE_TOKEN:
+				setUseToken((Boolean)newValue);
 				return;
 			case TasPackage.TAS_CONNECTION__ACCESS_TOKEN:
 				setAccessToken((String)newValue);
@@ -665,6 +712,9 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 			case TasPackage.TAS_CONNECTION__ENTERPRISE:
 				setEnterprise(ENTERPRISE_EDEFAULT);
 				return;
+			case TasPackage.TAS_CONNECTION__USE_TOKEN:
+				setUseToken(USE_TOKEN_EDEFAULT);
+				return;
 			case TasPackage.TAS_CONNECTION__ACCESS_TOKEN:
 				setAccessToken(ACCESS_TOKEN_EDEFAULT);
 				return;
@@ -705,6 +755,8 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return QUERY_OUTPUT_EDEFAULT == null ? queryOutput != null : !QUERY_OUTPUT_EDEFAULT.equals(queryOutput);
 			case TasPackage.TAS_CONNECTION__ENTERPRISE:
 				return enterprise != ENTERPRISE_EDEFAULT;
+			case TasPackage.TAS_CONNECTION__USE_TOKEN:
+				return useToken != USE_TOKEN_EDEFAULT;
 			case TasPackage.TAS_CONNECTION__ACCESS_TOKEN:
 				return ACCESS_TOKEN_EDEFAULT == null ? accessToken != null : !ACCESS_TOKEN_EDEFAULT.equals(accessToken);
 			case TasPackage.TAS_CONNECTION__REFRESH_TOKEN:
@@ -743,6 +795,8 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 		result.append(queryOutput);
 		result.append(", enterprise: ");
 		result.append(enterprise);
+		result.append(", useToken: ");
+		result.append(useToken);
 		result.append(", accessToken: ");
 		result.append(accessToken);
 		result.append(", refreshToken: ");

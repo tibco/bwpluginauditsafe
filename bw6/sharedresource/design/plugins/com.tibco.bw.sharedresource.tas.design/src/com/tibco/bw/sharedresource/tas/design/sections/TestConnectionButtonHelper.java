@@ -62,6 +62,8 @@ public class TestConnectionButtonHelper {
 						.getTasConnection();
 
 				String serverUrl = tasConnectionSection.getServerUrl(connection);
+				
+				String authToken = tasConnectionSection.getAccessToken(connection);
 
 				String username = tasConnectionSection.getUserName(connection);
 
@@ -69,10 +71,7 @@ public class TestConnectionButtonHelper {
 				
 				boolean isEnterprise = tasConnectionSection.isEnterpise(connection);
 				
-				//use token
-				String authToken = tasConnectionSection.getTokenSection().getAccessToken(connection);
-				
-				boolean useToken = !isEmpty(authToken);
+				boolean useToken = tasConnectionSection.userToken(connection);
 
 				if (isEmpty(serverUrl)) {
 					testLabel.setForeground(red);

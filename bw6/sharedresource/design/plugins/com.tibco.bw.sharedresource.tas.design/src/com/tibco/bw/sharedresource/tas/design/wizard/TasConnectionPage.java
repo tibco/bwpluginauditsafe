@@ -13,7 +13,6 @@ import org.eclipse.ui.forms.editor.FormEditor;
 
 import com.tibco.bw.sharedresource.common.design.sr.AbstractBWSharedResourceFormPage;
 import com.tibco.bw.sharedresource.tas.design.sections.TasConnectionSection;
-import com.tibco.bw.sharedresource.tas.design.sections.TasConnectionTokenSection;
 import com.tibco.bw.sharedresource.tas.model.helper.TasConstants;
 
 /**
@@ -42,13 +41,10 @@ public class TasConnectionPage extends AbstractBWSharedResourceFormPage {
 	 * @generated
 	 */
 	protected void addSections(Composite body) {
-		TasConnectionTokenSection tasconnectionTokenSection = new TasConnectionTokenSection(this);
 	    TasConnectionSection tasconnectionSection = new TasConnectionSection(this);
-	    tasconnectionSection.setTokenSection(tasconnectionTokenSection);
-	    
 		addSectionControl(body, tasconnectionSection);
-		
-		addSectionControl(body, tasconnectionTokenSection);
+	    // begin-custom-code
+	    // end-custom-code
 	}
 
 	/**

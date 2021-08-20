@@ -178,7 +178,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTasConnection_AccessToken() {
+	public EAttribute getTasConnection_UseToken() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(8);
 	}
 
@@ -187,7 +187,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTasConnection_RefreshToken() {
+	public EAttribute getTasConnection_AccessToken() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(9);
 	}
 
@@ -196,7 +196,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTasConnection_ClientId() {
+	public EAttribute getTasConnection_RefreshToken() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(10);
 	}
 
@@ -205,8 +205,17 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTasConnection_ClientSecret() {
+	public EAttribute getTasConnection_ClientId() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTasConnection_ClientSecret() {
+		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(12);
 	}
 
 	/**
@@ -246,6 +255,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 		createEAttribute(tasConnectionEClass, TAS_CONNECTION__OUTPUT);
 		createEAttribute(tasConnectionEClass, TAS_CONNECTION__QUERY_OUTPUT);
 		createEAttribute(tasConnectionEClass, TAS_CONNECTION__ENTERPRISE);
+		createEAttribute(tasConnectionEClass, TAS_CONNECTION__USE_TOKEN);
 		createEAttribute(tasConnectionEClass, TAS_CONNECTION__ACCESS_TOKEN);
 		createEAttribute(tasConnectionEClass, TAS_CONNECTION__REFRESH_TOKEN);
 		createEAttribute(tasConnectionEClass, TAS_CONNECTION__CLIENT_ID);
@@ -295,6 +305,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 		initEAttribute(getTasConnection_Output(), ecorePackage.getEString(), "output", null, 0, 1, TasConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTasConnection_QueryOutput(), ecorePackage.getEString(), "queryOutput", null, 0, 1, TasConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTasConnection_Enterprise(), ecorePackage.getEBoolean(), "enterprise", "false", 0, 1, TasConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTasConnection_UseToken(), ecorePackage.getEBoolean(), "useToken", "false", 0, 1, TasConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTasConnection_AccessToken(), ecorePackage.getEString(), "accessToken", null, 0, 1, TasConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTasConnection_RefreshToken(), ecorePackage.getEString(), "refreshToken", null, 0, 1, TasConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTasConnection_ClientId(), ecorePackage.getEString(), "clientId", null, 0, 1, TasConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

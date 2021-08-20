@@ -33,6 +33,7 @@ import com.tibco.bw.palette.tas.runtime.fault.TasActivityFault;
 import com.tibco.bw.runtime.ActivityFault;
 import com.tibco.bw.runtime.ProcessContext;
 import com.tibco.bw.runtime.annotation.Property;
+import com.tibco.bw.sharedresource.tas.model.helper.OAuthToken;
 import com.tibco.bw.sharedresource.tas.model.helper.TasClient;
 import com.tibco.bw.sharedresource.tas.model.helper.TasResponse;
 import com.tibco.bw.sharedresource.tas.runtime.TasConnectionResource;
@@ -184,7 +185,7 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 		boolean isEnterprise = sharedResource.isEnterprise();
 		activityLogger.debug("Is enterprise version:" + isEnterprise + ". Request body:" +body);
 		if(sharedResource.isEnterprise()){
-			if(sharedResource.useToken()){
+			if(sharedResource.isUseToken()){
 				//use token
 				result = TasClient.tasEEActionWithToken(TasClient.METHOD_GET_EVENT, sharedResource.getServerUrl(), sharedResource.getAccessToken(), body);
 			}else {
@@ -193,9 +194,18 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 						sharedResource.getPassword(), body);
 			}
 		} else {
-			if(sharedResource.useToken()){
+			if(sharedResource.isUseToken()){
 				//use token
-				result = TasClient.getAuditEventWithToken(sharedResource.getServerUrl(), sharedResource.getAccessToken(), body);
+				synchronized(sharedResource){
+					result = TasClient.tasActionWithToken(TasClient.METHOD_GET_EVENT, sharedResource.getServerUrl(), sharedResource.getAccessToken(), sharedResource.getRefreshToken(), 
+							sharedResource.getClientId(), sharedResource.getClientSecret(), body, true);
+					OAuthToken token = result.getToken();
+					if(result.getToken()!= null && token.getRefreshToken()!=null){
+						sharedResource.setAccessToken(token.getAccessToken());
+						sharedResource.setRefreshToken(token.getRefreshToken());
+					}
+				}
+				
 			}else {
 				// use username/password
 				result = TasClient.getAuditEvent(sharedResource.getServerUrl(), sharedResource.getUsername(),

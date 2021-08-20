@@ -20,6 +20,7 @@ import com.tibco.neo.svar.svarmodel.SubstitutableObject;
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getOutput <em>Output</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getQueryOutput <em>Query Output</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#isEnterprise <em>Enterprise</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#isUseToken <em>Use Token</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getAccessToken <em>Access Token</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getRefreshToken <em>Refresh Token</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getClientId <em>Client Id</em>}</li>
@@ -240,6 +241,33 @@ public interface TasConnection extends SubstitutableObject {
 	 * @generated
 	 */
 	void setEnterprise(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Use Token</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Use Token</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Use Token</em>' attribute.
+	 * @see #setUseToken(boolean)
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasPackage#getTasConnection_UseToken()
+	 * @model default="false"
+	 * @generated
+	 */
+	boolean isUseToken();
+
+	/**
+	 * Sets the value of the '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#isUseToken <em>Use Token</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Use Token</em>' attribute.
+	 * @see #isUseToken()
+	 * @generated
+	 */
+	void setUseToken(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Access Token</b></em>' attribute.

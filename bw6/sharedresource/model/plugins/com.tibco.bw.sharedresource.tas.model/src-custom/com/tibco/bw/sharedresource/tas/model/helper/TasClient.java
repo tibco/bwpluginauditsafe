@@ -669,7 +669,7 @@ public class TasClient {
 		return connection;
 	}
 
-	public static TasResponse postAuditEventWithToken(String tasBaseUrl, String token, String body) {
+	public static TasResponse tasActionWithToken(String method, String tasBaseUrl, String accessToken, String refreshToken, String clientId, String clientSecret, String body, boolean retry) {
 		TasResponse result = new TasResponse();
 		if (tasBaseUrl.endsWith("/")) {
 			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
@@ -677,75 +677,27 @@ public class TasClient {
 		try {
 			String internalUrl = System.getProperty(ENV_INTERNAL_URL);
 			HttpURLConnection httpConn;
-			String postEventUrl = "";
+			String postUrl = "";
 			boolean isIntercom = internalUrl != null && !internalUrl.isEmpty();
 			String subId = System.getProperty(ENV_SUBSCRIPTION_ID);
 			
 			Map<String, String> params = getsettingMap("application/json", "application/json");
 			
 			if (isIntercom) {
-				postEventUrl = internalUrl
-						+ "/tas/dataserver/intercom/transactions?tscSubscriptionId="
-						+ subId;
+				String actionUrl = TasClient.METHOD_GET_EVENT.equals(method)? "/tas/dataserver/intercom/transactions/query?tscSubscriptionId=" 
+						: "/tas/dataserver/intercom/transactions?tscSubscriptionId=";
+				postUrl = internalUrl + actionUrl + subId;
 				
 				params.put("X-Atmosphere-Tenant-Id", TAS_TENANT_ID);
 				params.put("X-Atmosphere-Subscription-Id", subId);
 			} else {
-				postEventUrl = tasBaseUrl
-						+ "/tas/dataserver/transactions";
-				
-				params.put("Authorization", "Bearer " + token);
-			}
-			
-			httpConn = buildpostHttpUrlConnectionWithJson(postEventUrl, body, params);
-			
-			String message = getHttpRequestBody(httpConn);
-			int statusCode = httpConn.getResponseCode();
-			result.setStatusCode(statusCode);
-
-			if(statusCode == HttpURLConnection.HTTP_OK){
-				result.setSuccessfulResponse(message);
-			}
-			else {
-				result.setErrorMessage(message);
-			}
-
-		} catch (IOException e) {
-			result.setErrorMessage(e.getMessage());
-
-		}
-		return result;
-	}
-
-	public static TasResponse getAuditEventWithToken(String tasBaseUrl, String accessToken, String body) {
-		TasResponse result = new TasResponse();
-		if (tasBaseUrl.endsWith("/")) {
-			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
-		}
-		try {
-			String internalUrl = System.getProperty(ENV_INTERNAL_URL);
-			HttpURLConnection httpConn;
-			String getEventUrl = "";
-			boolean isIntercom = internalUrl != null && !internalUrl.isEmpty();
-			String subId = System.getProperty(ENV_SUBSCRIPTION_ID);
-			
-			Map<String, String> params = getsettingMap("application/json", "application/json");
-			
-			if (isIntercom) {
-				getEventUrl = internalUrl
-						+ "/tas/dataserver/intercom/transactions/query?tscSubscriptionId="
-						+ subId;
-				
-				params.put("X-Atmosphere-Tenant-Id", TAS_TENANT_ID);
-				params.put("X-Atmosphere-Subscription-Id", subId);
-			} else {
-				getEventUrl = tasBaseUrl
-						+ "/tas/dataserver/transactions/query";
-				
+				String actionUrl = TasClient.METHOD_GET_EVENT.equals(method)?"/tas/dataserver/transactions/query" 
+						: "/tas/dataserver/transactions";
+				postUrl = tasBaseUrl + actionUrl;
 				params.put("Authorization", "Bearer " + accessToken);
 
 			}
-			httpConn = buildpostHttpUrlConnectionWithJson(getEventUrl, body, params);
+			httpConn = buildpostHttpUrlConnectionWithJson(postUrl, body, params);
 			
 			String message = getHttpRequestBody(httpConn);
 			int statusCode = httpConn.getResponseCode();
@@ -753,6 +705,15 @@ public class TasClient {
 
 			if(statusCode == HttpURLConnection.HTTP_OK){
 				result.setSuccessfulResponse(message);
+			} else if(retry){
+				OAuthToken pair = refreshToken(tasBaseUrl, refreshToken, clientId, clientSecret);
+				if(pair.isSuccess()){
+					result = tasActionWithToken(method, tasBaseUrl, 
+							pair.getAccessToken(), pair.getRefreshToken(), clientId, clientSecret, body, false);
+					result.setToken(pair);
+				} else {
+					result.setErrorMessage("Refresh Token failed!");
+				}
 			} else {
 				result.setErrorMessage(message);
 			}
@@ -762,5 +723,45 @@ public class TasClient {
 		}
 		return result;
 	}
+	
+	public static OAuthToken refreshToken(String tasBaseUrl, String refreshToken, String clientId, String clientSecret){
+		OAuthToken tokenPair = new OAuthToken();
+		
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+		}
+		//TODO remove the follwoing line after url problem fixed by TSC team
+		tasBaseUrl = tasBaseUrl.replace("auditsafe", "account");
+		
+		String idmUrl = tasBaseUrl + "/idm/v1/oauth2/token";
+		
+		Map<String, String> settingMap = getsettingMap();
+		String clientInfo = clientId + ":" + clientSecret;
+		settingMap.put("Authorization", "Basic " + Base64.getEncoder().encodeToString(clientInfo.getBytes()));
+		
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("refresh_token", refreshToken);
+		params.put("grant_type", "refresh_token");
+
+		try {
+			HttpURLConnection httpConn = buildpostHttpUrlConnection(idmUrl, params, settingMap);
+			String messagebody = getHttpRequestBody(httpConn);
+			int statusCode = httpConn.getResponseCode();
+
+			if (statusCode == HttpURLConnection.HTTP_OK) {
+				tokenPair.setSuccess(true);
+				JsonReader node = new JsonReader(messagebody);
+				tokenPair.setAccessToken(node.getNode("access_token").textValue());
+				tokenPair.setRefreshToken(node.getNode("refresh_token").textValue());
+			} else {
+				tokenPair.setSuccess(false);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return tokenPair;
+	}
+	
 }
 

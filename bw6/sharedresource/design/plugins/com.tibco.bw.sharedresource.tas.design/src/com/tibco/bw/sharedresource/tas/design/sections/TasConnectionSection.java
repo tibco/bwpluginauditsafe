@@ -51,13 +51,19 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 	
 	private Button useToken;
 	private Text accessToken;
-	private Text refreshToken;
+//	private Text refreshToken;
 	private Text clientId;
 	private Text clientSecret;
 	
+	private Label usernameLabel;
+	private Label passwordLabel;
+	private Label accessTokenLabel;
+	private Label clientIdLabel;
+	private Label clientSecretLabel;
+	
 	private SRAttributeBindingField useTokenAttribute;
 	private SRAttributeBindingField accessTokenAttribute;
-	private SRAttributeBindingField refreshTokenAttribute;
+//	private SRAttributeBindingField refreshTokenAttribute;
 	private SRAttributeBindingField clientIdAttribute;
 	private SRAttributeBindingField clientSecretAttribute;
 	
@@ -86,7 +92,7 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
         getBindingManager().bind(passwordAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__PASSWORD);
         
         getBindingManager().bind(accessTokenAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__ACCESS_TOKEN);
-        getBindingManager().bind(refreshTokenAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__REFRESH_TOKEN);
+//        getBindingManager().bind(refreshTokenAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__REFRESH_TOKEN);
         getBindingManager().bind(clientIdAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__CLIENT_ID);
         getBindingManager().bind(clientSecretAttribute, tasConnection, TasPackage.Literals.TAS_CONNECTION__CLIENT_SECRET);
         
@@ -95,10 +101,19 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 			protected IStatus doSet(final IObservableValue observableValue, final Object value) {
 				boolean isEnterprise = (Boolean)value;
 				boolean useToken = tasConnection.isUseToken();
-				accessTokenAttribute.getControl().setEnabled(useToken);
-				refreshTokenAttribute.getControl().setEnabled(useToken && !isEnterprise);
-				clientIdAttribute.getControl().setEnabled(useToken && !isEnterprise);
-				clientSecretAttribute.getControl().setEnabled(useToken && !isEnterprise);
+				
+				usernameLabel.setVisible(!useToken);
+				passwordLabel.setVisible(!useToken);
+				accessTokenLabel.setVisible(useToken&&isEnterprise);
+				clientIdLabel.setVisible(useToken && !isEnterprise);
+				clientSecretLabel.setVisible(useToken && !isEnterprise);
+				
+				usernameAttribute.setVisible(!useToken);
+				passwordAttribute.setVisible(!useToken);
+				accessTokenAttribute.setVisible(useToken&&isEnterprise);
+//				refreshTokenAttribute.getControl().setEnabled(useToken && !isEnterprise);
+				clientIdAttribute.setVisible(useToken && !isEnterprise);
+				clientSecretAttribute.setVisible(useToken && !isEnterprise);
 				
 				return super.doSet(observableValue, value);
 			}
@@ -111,10 +126,19 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 			protected IStatus doSet(final IObservableValue observableValue, final Object value) {
 				boolean isEnterprise = tasConnection.isEnterprise();
 				boolean useToken = (Boolean)value;
-				accessTokenAttribute.getControl().setEnabled(useToken);
-				refreshTokenAttribute.getControl().setEnabled(useToken && !isEnterprise);
-				clientIdAttribute.getControl().setEnabled(useToken && !isEnterprise);
-				clientSecretAttribute.getControl().setEnabled(useToken && !isEnterprise);
+				
+				usernameLabel.setVisible(!useToken);
+				passwordLabel.setVisible(!useToken);
+				accessTokenLabel.setVisible(useToken&&isEnterprise);
+				clientIdLabel.setVisible(useToken && !isEnterprise);
+				clientSecretLabel.setVisible(useToken && !isEnterprise);
+				
+				usernameAttribute.setVisible(!useToken);
+				passwordAttribute.setVisible(!useToken);
+				accessTokenAttribute.setVisible(useToken&&isEnterprise);
+//				refreshTokenAttribute.getControl().setEnabled(useToken && !isEnterprise);
+				clientIdAttribute.setVisible(useToken && !isEnterprise);
+				clientSecretAttribute.setVisible(useToken && !isEnterprise);
 				
 				return super.doSet(observableValue, value);
 			}
@@ -143,14 +167,6 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
    	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_SERVERURL, true);
    	    serverUrlAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, serverUrl, PropertyTypeQnameConstants.STRING_PRIMITIVE);
 
-   	    username = BWFieldFactory.getInstance().createTextBox(sectionComposite);
-   	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_USERNAME, false);
-   	    usernameAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, username, PropertyTypeQnameConstants.STRING_PRIMITIVE);
-
-   	    password = BWFieldFactory.getInstance().createPasswordField(sectionComposite);
-	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_PASSWORD, false);
-	    passwordAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, password, PropertyTypeQnameConstants.PASSWORD_PRIMITIVE);
-
 	    isEnterprise = BWFieldFactory.getInstance().createCheckBox(sectionComposite);
 	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_IS_ENTERPRISE, false);
 	    isEnterpriseAttribute  = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, isEnterprise, PropertyTypeQnameConstants.BOOLEAN_PRIMITIVE);
@@ -159,23 +175,29 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_USE_TOKEN, false);
 	    useTokenAttribute  = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, useToken, PropertyTypeQnameConstants.BOOLEAN_PRIMITIVE);
 	    
+	    username = BWFieldFactory.getInstance().createTextBox(sectionComposite);
+   	    usernameLabel =BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_USERNAME, false);
+   	    usernameAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, username, PropertyTypeQnameConstants.STRING_PRIMITIVE);
+
+   	    password = BWFieldFactory.getInstance().createPasswordField(sectionComposite);
+	    passwordLabel = BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_PASSWORD, false);
+	    passwordAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, password, PropertyTypeQnameConstants.PASSWORD_PRIMITIVE);
+	    
 	    accessToken = BWFieldFactory.getInstance().createTextBox(sectionComposite);
-	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_ACCESS_TOKEN, false);
+	    accessTokenLabel = BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_ACCESS_TOKEN, false);
 	    accessTokenAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, accessToken, PropertyTypeQnameConstants.STRING_PRIMITIVE);
+    
+//	    refreshToken = BWFieldFactory.getInstance().createTextBox(sectionComposite);
+//	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_REFRESH_TOKEN, false);
+//	    refreshTokenAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, refreshToken, PropertyTypeQnameConstants.STRING_PRIMITIVE);
 
-	    
-	    refreshToken = BWFieldFactory.getInstance().createTextBox(sectionComposite);
-	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_REFRESH_TOKEN, false);
-	    refreshTokenAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, refreshToken, PropertyTypeQnameConstants.STRING_PRIMITIVE);
-
-	    
 	    clientId = BWFieldFactory.getInstance().createTextBox(sectionComposite);
-	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_CLIENT_ID, false);
+	    clientIdLabel = BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_CLIENT_ID, false);
 	    clientIdAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, clientId, PropertyTypeQnameConstants.STRING_PRIMITIVE);
 
 	    
 	    clientSecret = BWFieldFactory.getInstance().createTextBox(sectionComposite);
-	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_CLIENT_SECRET, false);
+	    clientSecretLabel =BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_CLIENT_SECRET, false);
 	    clientSecretAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, clientSecret, PropertyTypeQnameConstants.STRING_PRIMITIVE);
 
 	    
@@ -294,19 +316,19 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 		return token;
     }
 	
-	public String getRefreshToken(TasConnection connection) {
-    	String refreshToken = connection.getRefreshToken();
-    	EList<SubstitutionBinding> ds_substvars = connection.getSubstitutionBindings();
-		for (SubstitutionBinding substitutionBinding : ds_substvars) {
-			String propName = substitutionBinding.getPropName();
-			String templateName = substitutionBinding.getTemplate();
-			if (templateName.equals(TasPackage.Literals.TAS_CONNECTION__REFRESH_TOKEN.getName())){
-				refreshToken = ModelHelper.INSTANCE.getModulePropertyValue(connection, propName);
-                break;
-			}
-		}
-		return refreshToken;
-    }
+//	public String getRefreshToken(TasConnection connection) {
+//    	String refreshToken = connection.getRefreshToken();
+//    	EList<SubstitutionBinding> ds_substvars = connection.getSubstitutionBindings();
+//		for (SubstitutionBinding substitutionBinding : ds_substvars) {
+//			String propName = substitutionBinding.getPropName();
+//			String templateName = substitutionBinding.getTemplate();
+//			if (templateName.equals(TasPackage.Literals.TAS_CONNECTION__REFRESH_TOKEN.getName())){
+//				refreshToken = ModelHelper.INSTANCE.getModulePropertyValue(connection, propName);
+//                break;
+//			}
+//		}
+//		return refreshToken;
+//    }
 	
 	public String getClientId(TasConnection connection) {
     	String clientId = connection.getClientId();
@@ -323,7 +345,7 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
     }
 	
 	public String getClientSecret(TasConnection connection) {
-    	String clientSecret = connection.getAccessToken();
+    	String clientSecret = connection.getClientSecret();
     	EList<SubstitutionBinding> ds_substvars = connection.getSubstitutionBindings();
 		for (SubstitutionBinding substitutionBinding : ds_substvars) {
 			String propName = substitutionBinding.getPropName();

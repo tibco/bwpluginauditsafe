@@ -130,15 +130,9 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
 			} else {
 				if(sharedResource.isUseToken()){
 					//use token
-					synchronized(sharedResource){
-						result = TasClient.tasActionWithToken(TasClient.METHOD_POST_EVENT, sharedResource.getServerUrl(), sharedResource.getAccessToken(), sharedResource.getRefreshToken(), 
+					result = TasClient.tasActionWithToken(TasClient.METHOD_POST_EVENT, sharedResource.getServerUrl(),
 								sharedResource.getClientId(), sharedResource.getClientSecret(), body, true);
-						OAuthToken token = result.getToken();
-						if(result.getToken()!= null && token.getRefreshToken()!=null){
-							sharedResource.setAccessToken(token.getAccessToken());
-							sharedResource.setRefreshToken(token.getRefreshToken());
-						}
-					}
+
 				}else {
 					// use username/password
 					result = TasClient.postAuditEvent(sharedResource.getServerUrl(), sharedResource.getUsername(), sharedResource.getPassword(), sharedResource.getId(), body, true);

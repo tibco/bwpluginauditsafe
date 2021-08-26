@@ -5,8 +5,6 @@ public class TasResponse {
 	private boolean hasError = true;
 	private String message;
 	private int statusCode;
-	
-	private OAuthToken token;
 
 	public boolean isHasError() {
 		return hasError;
@@ -36,15 +34,5 @@ public class TasResponse {
 		hasError = false;
 		this.message = message;
 	}
-	
-	public OAuthToken getToken() {
-		return token;
-	}
-	public void setToken(OAuthToken token) {
-		this.token = token;
-	}
-
-	
-	
 
 }

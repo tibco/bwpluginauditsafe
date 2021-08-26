@@ -196,15 +196,8 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 		} else {
 			if(sharedResource.isUseToken()){
 				//use token
-				synchronized(sharedResource){
-					result = TasClient.tasActionWithToken(TasClient.METHOD_GET_EVENT, sharedResource.getServerUrl(), sharedResource.getAccessToken(), sharedResource.getRefreshToken(), 
-							sharedResource.getClientId(), sharedResource.getClientSecret(), body, true);
-					OAuthToken token = result.getToken();
-					if(result.getToken()!= null && token.getRefreshToken()!=null){
-						sharedResource.setAccessToken(token.getAccessToken());
-						sharedResource.setRefreshToken(token.getRefreshToken());
-					}
-				}
+				result = TasClient.tasActionWithToken(TasClient.METHOD_GET_EVENT, sharedResource.getServerUrl(),
+						sharedResource.getClientId(), sharedResource.getClientSecret(), body, true);
 				
 			}else {
 				// use username/password

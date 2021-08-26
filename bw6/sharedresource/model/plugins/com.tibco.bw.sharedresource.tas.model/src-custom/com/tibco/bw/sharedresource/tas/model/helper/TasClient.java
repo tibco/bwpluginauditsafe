@@ -669,12 +669,18 @@ public class TasClient {
 		return connection;
 	}
 
-	public static TasResponse tasActionWithToken(String method, String tasBaseUrl, String accessToken, String refreshToken, String clientId, String clientSecret, String body, boolean retry) {
+	public static TasResponse tasActionWithToken(String method, String tasBaseUrl, String clientId, String clientSecret, String body, boolean retry) {
 		TasResponse result = new TasResponse();
 		if (tasBaseUrl.endsWith("/")) {
 			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
 		}
 		try {
+			String accessToken = tokenMap.get(clientId);
+			if(accessToken == null || accessToken.isEmpty()){
+				getOAuthToken(tasBaseUrl, clientId, clientSecret);
+				return tasActionWithToken(method, tasBaseUrl, clientId, clientSecret, body, false);
+			}
+			
 			String internalUrl = System.getProperty(ENV_INTERNAL_URL);
 			HttpURLConnection httpConn;
 			String postUrl = "";
@@ -706,11 +712,9 @@ public class TasClient {
 			if(statusCode == HttpURLConnection.HTTP_OK){
 				result.setSuccessfulResponse(message);
 			} else if(retry){
-				OAuthToken pair = refreshToken(tasBaseUrl, refreshToken, clientId, clientSecret);
+				OAuthToken pair = getOAuthToken(tasBaseUrl, clientId, clientSecret);
 				if(pair.isSuccess()){
-					result = tasActionWithToken(method, tasBaseUrl, 
-							pair.getAccessToken(), pair.getRefreshToken(), clientId, clientSecret, body, false);
-					result.setToken(pair);
+					result = tasActionWithToken(method, tasBaseUrl, clientId, clientSecret, body, false);
 				} else {
 					result.setErrorMessage("Refresh Token failed!");
 				}
@@ -724,8 +728,8 @@ public class TasClient {
 		return result;
 	}
 	
-	public static OAuthToken refreshToken(String tasBaseUrl, String refreshToken, String clientId, String clientSecret){
-		OAuthToken tokenPair = new OAuthToken();
+	public static OAuthToken getOAuthToken(String tasBaseUrl, String clientId, String clientSecret){
+		OAuthToken token = new OAuthToken();
 		
 		if (tasBaseUrl.endsWith("/")) {
 			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
@@ -740,8 +744,8 @@ public class TasClient {
 		settingMap.put("Authorization", "Basic " + Base64.getEncoder().encodeToString(clientInfo.getBytes()));
 		
 		Map<String, String> params = new HashMap<String, String>();
-		params.put("refresh_token", refreshToken);
-		params.put("grant_type", "refresh_token");
+		params.put("scope", "TCTA");
+		params.put("grant_type", "client_credentials");
 
 		try {
 			HttpURLConnection httpConn = buildpostHttpUrlConnection(idmUrl, params, settingMap);
@@ -749,18 +753,20 @@ public class TasClient {
 			int statusCode = httpConn.getResponseCode();
 
 			if (statusCode == HttpURLConnection.HTTP_OK) {
-				tokenPair.setSuccess(true);
+				token.setSuccess(true);
 				JsonReader node = new JsonReader(messagebody);
-				tokenPair.setAccessToken(node.getNode("access_token").textValue());
-				tokenPair.setRefreshToken(node.getNode("refresh_token").textValue());
+				token.setAccessToken(node.getNode("access_token").textValue());
+				tokenMap.put(clientId, token.getAccessToken());
 			} else {
-				tokenPair.setSuccess(false);
+				token.setSuccess(false);
+				token.setMessage(messagebody);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			token.setSuccess(false);
+			token.setMessage(e.getMessage());
 		}
 		
-		return tokenPair;
+		return token;
 	}
 	
 }

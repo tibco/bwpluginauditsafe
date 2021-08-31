@@ -53,7 +53,7 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 	private Text accessToken;
 //	private Text refreshToken;
 	private Text clientId;
-	private Text clientSecret;
+	private PasswordField clientSecret;
 	
 	private Label usernameLabel;
 	private Label passwordLabel;
@@ -196,9 +196,9 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 	    clientIdAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, clientId, PropertyTypeQnameConstants.STRING_PRIMITIVE);
 
 	    
-	    clientSecret = BWFieldFactory.getInstance().createTextBox(sectionComposite);
+	    clientSecret = BWFieldFactory.getInstance().createPasswordField(sectionComposite);
 	    clientSecretLabel =BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_CLIENT_SECRET, false);
-	    clientSecretAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, clientSecret, PropertyTypeQnameConstants.STRING_PRIMITIVE);
+	    clientSecretAttribute = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, clientSecret, PropertyTypeQnameConstants.PASSWORD_PRIMITIVE);
 
 	    
 	    Composite buttonComposite = new Composite(sectionComposite, 0);

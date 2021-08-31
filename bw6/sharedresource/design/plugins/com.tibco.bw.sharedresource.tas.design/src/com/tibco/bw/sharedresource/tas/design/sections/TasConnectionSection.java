@@ -355,7 +355,7 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
                 break;
 			}
 		}
-		return clientSecret;
+		return EncryptionService.INSTANCE.getEncryptor().decrypt(clientSecret);
     }
 
 }

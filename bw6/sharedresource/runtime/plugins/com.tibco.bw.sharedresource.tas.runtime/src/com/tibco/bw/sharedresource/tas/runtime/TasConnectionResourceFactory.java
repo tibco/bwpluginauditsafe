@@ -109,7 +109,7 @@ public class TasConnectionResourceFactory extends BaseSharedResourceFactory
 	    resource.setAccessToken((String) toSet.get("accessToken"));
 	    resource.setRefreshToken((String) toSet.get("refreshToken"));
 	    resource.setClientId((String) toSet.get("clientId"));
-	    resource.setClientSecret((String) toSet.get("clientSecret"));
+	    resource.setClientSecret(context.getDecryptedPasswordValue((String) toSet.get("clientSecret")));
 	    
 
 	    if(toSet.get("schema") != null){

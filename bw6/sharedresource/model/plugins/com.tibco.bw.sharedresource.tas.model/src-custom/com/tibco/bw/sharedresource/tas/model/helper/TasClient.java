@@ -677,7 +677,11 @@ public class TasClient {
 		try {
 			String accessToken = tokenMap.get(clientId);
 			if(accessToken == null || accessToken.isEmpty()){
-				getOAuthToken(tasBaseUrl, clientId, clientSecret);
+				OAuthToken token = getOAuthToken(tasBaseUrl, clientId, clientSecret);
+				if(!token.isSuccess()){
+					result.setErrorMessage("Get Access Token failed!" + token.getMessage());
+					return result;
+				}
 				return tasActionWithToken(method, tasBaseUrl, clientId, clientSecret, body, false);
 			}
 			
@@ -716,7 +720,7 @@ public class TasClient {
 				if(pair.isSuccess()){
 					result = tasActionWithToken(method, tasBaseUrl, clientId, clientSecret, body, false);
 				} else {
-					result.setErrorMessage("Refresh Token failed!");
+					result.setErrorMessage("Refresh Token failed! "+ pair.getMessage());
 				}
 			} else {
 				result.setErrorMessage(message);

@@ -77,7 +77,7 @@
       <editor
             class="com.tibco.bw.sharedresource.tas.design.wizard.TasConnectionSharedResourceEditor"
             contributorClass="com.tibco.bw.sharedresource.common.design.forms.SREditorContributor"
-            default="false"
+            default="true"
             extensions="tasconnectionResource"
             icon="icons/obj16/tasResource_16x16.png"
             id="com.tibco.bw.sharedresource.tas.design.tasconnectioneditor"

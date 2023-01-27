@@ -39,8 +39,7 @@
 	 
 	<installerFeature name="design hotfix 1" visible="true" version="6.3.1" parentNode="design-node" profileUID="typical">
 		<assemblyList>
-        		<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_model_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" version="6.3.101"/>
-        		<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_design_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" version="6.3.101"/>
+                        <assembly overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tas_design_feature" version="6.3.101"/>
 		</assemblyList>
 		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for Auditsafe Design" type="feature" uid="design_bwpluginauditsafe" version="6.3.1"/>
 		
@@ -131,5 +130,16 @@
 			<postInstallActionProperty name="bw.install.feature.ius" value="${bwpluginauditsafe.palette.ius}"/>
 			<postInstallActionProperty name="ext.palette.install.tag" value="$L{bwpluginauditsafe.palette.install.tag}"/>
 		</postInstallAction>
+    </installerFeature>
+
+    <installerFeature name="required hotfix 1" version="6.3.1" visible="false">
+        <install location="$L{bwpluginauditsafe.extension.palettes.design.home}">
+            <condition class="com.tibco.installer.wizard.condition.TIBCOFeatureSelectedWizardCondition">
+                <property mustBeMet="true"/>
+                <property featureID="design hotfix 1_bwpluginauditsafe"/>
+            </condition>
+        </install>
+        <assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_model_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.3.101"/>
+    </installerFeature>
 
 </TIBCOInstallerFeatures>

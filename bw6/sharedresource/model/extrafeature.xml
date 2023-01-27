@@ -25,8 +25,5 @@
       <import feature="com.tibco.bw.tpcl.com.fasterxml.jackson.feature" version="1.2.900" match="compatible"/>
       <import feature="com.tibco.bw.thor.design.feature" version="1.2.2600" match="compatible"/>
    </requires>
-<!--
-      <import feature="com.tibco.tpcl.eclipse419.deps.feature" version="1.0.0" match="compatible"/>
--->
 
 </feature>

@@ -193,13 +193,22 @@ public interface TasPackage extends EPackage {
 	int TAS_CONNECTION__CLIENT_SECRET = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 12;
 
 	/**
+	 * The feature id for the '<em><b>Sso</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TAS_CONNECTION__SSO = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 13;
+
+	/**
 	 * The number of structural features of the '<em>Connection</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TAS_CONNECTION_FEATURE_COUNT = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 13;
+	int TAS_CONNECTION_FEATURE_COUNT = SvarmodelPackage.SUBSTITUTABLE_OBJECT_FEATURE_COUNT + 14;
 
 
 	/**
@@ -356,6 +365,17 @@ public interface TasPackage extends EPackage {
 	EAttribute getTasConnection_ClientSecret();
 
 	/**
+	 * Returns the meta object for the attribute '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#isSso <em>Sso</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Sso</em>'.
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasConnection#isSso()
+	 * @see #getTasConnection()
+	 * @generated
+	 */
+	EAttribute getTasConnection_Sso();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -490,6 +510,14 @@ public interface TasPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TAS_CONNECTION__CLIENT_SECRET = eINSTANCE.getTasConnection_ClientSecret();
+
+		/**
+		 * The meta object literal for the '<em><b>Sso</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TAS_CONNECTION__SSO = eINSTANCE.getTasConnection_Sso();
 
 	}
 

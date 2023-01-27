@@ -19,6 +19,10 @@ import java.util.Map;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.tibco.bw.binding.rest.design.modeler.ICloudClientFactory;
+import com.tibco.bw.binding.rest.design.modeler.ICloudConfig;
+import com.tibco.bw.binding.rest.design.modeler.SsoClient;
+
 
 public class TasClient {
 	public static final String ENV_INTERNAL_URL = "TIBCO_INTERNAL_INTERCOM_URL";
@@ -33,6 +37,9 @@ public class TasClient {
 	protected static UserAwareCookieManager cookieManager;
 	
 	private static Map<String, String> tokenMap = new HashMap<String,String>();
+	
+	private static SsoClient client = null;
+	private static long bearerTokenSaveTimeMs = 0;
 
 	public synchronized static UserAwareCookieManager getCookieManager() {
 		if (cookieManager == null) {
@@ -57,7 +64,25 @@ public class TasClient {
 			e.printStackTrace();
 		}
 	}
-
+	
+	public static String getSSOToken() {
+		if(client==null) {
+			client = (SsoClient) ICloudClientFactory.getInstance().getClient(ICloudConfig.CLIENT__TCI, ICloudConfig.AUTH__SSO);
+			client.fetchBearerTokenFromRefreshToken();
+			bearerTokenSaveTimeMs=System.currentTimeMillis();
+		}
+		String token = null;
+		if(client!=null) {
+			long totolTimeMs = System.currentTimeMillis() - bearerTokenSaveTimeMs;
+			long totalTimeSec = (totolTimeMs / 1000); // ms to seconds
+			if(totalTimeSec>12*3600) {
+				client.fetchBearerTokenFromRefreshToken();
+			}
+			token = client.getBearerToken();
+		}
+		return token;
+	}
+	
 	public static TasResponse getAuditEvent(String tasBaseUrl, String username,
 			String password, String accountId, String body,
 			boolean retry) {

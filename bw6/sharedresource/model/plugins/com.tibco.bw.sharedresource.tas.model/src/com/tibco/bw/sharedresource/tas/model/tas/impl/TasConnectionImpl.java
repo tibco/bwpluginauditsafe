@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getServerUrl <em>Server Url</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getUsername <em>Username</em>}</li>
@@ -33,8 +34,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getRefreshToken <em>Refresh Token</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getClientId <em>Client Id</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#getClientSecret <em>Client Secret</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.impl.TasConnectionImpl#isSso <em>Sso</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -300,6 +301,26 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	protected String clientSecret = CLIENT_SECRET_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #isSso() <em>Sso</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSso()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SSO_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isSso() <em>Sso</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSso()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean sso = SSO_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -323,6 +344,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getServerUrl() {
 		return serverUrl;
 	}
@@ -332,6 +354,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setServerUrl(String newServerUrl) {
 		String oldServerUrl = serverUrl;
 		serverUrl = newServerUrl;
@@ -344,6 +367,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getUsername() {
 		return username;
 	}
@@ -353,6 +377,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUsername(String newUsername) {
 		String oldUsername = username;
 		username = newUsername;
@@ -365,6 +390,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getPassword() {
 		return password;
 	}
@@ -374,6 +400,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setPassword(String newPassword) {
 		String oldPassword = password;
 		password = newPassword;
@@ -386,6 +413,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getId() {
 		return id;
 	}
@@ -395,6 +423,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setId(String newId) {
 		String oldId = id;
 		id = newId;
@@ -407,6 +436,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSchema() {
 		return schema;
 	}
@@ -416,6 +446,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setSchema(String newSchema) {
 		String oldSchema = schema;
 		schema = newSchema;
@@ -428,6 +459,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getOutput() {
 		return output;
 	}
@@ -437,6 +469,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setOutput(String newOutput) {
 		String oldOutput = output;
 		output = newOutput;
@@ -449,6 +482,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getQueryOutput() {
 		return queryOutput;
 	}
@@ -458,6 +492,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setQueryOutput(String newQueryOutput) {
 		String oldQueryOutput = queryOutput;
 		queryOutput = newQueryOutput;
@@ -470,6 +505,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isEnterprise() {
 		return enterprise;
 	}
@@ -479,6 +515,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEnterprise(boolean newEnterprise) {
 		boolean oldEnterprise = enterprise;
 		enterprise = newEnterprise;
@@ -491,6 +528,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isUseToken() {
 		return useToken;
 	}
@@ -500,6 +538,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setUseToken(boolean newUseToken) {
 		boolean oldUseToken = useToken;
 		useToken = newUseToken;
@@ -512,6 +551,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getAccessToken() {
 		return accessToken;
 	}
@@ -521,6 +561,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAccessToken(String newAccessToken) {
 		String oldAccessToken = accessToken;
 		accessToken = newAccessToken;
@@ -533,6 +574,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getRefreshToken() {
 		return refreshToken;
 	}
@@ -542,6 +584,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRefreshToken(String newRefreshToken) {
 		String oldRefreshToken = refreshToken;
 		refreshToken = newRefreshToken;
@@ -554,6 +597,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getClientId() {
 		return clientId;
 	}
@@ -563,6 +607,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClientId(String newClientId) {
 		String oldClientId = clientId;
 		clientId = newClientId;
@@ -575,6 +620,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getClientSecret() {
 		return clientSecret;
 	}
@@ -584,11 +630,35 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setClientSecret(String newClientSecret) {
 		String oldClientSecret = clientSecret;
 		clientSecret = newClientSecret;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.TAS_CONNECTION__CLIENT_SECRET, oldClientSecret, clientSecret));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean isSso() {
+		return sso;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setSso(boolean newSso) {
+		boolean oldSso = sso;
+		sso = newSso;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, TasPackage.TAS_CONNECTION__SSO, oldSso, sso));
 	}
 
 	/**
@@ -625,6 +695,8 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return getClientId();
 			case TasPackage.TAS_CONNECTION__CLIENT_SECRET:
 				return getClientSecret();
+			case TasPackage.TAS_CONNECTION__SSO:
+				return isSso();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -675,6 +747,9 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return;
 			case TasPackage.TAS_CONNECTION__CLIENT_SECRET:
 				setClientSecret((String)newValue);
+				return;
+			case TasPackage.TAS_CONNECTION__SSO:
+				setSso((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -727,6 +802,9 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 			case TasPackage.TAS_CONNECTION__CLIENT_SECRET:
 				setClientSecret(CLIENT_SECRET_EDEFAULT);
 				return;
+			case TasPackage.TAS_CONNECTION__SSO:
+				setSso(SSO_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -765,6 +843,8 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 				return CLIENT_ID_EDEFAULT == null ? clientId != null : !CLIENT_ID_EDEFAULT.equals(clientId);
 			case TasPackage.TAS_CONNECTION__CLIENT_SECRET:
 				return CLIENT_SECRET_EDEFAULT == null ? clientSecret != null : !CLIENT_SECRET_EDEFAULT.equals(clientSecret);
+			case TasPackage.TAS_CONNECTION__SSO:
+				return sso != SSO_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -778,7 +858,7 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 	public String toString() {
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (serverUrl: ");
 		result.append(serverUrl);
 		result.append(", username: ");
@@ -805,6 +885,8 @@ public class TasConnectionImpl extends SubstitutableObjectImpl implements TasCon
 		result.append(clientId);
 		result.append(", clientSecret: ");
 		result.append(clientSecret);
+		result.append(", sso: ");
+		result.append(sso);
 		result.append(')');
 		return result.toString();
 	}

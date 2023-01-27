@@ -12,8 +12,6 @@ import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -43,11 +41,13 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 	private Text username;
 	private PasswordField password;
 	private Button isEnterprise;
+	private Button isSSO;
 
 	private SRAttributeBindingField serverUrlAttribute;
 	private SRAttributeBindingField usernameAttribute;
 	private SRAttributeBindingField passwordAttribute;
 	private SRAttributeBindingField isEnterpriseAttribute;
+	private SRAttributeBindingField isSSOAttribute;
 	
 	private Button useToken;
 	private Text accessToken;
@@ -121,6 +121,48 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 
 		getBindingManager().bind(isEnterpriseAttribute, TasPackage.Literals.TAS_CONNECTION__ENTERPRISE, tasConnection, updateIsEnterpriseValueStrategy, updateIsEnterpriseValueStrategy);
 		
+		UpdateValueStrategy updateIsSSOValueStrategy = new UpdateValueStrategy() {
+			@Override
+			protected IStatus doSet(final IObservableValue observableValue, final Object value) {
+				boolean isSSO = (Boolean)value;
+
+				if (isSSO) {
+					usernameLabel.setVisible(!isSSO);
+					passwordLabel.setVisible(!isSSO);
+					accessTokenLabel.setVisible(!isSSO);
+					clientIdLabel.setVisible(!isSSO);
+					clientSecretLabel.setVisible(!isSSO);
+					
+					usernameAttribute.setVisible(!isSSO);
+					passwordAttribute.setVisible(!isSSO);
+					accessTokenAttribute.setVisible(!isSSO);
+//					refreshTokenAttribute.getControl().setEnabled(useToken && !isEnterprise);
+					clientIdAttribute.setVisible(!isSSO);
+					clientSecretAttribute.setVisible(!isSSO);
+					
+				}else {
+					boolean isEnterprise = tasConnection.isEnterprise();
+					boolean useToken = tasConnection.isUseToken();
+				
+					usernameLabel.setVisible(!useToken);
+					passwordLabel.setVisible(!useToken);
+					accessTokenLabel.setVisible(useToken&&isEnterprise);
+					clientIdLabel.setVisible(useToken && !isEnterprise);
+					clientSecretLabel.setVisible(useToken && !isEnterprise);
+				
+					usernameAttribute.setVisible(!useToken);
+					passwordAttribute.setVisible(!useToken);
+					accessTokenAttribute.setVisible(useToken&&isEnterprise);
+//					refreshTokenAttribute.getControl().setEnabled(useToken && !isEnterprise);
+					clientIdAttribute.setVisible(useToken && !isEnterprise);
+					clientSecretAttribute.setVisible(useToken && !isEnterprise);
+				}
+				return super.doSet(observableValue, value);
+			}
+		};
+
+		getBindingManager().bind(isSSOAttribute, TasPackage.Literals.TAS_CONNECTION__SSO, tasConnection, updateIsSSOValueStrategy, updateIsSSOValueStrategy);
+		
 		UpdateValueStrategy updateUseTokenValueStrategy = new UpdateValueStrategy() {
 			@Override
 			protected IStatus doSet(final IObservableValue observableValue, final Object value) {
@@ -144,6 +186,8 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 			}
 		};
         getBindingManager().bind(useTokenAttribute,  TasPackage.Literals.TAS_CONNECTION__USE_TOKEN, tasConnection, updateUseTokenValueStrategy, updateUseTokenValueStrategy);
+        
+        
 	    // begin-custom-code
         // end-custom-code
 	}
@@ -170,6 +214,10 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 	    isEnterprise = BWFieldFactory.getInstance().createCheckBox(sectionComposite);
 	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_IS_ENTERPRISE, false);
 	    isEnterpriseAttribute  = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, isEnterprise, PropertyTypeQnameConstants.BOOLEAN_PRIMITIVE);
+	    
+	    isSSO = BWFieldFactory.getInstance().createCheckBox(sectionComposite);
+	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_IS_SSO, false);
+	    isSSOAttribute  = BWFieldFactory.getInstance().createSRAttributeBindingField(sectionComposite, isSSO, PropertyTypeQnameConstants.BOOLEAN_PRIMITIVE);
 	    
 	    useToken = BWFieldFactory.getInstance().createCheckBox(sectionComposite);
 	    BWFieldFactory.getInstance().createLabel(sectionComposite, Messages.TASCONNECTION_USE_TOKEN, false);
@@ -286,6 +334,22 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 		}
     	return isEnterprise;
     }
+	
+	public boolean isSso(TasConnection connection) {
+
+    	boolean isSso = connection.isSso();
+    	EList<SubstitutionBinding> ds_substvars = connection.getSubstitutionBindings();
+		for (SubstitutionBinding substitutionBinding : ds_substvars) {
+			String propName = substitutionBinding.getPropName();
+			String templateName = substitutionBinding.getTemplate();
+			if (templateName.equals(TasPackage.Literals.TAS_CONNECTION__SSO.getName())){
+				isSso = Boolean.valueOf(ModelHelper.INSTANCE.getModulePropertyValue(connection, propName));
+                break;
+			}
+		}
+    	return isSso;
+    	}
+    
 	
 	public boolean userToken(TasConnection connection) {
 

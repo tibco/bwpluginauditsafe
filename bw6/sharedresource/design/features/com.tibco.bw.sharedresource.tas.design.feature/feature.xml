@@ -22,6 +22,7 @@
       <import feature="com.tibco.bw.api.design.feature" version="6.3.0" match="compatible"/>
       <import feature="com.tibco.amf.sharedresource.model.feature.eclipse" version="3.901.0" match="compatible"/>
       <import feature="com.tibco.neo.model.core.feature.eclipse" version="1.901.0" match="compatible"/>
+      <import feature="com.tibco.bw.thor.management.client.eclipse" version="1.2.2600.020" match="compatible"/>
 //      <import feature="org.eclipse.emf" version="2.7.2" match="compatible"/>
       <import feature="com.tibco.tibcoxml.xml.eclipse" version="5.60.100" match="compatible"/>
       <import feature="com.tibco.tpcl.javax.jms.feature.eclipse" version="1.10.0" match="compatible"/> 

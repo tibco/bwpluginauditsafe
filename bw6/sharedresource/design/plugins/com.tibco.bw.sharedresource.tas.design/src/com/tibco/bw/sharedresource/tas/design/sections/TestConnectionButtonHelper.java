@@ -72,6 +72,8 @@ public class TestConnectionButtonHelper {
 				
 				boolean isEnterprise = tasConnectionSection.isEnterpise(connection);
 				
+				boolean isSso = tasConnectionSection.isSso(connection);
+				
 				boolean useToken = tasConnectionSection.userToken(connection);
 				
 				String clientId = tasConnectionSection.getClientId(connection);
@@ -82,7 +84,26 @@ public class TestConnectionButtonHelper {
 					testLabel.setForeground(red);
 					testLabel.setText("Server URL is required");
 					return;
-				} 
+				}
+				
+				if(isSso){
+					if(TasClient.getSSOToken()!=null) {
+						MessageDialog messageDialog = new MessageDialog(composite
+								.getShell(), Messages.CONNECTED_TO_TAS, null,
+								Messages.CONNECTED_TO_TAS, MessageDialog.NONE,
+								new String[] { "Ok" }, 0);
+						messageDialog.open();
+						Color blue = new Color(composite.getShell().getDisplay(),
+								0, 0, 255);
+						testLabel.setForeground(blue);
+						testLabel.setText("Test AuditSafe SSO Connection successful!");
+					}else {
+						testLabel.setForeground(red);
+						testLabel.setText("Please finish SSO in API Explorer.");
+					}
+					return;
+				}
+ 
 				if(!useToken){
 					if(isEmpty(username)){
 						testLabel.setForeground(red);

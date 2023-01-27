@@ -11,6 +11,7 @@ import com.tibco.neo.svar.svarmodel.SubstitutableObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getServerUrl <em>Server Url</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getUsername <em>Username</em>}</li>
@@ -25,11 +26,11 @@ import com.tibco.neo.svar.svarmodel.SubstitutableObject;
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getRefreshToken <em>Refresh Token</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getClientId <em>Client Id</em>}</li>
  *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#getClientSecret <em>Client Secret</em>}</li>
+ *   <li>{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#isSso <em>Sso</em>}</li>
  * </ul>
- * </p>
  *
  * @see com.tibco.bw.sharedresource.tas.model.tas.TasPackage#getTasConnection()
- * @model
+ * @model annotation="http://tns.tibco.com/bw/annotations/configuration"
  * @generated
  */
 public interface TasConnection extends SubstitutableObject {
@@ -372,5 +373,27 @@ public interface TasConnection extends SubstitutableObject {
 	 * @generated
 	 */
 	void setClientSecret(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Sso</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Sso</em>' attribute.
+	 * @see #setSso(boolean)
+	 * @see com.tibco.bw.sharedresource.tas.model.tas.TasPackage#getTasConnection_Sso()
+	 * @model
+	 * @generated
+	 */
+	boolean isSso();
+
+	/**
+	 * Sets the value of the '{@link com.tibco.bw.sharedresource.tas.model.tas.TasConnection#isSso <em>Sso</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Sso</em>' attribute.
+	 * @see #isSso()
+	 * @generated
+	 */
+	void setSso(boolean value);
 
 } // TasConnection

@@ -6,6 +6,7 @@ import com.tibco.bw.sharedresource.tas.model.tas.TasConnection;
 import com.tibco.bw.sharedresource.tas.model.tas.TasFactory;
 import com.tibco.bw.sharedresource.tas.model.tas.TasPackage;
 
+import com.tibco.neo.model.componentjar.ComponentjarPackage;
 import com.tibco.neo.svar.svarmodel.SvarmodelPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -56,7 +57,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link TasPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -70,12 +71,14 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 		if (isInited) return (TasPackage)EPackage.Registry.INSTANCE.getEPackage(TasPackage.eNS_URI);
 
 		// Obtain or create and register package
-		TasPackageImpl theTasPackage = (TasPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TasPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new TasPackageImpl());
+		Object registeredTasPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		TasPackageImpl theTasPackage = registeredTasPackage instanceof TasPackageImpl ? (TasPackageImpl)registeredTasPackage : new TasPackageImpl();
 
 		isInited = true;
 
 		// Initialize simple dependencies
 		SvarmodelPackage.eINSTANCE.eClass();
+		ComponentjarPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theTasPackage.createPackageContents();
@@ -86,7 +89,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 		// Mark meta-data to indicate it can't be changed
 		theTasPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(TasPackage.eNS_URI, theTasPackage);
 		return theTasPackage;
@@ -97,6 +99,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTasConnection() {
 		return tasConnectionEClass;
 	}
@@ -106,6 +109,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTasConnection_ServerUrl() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(0);
 	}
@@ -115,6 +119,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTasConnection_Username() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(1);
 	}
@@ -124,6 +129,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTasConnection_Password() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(2);
 	}
@@ -133,6 +139,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTasConnection_Id() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(3);
 	}
@@ -142,6 +149,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTasConnection_Schema() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(4);
 	}
@@ -151,6 +159,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTasConnection_Output() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(5);
 	}
@@ -160,6 +169,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTasConnection_QueryOutput() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(6);
 	}
@@ -169,6 +179,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTasConnection_Enterprise() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(7);
 	}
@@ -178,6 +189,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTasConnection_UseToken() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(8);
 	}
@@ -187,6 +199,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTasConnection_AccessToken() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(9);
 	}
@@ -196,6 +209,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTasConnection_RefreshToken() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(10);
 	}
@@ -205,6 +219,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTasConnection_ClientId() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(11);
 	}
@@ -214,6 +229,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTasConnection_ClientSecret() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(12);
 	}
@@ -223,6 +239,17 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EAttribute getTasConnection_Sso() {
+		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public TasFactory getTasFactory() {
 		return (TasFactory)getEFactoryInstance();
 	}
@@ -260,6 +287,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 		createEAttribute(tasConnectionEClass, TAS_CONNECTION__REFRESH_TOKEN);
 		createEAttribute(tasConnectionEClass, TAS_CONNECTION__CLIENT_ID);
 		createEAttribute(tasConnectionEClass, TAS_CONNECTION__CLIENT_SECRET);
+		createEAttribute(tasConnectionEClass, TAS_CONNECTION__SSO);
 	}
 
 	/**
@@ -310,6 +338,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 		initEAttribute(getTasConnection_RefreshToken(), ecorePackage.getEString(), "refreshToken", null, 0, 1, TasConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTasConnection_ClientId(), ecorePackage.getEString(), "clientId", null, 0, 1, TasConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTasConnection_ClientSecret(), ecorePackage.getEString(), "clientSecret", null, 0, 1, TasConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTasConnection_Sso(), ecorePackage.getEBoolean(), "sso", null, 0, 1, TasConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -326,10 +355,10 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * @generated
 	 */
 	protected void createConfigurationAnnotations() {
-		String source = "http://tns.tibco.com/bw/annotations/configuration";	
+		String source = "http://tns.tibco.com/bw/annotations/configuration";
 		addAnnotation
-		  (tasConnectionEClass, 
-		   source, 
+		  (tasConnectionEClass,
+		   source,
 		   new String[] {
 		   });
 	}

@@ -67,6 +67,7 @@ public class TasFactoryImpl extends EFactoryImpl implements TasFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TasConnection createTasConnection() {
 		TasConnectionImpl tasConnection = new TasConnectionImpl();
 		return tasConnection;
@@ -77,6 +78,7 @@ public class TasFactoryImpl extends EFactoryImpl implements TasFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TasPackage getTasPackage() {
 		return (TasPackage)getEPackage();
 	}

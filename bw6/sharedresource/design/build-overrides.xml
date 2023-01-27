@@ -26,8 +26,8 @@
 <property name="autobuild.dir.java110-classes" value="${autobuild.dir.java-classes}"/>
 <property name="autobuild.jdk.force-110" value="true"/>
 
-    <property name="javacSource" value="1.11" />
-    <property name="javacTarget" value="1.11" />
+    <property name="javacSource" value="1.8" />
+    <property name="javacTarget" value="1.8" />
 
 
     <property name="autobuild.p2.packaging" value="true" />

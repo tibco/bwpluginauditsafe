@@ -6,7 +6,7 @@ Bundle-Version: 6.3.100.qualifier
 Bundle-Activator: com.tibco.bw.sharedresource.tas.design.TASUIPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
 Export-Package: com.tibco.bw.sharedresource.tas.design;version="6.3.100",
  com.tibco.bw.sharedresource.tas.design.provider;version="6.3.100",

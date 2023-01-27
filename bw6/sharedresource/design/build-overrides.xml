@@ -20,8 +20,11 @@
     <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tas/sharedresource" />
     <property name="autobuild.svn.tag-pattern" value="design" />
 
-    <property name="autobuild.version.eclipse" value="4.4" />
-    <property name="autobuild.version.developer.eclipse" value="4.4" />
+    <property name="autobuild.version.eclipse" value="4.19" />
+    <property name="autobuild.version.developer.eclipse" value="4.19" />
+
+<property name="autobuild.dir.java110-classes" value="${autobuild.dir.java-classes}"/>
+<property name="autobuild.jdk.force-110" value="true"/>
 
     <property name="autobuild.p2.packaging" value="true" />
 	
@@ -33,7 +36,7 @@
     <property name="reldist.download.enable" value="true"/>
 
     <updatesites id="autobuild.workspace.update-sites.list">
-        <updatesite url="http://spin.tibco.com:8008/dev/release/"/>
+        <updatesite url="http://spin.tibco.com/dev/release/"/>
     </updatesites>
 
 </project>

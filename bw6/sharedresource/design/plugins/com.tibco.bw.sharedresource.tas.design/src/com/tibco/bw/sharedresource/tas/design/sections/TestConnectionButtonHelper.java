@@ -365,7 +365,6 @@ public class TestConnectionButtonHelper {
 			return composite;
 		}
 
-		@Override
 		public void actionPerformed(ActionEvent e) {
 
 		}

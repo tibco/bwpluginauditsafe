@@ -35,21 +35,62 @@
     <installProfile name="Runtime" uid="runtime-profile" description=""/>
     <installProfile description="Installs all components of the product" name="Typical" uid="typical" defaultSelected="true"/>
 	
+	<installerFeatureNode name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) Auditsafe Runtime Hotfix 1" nodeID="runtime-node" parentNode="root"/>
 	<installerFeatureNode name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) Auditsafe Design Hotfix 1" nodeID="design-node" parentNode="root"/>
 	 
+    <installerFeature name="runtime hotfix 1" visible="true" version="6.3.1" parentNode="runtime-node" profileUID="runtime-profile">
+        <assemblyList>
+        </assemblyList>
+
+        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for Auditsafe Runtime" type="feature" uid="runtime_bwpluginauditsafe" version="6.3.1"/>
+        
+
+        <wizardAction class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction" sequence="post-selection">
+            <property featureUID="required hotfix 1_bwpluginauditsafe"/>
+            <property isEnabled="true"/>
+            <property isVisible="false"/>
+            <property isSelected="true"/>
+        </wizardAction>
+		
+		<wizardAction class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc" sequence="post-selection">
+			<property productAcronym="BW"/>
+			<property minimumVersion="$L{bwpluginauditsafe.minimum.bw.version}"/>
+			<property vpdUID="BW_runtime"/>
+			<property productAssemblyUID="product_tibco_com_tibco_bw_enterprise_runtime"/>
+			<property productAssemblyMinVersion="$L{bwpluginauditsafe.minimum.bw.version}"/>
+			<property showProgress="true"/>
+			<property description="Get install location for BW Runtime"/>
+		</wizardAction>
+
+		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
+			<property productAcronym="BW"/>
+			<property minimumVersion="$L{bwpluginauditsafecloud.minimum.bw.version}"/>
+			<property vpdUID=""/>
+			<property productAssemblyUID="product_tibco_bwplugin_cloud_runtime_dependency"/>
+			<property productAssemblyMinVersion="$L{bwpluginauditsafecloud.minimum.bw.version}"/>
+			<property showProgress="true"/>
+			<property description="Get install location for Cloud Runtime"/>
+		</wizardAction>
+
+	
+    </installerFeature>
+
 	<installerFeature name="design hotfix 1" visible="true" version="6.3.1" parentNode="design-node" profileUID="typical">
 		<assemblyList>
-                        <assembly overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tas_design_feature" version="6.3.101"/>
+        		<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_design_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" version="6.3.101"/>
 		</assemblyList>
+
+		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for Auditsafe Runtime" type="feature" uid="runtime hotfix 1_bwpluginauditsafe" version="6.3.1"/>
 		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for Auditsafe Design" type="feature" uid="design_bwpluginauditsafe" version="6.3.1"/>
 		
+		 
          <wizardAction class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction" sequence="post-selection">
              <property featureUID="required hotfix 1_bwpluginauditsafe"/>
              <property isEnabled="true"/>
              <property isVisible="false"/>
              <property isSelected="true"/>
          </wizardAction>
-
+		 
 		 <wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
 			<property minimumVersion="$L{bwpluginauditsafe.minimum.bw.version}"/>
@@ -130,8 +171,8 @@
 			<postInstallActionProperty name="bw.install.feature.ius" value="${bwpluginauditsafe.palette.ius}"/>
 			<postInstallActionProperty name="ext.palette.install.tag" value="$L{bwpluginauditsafe.palette.install.tag}"/>
 		</postInstallAction>
-    </installerFeature>
 
+</installerFeature>
     <installerFeature name="required hotfix 1" version="6.3.1" visible="false">
         <install location="$L{bwpluginauditsafe.extension.palettes.design.home}">
             <condition class="com.tibco.installer.wizard.condition.TIBCOFeatureSelectedWizardCondition">

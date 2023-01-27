@@ -17,7 +17,7 @@ public class TasConnectionResource {
 	private String schema;
 	private String output;
 	private boolean enterprise;
-	
+	private boolean sso;
 	private boolean useToken;
 	private String accessToken;
 	private String refreshToken;
@@ -29,6 +29,12 @@ public class TasConnectionResource {
 	}
 	public void setEnterprise(boolean enterprise) {
 		this.enterprise = enterprise;
+	}
+	public boolean isSso() {
+		return sso;
+	}
+	public void setSso(boolean sso) {
+		this.sso = sso;
 	}
 	public String getSchema() {
 		return schema;

@@ -184,7 +184,10 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 		String body = mapper.writeValueAsString(requestNode);
 		boolean isEnterprise = sharedResource.isEnterprise();
 		activityLogger.debug("Is enterprise version:" + isEnterprise + ". Request body:" +body);
-		if(sharedResource.isEnterprise()){
+		if(sharedResource.isSso()) {
+			result = TasClient.tasEEActionWithToken(TasClient.METHOD_POST_EVENT, sharedResource.getServerUrl(), TasClient.getSSOToken(), body);
+			
+		}else if(sharedResource.isEnterprise()){
 			if(sharedResource.isUseToken()){
 				//use token
 				result = TasClient.tasEEActionWithToken(TasClient.METHOD_GET_EVENT, sharedResource.getServerUrl(), sharedResource.getAccessToken(), body);

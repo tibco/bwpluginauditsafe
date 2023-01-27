@@ -99,7 +99,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EClass getTasConnection() {
 		return tasConnectionEClass;
 	}
@@ -109,7 +108,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getTasConnection_ServerUrl() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(0);
 	}
@@ -119,7 +117,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getTasConnection_Username() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(1);
 	}
@@ -129,7 +126,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getTasConnection_Password() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(2);
 	}
@@ -139,7 +135,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getTasConnection_Id() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(3);
 	}
@@ -149,7 +144,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getTasConnection_Schema() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(4);
 	}
@@ -159,7 +153,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getTasConnection_Output() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(5);
 	}
@@ -169,7 +162,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getTasConnection_QueryOutput() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(6);
 	}
@@ -179,7 +171,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getTasConnection_Enterprise() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(7);
 	}
@@ -189,7 +180,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getTasConnection_UseToken() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(8);
 	}
@@ -199,7 +189,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getTasConnection_AccessToken() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(9);
 	}
@@ -209,7 +198,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getTasConnection_RefreshToken() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(10);
 	}
@@ -219,7 +207,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getTasConnection_ClientId() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(11);
 	}
@@ -229,7 +216,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getTasConnection_ClientSecret() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(12);
 	}
@@ -239,7 +225,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EAttribute getTasConnection_Sso() {
 		return (EAttribute)tasConnectionEClass.getEStructuralFeatures().get(13);
 	}
@@ -249,7 +234,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public TasFactory getTasFactory() {
 		return (TasFactory)getEFactoryInstance();
 	}

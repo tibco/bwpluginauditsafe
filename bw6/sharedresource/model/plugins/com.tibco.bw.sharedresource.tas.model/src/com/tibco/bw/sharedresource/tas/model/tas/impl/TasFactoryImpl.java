@@ -53,7 +53,6 @@ public class TasFactoryImpl extends EFactoryImpl implements TasFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case TasPackage.TAS_CONNECTION: return createTasConnection();
@@ -67,7 +66,6 @@ public class TasFactoryImpl extends EFactoryImpl implements TasFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public TasConnection createTasConnection() {
 		TasConnectionImpl tasConnection = new TasConnectionImpl();
 		return tasConnection;
@@ -78,7 +76,6 @@ public class TasFactoryImpl extends EFactoryImpl implements TasFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
 	public TasPackage getTasPackage() {
 		return (TasPackage)getEPackage();
 	}

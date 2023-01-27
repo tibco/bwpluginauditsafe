@@ -51,32 +51,26 @@ public class UserAwareCookieStore implements CookieStore {
 		return this.defaultCookieStore;
 	}
 
-	@Override
 	public void add(URI uri, HttpCookie cookie) {
 		get().add(uri, cookie);
 	}
 
-	@Override
 	public List<HttpCookie> get(URI uri) {
 		return get().get(uri);
 	}
 
-	@Override
 	public List<HttpCookie> getCookies() {
 		return get().getCookies();
 	}
 
-	@Override
 	public List<URI> getURIs() {
 		return get().getURIs();
 	}
 
-	@Override
 	public boolean remove(URI uri, HttpCookie cookie) {
 		return get().remove(uri, cookie);
 	}
 
-	@Override
 	public boolean removeAll() {
 		return get().removeAll();
 	}

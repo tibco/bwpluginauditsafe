@@ -20,14 +20,19 @@
     <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tas/sharedresource" />
     <property name="autobuild.svn.tag-pattern" value="model" />
 
+<property name="autobuild.version.eclipse" value="4.19"/>
+<property name="autobuild.version.developer.eclipse" value="4.19"/>
+<property name="autobuild.dir.java110-classes" value="${autobuild.dir.java-classes}"/>
+<property name="autobuild.jdk.force-110" value="true"/>
+
+<!--
     <property name="autobuild.version.eclipse" value="4.4" />
     <property name="autobuild.version.developer.eclipse" value="4.4" />
-
 
     <property name="javacSource" value="1.8" />
     <property name="javacTarget" value="1.8" />
     <property name="autobuild.jdk.force-18" value="true" />
-
+-->
 
     <property name="autobuild.p2.packaging" value="true" />
 	
@@ -40,6 +45,7 @@
 
     <updatesites id="autobuild.workspace.update-sites.list">
         <updatesite url="http://spin.tibco.com/dev/release/"/>
+        <updatesite url="http://spin.tibco.com/eclipse-4.7/thirdparty/"/>
     </updatesites>
 
 </project>

@@ -6,10 +6,6 @@
 <!--accept the license agreement-->
 <entry key="acceptLicense">true</entry>
 
-<!--If multiple environments are supported, create a new one or use an existing one. Set createNewEnvironment to false if using an existing environment -->
-<!--If the product does not support multiple environments, then the values below are ignored-->
-<entry key="createNewEnvironment">true</entry>
-
 <!--the root installation directory-->
 <!--if the product does not support multiple instances and TIBCO_HOME has already been set then-->
 <!--this value is ignored and the existing TIBCO_HOME is used as the installation root-->

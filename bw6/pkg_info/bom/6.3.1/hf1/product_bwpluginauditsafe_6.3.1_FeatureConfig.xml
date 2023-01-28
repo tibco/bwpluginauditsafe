@@ -38,7 +38,7 @@
 	<installerFeatureNode name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) Auditsafe Runtime Hotfix 1" nodeID="runtime-node" parentNode="root"/>
 	<installerFeatureNode name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) Auditsafe Design Hotfix 1" nodeID="design-node" parentNode="root"/>
 	 
-    <installerFeature name="runtime hotfix 1" visible="true" version="6.3.1" parentNode="runtime-node" profileUID="runtime-profile">
+    <installerFeature name="runtime Hotfix 1" visible="true" version="6.3.1" parentNode="runtime-node" profileUID="runtime-profile">
         <assemblyList>
         </assemblyList>
 
@@ -46,7 +46,7 @@
         
 
         <wizardAction class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction" sequence="post-selection">
-            <property featureUID="required hotfix 1_bwpluginauditsafe"/>
+            <property featureUID="required Hotfix 1_bwpluginauditsafe"/>
             <property isEnabled="true"/>
             <property isVisible="false"/>
             <property isSelected="true"/>
@@ -75,17 +75,17 @@
 	
     </installerFeature>
 
-	<installerFeature name="design hotfix 1" visible="true" version="6.3.1" parentNode="design-node" profileUID="typical">
+	<installerFeature name="design Hotfix 1" visible="true" version="6.3.1" parentNode="design-node" profileUID="typical">
 		<assemblyList>
         		<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_design_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" version="6.3.101"/>
 		</assemblyList>
 
-		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for Auditsafe Runtime" type="feature" uid="runtime hotfix 1_bwpluginauditsafe" version="6.3.1"/>
+		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for Auditsafe Runtime" type="feature" uid="runtime Hotfix 1_bwpluginauditsafe" version="6.3.1"/>
 		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for Auditsafe Design" type="feature" uid="design_bwpluginauditsafe" version="6.3.1"/>
 		
 		 
          <wizardAction class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction" sequence="post-selection">
-             <property featureUID="required hotfix 1_bwpluginauditsafe"/>
+             <property featureUID="required Hotfix 1_bwpluginauditsafe"/>
              <property isEnabled="true"/>
              <property isVisible="false"/>
              <property isSelected="true"/>
@@ -173,11 +173,11 @@
 		</postInstallAction>
 
 </installerFeature>
-    <installerFeature name="required hotfix 1" version="6.3.1" visible="false">
+    <installerFeature name="required Hotfix 1" version="6.3.1" visible="false">
         <install location="$L{bwpluginauditsafe.extension.palettes.design.home}">
             <condition class="com.tibco.installer.wizard.condition.TIBCOFeatureSelectedWizardCondition">
                 <property mustBeMet="true"/>
-                <property featureID="design hotfix 1_bwpluginauditsafe"/>
+                <property featureID="design Hotfix 1_bwpluginauditsafe"/>
             </condition>
         </install>
         <assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_model_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.3.101"/>

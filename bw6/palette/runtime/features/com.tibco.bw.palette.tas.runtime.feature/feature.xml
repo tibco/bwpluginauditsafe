@@ -17,7 +17,7 @@
       %license
    </license>
 
-   <requires>
+<!--
       <import feature="com.tibco.neo.model.core.feature" version="1.902.0" match="compatible"/>
       <import feature="com.tibco.bw.api.runtime.feature" version="6.3.0" match="compatible"/>
       <import feature="com.tibco.tpcl.org.genxdm.core.feature" version="1.2.0" match="compatible"/>
@@ -28,16 +28,19 @@
       <import feature="com.tibco.genxdm.bridge.xinode.feature" version="1.2.0" match="compatible"/>
       <import feature="com.tibco.neo.common.util.feature" version="2.5.100" match="compatible"/>
       <import feature="com.tibco.amx.tibrv.client.feature" version="8.4.200" match="compatible"/>
-      <import feature="com.tibco.tibcoxml.xml" version="5.60.100" match="compatible"/>
-      <import feature="com.tibco.tibcoxml.util" version="5.60.100" match="compatible"/>
       <import feature="com.tibco.tpcl.org.jvnet.annox.feature" version="0.4.100.001" match="compatible"/>
       <import feature="com.tibco.tpcl.javax.xml.bind.feature" version="2.10.0" match="compatible"/>
       <import feature="com.tibco.tpcl.org.eclipse.bpel.feature.rt" version="1.10.0" match="compatible"/>
       <import feature="com.tibco.tpcl.org.apache.commons.pool.feature" version="1.6.0" match="compatible"/>
       <import feature="com.tibco.bw.api.palette.shared.feature" version="6.2.0" match="compatible"/>
+-->
 
-      <import feature="com.tibco.bw.sharedresource.tas.model.feature" version="6.3.100"/>
-      <import feature="com.tibco.bw.sharedresource.tas.runtime.feature" version="6.3.100"/>
+   <requires>
+      <import feature="com.tibco.tibcoxml.xml" version="5.60.400" match="compatible"/>
+      <import feature="com.tibco.tibcoxml.util" version="5.60.400" match="compatible"/>
+
+      <import feature="com.tibco.bw.sharedresource.tas.model.feature" version="6.3.101"/>
+      <import feature="com.tibco.bw.sharedresource.tas.runtime.feature" version="6.3.101"/>
       <import feature="com.tibco.bw.palette.tas.model.feature" version="6.3.0"/>
    </requires>
 

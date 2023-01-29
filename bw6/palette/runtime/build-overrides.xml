@@ -26,8 +26,16 @@
     <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tas/palette" />
     <property name="autobuild.svn.tag-pattern" value="runtime" />
     
+<!--
     <property name="autobuild.version.eclipse" value="4.4" />
     <property name="autobuild.version.developer.eclipse" value="4.4" />
+-->
+<property name="autobuild.version.eclipse" value="4.19"/>
+<property name="autobuild.version.developer.eclipse" value="4.19"/>
+<property name="autobuild.dir.java110-classes" value="${autobuild.dir.java-classes}"/>
+<property name="autobuild.jdk.force-110" value="true"/>
+    <property name="javacSource" value="1.8" />
+    <property name="javacTarget" value="1.8" />
 
     <property name="autobuild.obfuscator.style" value="none"/> <!--whether want to obfuscate class-->
     <property name="site.type" value="release"/>

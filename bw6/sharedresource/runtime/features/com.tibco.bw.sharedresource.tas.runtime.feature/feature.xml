@@ -17,37 +17,41 @@
       %license
    </license>
 
-   <requires>
-      <import feature="com.tibco.tpcl.javax.system.exports.feature" version="5.10.0" match="compatible"/>
+<!--
       <import feature="com.tibco.tpcl.org.genxdm.core.feature" version="1.2.0"/>
-      <import feature="com.tibco.tpcl.javax.transaction.feature" version="1.10.0" match="compatible"/>
-      <import feature="com.tibco.tpcl.javax.jms.feature" version="1.10.0" match="compatible"/>
-      <import feature="com.tibco.tpcl.org.eclipse.equinox.feature" version="3.10.1" match="compatible"/>
-      <import feature="com.tibco.tpcl.javax.mail.feature" version="1.10.0" match="compatible"/>
-      <import feature="com.tibco.tpcl.javax.servlet.feature" version="2.10.0" match="compatible"/>
       <import feature="com.tibco.tpcl.org.eclipse.jetty.feature" version="8.2.0" match="compatible"/>
       <import feature="com.tibco.tpcl.org.osgi.cpmn.feature" version="2.0.0" match="compatible"/>
-      
-      <import feature="com.tibco.bw.api.model.feature" version="6.3.0" match="compatible"/>
       <import feature="com.tibco.bw.api.runtime.feature" version="6.3.0" match="compatible"/>
       <import feature="com.tibco.bw.sharedresource.runtime.api.feature" version="6.2.0" match="compatible"/>
-      <import feature="com.tibco.bw.platformservices.feature" version="6.3.0" match="compatible"/>
 
-      <import feature="com.tibco.amf.sharedresource.model.feature" version="3.901.0" match="compatible"/>
-      <import feature="com.tibco.amx.tibrv.client.feature" version="8.4.200" match="compatible"/>
-      <import feature="com.tibco.neo.common.util.feature" version="2.5.100" match="compatible"/>
-      <import feature="com.tibco.neo.gms.feature" version="1.1.100" match="compatible"/>
-      <import feature="com.tibco.neo.model.core.feature" version="1.902.0" match="compatible"/>
+      <import feature="com.tibco.tibems.qin.feature" version="1.1.200" match="compatible"/>
 
-      <import feature="com.tibco.jms.jmsclient.feature" version="6.4.0" match="compatible"/>
-      <import feature="com.tibco.tibems.qin.feature" version="1.1.0" match="compatible"/>
+      <import feature="com.tibco.trinity.runtime.base.feature" version="1.7.800" match="compatible"/>
+      <import feature="com.tibco.trinity.runtime.core.feature" version="1.7.500" match="compatible"/>
+      <import feature="com.tibco.trinity.models" version="3.8.0" match="compatible"/>
+      <import feature="com.tibco.tpcl.javax.jms.feature" version="1.10.100" match="compatible"/>
+      <import feature="com.tibco.jms.jmsclient.feature" version="6.4.400" match="compatible"/>
+-->
+   <requires>
+      <import feature="com.tibco.tpcl.javax.system.exports.feature" version="5.11.1200" match="compatible"/>
+      <import feature="com.tibco.tpcl.org.eclipse.equinox.feature" version="3.16.200" match="compatible"/>
+      <import feature="com.tibco.tpcl.javax.mail.feature" version="1.11.0" match="compatible"/>
+      <import feature="com.tibco.tpcl.javax.servlet.feature" version="3.1.100" match="compatible"/>
+      <import feature="com.tibco.tpcl.javax.transaction.feature" version="1.10.0" match="compatible"/>
+      
+      <import feature="com.tibco.bw.api.model.feature" version="6.3.1800" match="compatible"/>
+      <import feature="com.tibco.bw.platformservices.feature" version="6.3.1800" match="compatible"/>
 
-      <import feature="com.tibco.trinity.runtime.base.feature" version="1.6.100" match="compatible"/>
-      <import feature="com.tibco.trinity.runtime.core.feature" version="1.6.100" match="compatible"/>
-      <import feature="com.tibco.trinity.models" version="3.5.200" match="compatible"/>
+      <import feature="com.tibco.amx.tibrv.client.feature" version="8.6.0" match="compatible"/>
+      <import feature="com.tibco.amf.sharedresource.model.feature" version="3.901.1100" match="compatible"/>
+      <import feature="com.tibco.neo.common.util.feature" version="2.8.200" match="compatible"/>
+      <import feature="com.tibco.neo.model.core.feature" version="1.903.600" match="compatible"/>
+
+      <import feature="com.tibco.neo.gms.feature" version="1.1.101" match="compatible"/>
+
 
       <import feature="com.tibco.bw.sharedresource.tas.model.feature" version="6.3.101" match="compatible"/>
-      <import feature="com.tibco.bw.tpcl.com.fasterxml.jackson.feature" version="1.0.0" match="compatible"/>
+      <import feature="com.tibco.bw.tpcl.com.fasterxml.jackson.feature" version="1.2.900" match="compatible"/>
 
    </requires>
 

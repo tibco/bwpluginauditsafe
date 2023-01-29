@@ -2,7 +2,7 @@
 <feature
       id="com.tibco.bw.sharedresource.tas.runtime.feature"
       label="%featureName"
-      version="6.3.100.qualifier"
+      version="6.3.101.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -59,7 +59,7 @@
          id="com.tibco.bw.sharedresource.tas.runtime"
          download-size="0"
          install-size="0"
-         version="6.3.100.qualifier"
+         version="6.3.101.qualifier"
          unpack="false"/>
 
 </feature>

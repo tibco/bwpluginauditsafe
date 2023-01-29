@@ -119,7 +119,7 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
 		while(retryTimes < 5){
 			
 			if(sharedResource.isSso()) {
-				result = TasClient.tasEEActionWithToken(TasClient.METHOD_POST_EVENT, sharedResource.getServerUrl(), TasClient.getSSOToken(), body);
+				result = TasClient.tasEEActionWithToken(TasClient.METHOD_POST_EVENT, sharedResource.getServerUrl(), TasClient.getSSOJWT(), body);
 				
 			}else if(sharedResource.isEnterprise()){
 				if(sharedResource.isUseToken()){

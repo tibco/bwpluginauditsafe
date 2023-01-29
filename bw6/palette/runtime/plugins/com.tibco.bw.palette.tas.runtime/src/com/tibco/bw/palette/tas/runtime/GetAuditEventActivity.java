@@ -185,7 +185,7 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 		boolean isEnterprise = sharedResource.isEnterprise();
 		activityLogger.debug("Is enterprise version:" + isEnterprise + ". Request body:" +body);
 		if(sharedResource.isSso()) {
-			result = TasClient.tasEEActionWithToken(TasClient.METHOD_POST_EVENT, sharedResource.getServerUrl(), TasClient.getSSOToken(), body);
+			result = TasClient.tasEEActionWithToken(TasClient.METHOD_POST_EVENT, sharedResource.getServerUrl(), TasClient.getSSOJWT(), body);
 			
 		}else if(sharedResource.isEnterprise()){
 			if(sharedResource.isUseToken()){

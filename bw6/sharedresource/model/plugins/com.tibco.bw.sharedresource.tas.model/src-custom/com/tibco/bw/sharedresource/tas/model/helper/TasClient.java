@@ -19,9 +19,6 @@ import java.util.Map;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.tibco.bw.binding.rest.design.modeler.ICloudClientFactory;
-import com.tibco.bw.binding.rest.design.modeler.ICloudConfig;
-import com.tibco.bw.binding.rest.design.modeler.SsoClient;
 
 
 public class TasClient {
@@ -33,14 +30,13 @@ public class TasClient {
 	public static final String METHOD_POST_EVENT = "post";
 	
 	public static final String TAS_TENANT_ID = "tcta";
+	
+	private static String ssoJwt;
 
 	protected static UserAwareCookieManager cookieManager;
 	
 	private static Map<String, String> tokenMap = new HashMap<String,String>();
 	
-	private static SsoClient client = null;
-	private static long bearerTokenSaveTimeMs = 0;
-
 	public synchronized static UserAwareCookieManager getCookieManager() {
 		if (cookieManager == null) {
 			cookieManager = new UserAwareCookieManager();
@@ -65,22 +61,8 @@ public class TasClient {
 		}
 	}
 	
-	public static String getSSOToken() {
-		if(client==null) {
-			client = (SsoClient) ICloudClientFactory.getInstance().getClient(ICloudConfig.CLIENT__TCI, ICloudConfig.AUTH__SSO);
-			client.fetchBearerTokenFromRefreshToken();
-			bearerTokenSaveTimeMs=System.currentTimeMillis();
-		}
-		String token = null;
-		if(client!=null) {
-			long totolTimeMs = System.currentTimeMillis() - bearerTokenSaveTimeMs;
-			long totalTimeSec = (totolTimeMs / 1000); // ms to seconds
-			if(totalTimeSec>12*3600) {
-				client.fetchBearerTokenFromRefreshToken();
-			}
-			token = client.getBearerToken();
-		}
-		return token;
+	public static String getSSOJWT() {
+		return ssoJwt;
 	}
 	
 	public static TasResponse getAuditEvent(String tasBaseUrl, String username,
@@ -504,7 +486,40 @@ public class TasClient {
 
 		return sb.toString();
 	}
+	public static TasResponse getSSOJWTToken(String tasBaseUrl, String  accessToken) {
+		TasResponse response = new TasResponse();
+		
+		
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+		}
+		String url = tasBaseUrl + "/idm/v1/management/oauth2/jwt";
+		
+		HttpURLConnection httpConn;
 
+		try {
+			Map<String, String> params = getsettingMap("application/json", "application/json");
+			params.put("Authorization", "Bearer " + accessToken);
+			httpConn = buildGetHttpConnection(url, params);
+			String messagebody = getHttpRequestBody(httpConn);
+			int statusCode = httpConn.getResponseCode();
+
+			response.setStatusCode(statusCode);
+			if (statusCode == HttpURLConnection.HTTP_OK) {
+				JsonReader node = new JsonReader(messagebody);
+				if (node.getNode("token") != null) {
+					response.setSuccessfulResponse(node.getNode("token").textValue());
+					ssoJwt=node.getNode("token").textValue();
+				}
+			} else {
+				response.setErrorMessage(messagebody);
+			}
+		} catch (IOException e) {
+			response.setErrorMessage(e.getMessage());
+		}
+
+		return response;
+	}
 	public static TasResponse getJWTToken(String tasBaseUrl, String username, String password) {
 		TasResponse response = new TasResponse();
 		
@@ -680,17 +695,13 @@ public class TasClient {
 	}
 	
 	public static HttpURLConnection buildGetHttpConnection(
-			String urlstring, Map<String, String> formparams,
-			Map<String, String> settingparams) throws IOException {
+			String urlstring, Map<String, String> settingparams) throws IOException {
 		
 		HttpURLConnection connection = null;
 		URL url = new URL(urlstring);
 		connection = (HttpURLConnection) url.openConnection();
 		connection.setRequestMethod("GET");
-//		addUrlConnectionSetting(connection, settingparams);
-//		if (formparams != null) {
-//			addUrlConnectionParameter(connection, formparams);
-//		}
+		addUrlConnectionSetting(connection, settingparams);
 		return connection;
 	}
 

@@ -30,6 +30,10 @@ import com.tibco.bw.sharedresource.tas.model.helper.TasResponse;
 import com.tibco.bw.sharedresource.tas.model.tas.TasConnection;
 import com.tibco.xpd.resources.WorkingCopy;
 
+import com.tibco.bw.binding.rest.design.modeler.ICloudClientFactory;
+import com.tibco.bw.binding.rest.design.modeler.ICloudConfig;
+import com.tibco.bw.binding.rest.design.modeler.SsoClient;
+
 public class TestConnectionButtonHelper {
 	private static final int INPUT_TYPE = 1;
 	private static final int OUTPUT_TYPE = 2;
@@ -45,6 +49,15 @@ public class TestConnectionButtonHelper {
 
 	public void settestLabel(Label inputlabel) {
 		testLabel = inputlabel;
+	}
+	
+	public static String getSSOToken() {
+		SsoClient client = (SsoClient) ICloudClientFactory.getInstance().getClient(ICloudConfig.CLIENT__TCI, ICloudConfig.AUTH__SSO);
+		client.fetchBearerTokenFromRefreshToken();
+		String token = client.getBearerToken();
+		TasClient.getSSOJWTToken(client.getAuth_url(), token);
+
+		return token;
 	}
 
 	public void createTestConnectionButton(final Composite composite) {
@@ -87,7 +100,7 @@ public class TestConnectionButtonHelper {
 				}
 				
 				if(isSso){
-					if(TasClient.getSSOToken()!=null) {
+					if(getSSOToken()!=null) {
 						MessageDialog messageDialog = new MessageDialog(composite
 								.getShell(), Messages.CONNECTED_TO_TAS, null,
 								Messages.CONNECTED_TO_TAS, MessageDialog.NONE,

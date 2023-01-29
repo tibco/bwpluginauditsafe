@@ -18,11 +18,11 @@
    </license>
 
     <requires>
-      <import feature="com.tibco.bw.api.model.feature" version="6.3.0" match="compatible"/>
-      <import feature="com.tibco.bw.core.model.feature" version="6.3.0" match="compatible"/>
-      <import feature="com.tibco.amf.common.model.feature" version="1.901.0" match="compatible"/>
-      <import feature="com.tibco.amf.sharedresource.model.feature" version="3.901.0" match="compatible"/>
-      <import feature="com.tibco.neo.model.core.feature" version="1.902.0" match="compatible"/>
+      <import feature="com.tibco.bw.api.model.feature" version="6.3.1800" match="compatible"/>
+      <import feature="com.tibco.bw.core.model.feature" version="6.3.3000" match="compatible"/>
+      <import feature="com.tibco.amf.common.model.feature" version="1.901.1000" match="compatible"/>
+      <import feature="com.tibco.amf.sharedresource.model.feature" version="3.901.1100" match="compatible"/>
+      <import feature="com.tibco.neo.model.core.feature" version="1.903.600" match="compatible"/>
    </requires>
    
   

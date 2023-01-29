@@ -41,7 +41,7 @@
 
       <import feature="com.tibco.bw.sharedresource.tas.model.feature" version="6.3.101"/>
       <import feature="com.tibco.bw.sharedresource.tas.runtime.feature" version="6.3.101"/>
-      <import feature="com.tibco.bw.palette.tas.model.feature" version="6.3.0"/>
+      <import feature="com.tibco.bw.palette.tas.model.feature" version="6.3.101"/>
    </requires>
 
    <plugin

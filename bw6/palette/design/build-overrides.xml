@@ -25,8 +25,18 @@
     <property name="autobuild.repository" value="amxext" />
     <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tas/palette" />
     <property name="autobuild.svn.tag-pattern" value="design" />
+
+<!--
     <property name="autobuild.version.eclipse" value="4.4" />
     <property name="autobuild.version.developer.eclipse" value="4.4" />
+-->
+<property name="autobuild.version.eclipse" value="4.19"/>
+<property name="autobuild.version.developer.eclipse" value="4.19"/>
+<property name="autobuild.dir.java110-classes" value="${autobuild.dir.java-classes}"/>
+<property name="autobuild.jdk.force-110" value="true"/>
+    <property name="javacSource" value="1.8" />
+    <property name="javacTarget" value="1.8" />
+
     <property name="autobuild.p2.packaging" value="true" />    <!--want P2 package, used for eclipse P2 installation-->
 
     <!--property name="autobuild.workspace.extra-feature" location="extrafeature.xml"/-->

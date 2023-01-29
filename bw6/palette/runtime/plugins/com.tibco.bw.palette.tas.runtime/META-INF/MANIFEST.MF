@@ -3,8 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-SymbolicName: com.tibco.bw.palette.tas.runtime
-Bundle-Version: 6.3.100.qualifier
-Export-Package: com.tibco.bw.palette.tas.runtime;version="6.3.100";
+Bundle-Version: 6.3.101.qualifier
+Export-Package: com.tibco.bw.palette.tas.runtime;version="6.3.101";
   uses:="com.tibco.neo.localized,
    com.tibco.bw.runtime,
    javax.activation,

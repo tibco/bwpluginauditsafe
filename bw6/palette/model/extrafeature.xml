@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="com.tibco.bw.palette.model.extrafeature"
+      id="com.tibco.bw.palette.tas.model.extrafeature"
       label="%featureName"
-      version="6.0.0.qualifier"
+      version="6.3.101.qualifier"
       provider-name="%providerName">
 
    <description>

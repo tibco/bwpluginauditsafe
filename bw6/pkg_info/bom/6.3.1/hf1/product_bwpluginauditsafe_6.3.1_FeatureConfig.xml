@@ -40,6 +40,9 @@
 	 
     <installerFeature name="runtime Hotfix 1" visible="true" version="6.3.1" parentNode="runtime-node" profileUID="runtime-profile">
         <assemblyList>
+		<assembly uid="assembly_tibco_com_tibco_bw_palette_tas_runtime_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.3.101" />
+		<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_runtime_feature"  overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.3.101"/>
+		<assembly overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" uid="product_tibco_bwpluginauditsafe_runtime" version="6.3.1" />
         </assemblyList>
 
         <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for Auditsafe Runtime" type="feature" uid="runtime_bwpluginauditsafe" version="6.3.1"/>
@@ -77,7 +80,8 @@
 
 	<installerFeature name="design Hotfix 1" visible="true" version="6.3.1" parentNode="design-node" profileUID="typical">
 		<assemblyList>
-        		<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_design_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" version="6.3.101"/>
+                        <assembly overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_palette_tas_design_feature" version="6.3.101"/>
+                        <assembly overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tas_design_feature" version="6.3.101"/>
 		</assemblyList>
 
 		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for Auditsafe Runtime" type="feature" uid="runtime Hotfix 1_bwpluginauditsafe" version="6.3.1"/>
@@ -180,7 +184,8 @@
                 <property featureID="design Hotfix 1_bwpluginauditsafe"/>
             </condition>
         </install>
-        <assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_model_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.3.101"/>
+        <assembly uid="assembly_tibco_com_tibco_bw_palette_tas_model_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.3.101" />
+        <assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_model_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.3.101" />
     </installerFeature>
 
 </TIBCOInstallerFeatures>

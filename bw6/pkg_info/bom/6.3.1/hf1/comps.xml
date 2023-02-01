@@ -1,0 +1,3 @@
+<includes>
+	<include file="bwpluginauditsafe_security.xml" />
+</includes>

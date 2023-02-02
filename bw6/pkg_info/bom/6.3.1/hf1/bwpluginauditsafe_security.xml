@@ -3,9 +3,5 @@
 	<component name="bwpluginbc_runtime" type="common">
 		<include file="aliases_bwpluginauditsafe.xml" />
 		<file src="${bldsrcdir}/security/software_statement.properties" dest="security/software_statement.properties" perm="755" plat="${ALL}"/>
-		<dir src="${bldsrcdir}/lib" dest="" plat="${ALL}"/>
-		<dir src="${bldsrcdir}/bin" dest="" plat="${ALL}"/>
-		<dir src="${bldsrcdir}/doc" dest="" plat="${ALL}"/>
-		<dir src="${bldsrcdir}/hotfix" dest="" plat="${ALL}"/>
 	</component>
 </components>

@@ -100,7 +100,7 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 			@Override
 			protected IStatus doSet(final IObservableValue observableValue, final Object value) {
 				
-				boolean isSSO = (Boolean)value;
+				boolean isSSO = tasConnection.isSso();
 				if (isSSO) {
 					usernameLabel.setVisible(!isSSO);
 					passwordLabel.setVisible(!isSSO);
@@ -183,7 +183,7 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 		UpdateValueStrategy updateUseTokenValueStrategy = new UpdateValueStrategy() {
 			@Override
 			protected IStatus doSet(final IObservableValue observableValue, final Object value) {
-				boolean isSSO = (Boolean)value;
+				boolean isSSO = tasConnection.isSso();
 
 				if (isSSO) {
 					usernameLabel.setVisible(!isSSO);

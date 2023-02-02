@@ -43,7 +43,6 @@
 		<assembly uid="assembly_tibco_com_tibco_bw_palette_tas_runtime_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.3.101" />
 		<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_runtime_feature"  overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.3.101"/>
 		<assembly overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" uid="product_tibco_bwpluginauditsafe_security" version="6.3.1" />
-		<assembly overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" uid="product_tibco_bwpluginauditsafe_runtime" version="6.3.1" />
         </assemblyList>
 
         <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for Auditsafe Runtime" type="feature" uid="runtime_bwpluginauditsafe" version="6.3.1"/>

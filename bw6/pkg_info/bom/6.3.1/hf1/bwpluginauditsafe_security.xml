@@ -1,6 +1,6 @@
 <?xml  version="1.0"?>
 <components>
-	<component name="bwpluginbc_runtime" type="common">
+	<component name="bwpluginauditsafe_runtime" type="common">
 		<include file="aliases_bwpluginauditsafe.xml" />
 		<file src="${bldsrcdir}/security/software_statement.properties" dest="security/software_statement.properties" perm="755" plat="${ALL}"/>
 	</component>

@@ -99,22 +99,39 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
         UpdateValueStrategy updateIsEnterpriseValueStrategy = new UpdateValueStrategy() {
 			@Override
 			protected IStatus doSet(final IObservableValue observableValue, final Object value) {
-				boolean isEnterprise = (Boolean)value;
-				boolean useToken = tasConnection.isUseToken();
 				
-				usernameLabel.setVisible(!useToken);
-				passwordLabel.setVisible(!useToken);
-				accessTokenLabel.setVisible(useToken&&isEnterprise);
-				clientIdLabel.setVisible(useToken && !isEnterprise);
-				clientSecretLabel.setVisible(useToken && !isEnterprise);
+				boolean isSSO = (Boolean)value;
+				if (isSSO) {
+					usernameLabel.setVisible(!isSSO);
+					passwordLabel.setVisible(!isSSO);
+					accessTokenLabel.setVisible(!isSSO);
+					clientIdLabel.setVisible(!isSSO);
+					clientSecretLabel.setVisible(!isSSO);
+					
+					usernameAttribute.setVisible(!isSSO);
+					passwordAttribute.setVisible(!isSSO);
+					accessTokenAttribute.setVisible(!isSSO);
+//					refreshTokenAttribute.getControl().setEnabled(useToken && !isEnterprise);
+					clientIdAttribute.setVisible(!isSSO);
+					clientSecretAttribute.setVisible(!isSSO);
+					
+				}else {
 				
-				usernameAttribute.setVisible(!useToken);
-				passwordAttribute.setVisible(!useToken);
-				accessTokenAttribute.setVisible(useToken&&isEnterprise);
-//				refreshTokenAttribute.getControl().setEnabled(useToken && !isEnterprise);
-				clientIdAttribute.setVisible(useToken && !isEnterprise);
-				clientSecretAttribute.setVisible(useToken && !isEnterprise);
+					boolean isEnterprise = (Boolean)value;
+					boolean useToken = tasConnection.isUseToken();
+					usernameLabel.setVisible(!useToken);
+					passwordLabel.setVisible(!useToken);
+					accessTokenLabel.setVisible(useToken&&isEnterprise);
+					clientIdLabel.setVisible(useToken && !isEnterprise);
+					clientSecretLabel.setVisible(useToken && !isEnterprise);
 				
+					usernameAttribute.setVisible(!useToken);
+					passwordAttribute.setVisible(!useToken);
+					accessTokenAttribute.setVisible(useToken&&isEnterprise);
+//					refreshTokenAttribute.getControl().setEnabled(useToken && !isEnterprise);
+					clientIdAttribute.setVisible(useToken && !isEnterprise);
+					clientSecretAttribute.setVisible(useToken && !isEnterprise);
+				}
 				return super.doSet(observableValue, value);
 			}
 		};
@@ -166,6 +183,23 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 		UpdateValueStrategy updateUseTokenValueStrategy = new UpdateValueStrategy() {
 			@Override
 			protected IStatus doSet(final IObservableValue observableValue, final Object value) {
+				boolean isSSO = (Boolean)value;
+
+				if (isSSO) {
+					usernameLabel.setVisible(!isSSO);
+					passwordLabel.setVisible(!isSSO);
+					accessTokenLabel.setVisible(!isSSO);
+					clientIdLabel.setVisible(!isSSO);
+					clientSecretLabel.setVisible(!isSSO);
+					
+					usernameAttribute.setVisible(!isSSO);
+					passwordAttribute.setVisible(!isSSO);
+					accessTokenAttribute.setVisible(!isSSO);
+//					refreshTokenAttribute.getControl().setEnabled(useToken && !isEnterprise);
+					clientIdAttribute.setVisible(!isSSO);
+					clientSecretAttribute.setVisible(!isSSO);
+					
+				}else {
 				boolean isEnterprise = tasConnection.isEnterprise();
 				boolean useToken = (Boolean)value;
 				
@@ -181,7 +215,7 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 //				refreshTokenAttribute.getControl().setEnabled(useToken && !isEnterprise);
 				clientIdAttribute.setVisible(useToken && !isEnterprise);
 				clientSecretAttribute.setVisible(useToken && !isEnterprise);
-				
+				}
 				return super.doSet(observableValue, value);
 			}
 		};

@@ -31,7 +31,7 @@ public class TasClient {
 	
 	public static final String TAS_TENANT_ID = "tcta";
 	
-	private static String ssoJwt;
+	private static String sso_token;
 
 	protected static UserAwareCookieManager cookieManager;
 	
@@ -61,8 +61,12 @@ public class TasClient {
 		}
 	}
 	
-	public static String getSSOJWT() {
-		return ssoJwt;
+	public static String getSsoToken() {
+		return sso_token;
+	}
+	
+	public static void setSsoToken(String token) {
+		sso_token=token;
 	}
 	
 	public static TasResponse getAuditEvent(String tasBaseUrl, String username,
@@ -128,6 +132,55 @@ public class TasClient {
 
 		return result;
 	}
+	
+	public static TasResponse getAuditEventSso(String tasBaseUrl, String access_token,
+			String body, boolean retry) {
+		TasResponse result = new TasResponse();
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+		}
+		try {
+			String internalUrl = System.getProperty(ENV_INTERNAL_URL);
+			HttpURLConnection httpConn;
+			String getEventUrl = "";
+			boolean isIntercom = internalUrl != null && !internalUrl.isEmpty();
+			String subId = System.getProperty(ENV_SUBSCRIPTION_ID);
+			
+			Map<String, String> params = getsettingMap("application/json", "application/json");
+			
+			if (isIntercom) {
+				getEventUrl = internalUrl
+						+ "/tas/dataserver/intercom/transactions/query?tscSubscriptionId="
+						+ subId;
+				
+				params.put("X-Atmosphere-Tenant-Id", TAS_TENANT_ID);
+				params.put("X-Atmosphere-Subscription-Id", subId);
+			} else {
+				getEventUrl = tasBaseUrl
+						+ "/tas/dataserver/transactions/query";
+				params.put("Authorization", "Bearer " + access_token);
+
+			}
+			httpConn = buildpostHttpUrlConnectionWithJson(getEventUrl, body, params);
+			
+			String message = getHttpRequestBody(httpConn);
+			int statusCode = httpConn.getResponseCode();
+			result.setStatusCode(statusCode);
+
+			if(statusCode == HttpURLConnection.HTTP_OK){
+				result.setSuccessfulResponse(message);
+			} else if (retry) {
+				result = getAuditEventSso(tasBaseUrl, access_token, body, false);
+			} else {
+				result.setErrorMessage(message);
+			}
+
+		} catch (IOException e) {
+			result.setErrorMessage(e.getMessage());
+
+		} 
+		return result;
+	}
 
 
 	public static TasResponse postAuditEvent(String tasBaseUrl, String username,
@@ -190,6 +243,54 @@ public class TasClient {
 		} finally {
 			switchUserOff();
 		}
+		return result;
+	}
+	
+	public static TasResponse postAuditEventbySso(String tasBaseUrl, String access_token,
+			String body, boolean retry) {
+		TasResponse result = new TasResponse();
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+		}
+		try {
+			String internalUrl = System.getProperty(ENV_INTERNAL_URL);
+			HttpURLConnection httpConn;
+			String postEventUrl = "";
+			boolean isIntercom = internalUrl != null && !internalUrl.isEmpty();
+			String subId = System.getProperty(ENV_SUBSCRIPTION_ID);
+			
+			Map<String, String> params = getsettingMap("application/json", "application/json");
+			if (isIntercom) {
+				
+				postEventUrl = internalUrl
+						+ "/tas/dataserver/intercom/transactions?tscSubscriptionId="
+						+ subId;
+				
+				params.put("X-Atmosphere-Tenant-Id", TAS_TENANT_ID);
+				params.put("X-Atmosphere-Subscription-Id", subId);
+			} else {
+				postEventUrl = tasBaseUrl
+						+ "/tas/dataserver/transactions";
+				params.put("Authorization", "Bearer " + access_token);
+			}
+			httpConn = buildpostHttpUrlConnectionWithJson(postEventUrl, body, params);
+			
+			String message = getHttpRequestBody(httpConn);
+			int statusCode = httpConn.getResponseCode();
+			result.setStatusCode(statusCode);
+
+			if(statusCode == HttpURLConnection.HTTP_OK){
+				result.setSuccessfulResponse(message);
+			} else if (retry) {
+				result = postAuditEventbySso(tasBaseUrl, access_token, body, false);
+			} else {
+				result.setErrorMessage(message);
+			}
+
+		} catch (IOException e) {
+			result.setErrorMessage(e.getMessage());
+
+		} 
 		return result;
 	}
 
@@ -486,40 +587,7 @@ public class TasClient {
 
 		return sb.toString();
 	}
-	public static TasResponse getSSOJWTToken(String tasBaseUrl, String  accessToken) {
-		TasResponse response = new TasResponse();
-		
-		
-		if (tasBaseUrl.endsWith("/")) {
-			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
-		}
-		String url = tasBaseUrl + "/idm/v1/management/oauth2/jwt";
-		
-		HttpURLConnection httpConn;
 
-		try {
-			Map<String, String> params = getsettingMap("application/json", "application/json");
-			params.put("Authorization", "Bearer " + accessToken);
-			httpConn = buildGetHttpConnection(url, params);
-			String messagebody = getHttpRequestBody(httpConn);
-			int statusCode = httpConn.getResponseCode();
-
-			response.setStatusCode(statusCode);
-			if (statusCode == HttpURLConnection.HTTP_OK) {
-				JsonReader node = new JsonReader(messagebody);
-				if (node.getNode("token") != null) {
-					response.setSuccessfulResponse(node.getNode("token").textValue());
-					ssoJwt=node.getNode("token").textValue();
-				}
-			} else {
-				response.setErrorMessage(messagebody);
-			}
-		} catch (IOException e) {
-			response.setErrorMessage(e.getMessage());
-		}
-
-		return response;
-	}
 	public static TasResponse getJWTToken(String tasBaseUrl, String username, String password) {
 		TasResponse response = new TasResponse();
 		
@@ -807,6 +875,37 @@ public class TasClient {
 		}
 		
 		return token;
+	}
+	
+	public static TasResponse checkAuditUser(String tasBaseUrl, String access_token){
+		TasResponse result = new TasResponse();
+		
+		if (tasBaseUrl.endsWith("/")) {
+			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
+		}
+		
+		String userUrl = tasBaseUrl + "/tas/webserver/users";
+		
+		Map<String, String> settingMap = getsettingMap();
+
+		settingMap.put("Authorization", "Bearer " + access_token);
+
+		try {
+			HttpURLConnection httpConn = buildGetHttpConnection(userUrl,settingMap);
+			String messagebody = getHttpRequestBody(httpConn);
+			int statusCode = httpConn.getResponseCode();
+
+			if (statusCode == HttpURLConnection.HTTP_OK) {
+				result.setStatusCode(statusCode);
+				result.setSuccessfulResponse(messagebody);
+
+			} else {
+				result.setErrorMessage(messagebody);
+			}
+		} catch (IOException e) {
+			result.setErrorMessage(e.getMessage());
+		}
+		return result;
 	}
 	
 }

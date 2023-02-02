@@ -51,13 +51,16 @@ public class TestConnectionButtonHelper {
 		testLabel = inputlabel;
 	}
 	
-	public static String getSSOToken() {
+	public static boolean checkSsoToken(String serverUrl) {
 		SsoClient client = (SsoClient) ICloudClientFactory.getInstance().getClient(ICloudConfig.CLIENT__TCI, ICloudConfig.AUTH__SSO);
 		client.fetchBearerTokenFromRefreshToken();
 		String token = client.getBearerToken();
-		TasClient.getSSOJWTToken(client.getAuth_url(), token);
-
-		return token;
+		TasClient.setSsoToken(token);
+		if (token!=null) {
+			TasResponse res = TasClient.checkAuditUser(serverUrl, TasClient.getSsoToken());
+			return !res.isHasError();
+		}
+		return false;
 	}
 
 	public void createTestConnectionButton(final Composite composite) {
@@ -100,7 +103,7 @@ public class TestConnectionButtonHelper {
 				}
 				
 				if(isSso){
-					if(getSSOToken()!=null) {
+					if(checkSsoToken(serverUrl)) {
 						MessageDialog messageDialog = new MessageDialog(composite
 								.getShell(), Messages.CONNECTED_TO_TAS, null,
 								Messages.CONNECTED_TO_TAS, MessageDialog.NONE,

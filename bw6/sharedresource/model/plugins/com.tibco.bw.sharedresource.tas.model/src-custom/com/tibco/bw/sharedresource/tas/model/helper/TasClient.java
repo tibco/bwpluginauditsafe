@@ -30,8 +30,6 @@ public class TasClient {
 	public static final String METHOD_POST_EVENT = "post";
 	
 	public static final String TAS_TENANT_ID = "tcta";
-	
-	private static String sso_token;
 
 	protected static UserAwareCookieManager cookieManager;
 	
@@ -59,14 +57,6 @@ public class TasClient {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public static String getSsoToken() {
-		return sso_token;
-	}
-	
-	public static void setSsoToken(String token) {
-		sso_token=token;
 	}
 	
 	public static TasResponse getAuditEvent(String tasBaseUrl, String username,
@@ -157,7 +147,7 @@ public class TasClient {
 				params.put("X-Atmosphere-Subscription-Id", subId);
 			} else {
 				getEventUrl = tasBaseUrl
-						+ "/tas/dataserver/transactions/query";
+						+ "/tas/dataserver/events/get";
 				params.put("Authorization", "Bearer " + access_token);
 
 			}
@@ -270,7 +260,7 @@ public class TasClient {
 				params.put("X-Atmosphere-Subscription-Id", subId);
 			} else {
 				postEventUrl = tasBaseUrl
-						+ "/tas/dataserver/transactions";
+						+ "/tas/dataserver/events/post";
 				params.put("Authorization", "Bearer " + access_token);
 			}
 			httpConn = buildpostHttpUrlConnectionWithJson(postEventUrl, body, params);
@@ -284,7 +274,7 @@ public class TasClient {
 			} else if (retry) {
 				result = postAuditEventbySso(tasBaseUrl, access_token, body, false);
 			} else {
-				result.setErrorMessage(message);
+				result.setErrorMessage(params.toString());
 			}
 
 		} catch (IOException e) {

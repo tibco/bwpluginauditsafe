@@ -51,16 +51,17 @@ public class TestConnectionButtonHelper {
 		testLabel = inputlabel;
 	}
 	
-	public static boolean checkSsoToken(String serverUrl) {
+	public static String getSsoToken(String serverUrl) {
 		SsoClient client = (SsoClient) ICloudClientFactory.getInstance().getClient(ICloudConfig.CLIENT__TCI, ICloudConfig.AUTH__SSO);
 		client.fetchBearerTokenFromRefreshToken();
 		String token = client.getBearerToken();
-		TasClient.setSsoToken(token);
 		if (token!=null) {
-			TasResponse res = TasClient.checkAuditUser(serverUrl, TasClient.getSsoToken());
-			return !res.isHasError();
+			TasResponse res = TasClient.checkAuditUser(serverUrl, token);
+			if(res.isHasError()) {
+				token=null;
+			}
 		}
-		return false;
+		return token;
 	}
 
 	public void createTestConnectionButton(final Composite composite) {
@@ -103,7 +104,17 @@ public class TestConnectionButtonHelper {
 				}
 				
 				if(isSso){
-					if(checkSsoToken(serverUrl)) {
+					final String token = getSsoToken(serverUrl);
+					if(token!=null) {
+						final WorkingCopy workingCopy = (WorkingCopy)tasConnectionSection.getPage().getEditor().getAdapter(WorkingCopy.class);
+		            	TransactionalEditingDomain ed = (TransactionalEditingDomain) workingCopy.getEditingDomain();
+						Command cmd = new RecordingCommand(ed) {
+							@Override
+							protected void doExecute() {
+								connection.setId(token);// use id as holder for sso access_token
+							}
+						};
+						ed.getCommandStack().execute(cmd);
 						MessageDialog messageDialog = new MessageDialog(composite
 								.getShell(), Messages.CONNECTED_TO_TAS, null,
 								Messages.CONNECTED_TO_TAS, MessageDialog.NONE,

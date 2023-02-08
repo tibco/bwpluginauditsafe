@@ -51,14 +51,20 @@ public class TestConnectionButtonHelper {
 		testLabel = inputlabel;
 	}
 	
-	public static String getSsoToken(String serverUrl) {
+	public static OAuthToken getSsoToken(String serverUrl) {
 		SsoClient client = (SsoClient) ICloudClientFactory.getInstance().getClient(ICloudConfig.CLIENT__TCI, ICloudConfig.AUTH__SSO);
 		client.fetchBearerTokenFromRefreshToken();
-		String token = client.getBearerToken();
-		if (token!=null) {
-			TasResponse res = TasClient.checkAuditUser(serverUrl, token);
+		OAuthToken token = null;
+		String bearToken = client.getBearerToken();
+		if (bearToken!=null) {
+			TasResponse res = TasClient.checkAuditUser(serverUrl, bearToken);
 			if(res.isHasError()) {
 				token=null;
+			}else {
+				token = new OAuthToken();
+				token.setAccessToken(bearToken);
+				token.setRefreshToken(client.getRefreshToken());
+				token.setSuccess(true);
 			}
 		}
 		return token;
@@ -104,14 +110,16 @@ public class TestConnectionButtonHelper {
 				}
 				
 				if(isSso){
-					final String token = getSsoToken(serverUrl);
+					final OAuthToken token = getSsoToken(serverUrl);
 					if(token!=null) {
 						final WorkingCopy workingCopy = (WorkingCopy)tasConnectionSection.getPage().getEditor().getAdapter(WorkingCopy.class);
 		            	TransactionalEditingDomain ed = (TransactionalEditingDomain) workingCopy.getEditingDomain();
 						Command cmd = new RecordingCommand(ed) {
 							@Override
 							protected void doExecute() {
-								connection.setId(token);// use id as holder for sso access_token
+								//connection.setId(token);// use id as holder for sso access_token
+								connection.setAccessToken(token.getAccessToken());
+								connection.setRefreshToken(token.getRefreshToken());
 							}
 						};
 						ed.getCommandStack().execute(cmd);

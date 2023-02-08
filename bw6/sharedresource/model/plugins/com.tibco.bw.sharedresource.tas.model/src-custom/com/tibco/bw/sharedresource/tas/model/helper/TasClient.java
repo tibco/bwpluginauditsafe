@@ -20,7 +20,6 @@ import java.util.Map;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
-
 public class TasClient {
 	public static final String ENV_INTERNAL_URL = "TIBCO_INTERNAL_INTERCOM_URL";
 	public static final String ENV_SUBSCRIPTION_ID = "TIBCO_INTERNAL_TCI_SUBSCRIPTION_ID";
@@ -34,6 +33,8 @@ public class TasClient {
 	protected static UserAwareCookieManager cookieManager;
 	
 	private static Map<String, String> tokenMap = new HashMap<String,String>();
+	
+	private static TasSsoClient ssoClient=null;
 	
 	public synchronized static UserAwareCookieManager getCookieManager() {
 		if (cookieManager == null) {
@@ -57,6 +58,13 @@ public class TasClient {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	protected static void preExecute(String access_token, String refresh_token) {
+		if(ssoClient==null) {
+			ssoClient=TasSsoClient.getInstance(access_token, refresh_token);
+		}
+		ssoClient.preExecute();
 	}
 	
 	public static TasResponse getAuditEvent(String tasBaseUrl, String username,
@@ -123,8 +131,9 @@ public class TasClient {
 		return result;
 	}
 	
-	public static TasResponse getAuditEventSso(String tasBaseUrl, String access_token,
+	public static TasResponse getAuditEventSso(String tasBaseUrl, String access_token, String refresh_token,
 			String body, boolean retry) {
+		preExecute(access_token, refresh_token);
 		TasResponse result = new TasResponse();
 		if (tasBaseUrl.endsWith("/")) {
 			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
@@ -148,7 +157,7 @@ public class TasClient {
 			} else {
 				getEventUrl = tasBaseUrl
 						+ "/tas/dataserver/events/get";
-				params.put("Authorization", "Bearer " + access_token);
+				params.put("Authorization", "Bearer " + ssoClient.getBearerToken());
 
 			}
 			httpConn = buildpostHttpUrlConnectionWithJson(getEventUrl, body, params);
@@ -160,7 +169,7 @@ public class TasClient {
 			if(statusCode == HttpURLConnection.HTTP_OK){
 				result.setSuccessfulResponse(message);
 			} else if (retry) {
-				result = getAuditEventSso(tasBaseUrl, access_token, body, false);
+				result = getAuditEventSso(tasBaseUrl, access_token, refresh_token, body, false);
 			} else {
 				result.setErrorMessage(message);
 			}
@@ -236,8 +245,9 @@ public class TasClient {
 		return result;
 	}
 	
-	public static TasResponse postAuditEventbySso(String tasBaseUrl, String access_token,
+	public static TasResponse postAuditEventbySso(String tasBaseUrl, String access_token, String refresh_token,
 			String body, boolean retry) {
+		preExecute(access_token, refresh_token);
 		TasResponse result = new TasResponse();
 		if (tasBaseUrl.endsWith("/")) {
 			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
@@ -261,7 +271,7 @@ public class TasClient {
 			} else {
 				postEventUrl = tasBaseUrl
 						+ "/tas/dataserver/events/post";
-				params.put("Authorization", "Bearer " + access_token);
+				params.put("Authorization", "Bearer " + ssoClient.getBearerToken());
 			}
 			httpConn = buildpostHttpUrlConnectionWithJson(postEventUrl, body, params);
 			
@@ -272,7 +282,7 @@ public class TasClient {
 			if(statusCode == HttpURLConnection.HTTP_OK){
 				result.setSuccessfulResponse(message);
 			} else if (retry) {
-				result = postAuditEventbySso(tasBaseUrl, access_token, body, false);
+				result = postAuditEventbySso(tasBaseUrl, access_token, refresh_token, body, false);
 			} else {
 				result.setErrorMessage(params.toString());
 			}

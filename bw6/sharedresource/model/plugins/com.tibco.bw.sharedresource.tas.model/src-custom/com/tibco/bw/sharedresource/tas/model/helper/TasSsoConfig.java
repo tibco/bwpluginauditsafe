@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -44,30 +42,9 @@ public class TasSsoConfig implements TasSsoClientConstant{
 	
 	public static String getBwHomeDirectory() {
 		if(bwHomeDirectory==null) {
-			InputStream inputStream = null;
-			URL url;
-
-			try {
-				url = new URL(PLATFORM_PLUGIN_COM_TIBCO_BW_THOR_LAUNCH_PRODUCT_PROPERTIES);
-				inputStream = url.openConnection().getInputStream();
-				java.util.Properties properties = new java.util.Properties();
-				properties.load(inputStream);
-
-				if (properties.containsKey(BW_HOME)) {
-					bwHomeDirectory = properties.getProperty(BW_HOME);
-				}
-
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
-				try {
-					inputStream.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			Properties sysProperties = System.getProperties();
+			if (sysProperties.containsKey(BW_HOME)) {
+				bwHomeDirectory = sysProperties.getProperty(BW_HOME);
 			}
 		}
 		return bwHomeDirectory;

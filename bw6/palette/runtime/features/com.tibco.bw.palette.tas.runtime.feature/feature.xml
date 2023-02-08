@@ -36,6 +36,7 @@
 -->
 
    <requires>
+      <import feature="com.tibco.bw.tpcl.com.sun.jersey.feature" version="2.21.1100" match="compatible"/>
       <import feature="com.tibco.tibcoxml.xml" version="5.60.400" match="compatible"/>
       <import feature="com.tibco.tibcoxml.util" version="5.60.400" match="compatible"/>
 

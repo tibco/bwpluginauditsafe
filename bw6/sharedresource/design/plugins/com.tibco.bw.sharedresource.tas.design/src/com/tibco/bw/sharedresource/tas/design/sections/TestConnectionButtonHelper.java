@@ -117,7 +117,6 @@ public class TestConnectionButtonHelper {
 						Command cmd = new RecordingCommand(ed) {
 							@Override
 							protected void doExecute() {
-								//connection.setId(token);// use id as holder for sso access_token
 								connection.setAccessToken(token.getAccessToken());
 								connection.setRefreshToken(token.getRefreshToken());
 							}

@@ -36,6 +36,8 @@ public class TasClient {
 	
 	private static TasSsoClient ssoClient=null;
 	
+	private static TasOAuthClient oauthClient=null;
+	
 	public synchronized static UserAwareCookieManager getCookieManager() {
 		if (cookieManager == null) {
 			cookieManager = new UserAwareCookieManager();
@@ -60,11 +62,18 @@ public class TasClient {
 		}
 	}
 	
-	protected static void preExecute(String access_token, String refresh_token) {
+	protected static void preSsoExecute(String access_token, String refresh_token) {
 		if(ssoClient==null) {
 			ssoClient=TasSsoClient.getInstance(access_token, refresh_token);
 		}
 		ssoClient.preExecute();
+	}
+	
+	protected static void preOAuthExecute(String tasBaseUrl, String clientId, String clientSecret) {
+		if(oauthClient==null) {
+			oauthClient=TasOAuthClient.getInstance(tasBaseUrl, clientId, clientSecret);
+		}
+		oauthClient.preExecute();
 	}
 	
 	public static TasResponse getAuditEvent(String tasBaseUrl, String username,
@@ -133,7 +142,7 @@ public class TasClient {
 	
 	public static TasResponse getAuditEventSso(String tasBaseUrl, String access_token, String refresh_token,
 			String body, boolean retry) {
-		preExecute(access_token, refresh_token);
+		preSsoExecute(access_token, refresh_token);
 		TasResponse result = new TasResponse();
 		if (tasBaseUrl.endsWith("/")) {
 			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);
@@ -247,7 +256,7 @@ public class TasClient {
 	
 	public static TasResponse postAuditEventbySso(String tasBaseUrl, String access_token, String refresh_token,
 			String body, boolean retry) {
-		preExecute(access_token, refresh_token);
+		preSsoExecute(access_token, refresh_token);
 		TasResponse result = new TasResponse();
 		if (tasBaseUrl.endsWith("/")) {
 			tasBaseUrl = tasBaseUrl.substring(0, tasBaseUrl.length() - 1);

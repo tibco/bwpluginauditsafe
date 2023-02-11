@@ -107,6 +107,8 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 					accessTokenLabel.setVisible(!isSSO);
 					clientIdLabel.setVisible(!isSSO);
 					clientSecretLabel.setVisible(!isSSO);
+					isEnterprise.setEnabled(!isSSO);
+					isEnterpriseAttribute.setEnabled(!isSSO);
 					
 					usernameAttribute.setVisible(!isSSO);
 					passwordAttribute.setVisible(!isSSO);
@@ -156,24 +158,28 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 //					refreshTokenAttribute.getControl().setEnabled(useToken && !isEnterprise);
 					clientIdAttribute.setVisible(!isSSO);
 					clientSecretAttribute.setVisible(!isSSO);
+					isEnterpriseAttribute.clear();
+					useTokenAttribute.clear();
 					
 				}else {
-					boolean isEnterprise = tasConnection.isEnterprise();
-					boolean useToken = tasConnection.isUseToken();
+					//boolean isEnterprise = tasConnection.isEnterprise();
+					//boolean useToken = tasConnection.isUseToken();
 				
-					usernameLabel.setVisible(!useToken);
-					passwordLabel.setVisible(!useToken);
-					accessTokenLabel.setVisible(useToken&&isEnterprise);
-					clientIdLabel.setVisible(useToken && !isEnterprise);
-					clientSecretLabel.setVisible(useToken && !isEnterprise);
+					usernameLabel.setVisible(isSSO);
+					passwordLabel.setVisible(isSSO);
+					accessTokenLabel.setVisible(isSSO);
+					clientIdLabel.setVisible(isSSO);
+					clientSecretLabel.setVisible(isSSO);
 				
-					usernameAttribute.setVisible(!useToken);
-					passwordAttribute.setVisible(!useToken);
-					accessTokenAttribute.setVisible(useToken&&isEnterprise);
-//					refreshTokenAttribute.getControl().setEnabled(useToken && !isEnterprise);
-					clientIdAttribute.setVisible(useToken && !isEnterprise);
-					clientSecretAttribute.setVisible(useToken && !isEnterprise);
+					usernameAttribute.setVisible(isSSO);
+					passwordAttribute.setVisible(isSSO);
+					accessTokenAttribute.setVisible(isSSO);
+					clientIdAttribute.setVisible(isSSO);
+					clientSecretAttribute.setVisible(isSSO);
 				}
+				isEnterprise.setEnabled(!isSSO);
+				isEnterpriseAttribute.setEnabled(!isSSO);
+				useTokenAttribute.setEnabled(!isSSO);
 				return super.doSet(observableValue, value);
 			}
 		};

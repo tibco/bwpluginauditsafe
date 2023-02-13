@@ -69,6 +69,54 @@ public class TestConnectionButtonHelper {
 		}
 		return token;
 	}
+	
+	public void checkSchemaWithToken(final Composite composite, final TasConnection connection, OAuthToken token, String serverUrl) {
+		if(!token.isSuccess()){
+			Color red = new Color(composite.getShell().getDisplay(),
+					255, 0, 0);
+			testLabel.setForeground(red);
+			testLabel.setText(token.getMessage());
+		} else {
+			String authToken = token.getAccessToken();
+			String body = "{\"path\": \"/tas/dataserver/transactions\", \"method\": \"POST\"}";
+			String queryBody = "{\"path\": \"/tas/dataserver/transactions/query\", \"method\": \"POST\"}";
+			TasResponse inputSchemaResponse = TasClient.getSchemaWithAuthToken(serverUrl, authToken, body, INPUT_TYPE);
+			TasResponse outputSchemaResponse =  TasClient.getSchemaWithAuthToken(serverUrl,authToken, body, OUTPUT_TYPE);
+			TasResponse queryOutputSchemaResponse =  TasClient.getSchemaWithAuthToken(serverUrl, authToken, queryBody, OUTPUT_TYPE);
+			if(inputSchemaResponse.isHasError() || outputSchemaResponse.isHasError()){
+				Color red = new Color(composite.getShell().getDisplay(),
+						255, 0, 0);
+				testLabel.setForeground(red);
+				testLabel.setText(inputSchemaResponse.isHasError()?inputSchemaResponse.getMessage():outputSchemaResponse.getMessage());
+			}else {
+				final String schema = inputSchemaResponse.getMessage();
+				final String output = outputSchemaResponse.getMessage();
+				final String queryOutput = queryOutputSchemaResponse.getMessage();
+
+				final WorkingCopy workingCopy = (WorkingCopy)tasConnectionSection.getPage().getEditor().getAdapter(WorkingCopy.class);
+            	TransactionalEditingDomain ed = (TransactionalEditingDomain) workingCopy.getEditingDomain();
+				Command cmd = new RecordingCommand(ed) {
+					@Override
+					protected void doExecute() {
+						connection.setSchema(schema);
+						connection.setOutput(output);
+						connection.setQueryOutput(queryOutput);
+					}
+				};
+				ed.getCommandStack().execute(cmd);
+				MessageDialog messageDialog = new MessageDialog(composite
+						.getShell(), Messages.CONNECTED_TO_TAS, null,
+						Messages.CONNECTED_TO_TAS, MessageDialog.NONE,
+						new String[] { "Ok" }, 0);
+				messageDialog.open();
+				Color blue = new Color(composite.getShell().getDisplay(),
+						0, 0, 255);
+				testLabel.setForeground(blue);
+				testLabel.setText("Test AuditSafe Connection successful!");
+			}
+		}
+	}
+	
 
 	public void createTestConnectionButton(final Composite composite) {
 		final Button testConnection;
@@ -122,15 +170,8 @@ public class TestConnectionButtonHelper {
 							}
 						};
 						ed.getCommandStack().execute(cmd);
-						MessageDialog messageDialog = new MessageDialog(composite
-								.getShell(), Messages.CONNECTED_TO_TAS, null,
-								Messages.CONNECTED_TO_TAS, MessageDialog.NONE,
-								new String[] { "Ok" }, 0);
-						messageDialog.open();
-						Color blue = new Color(composite.getShell().getDisplay(),
-								0, 0, 255);
-						testLabel.setForeground(blue);
-						testLabel.setText("Test AuditSafe SSO Connection successful!");
+						checkSchemaWithToken(composite,connection,token, serverUrl);
+						
 					}else {
 						testLabel.setForeground(red);
 						testLabel.setText("Please finish SSO in API Explorer.");
@@ -229,7 +270,9 @@ public class TestConnectionButtonHelper {
 					}
 				} else {
 					if(useToken){
-						OAuthToken token = TasClient.getOAuthToken(serverUrl, clientId, clientSecret);
+						final OAuthToken token = TasClient.getOAuthToken(serverUrl, clientId, clientSecret);
+						checkSchemaWithToken(composite,connection,token, serverUrl);
+						/*
 						if(!token.isSuccess()){
 							Color red = new Color(composite.getShell().getDisplay(),
 									255, 0, 0);
@@ -274,6 +317,7 @@ public class TestConnectionButtonHelper {
 								testLabel.setText("Test AuditSafe Connection successful!");
 							}
 						}
+						*/
 					} else {
 						TasResponse taResponse = TasClient.getToken(serverUrl, username, password);
 						HashMap<String,String> accountInfo = null;

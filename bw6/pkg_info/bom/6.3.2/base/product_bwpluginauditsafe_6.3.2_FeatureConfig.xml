@@ -12,12 +12,12 @@
    		universalinstallerrelease="3.7.7"
    		universalinstallerversion="L"/>
 
-        <packagingProperties createp2installer="true" supportedBWVersion="6.4" createcloudartifacts="epaas" bundle_analysis="true"/>
+        <packagingProperties createp2installer="true" supportedBWVersion="6.9" createcloudartifacts="epaas" bundle_analysis="true"/>
 
     <customVariables>
 		<localVariable name="bwpluginauditsafecloud.minimum.bw.version" value="1.0.0"/>
-		<localVariable name="bwpluginauditsafe.minimum.bw.version" value="6.4.2"/>
-	    <!--<localVariable name="bwpluginauditsafe.minimum.bwce.version" value="2.3.4"/>-->
+		<localVariable name="bwpluginauditsafe.minimum.bw.version" value="6.9.0"/>
+		<localVariable name="bwpluginauditsafe.minimum.bwce.version" value="2.8.1"/>
 		<localVariable name="bwpluginauditsafe.extension.palettes.home" value="${tibco.BW.home}/../palettes/auditsafe/6.3"/>
 		<localVariable name="bwpluginauditsafe.extension.palettes.runtime.home" value="${tibco.BW.home}/../palettes/auditsafe/6.3/runtime"/>
 		<localVariable name="bwpluginauditsafe.extension.palettes.design.home" value="${tibco.BW.home}/../palettes/auditsafe/6.3/design"/>
@@ -46,8 +46,8 @@
 			<assembly uid="product_tibco_bwpluginauditsafe_samples" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.home}" version="6.3.2"/>
         </assemblyList>
 
-        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime" type="feature" uid="Runtime_BW" version="6.4.2"/>
-		<!--<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Runtime" type="feature" uid="Runtime_bwce" version="2.3.4"/>-->
+        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime" type="feature" uid="Runtime_BW" version="6.9.0"/>
+		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Runtime" type="feature" uid="Runtime_bwce" version="2.8.1"/>
 		<dependency description="TIBCO BusinessWorks Runtime" type="assembly" uid="product_tibco_bwplugin_cloud_runtime_dependency" version="1.0.0"/>
 
 		<wizardAction class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction" sequence="post-selection">
@@ -75,7 +75,7 @@
 			<property showProgress="true"/>
 			<property description="Get install location for Cloud Runtime"/>
 		</wizardAction>
-		<!--<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
+		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
 			<property minimumVersion="$L{bwpluginauditsafecloud.minimum.bwce.version}"/>
 			<property vpdUID="bwce_runtime"/>
@@ -83,7 +83,7 @@
 			<property productAssemblyMinVersion="$L{bwpluginauditsafecloud.minimum.bwce.version}"/>
 			<property showProgress="true"/>
 			<property description="Get install location for BWCE Runtime"/>
-		</wizardAction>-->
+		</wizardAction>
 
 		<postInstallAction taskFile="${tibco.BW.home}/scripts/build.xml" description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO AuditSafe runtime - creating extension palette link" target="create-ext-palette-link" logLevel="debug" sequence="post-assembly-ref">
 			<postInstallActionProperty name="bw.home" value="${tibco.BW.home}"/>
@@ -125,8 +125,8 @@
 			<assembly overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tas_design_feature" version="6.3.101"/>
 		</assemblyList>
 
-        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design" type="feature" uid="Design_BW" version="6.4.2"/>
-	<!--<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Runtime" type="feature" uid="Design_bwce" version="2.3.4"/>-->
+        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design" type="feature" uid="Design_BW" version="6.9.0"/>
+		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Runtime" type="feature" uid="Design_bwce" version="2.8.1"/>
 		<dependency description="TIBCO BusinessWorks Cloud Design" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="1.0.0"/>
 		
 		
@@ -164,7 +164,7 @@
 			<property description="Get install location for Cloud Design"/>
 		</wizardAction>
 
-		<!--<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
+		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
 			<property minimumVersion="$L{bwpluginauditsafecloud.minimum.bwce.version}"/>
 			<property vpdUID="bwce_design"/>
@@ -172,7 +172,7 @@
 			<property productAssemblyMinVersion="$L{bwpluginauditsafecloud.minimum.bwce.version}"/>
 			<property showProgress="true"/>
 			<property description="Get install location for BWCE Design"/>
-		</wizardAction>-->
+		</wizardAction>
 
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCreateP2AssemblyList">
 			<property variableToSet="tibco.p2.assemblies" />

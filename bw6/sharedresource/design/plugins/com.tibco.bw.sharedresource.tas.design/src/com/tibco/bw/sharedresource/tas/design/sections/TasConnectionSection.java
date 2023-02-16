@@ -163,17 +163,21 @@ public class TasConnectionSection extends AbstractBWSharedResourceSection {
 	
 				}else {
 				
-					usernameLabel.setVisible(isSSO);
-					passwordLabel.setVisible(isSSO);
-					accessTokenLabel.setVisible(isSSO);
-					clientIdLabel.setVisible(isSSO);
-					clientSecretLabel.setVisible(isSSO);
+					boolean isEnterprise = tasConnection.isEnterprise();
+					boolean useToken = tasConnection.isUseToken();
 				
-					usernameAttribute.setVisible(isSSO);
-					passwordAttribute.setVisible(isSSO);
-					accessTokenAttribute.setVisible(isSSO);
-					clientIdAttribute.setVisible(isSSO);
-					clientSecretAttribute.setVisible(isSSO);
+					usernameLabel.setVisible(!useToken);
+					passwordLabel.setVisible(!useToken);
+					accessTokenLabel.setVisible(useToken&&isEnterprise);
+					clientIdLabel.setVisible(useToken && !isEnterprise);
+					clientSecretLabel.setVisible(useToken && !isEnterprise);
+				
+					usernameAttribute.setVisible(!useToken);
+					passwordAttribute.setVisible(!useToken);
+					accessTokenAttribute.setVisible(useToken&&isEnterprise);
+//					refreshTokenAttribute.getControl().setEnabled(useToken && !isEnterprise);
+					clientIdAttribute.setVisible(useToken && !isEnterprise);
+					clientSecretAttribute.setVisible(useToken && !isEnterprise);
 				}
 				isEnterprise.setEnabled(!isSSO);
 				isEnterpriseAttribute.setEnabled(!isSSO);

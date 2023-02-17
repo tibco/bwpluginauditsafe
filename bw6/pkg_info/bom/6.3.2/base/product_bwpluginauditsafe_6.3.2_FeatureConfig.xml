@@ -46,9 +46,8 @@
 			<assembly uid="product_tibco_bwpluginauditsafe_samples" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.home}" version="6.3.2"/>
         </assemblyList>
 
-        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime" type="feature" uid="Runtime_BW" version="6.9.0"/>
-		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Runtime" type="feature" uid="Runtime_bwce" version="2.8.1"/>
-		<dependency description="TIBCO BusinessWorks Runtime" type="assembly" uid="product_tibco_bwplugin_cloud_runtime_dependency" version="1.0.0"/>
+	<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime" type="feature" uid="Runtime_BW" version="$L{bwpluginauditsafe.minimum.bw.version}"/>
+	<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Runtime" type="feature" uid="Runtime_bwce" version="$L{bwpluginauditsafe.minimum.bwce.version}"/>
 
 		<wizardAction class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction" sequence="post-selection">
 			<property featureUID="required_bwpluginauditsafe"/>
@@ -77,10 +76,10 @@
 		</wizardAction>
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
-			<property minimumVersion="$L{bwpluginauditsafecloud.minimum.bwce.version}"/>
+			<property minimumVersion="$L{bwpluginauditsafe.minimum.bwce.version}"/>
 			<property vpdUID="bwce_runtime"/>
 			<property productAssemblyUID="product_tibco_bwplugin_cloud_runtime_dependency"/>
-			<property productAssemblyMinVersion="$L{bwpluginauditsafecloud.minimum.bwce.version}"/>
+			<property productAssemblyMinVersion="$L{bwpluginauditsafe.minimum.bwce.version}"/>
 			<property showProgress="true"/>
 			<property description="Get install location for BWCE Runtime"/>
 		</wizardAction>
@@ -125,12 +124,10 @@
 			<assembly overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tas_design_feature" version="6.3.101"/>
 		</assemblyList>
 
-        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design" type="feature" uid="Design_BW" version="6.9.0"/>
-		<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Runtime" type="feature" uid="Design_bwce" version="2.8.1"/>
-		<dependency description="TIBCO BusinessWorks Cloud Design" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="1.0.0"/>
+	<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design" type="feature" uid="Design_BW" version="$L{bwpluginauditsafe.minimum.bw.version}"/>
+	<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Runtime" type="feature" uid="Design_bwce" version="$L{bwpluginauditsafe.minimum.bwce.version}"/>
 		
-		
-		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction">
+	<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction">
             <property featureUID="runtime_bwpluginauditsafe"/>
             <property isEnabled="true"/>
             <property isVisible="true"/>
@@ -166,10 +163,10 @@
 
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
-			<property minimumVersion="$L{bwpluginauditsafecloud.minimum.bwce.version}"/>
+			<property minimumVersion="$L{bwpluginauditsafe.minimum.bwce.version}"/>
 			<property vpdUID="bwce_design"/>
 			<property productAssemblyUID="product_tibco_bwplugin_cloud_design_dependency"/>
-			<property productAssemblyMinVersion="$L{bwpluginauditsafecloud.minimum.bwce.version}"/>
+			<property productAssemblyMinVersion="$L{bwpluginauditsafe.minimum.bwce.version}"/>
 			<property showProgress="true"/>
 			<property description="Get install location for BWCE Design"/>
 		</wizardAction>

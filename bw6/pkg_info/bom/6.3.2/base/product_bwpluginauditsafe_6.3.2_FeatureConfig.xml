@@ -79,7 +79,7 @@
 			<property minimumVersion="$L{bwpluginauditsafecloud.minimum.bw.version}"/>
 			<property vpdUID="bwce_runtime"/>
 			<property productAssemblyUID="product_tibco_bwplugin_cloud_runtime_dependency"/>
-			<property productAssemblyMinVersion="$L{bwpluginauditsafe.minimum.bwce.version}"/>
+			<property productAssemblyMinVersion="$L{bwpluginauditsafecloud.minimum.bw.version}"/>
 			<property showProgress="true"/>
 			<property description="Get install location for BWCE Runtime"/>
 		</wizardAction>
@@ -166,7 +166,7 @@
 			<property minimumVersion="$L{bwpluginauditsafecloud.minimum.bw.version}"/>
 			<property vpdUID="bwce_design"/>
 			<property productAssemblyUID="product_tibco_bwplugin_cloud_design_dependency"/>
-			<property productAssemblyMinVersion="$L{bwpluginauditsafe.minimum.bwce.version}"/>
+			<property productAssemblyMinVersion="$L{bwpluginauditsafecloud.minimum.bw.version}"/>
 			<property showProgress="true"/>
 			<property description="Get install location for BWCE Design"/>
 		</wizardAction>

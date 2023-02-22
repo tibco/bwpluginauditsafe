@@ -49,6 +49,13 @@
 	<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Runtime" mustBeInstalled="false" type="feature" uid="Runtime_bwce" version="2.8.1"/>
 	<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime (6.9.0) or TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Runtime (2.8.1)" type="feature" uid="Runtime_BW" version="6.9.0"/>
 
+ 		<wizardAction class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction" sequence="post-selection">
+ 			<property featureUID="required_bwpluginauditsafe"/>
+ 			<property isEnabled="true"/>
+ 			<property isVisible="false"/>
+ 			<property isSelected="true"/>
+ 		</wizardAction>
+
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
 			<property minimumVersion="$L{bwpluginauditsafe.minimum.bw.version}"/>
@@ -120,12 +127,12 @@
 	<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Design" mustBeInstalled="false" type="feature" uid="Design_bwce" version="2.8.1"/>
  	<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design (6.9.0) or TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Design (2.8.1)" type="feature" uid="Design_BW" version="6.9.0"/>
 
-	<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction">
-            <property featureUID="runtime_bwpluginauditsafe"/>
-            <property isEnabled="true"/>
-            <property isVisible="true"/>
-            <property isSelected="true"/>
-        </wizardAction>
+ 		<wizardAction class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction" sequence="post-selection">
+ 			<property featureUID="required_bwpluginauditsafe"/>
+ 			<property isEnabled="true"/>
+ 			<property isVisible="false"/>
+ 			<property isSelected="true"/>
+ 		</wizardAction>
 
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>

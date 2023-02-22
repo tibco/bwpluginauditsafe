@@ -76,10 +76,10 @@
 		</wizardAction>
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
-			<property minimumVersion="$L{bwpluginauditsafecloud.minimum.bw.version}"/>
+			<property minimumVersion="$L{bwpluginauditsafe.minimum.bwce.version}"/>
 			<property vpdUID="bwce_runtime"/>
 			<property productAssemblyUID="product_tibco_bwplugin_cloud_runtime_dependency"/>
-			<property productAssemblyMinVersion="$L{bwpluginauditsafecloud.minimum.bw.version}"/>
+			<property productAssemblyMinVersion="$L{bwpluginauditsafe.minimum.bwce.version}"/>
 			<property showProgress="true"/>
 			<property description="Get install location for BWCE Runtime"/>
 		</wizardAction>
@@ -163,10 +163,10 @@
 
 		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
 			<property productAcronym="BW"/>
-			<property minimumVersion="$L{bwpluginauditsafecloud.minimum.bw.version}"/>
+			<property minimumVersion="$L{bwpluginauditsafe.minimum.bwce.version}"/>
 			<property vpdUID="bwce_design"/>
 			<property productAssemblyUID="product_tibco_bwplugin_cloud_design_dependency"/>
-			<property productAssemblyMinVersion="$L{bwpluginauditsafecloud.minimum.bw.version}"/>
+			<property productAssemblyMinVersion="$L{bwpluginauditsafe.minimum.bwce.version}"/>
 			<property showProgress="true"/>
 			<property description="Get install location for BWCE Design"/>
 		</wizardAction>

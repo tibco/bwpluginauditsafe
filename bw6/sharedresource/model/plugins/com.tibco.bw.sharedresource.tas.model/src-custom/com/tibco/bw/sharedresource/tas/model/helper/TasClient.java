@@ -69,6 +69,12 @@ public class TasClient {
 		ssoClient.preExecute();
 	}
 	
+	protected static void updateSsoExecuteToken() {
+		if(ssoClient!=null) {
+			ssoClient.fetchBearerTokenFromRefreshToken();
+		}
+	}
+	
 	protected static void preOAuthExecute(String tasBaseUrl, String clientId, String clientSecret) {
 		if(oauthClient==null) {
 			oauthClient=TasOAuthClient.getInstance(tasBaseUrl, clientId, clientSecret);
@@ -177,7 +183,8 @@ public class TasClient {
 
 			if(statusCode == HttpURLConnection.HTTP_OK){
 				result.setSuccessfulResponse(message);
-			} else if (retry) {
+			} else if (retry && statusCode == HttpURLConnection.HTTP_UNAUTHORIZED) {
+				updateSsoExecuteToken();
 				result = getAuditEventSso(tasBaseUrl, access_token, refresh_token, body, false);
 			} else {
 				result.setErrorMessage(message);
@@ -290,7 +297,8 @@ public class TasClient {
 
 			if(statusCode == HttpURLConnection.HTTP_OK){
 				result.setSuccessfulResponse(message);
-			} else if (retry) {
+			} else if (retry && statusCode == HttpURLConnection.HTTP_UNAUTHORIZED) {
+				updateSsoExecuteToken();
 				result = postAuditEventbySso(tasBaseUrl, access_token, refresh_token, body, false);
 			} else {
 				result.setErrorMessage(params.toString());

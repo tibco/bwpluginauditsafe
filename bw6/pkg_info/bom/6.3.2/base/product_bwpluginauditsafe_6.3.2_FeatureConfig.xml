@@ -46,7 +46,7 @@
 			<assembly uid="product_tibco_bwpluginauditsafe_samples" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.home}" version="6.3.2"/>
         </assemblyList>
 
-	<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Runtime" mustBeInstalled="false" type="feature" uid="Runtime_bwce" version="2.8.1"/>
+	<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime (6.9.0) or TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Runtime (2.8.1)" mustBeInstalled="false" type="feature" uid="Runtime_bwce" version="2.8.1"/>
 	<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime (6.9.0) or TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Runtime (2.8.1)" type="feature" uid="Runtime_BW" version="6.9.0"/>
 
  		<wizardAction class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction" sequence="post-selection">
@@ -124,7 +124,7 @@
 			<assembly overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tas_design_feature" version="6.3.101"/>
 		</assemblyList>
 
-	<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Design" mustBeInstalled="false" type="feature" uid="Design_bwce" version="2.8.1"/>
+	<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design (6.9.0) or TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Design (2.8.1)" mustBeInstalled="false" type="feature" uid="Design_bwce" version="2.8.1"/>
  	<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design (6.9.0) or TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Design (2.8.1)" type="feature" uid="Design_BW" version="6.9.0"/>
 
  		<wizardAction class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction" sequence="post-selection">

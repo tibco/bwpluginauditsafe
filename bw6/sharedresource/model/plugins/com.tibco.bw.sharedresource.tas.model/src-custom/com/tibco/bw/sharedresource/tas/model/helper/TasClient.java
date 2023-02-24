@@ -301,7 +301,7 @@ public class TasClient {
 				updateSsoExecuteToken();
 				result = postAuditEventbySso(tasBaseUrl, access_token, refresh_token, body, false);
 			} else {
-				result.setErrorMessage(params.toString());
+				result.setErrorMessage(message);
 			}
 
 		} catch (IOException e) {

@@ -76,6 +76,10 @@ public class TasAdapterFactory extends AdapterFactoryImpl {
 				return createPostAuditEventAdapter();
 			}
 			@Override
+			public Adapter casePutAuditEvent(PutAuditEvent object) {
+				return createPutAuditEventAdapter();
+			}
+			@Override
 			public Adapter casePostBatchAuditEvents(PostBatchAuditEvents object) {
 				return createPostBatchAuditEventsAdapter();
 			}
@@ -128,6 +132,20 @@ public class TasAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPostAuditEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link com.tibco.bw.palette.tas.model.tas.PutAuditEvent <em>Put Audit Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see com.tibco.bw.palette.tas.model.tas.PutAuditEvent
+	 * @generated
+	 */
+	public Adapter createPutAuditEventAdapter() {
 		return null;
 	}
 

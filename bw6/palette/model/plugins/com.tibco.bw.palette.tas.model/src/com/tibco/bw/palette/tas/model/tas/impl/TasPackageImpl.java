@@ -5,6 +5,7 @@ package com.tibco.bw.palette.tas.model.tas.impl;
 import com.tibco.bw.palette.tas.model.tas.GetAuditEvent;
 import com.tibco.bw.palette.tas.model.tas.PostAuditEvent;
 import com.tibco.bw.palette.tas.model.tas.PostBatchAuditEvents;
+import com.tibco.bw.palette.tas.model.tas.PutAuditEvent;
 import com.tibco.bw.palette.tas.model.tas.TasAbstractObject;
 import com.tibco.bw.palette.tas.model.tas.TasFactory;
 import com.tibco.bw.palette.tas.model.tas.TasPackage;
@@ -35,6 +36,13 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * @generated
 	 */
 	private EClass postAuditEventEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass putAuditEventEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,7 +86,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link TasPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -92,7 +100,8 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 		if (isInited) return (TasPackage)EPackage.Registry.INSTANCE.getEPackage(TasPackage.eNS_URI);
 
 		// Obtain or create and register package
-		TasPackageImpl theTasPackage = (TasPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TasPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new TasPackageImpl());
+		Object registeredTasPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		TasPackageImpl theTasPackage = registeredTasPackage instanceof TasPackageImpl ? (TasPackageImpl)registeredTasPackage : new TasPackageImpl();
 
 		isInited = true;
 
@@ -105,7 +114,6 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 		// Mark meta-data to indicate it can't be changed
 		theTasPackage.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(TasPackage.eNS_URI, theTasPackage);
 		return theTasPackage;
@@ -116,6 +124,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getTasAbstractObject() {
 		return tasAbstractObjectEClass;
 	}
@@ -125,6 +134,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getTasAbstractObject_TasConnection() {
 		return (EAttribute)tasAbstractObjectEClass.getEStructuralFeatures().get(0);
 	}
@@ -134,6 +144,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPostAuditEvent() {
 		return postAuditEventEClass;
 	}
@@ -143,6 +154,17 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public EClass getPutAuditEvent() {
+		return putAuditEventEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getPostBatchAuditEvents() {
 		return postBatchAuditEventsEClass;
 	}
@@ -152,6 +174,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getGetAuditEvent() {
 		return getAuditEventEClass;
 	}
@@ -161,6 +184,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGetAuditEvent_SortColumn() {
 		return (EAttribute)getAuditEventEClass.getEStructuralFeatures().get(0);
 	}
@@ -170,6 +194,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGetAuditEvent_DescOrder() {
 		return (EAttribute)getAuditEventEClass.getEStructuralFeatures().get(1);
 	}
@@ -179,6 +204,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGetAuditEvent_ExactMatch() {
 		return (EAttribute)getAuditEventEClass.getEStructuralFeatures().get(2);
 	}
@@ -188,6 +214,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGetAuditEvent_IncludePayload() {
 		return (EAttribute)getAuditEventEClass.getEStructuralFeatures().get(3);
 	}
@@ -197,6 +224,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGetAuditEvent_Limit() {
 		return (EAttribute)getAuditEventEClass.getEStructuralFeatures().get(4);
 	}
@@ -206,6 +234,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getGetAuditEvent_OnlyGetCount() {
 		return (EAttribute)getAuditEventEClass.getEStructuralFeatures().get(5);
 	}
@@ -215,6 +244,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TasFactory getTasFactory() {
 		return (TasFactory)getEFactoryInstance();
 	}
@@ -242,6 +272,8 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 		createEAttribute(tasAbstractObjectEClass, TAS_ABSTRACT_OBJECT__TAS_CONNECTION);
 
 		postAuditEventEClass = createEClass(POST_AUDIT_EVENT);
+
+		putAuditEventEClass = createEClass(PUT_AUDIT_EVENT);
 
 		postBatchAuditEventsEClass = createEClass(POST_BATCH_AUDIT_EVENTS);
 
@@ -283,6 +315,7 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 
 		// Add supertypes to classes
 		postAuditEventEClass.getESuperTypes().add(this.getTasAbstractObject());
+		putAuditEventEClass.getESuperTypes().add(this.getTasAbstractObject());
 		postBatchAuditEventsEClass.getESuperTypes().add(this.getTasAbstractObject());
 		getAuditEventEClass.getESuperTypes().add(this.getTasAbstractObject());
 
@@ -291,6 +324,8 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 		initEAttribute(getTasAbstractObject_TasConnection(), ecorePackage.getEString(), "tasConnection", null, 0, 1, TasAbstractObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(postAuditEventEClass, PostAuditEvent.class, "PostAuditEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(putAuditEventEClass, PutAuditEvent.class, "PutAuditEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(postBatchAuditEventsEClass, PostBatchAuditEvents.class, "PostBatchAuditEvents", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -317,10 +352,10 @@ public class TasPackageImpl extends EPackageImpl implements TasPackage {
 	 * @generated
 	 */
 	protected void createCbgeneralcontrolAnnotations() {
-		String source = "cbgeneralcontrol";	
+		String source = "cbgeneralcontrol";
 		addAnnotation
-		  (getTasAbstractObject_TasConnection(), 
-		   source, 
+		  (getTasAbstractObject_TasConnection(),
+		   source,
 		   new String[] {
 		   });
 	}

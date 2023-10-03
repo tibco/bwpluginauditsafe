@@ -33,7 +33,6 @@ import com.tibco.bw.palette.tas.runtime.fault.TasActivityFault;
 import com.tibco.bw.runtime.ActivityFault;
 import com.tibco.bw.runtime.ProcessContext;
 import com.tibco.bw.runtime.annotation.Property;
-import com.tibco.bw.sharedresource.tas.model.helper.OAuthToken;
 import com.tibco.bw.sharedresource.tas.model.helper.TasClient;
 import com.tibco.bw.sharedresource.tas.model.helper.TasResponse;
 import com.tibco.bw.sharedresource.tas.runtime.TasConnectionResource;
@@ -189,17 +188,17 @@ public class GetAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 		}else if(sharedResource.isEnterprise()){
 			if(sharedResource.isUseToken()){
 				//use token
-				result = TasClient.tasEEActionWithToken(TasClient.METHOD_GET_EVENT, sharedResource.getServerUrl(), sharedResource.getAccessToken(), body);
+				result = TasClient.tasEEActionWithToken(TasClient.METHOD_GET_EVENT, sharedResource.getServerUrl(), sharedResource.getAccessToken(), "", body);
 			}else {
 				// use username/password
 				result = TasClient.tasEEAction(TasClient.METHOD_GET_EVENT, sharedResource.getServerUrl(), sharedResource.getUsername(),
-						sharedResource.getPassword(), body);
+						sharedResource.getPassword(), "", body);
 			}
 		} else {
 			if(sharedResource.isUseToken()){
 				//use token
 				result = TasClient.tasActionWithToken(TasClient.METHOD_GET_EVENT, sharedResource.getServerUrl(),
-						sharedResource.getClientId(), sharedResource.getClientSecret(), body, true);
+						sharedResource.getClientId(), sharedResource.getClientSecret(), "", body, true);
 				
 			}else {
 				// use username/password

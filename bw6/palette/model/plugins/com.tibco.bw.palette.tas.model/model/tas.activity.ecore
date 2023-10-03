@@ -7,6 +7,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PostAuditEvent" eSuperTypes="#//TasAbstractObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PutAuditEvent" eSuperTypes="#//TasAbstractObject"/>
   <eClassifiers xsi:type="ecore:EClass" name="PostBatchAuditEvents" eSuperTypes="#//TasAbstractObject"/>
   <eClassifiers xsi:type="ecore:EClass" name="GetAuditEvent" eSuperTypes="#//TasAbstractObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sortColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

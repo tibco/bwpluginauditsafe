@@ -57,6 +57,7 @@ public class TasFactoryImpl extends EFactoryImpl implements TasFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case TasPackage.POST_AUDIT_EVENT: return createPostAuditEvent();
+			case TasPackage.PUT_AUDIT_EVENT: return createPutAuditEvent();
 			case TasPackage.POST_BATCH_AUDIT_EVENTS: return createPostBatchAuditEvents();
 			case TasPackage.GET_AUDIT_EVENT: return createGetAuditEvent();
 			default:
@@ -69,6 +70,7 @@ public class TasFactoryImpl extends EFactoryImpl implements TasFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PostAuditEvent createPostAuditEvent() {
 		PostAuditEventImpl postAuditEvent = new PostAuditEventImpl();
 		return postAuditEvent;
@@ -79,6 +81,18 @@ public class TasFactoryImpl extends EFactoryImpl implements TasFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public PutAuditEvent createPutAuditEvent() {
+		PutAuditEventImpl putAuditEvent = new PutAuditEventImpl();
+		return putAuditEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public PostBatchAuditEvents createPostBatchAuditEvents() {
 		PostBatchAuditEventsImpl postBatchAuditEvents = new PostBatchAuditEventsImpl();
 		return postBatchAuditEvents;
@@ -89,6 +103,7 @@ public class TasFactoryImpl extends EFactoryImpl implements TasFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public GetAuditEvent createGetAuditEvent() {
 		GetAuditEventImpl getAuditEvent = new GetAuditEventImpl();
 		return getAuditEvent;
@@ -99,6 +114,7 @@ public class TasFactoryImpl extends EFactoryImpl implements TasFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public TasPackage getTasPackage() {
 		return (TasPackage)getEPackage();
 	}

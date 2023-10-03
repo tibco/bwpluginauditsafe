@@ -96,6 +96,13 @@ public class TasSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case TasPackage.PUT_AUDIT_EVENT: {
+				PutAuditEvent putAuditEvent = (PutAuditEvent)theEObject;
+				T result = casePutAuditEvent(putAuditEvent);
+				if (result == null) result = caseTasAbstractObject(putAuditEvent);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case TasPackage.POST_BATCH_AUDIT_EVENTS: {
 				PostBatchAuditEvents postBatchAuditEvents = (PostBatchAuditEvents)theEObject;
 				T result = casePostBatchAuditEvents(postBatchAuditEvents);
@@ -141,6 +148,21 @@ public class TasSwitch<T> {
 	 * @generated
 	 */
 	public T casePostAuditEvent(PostAuditEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Put Audit Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Put Audit Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePutAuditEvent(PutAuditEvent object) {
 		return null;
 	}
 

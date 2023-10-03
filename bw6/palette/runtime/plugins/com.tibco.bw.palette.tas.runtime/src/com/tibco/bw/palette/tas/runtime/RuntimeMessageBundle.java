@@ -27,6 +27,7 @@ public class RuntimeMessageBundle extends MessageBundle {
     public static BundleMessage ERROR_REQUEST_FAILED;
 
     public static BundleMessage ERROR_GET_EVENT;
+    public static BundleMessage ERROR_PUT_EVENT;
     
     public static BundleMessage WARN_FORMAT1;
 }

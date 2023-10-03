@@ -28,6 +28,12 @@
             smallIcon="icons/obj16/postauditevent_16x16.png">
       </activityIcon>
       <activityIcon
+            activityTypeID="bw.auditsafe.PutAuditEvent"
+            diagramIcon="icons/obj48/postauditevent_48x48.png"
+            largeIcon="icons/obj32/postauditevent_32x32.png"
+            smallIcon="icons/obj16/postauditevent_16x16.png">
+      </activityIcon>
+      <activityIcon
             activityTypeID="bw.auditsafe.GetAuditEvent"
             diagramIcon="icons/obj48/getauditevent_48x48.png"
             largeIcon="icons/obj32/getauditevent_32x32.png"

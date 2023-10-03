@@ -31,6 +31,15 @@ public interface TasFactory extends EFactory {
 	PostAuditEvent createPostAuditEvent();
 
 	/**
+	 * Returns a new object of class '<em>Put Audit Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Put Audit Event</em>'.
+	 * @generated
+	 */
+	PutAuditEvent createPutAuditEvent();
+
+	/**
 	 * Returns a new object of class '<em>Post Batch Audit Events</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -39,6 +39,16 @@
          </palette>
       </activityType>
       <activityType
+            activityTypeID="bw.auditsafe.PutAuditEvent"
+            name="%tas.activity.PutAuditEvent.name"
+            priority="100"
+            tooltip="%tas.activity.PutAuditEvent.tooltip"
+            visible="true">
+         <palette
+               paletteID="bw.auditsafe">
+         </palette>
+      </activityType>
+      <activityType
             activityTypeID="bw.auditsafe.GetAuditEvent"
             name="%tas.activity.GetAuditEvent.name"
             priority="100"
@@ -59,6 +69,10 @@
             signatureClass="com.tibco.bw.palette.tas.design.postauditevent.PostAuditEventSignature">
       </signature>
       <signature
+            activityTypeID="bw.auditsafe.PutAuditEvent"
+            signatureClass="com.tibco.bw.palette.tas.design.putauditevent.PutAuditEventSignature">
+      </signature>
+      <signature
             activityTypeID="bw.auditsafe.GetAuditEvent"
             signatureClass="com.tibco.bw.palette.tas.design.getauditevent.GetAuditEventSignature">
       </signature>
@@ -72,6 +86,13 @@
             ePackageNSURI="http://ns.tibco.com/bw/palette/tas"
             instanceName="%tas.activity.default.PostAuditEvent.name"
             modelHelperClass="com.tibco.bw.palette.tas.design.postauditevent.PostAuditEventModelHelper">
+      </config>
+      <config
+            activityTypeID="bw.auditsafe.PutAuditEvent"
+            eClassName="PutAuditEvent"
+            ePackageNSURI="http://ns.tibco.com/bw/palette/tas"
+            instanceName="%tas.activity.default.PutAuditEvent.name"
+            modelHelperClass="com.tibco.bw.palette.tas.design.putauditevent.PutAuditEventModelHelper">
       </config>
       <config
             activityTypeID="bw.auditsafe.GetAuditEvent"
@@ -91,6 +112,13 @@
                class="com.tibco.bw.palette.tas.design.postauditevent.PostAuditEventGeneralSection"
                filter="com.tibco.bw.palette.tas.design.postauditevent.PostAuditEventGeneralSection"
                id="bw.auditsafe.PostAuditEvent.general"
+               tab="tibco.bw.activity.property.tab.general">
+         </propertySection>
+         <propertySection
+               afterSection="com.tibco.bw.design.activity.general"
+               class="com.tibco.bw.palette.tas.design.putauditevent.PutAuditEventGeneralSection"
+               filter="com.tibco.bw.palette.tas.design.putauditevent.PutAuditEventGeneralSection"
+               id="bw.auditsafe.PutAuditEvent.general"
                tab="tibco.bw.activity.property.tab.general">
          </propertySection>
          <propertySection

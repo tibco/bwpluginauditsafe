@@ -111,6 +111,34 @@ public interface TasPackage extends EPackage {
 	int POST_AUDIT_EVENT_FEATURE_COUNT = TAS_ABSTRACT_OBJECT_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link com.tibco.bw.palette.tas.model.tas.impl.PutAuditEventImpl <em>Put Audit Event</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see com.tibco.bw.palette.tas.model.tas.impl.PutAuditEventImpl
+	 * @see com.tibco.bw.palette.tas.model.tas.impl.TasPackageImpl#getPutAuditEvent()
+	 * @generated
+	 */
+	int PUT_AUDIT_EVENT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Tas Connection</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUT_AUDIT_EVENT__TAS_CONNECTION = TAS_ABSTRACT_OBJECT__TAS_CONNECTION;
+
+	/**
+	 * The number of structural features of the '<em>Put Audit Event</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PUT_AUDIT_EVENT_FEATURE_COUNT = TAS_ABSTRACT_OBJECT_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link com.tibco.bw.palette.tas.model.tas.impl.PostBatchAuditEventsImpl <em>Post Batch Audit Events</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -118,7 +146,7 @@ public interface TasPackage extends EPackage {
 	 * @see com.tibco.bw.palette.tas.model.tas.impl.TasPackageImpl#getPostBatchAuditEvents()
 	 * @generated
 	 */
-	int POST_BATCH_AUDIT_EVENTS = 2;
+	int POST_BATCH_AUDIT_EVENTS = 3;
 
 	/**
 	 * The feature id for the '<em><b>Tas Connection</b></em>' attribute.
@@ -147,7 +175,7 @@ public interface TasPackage extends EPackage {
 	 * @see com.tibco.bw.palette.tas.model.tas.impl.TasPackageImpl#getGetAuditEvent()
 	 * @generated
 	 */
-	int GET_AUDIT_EVENT = 3;
+	int GET_AUDIT_EVENT = 4;
 
 	/**
 	 * The feature id for the '<em><b>Tas Connection</b></em>' attribute.
@@ -251,6 +279,16 @@ public interface TasPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPostAuditEvent();
+
+	/**
+	 * Returns the meta object for class '{@link com.tibco.bw.palette.tas.model.tas.PutAuditEvent <em>Put Audit Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Put Audit Event</em>'.
+	 * @see com.tibco.bw.palette.tas.model.tas.PutAuditEvent
+	 * @generated
+	 */
+	EClass getPutAuditEvent();
 
 	/**
 	 * Returns the meta object for class '{@link com.tibco.bw.palette.tas.model.tas.PostBatchAuditEvents <em>Post Batch Audit Events</em>}'.
@@ -387,6 +425,16 @@ public interface TasPackage extends EPackage {
 		 * @generated
 		 */
 		EClass POST_AUDIT_EVENT = eINSTANCE.getPostAuditEvent();
+
+		/**
+		 * The meta object literal for the '{@link com.tibco.bw.palette.tas.model.tas.impl.PutAuditEventImpl <em>Put Audit Event</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see com.tibco.bw.palette.tas.model.tas.impl.PutAuditEventImpl
+		 * @see com.tibco.bw.palette.tas.model.tas.impl.TasPackageImpl#getPutAuditEvent()
+		 * @generated
+		 */
+		EClass PUT_AUDIT_EVENT = eINSTANCE.getPutAuditEvent();
 
 		/**
 		 * The meta object literal for the '{@link com.tibco.bw.palette.tas.model.tas.impl.PostBatchAuditEventsImpl <em>Post Batch Audit Events</em>}' class.

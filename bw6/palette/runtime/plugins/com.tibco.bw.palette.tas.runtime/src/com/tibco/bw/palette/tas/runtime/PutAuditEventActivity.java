@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+
 import org.genxdm.Model;
 import org.genxdm.ProcessingContext;
 import org.genxdm.mutable.MutableModel;
@@ -26,20 +27,23 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.tibco.bw.palette.tas.model.tas.PostAuditEvent;
+import com.tibco.bw.palette.tas.model.tas.PutAuditEvent;
+import com.tibco.bw.palette.tas.model.tas.TasConstants;
 import com.tibco.bw.palette.tas.runtime.fault.TasActivityFault;
 import com.tibco.bw.runtime.ActivityFault;
 import com.tibco.bw.runtime.ProcessContext;
 import com.tibco.bw.runtime.annotation.Property;
 import com.tibco.bw.sharedresource.tas.model.helper.JsonReader;
+
 import com.tibco.bw.sharedresource.tas.model.helper.TasClient;
 import com.tibco.bw.sharedresource.tas.model.helper.TasResponse;
 import com.tibco.bw.sharedresource.tas.runtime.TasConnectionResource;
 
-public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TASContants{
+
+public class PutAuditEventActivity<N> extends BaseSyncActivity<N> implements TASContants{
 
 	@Property
-	public PostAuditEvent activityConfig;
+	public PutAuditEvent activityConfig;
 
     /**
      * <!-- begin-custom-doc -->
@@ -58,7 +62,7 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
         try {
             result = evalOutput(input, processContext.getXMLProcessingContext());
         } catch (Exception e) {
-            throw new TasActivityFault(activityContext, RuntimeMessageBundle.ERROR_POST_EVENT.getErrorCode(), e.getLocalizedMessage());
+            throw new TasActivityFault(activityContext, RuntimeMessageBundle.ERROR_PUT_EVENT.getErrorCode(), e.getLocalizedMessage());
         }
         return result;
 	}
@@ -73,38 +77,37 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
 
         // add your own business code here
         TasResponse result  = new TasResponse();
-
+        String tas_event_id = "";
 
 		ObjectMapper mapper = new ObjectMapper();
-
-		ArrayNode eventArray = mapper.createArrayNode();
+		ObjectNode requestNode = mapper.createObjectNode();
 
 		Model<N> model = processContext.getModel();
-		Iterable<N> eventIte = model.getChildElements(inputData);
-		for (N event : eventIte) {
-
-			ObjectNode eventNode = mapper.createObjectNode();
-			ArrayNode extraPropsNode = mapper.createArrayNode();
-			Iterable<N> ite = model.getChildElements(event);
-			for (N node : ite) {
-				String name = model.getLocalName(node);
-				if(!"extra_props".equals(name)){
-					eventNode.put(name, model.getStringValue(node));
-				} else {
-					ObjectNode propNode = mapper.createObjectNode();
-					N nameNode = model.getFirstChildElementByName(node, null, "prop_name");
-					if(nameNode != null && model.getStringValue(nameNode)!=null){
-						propNode.put("prop_name", model.getStringValue(nameNode));
-						propNode.put("prop_value", model.getStringValue(model.getFirstChildElementByName(node, null, "prop_value")));
-						extraPropsNode.add(propNode);
-					}
+		Iterable<N> criteriaIte = model.getChildElements(inputData);
+		for (N node : criteriaIte) {
+			String name = model.getLocalName(node);
+			if(TasConstants.TAS_EVENT_ID.equals(name)){
+				tas_event_id = model.getStringValue(node);
+			}else if(!"extra_props".equals(name)){
+				requestNode.put(name, model.getStringValue(node));
+			} else {
+				ObjectNode propNode = mapper.createObjectNode();
+				N nameNode = model.getFirstChildElementByName(node, null, "prop_name");
+				if(nameNode != null && model.getStringValue(nameNode)!=null){
+					propNode.put("prop_name", model.getStringValue(nameNode));
+					propNode.put("prop_value", model.getStringValue(model.getFirstChildElementByName(node, null, "prop_value")));
+					requestNode.put(name, propNode);
 				}
 			}
-			eventNode.set("extra_props", extraPropsNode);
-			eventArray.add(eventNode);
 		}
+		
+		if(tas_event_id == ""){
+			String errorMessage = (result == null? "tas_event_id is empty": result.getMessage());
+			throw new TasActivityFault(activityContext, RuntimeMessageBundle.ERROR_REQUEST_FAILED.getErrorCode(), errorMessage);
+		}
+		
 		//send post request
-		String body = mapper.writeValueAsString(eventArray);
+		String body = mapper.writeValueAsString(requestNode);
 		boolean isEnterprise = sharedResource.isEnterprise();
 		activityLogger.debug("Is enterprise version:" + isEnterprise + ". Request body:" +body);
 		
@@ -113,26 +116,27 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
 		while(retryTimes < 5){
 			
 			if(sharedResource.isSso()) {
-				result = TasClient.postAuditEventbySso(sharedResource.getServerUrl(), sharedResource.getAccessToken(), sharedResource.getRefreshToken(), body, true);
+				result = TasClient.putAuditEventbySso(sharedResource.getServerUrl(), sharedResource.getAccessToken(), sharedResource.getRefreshToken(), tas_event_id, body, true);
 				
 			}else if(sharedResource.isEnterprise()){
 				if(sharedResource.isUseToken()){
 					//use token
-					result = TasClient.tasEEActionWithToken(TasClient.METHOD_POST_EVENT, sharedResource.getServerUrl(), sharedResource.getAccessToken(), "", body);
+					result = TasClient.tasEEActionWithToken(TasClient.METHOD_PUT_EVENT, sharedResource.getServerUrl(), sharedResource.getAccessToken(),
+							tas_event_id, body);
 				}else {
 					// use username/password
-					result = TasClient.tasEEAction(TasClient.METHOD_POST_EVENT, sharedResource.getServerUrl(), sharedResource.getUsername(),
-							sharedResource.getPassword(), "", body);
+					result = TasClient.tasEEAction(TasClient.METHOD_PUT_EVENT, sharedResource.getServerUrl(), sharedResource.getUsername(),
+							sharedResource.getPassword(), tas_event_id, body);
 				}
 			} else {
 				if(sharedResource.isUseToken()){
 					//use token
-					result = TasClient.tasActionWithToken(TasClient.METHOD_POST_EVENT, sharedResource.getServerUrl(),
-								sharedResource.getClientId(), sharedResource.getClientSecret(), "", body, true);
+					result = TasClient.tasActionWithToken(TasClient.METHOD_PUT_EVENT, sharedResource.getServerUrl(),
+								sharedResource.getClientId(), sharedResource.getClientSecret(), tas_event_id, body, true);
 
 				}else {
 					// use username/password
-					result = TasClient.postAuditEvent(sharedResource.getServerUrl(), sharedResource.getUsername(), sharedResource.getPassword(), sharedResource.getId(), body, true);
+					result = TasClient.putAuditEvent(sharedResource.getServerUrl(), sharedResource.getUsername(), sharedResource.getPassword(), sharedResource.getId(), tas_event_id, body, true);
 
 				}
 			}
@@ -154,9 +158,9 @@ public class PostAuditEventActivity<N> extends BaseSyncActivity<N> implements TA
 		}
 
 		// get output schema and put properties in a set
-		JsonReader requestNode = new JsonReader(sharedResource.getOutput());
+		JsonReader responseNode = new JsonReader(sharedResource.getOutput());
 		//activityLogger.debug(requestNode.toString());
-		JsonNode item = requestNode.getNode("items");
+		JsonNode item = responseNode.getNode("items");
 		JsonNode properties = item.get("properties");
 		List<String>  fieldSet  = new ArrayList<String>();
 		Iterator<String> ite = properties.fieldNames();

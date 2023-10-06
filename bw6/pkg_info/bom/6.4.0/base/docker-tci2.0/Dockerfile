@@ -1,0 +1,1 @@
+FROM reldocker.tibco.com/bw/6.9.0:v26.3

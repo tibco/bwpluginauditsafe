@@ -1,0 +1,4 @@
+<includes>
+	<include file="bwpluginauditsafe_runtime.xml" />	
+	<include file="bwpluginauditsafe_samples.xml" />
+</includes>

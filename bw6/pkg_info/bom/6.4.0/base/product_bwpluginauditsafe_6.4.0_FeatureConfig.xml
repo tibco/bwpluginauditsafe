@@ -2,7 +2,7 @@
 <TIBCOInstallerFeatures>
    <productDef
    		name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO AuditSafe 6.4.0"
-   		version="6.4.4"
+   		version="6.4.0"
    		id="bwpluginauditsafe"
    		releaseType="base"
    		supportedPlatforms="linux/x86_64,win/x86_64,macos/x86_64"

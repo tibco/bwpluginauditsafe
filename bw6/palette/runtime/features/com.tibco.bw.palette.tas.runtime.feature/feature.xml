@@ -40,9 +40,9 @@
       <import feature="com.tibco.tibcoxml.xml" version="5.60.400" match="compatible"/>
       <import feature="com.tibco.tibcoxml.util" version="5.60.400" match="compatible"/>
 
-      <import feature="com.tibco.bw.sharedresource.tas.model.feature" version="6.3.101"/>
-      <import feature="com.tibco.bw.sharedresource.tas.runtime.feature" version="6.3.101"/>
-      <import feature="com.tibco.bw.palette.tas.model.feature" version="6.3.101"/>
+      <import feature="com.tibco.bw.sharedresource.tas.model.feature" version="6.4.0"/>
+      <import feature="com.tibco.bw.sharedresource.tas.runtime.feature" version="6.4.0"/>
+      <import feature="com.tibco.bw.palette.tas.model.feature" version="6.4.0"/>
    </requires>
 
    <plugin

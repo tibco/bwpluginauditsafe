@@ -2,7 +2,7 @@
 <feature
       id="com.tibco.bw.sharedresource.tas.model.feature"
       label="%featureName"
-      version="6.3.101.qualifier"
+      version="6.4.0.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -22,6 +22,6 @@
          id="com.tibco.bw.sharedresource.tas.model"
          download-size="0"
          install-size="0"
-         version="6.3.101.qualifier"
+         version="6.4.0.qualifier"
          unpack="false"/>
 </feature>

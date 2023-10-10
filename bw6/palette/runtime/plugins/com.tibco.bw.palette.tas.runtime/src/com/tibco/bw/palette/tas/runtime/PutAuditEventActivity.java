@@ -25,7 +25,6 @@ import org.genxdm.mutable.NodeFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.tibco.bw.palette.tas.model.tas.PutAuditEvent;
 import com.tibco.bw.palette.tas.model.tas.TasConstants;
@@ -168,18 +167,15 @@ public class PutAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 			String key = ite.next();
 			fieldSet.add(key);
 		}
-
-		ArrayNode resultArray = (ArrayNode)mapper.readTree(result.getMessage());
-		for (JsonNode jsonNode : resultArray) {
-			N event = noteFactory.createElement("", "Event", "");
-			for(String fieldName : fieldSet){
-				N fieldNode = noteFactory.createElement("", fieldName,"");
-				N valueNode = noteFactory.createText(jsonNode.get(fieldName).asText());
-				mutableModel.appendChild(fieldNode, valueNode);
-				mutableModel.appendChild(event, fieldNode);
-			}
-			mutableModel.appendChild(output,event);
+		
+		JsonNode jsonNode = mapper.readTree(result.getMessage());
+		for(String fieldName : fieldSet){
+			N fieldNode = noteFactory.createElement("", fieldName,"");
+			N valueNode = noteFactory.createText(jsonNode.get(fieldName).asText());
+			mutableModel.appendChild(fieldNode, valueNode);
+			mutableModel.appendChild(output, fieldNode);
 		}
+
         return output;
     }
 

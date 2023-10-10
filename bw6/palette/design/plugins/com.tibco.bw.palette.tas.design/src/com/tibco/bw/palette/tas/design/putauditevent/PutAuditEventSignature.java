@@ -116,9 +116,6 @@ public class PutAuditEventSignature extends TasBasicSignature {
 		JsonReader requestNode;
 		try {
 			requestNode = new JsonReader(conn.getOutput());
-			XSDModelGroup event = null ;
-			event = XSDUtility.addComplexTypeElement(rootOutput, TasConstants.TAG_NAME,
-					TasConstants.TAG_NAME, 1, -1, XSDCompositor.SEQUENCE_LITERAL);
 
 			JsonNode item = requestNode.getNode("items");
 			JsonNode properties = item.get("properties");
@@ -126,7 +123,7 @@ public class PutAuditEventSignature extends TasBasicSignature {
 
 			while(ite.hasNext()){
 				String key = ite.next();
-				XSDUtility.addSimpleTypeElement(event, key, "string", 0, 1);
+				XSDUtility.addSimpleTypeElement(rootOutput, key, "string", 0, 1);
 			}
 
 			outputSchema = compileSchema(outputSchema);
@@ -161,18 +158,11 @@ public class PutAuditEventSignature extends TasBasicSignature {
     	JsonReader requestNode;
 		try {
 			requestNode = new JsonReader(conn.getSchema());
-			int maxItem = requestNode.getNode("maxItems").asInt();
-			if(maxItem <1) maxItem =100;
+			XSDUtility.addSimpleTypeElement(rootInput, TasConstants.TAS_EVENT_ID, "string", 1, 1);
 
-			XSDModelGroup event = null ;
-			event = XSDUtility.addComplexTypeElement(rootInput, TasConstants.TAG_NAME,
-					TasConstants.TAG_NAME, 1, maxItem, XSDCompositor.SEQUENCE_LITERAL);
-			
-			XSDUtility.addSimpleTypeElement(event, "tas_event_id", "string", 1, 1);
 
 			JsonNode item = requestNode.getNode("items");
 			JsonNode properties = item.get("properties");
-			HashSet<String> requiredSet = new HashSet<String>();
 
 			HashSet<String> removedSet = new HashSet<String>();
 			removedSet.add("payload");
@@ -186,15 +176,13 @@ public class PutAuditEventSignature extends TasBasicSignature {
 				if(removedSet.contains(key)) {
 					continue;				
 				}
-				if(!requiredSet.contains(key)){
-					JsonNode field = properties.get(key);
-					if("string".equals(field.get("type").textValue())){
-						XSDUtility.addSimpleTypeElement(event, key, "string", 0, 1);
-					}
+				JsonNode field = properties.get(key);
+				if("string".equals(field.get("type").textValue())){
+					XSDUtility.addSimpleTypeElement(rootInput, key, "string", 0, 1);
 				}
 			}
 
-			XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(event, "extra_props", "extra_props", 0, -1, XSDCompositor.SEQUENCE_LITERAL);
+			XSDModelGroup extraGroup = XSDUtility.addComplexTypeElement(rootInput, "extra_props", "extra_props", 0, -1, XSDCompositor.SEQUENCE_LITERAL);
 			XSDUtility.addSimpleTypeElement(extraGroup, "prop_name", "string", 1, 1);
 			XSDUtility.addSimpleTypeElement(extraGroup, "prop_value", "string", 1, 1);
 

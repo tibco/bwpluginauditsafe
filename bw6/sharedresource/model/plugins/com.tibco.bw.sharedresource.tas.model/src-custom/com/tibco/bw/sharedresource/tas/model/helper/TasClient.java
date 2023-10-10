@@ -718,7 +718,7 @@ public class TasClient {
 			} else if(METHOD_POST_EVENT.equals(method)){
 				actionUrl = tasBaseUrl + "/tas/dataserver/events/post";
 			} else if(METHOD_PUT_EVENT.equals(method)){
-				actionUrl = tasBaseUrl + "/tas/dataserver/events/update/tas_event_id";
+				actionUrl = tasBaseUrl + "/tas/dataserver/events/update/"+tas_event_id;
 			}
 					
 			Map<String, String> params = getsettingMap("application/json", "application/json");

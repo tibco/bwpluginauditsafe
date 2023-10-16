@@ -134,7 +134,7 @@
    <extension
          point="com.tibco.bw.design.BWContextHelp">
       <plugin
-            defaultURL="https://docs.tibco.com/go/bwpluginauditsafe/6.3.2/doc/html"
+            defaultURL="https://docs.tibco.com/go/bwpluginauditsafe/6.4.0/doc/html"
             id="bw.auditsafe.product"
             name="BusinessWorks TAS Plugin">
       </plugin>

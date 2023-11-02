@@ -24,6 +24,7 @@
       <import feature="com.tibco.bw.api.model.feature" version="6.3.1800" match="compatible"/>
       <import feature="com.tibco.bw.tpcl.com.fasterxml.jackson.feature" version="1.2.900" match="compatible"/>
       <import feature="com.tibco.bw.thor.design.feature" version="1.2.2600" match="compatible"/>
+      <import feature="com.tibco.tpcl.org.slf4j.log4j12.feature" version="1.8.100" match="compatible"/>
    </requires>
 
 </feature>

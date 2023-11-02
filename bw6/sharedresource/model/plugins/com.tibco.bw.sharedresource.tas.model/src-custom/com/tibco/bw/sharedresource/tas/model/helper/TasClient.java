@@ -17,10 +17,13 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
 public class TasClient {
+	private final static Logger logger = LoggerFactory.getLogger("com.tibco.thor.frwk.TasClient");
 	public static final String ENV_INTERNAL_URL = "TIBCO_INTERNAL_INTERCOM_URL";
 	public static final String ENV_SUBSCRIPTION_ID = "TIBCO_INTERNAL_TCI_SUBSCRIPTION_ID";
 	public static final String PROD_TIBCO_CLOUD = "auditsafe.cloud.tibco.com";
@@ -216,7 +219,6 @@ public class TasClient {
 			
 			Map<String, String> params = getsettingMap("application/json", "application/json");
 			if (isIntercom) {
-				
 				postEventUrl = internalUrl
 						+ "/tas/dataserver/intercom/transactions?tscSubscriptionId="
 						+ subId;
@@ -228,6 +230,7 @@ public class TasClient {
 						+ "/tas/dataserver/transactions";
 
 			}
+			
 			httpConn = buildpostHttpUrlConnectionWithJson(postEventUrl, body, params);
 			
 			String message = getHttpRequestBody(httpConn);
@@ -250,6 +253,7 @@ public class TasClient {
 					}
 				}
 			} else {
+				logger.error("postAuditEvent retry=false error="+message);
 				result.setErrorMessage(message);
 			}
 
@@ -325,6 +329,7 @@ public class TasClient {
 			}
 			String idmUrl = tasBaseUrl + "/idm/v2/login-oauth";
 			HttpURLConnection httpConn;
+			logger.info("auth url="+idmUrl+" for user="+username+" AccessToken="+taResponse.getMessage() +" AccountId="+accountId);
 
 			Map<String, String> params = new HashMap<String, String>();
 			params.put("AccessToken", taResponse.getMessage());
@@ -339,6 +344,7 @@ public class TasClient {
 			if (statusCode == HttpURLConnection.HTTP_OK){
 				tr.setSuccessfulResponse(message);
 			} else {
+				logger.error("auth error msg="+message);
 				tr.setErrorMessage(message);
 			}
 		} catch (IOException e) {
@@ -353,6 +359,7 @@ public class TasClient {
 		if(tasUrl.contains(PROD_TIBCO_CLOUD)){
 			taUrl = "https://sso-ext.tibco.com/as/token.oauth2";
 		}
+		logger.info("getToken url="+taUrl+" for user="+username);
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("username", username);
 		params.put("password", password);
@@ -368,11 +375,13 @@ public class TasClient {
 
 			response.setStatusCode(statusCode);
 			if (statusCode == HttpURLConnection.HTTP_OK) {
+				logger.info("getToken 200 msg="+messagebody);
 				JsonReader node = new JsonReader(messagebody);
 				if (node.getNode("access_token") != null) {
 					response.setSuccessfulResponse(node.getNode("access_token").textValue());
 				}
 			} else {
+				logger.error("getToken error="+messagebody);
 				response.setErrorMessage(messagebody);
 			}
 		} catch (IOException e) {

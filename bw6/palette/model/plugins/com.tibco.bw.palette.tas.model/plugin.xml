@@ -29,9 +29,9 @@
       </activityIcon>
       <activityIcon
             activityTypeID="bw.auditsafe.PutAuditEvent"
-            diagramIcon="icons/obj48/postauditevent_48x48.png"
-            largeIcon="icons/obj32/postauditevent_32x32.png"
-            smallIcon="icons/obj16/postauditevent_16x16.png">
+            diagramIcon="icons/obj48/putauditevent_48x48.png"
+            largeIcon="icons/obj32/putauditevent_32x32.png"
+            smallIcon="icons/obj16/putauditevent_16x16.png">
       </activityIcon>
       <activityIcon
             activityTypeID="bw.auditsafe.GetAuditEvent"

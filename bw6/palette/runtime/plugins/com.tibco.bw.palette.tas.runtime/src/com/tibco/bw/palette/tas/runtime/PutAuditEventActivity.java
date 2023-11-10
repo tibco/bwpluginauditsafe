@@ -25,6 +25,7 @@ import org.genxdm.mutable.NodeFactory;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.tibco.bw.palette.tas.model.tas.PutAuditEvent;
 import com.tibco.bw.palette.tas.model.tas.TasConstants;
@@ -83,6 +84,7 @@ public class PutAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 
 		Model<N> model = processContext.getModel();
 		Iterable<N> criteriaIte = model.getChildElements(inputData);
+		ArrayNode extraPropsNode = mapper.createArrayNode();
 		for (N node : criteriaIte) {
 			String name = model.getLocalName(node);
 			if(TasConstants.TAS_EVENT_ID.equals(name)){
@@ -95,9 +97,12 @@ public class PutAuditEventActivity<N> extends BaseSyncActivity<N> implements TAS
 				if(nameNode != null && model.getStringValue(nameNode)!=null){
 					propNode.put("prop_name", model.getStringValue(nameNode));
 					propNode.put("prop_value", model.getStringValue(model.getFirstChildElementByName(node, null, "prop_value")));
-					requestNode.put(name, propNode);
+					extraPropsNode.add(propNode);
 				}
 			}
+		}
+		if(!extraPropsNode.isEmpty()) {
+			requestNode.set("extra_props", extraPropsNode);
 		}
 		
 		if(tas_event_id == ""){

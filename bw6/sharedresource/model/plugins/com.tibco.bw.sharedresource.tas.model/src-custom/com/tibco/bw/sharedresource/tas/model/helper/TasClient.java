@@ -17,13 +17,10 @@ import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
 public class TasClient {
-	private final static Logger logger = LoggerFactory.getLogger("com.tibco.thor.frwk.auditsafe");
 	public static final String ENV_INTERNAL_URL = "TIBCO_INTERNAL_INTERCOM_URL";
 	public static final String ENV_SUBSCRIPTION_ID = "TIBCO_INTERNAL_TCI_SUBSCRIPTION_ID";
 	public static final String PROD_TIBCO_CLOUD = "auditsafe.cloud.tibco.com";
@@ -115,7 +112,6 @@ public class TasClient {
 						+ "/tas/dataserver/transactions/query";
 
 			}
-			logger.debug("getAuditEvent url="+getEventUrl);
 			httpConn = buildpostHttpUrlConnectionWithJson(getEventUrl, body, params);
 			
 			String message = getHttpRequestBody(httpConn);
@@ -138,7 +134,6 @@ public class TasClient {
 					}
 				}
 			} else {
-				logger.warn("getAuditEvent error="+message);
 				result.setErrorMessage(message);
 			}
 
@@ -181,7 +176,6 @@ public class TasClient {
 				params.put("Authorization", "Bearer " + ssoClient.getBearerToken());
 
 			}
-			logger.debug("getAuditEventSso url="+getEventUrl);
 			httpConn = buildpostHttpUrlConnectionWithJson(getEventUrl, body, params);
 			
 			String message = getHttpRequestBody(httpConn);
@@ -194,7 +188,6 @@ public class TasClient {
 				updateSsoExecuteToken();
 				result = getAuditEventSso(tasBaseUrl, access_token, refresh_token, body, false);
 			} else {
-				logger.warn("getAuditEventSso error="+message);
 				result.setErrorMessage(message);
 			}
 
@@ -223,6 +216,7 @@ public class TasClient {
 			
 			Map<String, String> params = getsettingMap("application/json", "application/json");
 			if (isIntercom) {
+				
 				postEventUrl = internalUrl
 						+ "/tas/dataserver/intercom/transactions?tscSubscriptionId="
 						+ subId;
@@ -234,7 +228,6 @@ public class TasClient {
 						+ "/tas/dataserver/transactions";
 
 			}
-			logger.debug("postAuditEvent url="+postEventUrl);
 			httpConn = buildpostHttpUrlConnectionWithJson(postEventUrl, body, params);
 			
 			String message = getHttpRequestBody(httpConn);
@@ -257,7 +250,6 @@ public class TasClient {
 					}
 				}
 			} else {
-				logger.warn("postAuditEvent retry=false error="+message);
 				result.setErrorMessage(message);
 			}
 
@@ -298,7 +290,6 @@ public class TasClient {
 						+ "/tas/dataserver/events/post";
 				params.put("Authorization", "Bearer " + ssoClient.getBearerToken());
 			}
-			logger.debug("postAuditEventbySso url="+postEventUrl);
 			httpConn = buildpostHttpUrlConnectionWithJson(postEventUrl, body, params);
 			
 			String message = getHttpRequestBody(httpConn);
@@ -311,7 +302,6 @@ public class TasClient {
 				updateSsoExecuteToken();
 				result = postAuditEventbySso(tasBaseUrl, access_token, refresh_token, body, false);
 			} else {
-				logger.warn("postAuditEventbySso retry=false error="+message);
 				result.setErrorMessage(message);
 			}
 
@@ -335,7 +325,6 @@ public class TasClient {
 			}
 			String idmUrl = tasBaseUrl + "/idm/v2/login-oauth";
 			HttpURLConnection httpConn;
-			logger.debug("auth url="+idmUrl+" for user="+username+" AccessToken="+taResponse.getMessage() +" AccountId="+accountId);
 
 			Map<String, String> params = new HashMap<String, String>();
 			params.put("AccessToken", taResponse.getMessage());
@@ -350,7 +339,6 @@ public class TasClient {
 			if (statusCode == HttpURLConnection.HTTP_OK){
 				tr.setSuccessfulResponse(message);
 			} else {
-				logger.warn("auth error="+message);
 				tr.setErrorMessage(message);
 			}
 		} catch (IOException e) {
@@ -365,7 +353,6 @@ public class TasClient {
 		if(tasUrl.contains(PROD_TIBCO_CLOUD)){
 			taUrl = "https://sso-ext.tibco.com/as/token.oauth2";
 		}
-		logger.debug("getToken url="+taUrl+" for user="+username);
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("username", username);
 		params.put("password", password);
@@ -381,13 +368,11 @@ public class TasClient {
 
 			response.setStatusCode(statusCode);
 			if (statusCode == HttpURLConnection.HTTP_OK) {
-				logger.debug("getToken OK msg="+messagebody);
 				JsonReader node = new JsonReader(messagebody);
 				if (node.getNode("access_token") != null) {
 					response.setSuccessfulResponse(node.getNode("access_token").textValue());
 				}
 			} else {
-				logger.warn("getToken error="+messagebody);
 				response.setErrorMessage(messagebody);
 			}
 		} catch (IOException e) {
@@ -649,7 +634,6 @@ public class TasClient {
 		
 		HttpURLConnection httpConn;
 		try {
-			logger.debug("getJWTToken url="+url+" for user="+username);
 			httpConn = buildpostHttpUrlConnectionWithJson(url, body,
 					getsettingMap("application/json", "application/json"));
 			String messagebody = getHttpRequestBody(httpConn);
@@ -662,7 +646,6 @@ public class TasClient {
 					response.setSuccessfulResponse(node.getNode("token").textValue());
 				}
 			} else {
-				logger.warn("getJWTToken error="+messagebody);
 				response.setErrorMessage(messagebody);
 			}
 		} catch (IOException e) {
@@ -684,7 +667,6 @@ public class TasClient {
 			
 			Map<String, String> params = getsettingMap("application/json", "application/json");
 			params.put("x-atmosphere-token", token);
-			logger.debug("getSchemaEE url="+schemaUrl);
 			HttpURLConnection httpConn = buildpostHttpUrlConnectionWithJson(schemaUrl, body, params);
 			String messagebody = getHttpRequestBody(httpConn);
 			int statusCode = httpConn.getResponseCode();
@@ -698,7 +680,6 @@ public class TasClient {
 					result.setSuccessfulResponse(node.getNode("responseSchema").toString());
 				}
 			} else {
-				logger.warn("getSchemaEE error="+messagebody);
 				result.setErrorMessage(messagebody);
 			}
 			
@@ -739,8 +720,6 @@ public class TasClient {
 			} else if(METHOD_PUT_EVENT.equals(method)){
 				actionUrl = tasBaseUrl + "/tas/dataserver/events/update/"+tas_event_id;
 			}
-			
-			logger.debug("tasEEAction url="+actionUrl);
 					
 			Map<String, String> params = getsettingMap("application/json", "application/json");
 			params.put("x-atmosphere-token", token);
@@ -776,12 +755,10 @@ public class TasClient {
 					if(statusCode == HttpURLConnection.HTTP_OK){
 						result.setSuccessfulResponse(message);
 					} else {
-						logger.warn("tasEEAction after refresh error="+message);
 						result.setErrorMessage(message);
 					}
 				}
 			}else {
-				logger.warn("tasEEAction no refresh error="+message);
 				result.setErrorMessage(message);
 			}
 
@@ -809,7 +786,7 @@ public class TasClient {
 			}else if(METHOD_PUT_EVENT.equals(method)){
 				actionUrl = tasBaseUrl + "/tas/dataserver/events/update/"+tas_event_id;
 			}
-			logger.debug("tasEEActionWithToken url="+actionUrl);		
+					
 			Map<String, String> params = getsettingMap("application/json", "application/json");
 			params.put("x-atmosphere-token", token);
 			if(METHOD_PUT_EVENT.equals(method)){
@@ -824,7 +801,6 @@ public class TasClient {
 			if(statusCode == HttpURLConnection.HTTP_OK){
 				result.setSuccessfulResponse(message);
 			}else {
-				logger.warn("tasEEActionWithToken error="+message);
 				result.setErrorMessage(message);
 			}
 
@@ -896,8 +872,6 @@ public class TasClient {
 				params.put("Authorization", "Bearer " + accessToken);
 
 			}
-			
-			logger.debug("tasActionWithToken url="+postUrl);
 			if (TasClient.METHOD_PUT_EVENT.equals(method)) {
 				httpConn = buildputHttpUrlConnectionWithJson(postUrl, body, params);
 			}else {
@@ -917,7 +891,6 @@ public class TasClient {
 					result.setErrorMessage("Refresh Token failed! "+ pair.getMessage());
 				}
 			} else {
-				logger.warn("tasActionWithToken error="+message);
 				result.setErrorMessage(message);
 			}
 
@@ -947,7 +920,6 @@ public class TasClient {
 		params.put("grant_type", "client_credentials");
 
 		try {
-			logger.debug("getOAuthToken url="+idmUrl);
 			HttpURLConnection httpConn = buildpostHttpUrlConnection(idmUrl, params, settingMap);
 			String messagebody = getHttpRequestBody(httpConn);
 			int statusCode = httpConn.getResponseCode();
@@ -958,7 +930,6 @@ public class TasClient {
 				token.setAccessToken(node.getNode("access_token").textValue());
 				tokenMap.put(clientId, token.getAccessToken());
 			} else {
-				logger.warn("getOAuthToken error="+messagebody);
 				token.setSuccess(false);
 				token.setMessage(messagebody);
 			}
@@ -984,7 +955,6 @@ public class TasClient {
 		settingMap.put("Authorization", "Bearer " + access_token);
 
 		try {
-			logger.debug("checkAuditUser url="+userUrl);
 			HttpURLConnection httpConn = buildGetHttpConnection(userUrl,settingMap);
 			String messagebody = getHttpRequestBody(httpConn);
 			int statusCode = httpConn.getResponseCode();
@@ -994,7 +964,6 @@ public class TasClient {
 				result.setSuccessfulResponse(messagebody);
 
 			} else {
-				logger.warn("checkAuditUser error="+messagebody);
 				result.setErrorMessage(messagebody);
 			}
 		} catch (IOException e) {
@@ -1030,7 +999,6 @@ public class TasClient {
 						+ "/tas/dataserver/events/update/"+tas_event_id;
 				params.put("Authorization", "Bearer " + ssoClient.getBearerToken());
 			}
-			logger.debug("putAuditEventbySso url="+putEventUrl);
 			httpConn = buildputHttpUrlConnectionWithJson(putEventUrl, body, params);
 			
 			String message = getHttpRequestBody(httpConn);
@@ -1043,7 +1011,6 @@ public class TasClient {
 				updateSsoExecuteToken();
 				result = putAuditEventbySso(tasBaseUrl, access_token, refresh_token, tas_event_id, body, false);
 			} else {
-				logger.warn("putAuditEventbySso error="+message);
 				result.setErrorMessage(message);
 			}
 
@@ -1082,7 +1049,6 @@ public class TasClient {
 						+ "/tas/dataserver/events/update/"+tas_event_id;
 
 			}
-			logger.debug("putAuditEvent url="+putEventUrl);
 			httpConn = buildputHttpUrlConnectionWithJson(putEventUrl, body, params);
 			
 			String message = getHttpRequestBody(httpConn);
@@ -1105,7 +1071,6 @@ public class TasClient {
 					}
 				}
 			} else {
-				logger.warn("putAuditEvent error="+message);
 				result.setErrorMessage(message);
 			}
 

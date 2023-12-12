@@ -24,8 +24,6 @@ import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.ClientProperties;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -34,7 +32,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class TasSsoClient implements TasSsoClientConstant{
 	
-	private final static Logger logger = LoggerFactory.getLogger("com.tibco.thor.frwk.auditsafe");
 	private static TasSsoClient instance = null;
 
 	private Client wsClient;
@@ -181,20 +178,18 @@ public class TasSsoClient implements TasSsoClientConstant{
 			formData.add(PARAMETER_GRANT_TYPE, PARAMETER_REFRESH_TOKEN);
 
 			// "application/x-www-form-urlencoded"
-			logger.debug("fetchBearerTokenFromRefreshToken try url="+buildUrlString+ " PARAMETER_CLIENT_ID="+ TasSsoConfig.getClientID() +" refreshtoken="+refreshToken.substring(refreshToken.length()-4));
 			Response response = webTarget.request().post(Entity.entity(formData, MediaType.APPLICATION_FORM_URLENCODED_TYPE));
 			if (!isSuccessful(response)) {
 				int statusCode = response.getStatus();
 				String reason = response.getStatusInfo() != null ? response.getStatusInfo().getReasonPhrase() : null;
 				String message = statusCode + ":" + reason;
-				logger.warn("fetchBearerTokenFromRefreshToken failed : "+message);
 				//IStatus errorStatus = Activator.createErrorStatus(message);
 				//Activator.log(errorStatus);
 				//Activator.openErrorDialog("Unable to get Bearer token from Refresh token", errorStatus);
 
 			} else {
 				String responseString = response.readEntity(String.class);
-				logger.debug("fetchBearerTokenFromRefreshToken ",responseString); //$NON-NLS-1$
+				//printResponse("fetchBearerTokenFromRefreshToken", response, responseString); //$NON-NLS-1$
 
 				//IStatus infoStatus = Activator.createInfoStatus(responseString);
 				//Activator.log(infoStatus);

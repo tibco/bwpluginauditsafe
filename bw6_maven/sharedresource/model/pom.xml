@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.tibco.bw.sharedresource.tas.model.feature</groupId>
+  <artifactId>model</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <parent>
+	<groupId>com.tibco.bw</groupId>
+	<artifactId>product.parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<relativePath>../../</relativePath>
+  </parent>
+  <modules>
+    <module>features/com.tibco.bw.sharedresource.tas.model.feature</module>
+    <module>plugins/com.tibco.bw.sharedresource.tas.model</module>
+  </modules>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-maven-plugin</artifactId>
+        <version>2.7.5</version>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

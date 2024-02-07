@@ -1,0 +1,8 @@
+
+Push to the reldocker:::
+
+https://commander-dc.tibco.com/commander/link/runProcedure/projects/Docker/procedures/ipaas_runtime_image_vchordiy?firstPage=1&s=Projects
+
+Location of user.properties file: https://svn.tibco.com/svn/amxext/trunk/bwsolutions/bwplugintcta/bw6/pkg_info/bom/6.2.0/base/docker-tci2.0/auditsafe
+Installer package location: http://reldist.na.tibco.com/package/bwpluginauditsafe/6.2.0/V1
+

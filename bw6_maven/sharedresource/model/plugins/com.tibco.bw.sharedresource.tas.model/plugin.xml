@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ Copyright2011 - 2013 TIBCO Software Inc.
+ All rights reserved.
+ This software is confidential and proprietary information of TIBCO Software Inc.
+ Overridable true
+ </copyright>
+ $Id$
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://ns.tibco.com/bw/sharedresource/tas"
+            class="com.tibco.bw.sharedresource.tas.model.tas.TasPackage"
+            genModel="model/tas.sharedresource.genmodel"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            class="com.tibco.amf.model.sharedresource.jndi.util.JndiResourceFactoryImpl"
+            type="tasconnectionResource">
+      </parser>
+   </extension>
+
+null
+</plugin>

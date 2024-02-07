@@ -1,0 +1,229 @@
+<?xml  version="1.0"?>
+<TIBCOInstallerFeatures>
+   <productDef
+   		name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) AuditSafe 6.0.0"
+   		version="6.0.0"
+   		id="bwpluginauditsafe"
+   		releaseType="base"
+   		supportedPlatforms="linux/x86_64,win/x86_64,macos/x86_64"
+   		compatDisplayName="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) AuditSafe"
+   		compatType="bwpluginauditsafe"
+		emailalias="mqian@tibco.com"
+   		universalinstallerrelease="3.6.5"
+   		universalinstallerversion="L"/>
+
+        <packagingProperties createp2installer="true" supportedBWVersion="6.4" createcloudartifacts="epaas" bundle_analysis="true"/>
+
+    <customVariables>
+		<localVariable name="bwpluginauditsafecloud.minimum.bw.version" value="1.0.0"/>
+		<localVariable name="bwpluginauditsafe.minimum.bw.version" value="6.4.2"/>
+	    <!--<localVariable name="bwpluginauditsafe.minimum.bwce.version" value="2.3.4"/>-->
+		<localVariable name="bwpluginauditsafe.extension.palettes.home" value="${tibco.BW.home}/../palettes/auditsafe/6.0"/>
+		<localVariable name="bwpluginauditsafe.extension.palettes.runtime.home" value="${tibco.BW.home}/../palettes/auditsafe/6.0/runtime"/>
+		<localVariable name="bwpluginauditsafe.extension.palettes.design.home" value="${tibco.BW.home}/../palettes/auditsafe/6.0/design"/>
+
+		<localVariable name="bwpluginauditsafe.palette.full.name" value="TIBCO BW AuditSafe Palette"/>
+		<localVariable name="bwpluginauditsafe.palette.short.name" value="auditsafe"/>
+		<localVariable name="bwpluginauditsafe.palette.package.name" value="com.tibco.bw.palette"/>
+
+		<localVariable name="bwpluginauditsafe.palette.ius" value="com.tibco.bw.palette.tas.design.feature.feature.group,com.tibco.bw.palette.tas.model.feature.feature.group,com.tibco.bw.sharedresource.tas.design.feature.feature.group,com.tibco.bw.sharedresource.tas.model.feature.feature.group"/>
+		<localVariable name="bwpluginauditsafe.palette.install.tag" value="TIBCO BW AuditSafe Palette Features Installation"/>
+		<localVariable name="bwpluginauditsafe.palette.uninstall.tag" value="TIBCO BW AuditSafe Palette Features Uninstallation"/>
+
+    </customVariables>
+
+    <installProfile name="Runtime" uid="runtime-profile" description=""/>
+    <installProfile description="Installs all components of the product" name="Typical" uid="typical" defaultSelected="true"/>
+
+    <installerFeatureNode name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) AuditSafe Design" nodeID="design-node" parentNode="root"/>
+    <installerFeatureNode name="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) AuditSafe Runtime" nodeID="runtime-node" parentNode="root"/>
+
+    <installerFeature name="runtime" visible="true" version="6.0.0" parentNode="runtime-node" profileUID="runtime-profile" dependencyOperator="OR">
+        <assemblyList>
+			<assembly uid="assembly_tibco_com_tibco_bw_palette_tas_runtime_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.0.0" />
+			<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_runtime_feature"  overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.0.0"/>
+			<assembly uid="product_tibco_bwpluginauditsafe_runtime" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.home}" version="6.0.0"/>
+			<assembly uid="product_tibco_bwpluginauditsafe_samples" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.home}" version="6.0.0"/>
+        </assemblyList>
+
+        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Runtime" type="feature" uid="Runtime_BW" version="6.4.2"/>
+		<!--<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Runtime" type="feature" uid="Runtime_bwce" version="2.3.4"/>-->
+		<dependency description="TIBCO BusinessWorks Cloud Runtime" type="assembly" uid="product_tibco_bwplugin_cloud_runtime_dependency" version="1.0.0"/>
+
+		<wizardAction class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction" sequence="post-selection">
+			<property featureUID="required_bwpluginauditsafe"/>
+			<property isEnabled="true"/>
+			<property isVisible="false"/>
+			<property isSelected="true"/>
+		</wizardAction>
+		
+		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
+			<property productAcronym="BW"/>
+			<property minimumVersion="$L{bwpluginauditsafe.minimum.bw.version}"/>
+			<property vpdUID="BW_runtime"/>
+			<property productAssemblyUID="product_tibco_com_tibco_bw_enterprise_runtime"/>
+			<property productAssemblyMinVersion="$L{bwpluginauditsafe.minimum.bw.version}"/>
+			<property showProgress="true"/>
+			<property description="Get install location for BW Runtime"/>
+		</wizardAction>
+		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
+			<property productAcronym="BW"/>
+			<property minimumVersion="$L{bwpluginauditsafecloud.minimum.bw.version}"/>
+			<property vpdUID=""/>
+			<property productAssemblyUID="product_tibco_bwplugin_cloud_runtime_dependency"/>
+			<property productAssemblyMinVersion="$L{bwpluginauditsafecloud.minimum.bw.version}"/>
+			<property showProgress="true"/>
+			<property description="Get install location for Cloud Runtime"/>
+		</wizardAction>
+		<!--<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
+			<property productAcronym="BW"/>
+			<property minimumVersion="$L{bwpluginauditsafecloud.minimum.bwce.version}"/>
+			<property vpdUID="bwce_runtime"/>
+			<property productAssemblyUID="product_tibco_bwplugin_cloud_runtime_dependency"/>
+			<property productAssemblyMinVersion="$L{bwpluginauditsafecloud.minimum.bwce.version}"/>
+			<property showProgress="true"/>
+			<property description="Get install location for BWCE Runtime"/>
+		</wizardAction>-->
+
+		<postInstallAction taskFile="${tibco.BW.home}/scripts/build.xml" description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) AuditSafe runtime - creating extension palette link" target="create-ext-palette-link" logLevel="debug" sequence="post-assembly-ref">
+			<postInstallActionProperty name="bw.home" value="${tibco.BW.home}"/>
+			<postInstallActionProperty name="bw.home.esc" value="${tibco.BW.home.esc}"/>
+			<postInstallActionProperty name="ext.palette.full.name" value="$L{bwpluginauditsafe.palette.full.name}"/>
+			<postInstallActionProperty name="ext.palette.short.name" value="$L{bwpluginauditsafe.palette.short.name}"/>
+			<postInstallActionProperty name="ext.palette.package.name" value="$L{bwpluginauditsafe.palette.package.name}"/>
+			<postInstallActionProperty name="ext.palette.location" value="$L{bwpluginauditsafe.extension.palettes.home}"/>
+		</postInstallAction>
+
+		<postInstallAction taskFile="${tibco.BW.home}/scripts/build.xml" description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) AuditSafe runtime - deleting extension palette link" target="delete-ext-palette-link" logLevel="debug" sequence="pre-uninstall-ref">
+			<postInstallActionProperty name="bw.home" value="${tibco.BW.home}"/>
+			<postInstallActionProperty name="bw.home.esc" value="${tibco.BW.home.esc}"/>
+			<postInstallActionProperty name="ext.palette.full.name" value="$L{bwpluginauditsafe.palette.full.name}"/>
+			<postInstallActionProperty name="ext.palette.short.name" value="$L{bwpluginauditsafe.palette.short.name}"/>
+			<postInstallActionProperty name="ext.palette.package.name" value="$L{bwpluginauditsafe.palette.package.name}"/>
+			<postInstallActionProperty name="ext.palette.location" value="$L{bwpluginauditsafe.extension.palettes.home}"/>
+		</postInstallAction>
+		
+		<postInstallAction taskFile="${tibco.BW.home}/scripts/build.xml" description="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO Cloud(TM) AuditSafe runtime - deleting previous extension palette link" target="delete-ext-palette-link" logLevel="debug" sequence="pre-install-ref">
+			<condition class="com.tibco.installer.wizard.condition.TIBCOFileExistsWizardCondition">
+				<property mustBeMet="true"/>
+				<property filename="${tibco.BW.home.esc}/ext/palettes/com.tibco.bw.palette.auditsafe.link"/>
+			</condition>
+			<postInstallActionProperty name="bw.home" value="${tibco.BW.home}"/>
+			<postInstallActionProperty name="bw.home.esc" value="${tibco.BW.home.esc}"/>
+			<postInstallActionProperty name="ext.palette.full.name" value="$L{bwpluginauditsafe.palette.full.name}"/>
+			<postInstallActionProperty name="ext.palette.short.name" value="$L{bwpluginauditsafe.palette.short.name}"/>
+			<postInstallActionProperty name="ext.palette.package.name" value="$L{bwpluginauditsafe.palette.package.name}"/>
+			<postInstallActionProperty name="ext.palette.location" value="$L{bwpluginauditsafe.extension.palettes.home}"/>
+		</postInstallAction>
+		
+    </installerFeature>
+
+    <installerFeature name="design" visible="true" version="6.0.0" parentNode="design-node" profileUID="typical" dependencyOperator="OR">
+
+		<assemblyList>
+			<assembly overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_palette_tas_design_feature" version="6.0.0"/>
+			<assembly overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.design.home}" uid="assembly_tibco_com_tibco_bw_sharedresource_tas_design_feature" version="6.0.0"/>
+		</assemblyList>
+
+        <dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Design" type="feature" uid="Design_BW" version="6.4.2"/>
+	<!--<dependency description="TIBCO ActiveMatrix BusinessWorks(TM) Container Edition Runtime" type="feature" uid="Design_bwce" version="2.3.4"/>-->
+		<dependency description="TIBCO BusinessWorks Cloud Design" type="assembly" uid="product_tibco_bwplugin_cloud_design_dependency" version="1.0.0"/>
+		
+		
+		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction">
+            <property featureUID="runtime_bwpluginauditsafe"/>
+            <property isEnabled="true"/>
+            <property isVisible="true"/>
+            <property isSelected="true"/>
+        </wizardAction>
+
+		<wizardAction class="com.tibco.installer.wizard.action.TIBCOSetFeatureStateWizardAction" sequence="post-selection">
+			<property featureUID="required_bwpluginauditsafe"/>
+			<property isEnabled="true"/>
+			<property isVisible="false"/>
+			<property isSelected="true"/>
+		</wizardAction>
+				
+		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
+			<property productAcronym="BW"/>
+			<property minimumVersion="$L{bwpluginauditsafe.minimum.bw.version}"/>
+			<property vpdUID="BW_design"/>
+			<property productAssemblyUID="product_tibco_com_tibco_bw_enterprise_design"/>
+			<property productAssemblyMinVersion="$L{bwpluginauditsafe.minimum.bw.version}"/>
+			<property showProgress="true"/>
+			<property description="Get install location for BW Design"/>
+		</wizardAction>
+
+		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
+			<property productAcronym="BW"/>
+			<property minimumVersion="$L{bwpluginauditsafecloud.minimum.bw.version}"/>
+			<property vpdUID=""/>
+			<property productAssemblyUID="product_tibco_bwplugin_cloud_design_dependency"/>
+			<property productAssemblyMinVersion="$L{bwpluginauditsafecloud.minimum.bw.version}"/>
+			<property showProgress="true"/>
+			<property description="Get install location for Cloud Design"/>
+		</wizardAction>
+
+		<!--<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCheckForInstallLoc">
+			<property productAcronym="BW"/>
+			<property minimumVersion="$L{bwpluginauditsafecloud.minimum.bwce.version}"/>
+			<property vpdUID="bwce_design"/>
+			<property productAssemblyUID="product_tibco_bwplugin_cloud_design_dependency"/>
+			<property productAssemblyMinVersion="$L{bwpluginauditsafecloud.minimum.bwce.version}"/>
+			<property showProgress="true"/>
+			<property description="Get install location for BWCE Design"/>
+		</wizardAction>-->
+
+		<wizardAction sequence="post-selection" class="com.tibco.installer.wizard.action.TIBCOCreateP2AssemblyList">
+			<property variableToSet="tibco.p2.assemblies" />
+		</wizardAction>
+		
+		<postInstallAction sequence="post-assembly-ref" target="install-ext-palette-design" logLevel="debug" taskFile="${tibco.BW.home}/scripts/build.xml">
+			<postInstallActionProperty name="bw.home" value="${tibco.BW.home}"/>
+			<postInstallActionProperty name="bw.home.esc" value="${tibco.BW.home.esc}"/>
+			<postInstallActionProperty name="ext.palette.short.name" value="$L{bwpluginauditsafe.palette.short.name}"/>
+			<postInstallActionProperty name="ext.palette.package.name" value="$L{bwpluginauditsafe.palette.package.name}"/>
+			<postInstallActionProperty name="ext.palette.location" value="$L{bwpluginauditsafe.extension.palettes.home}"/>
+			<postInstallActionProperty name="ext.palette.install.ius" value="$L{bwpluginauditsafe.palette.ius}"/>
+			<postInstallActionProperty name="ext.palette.install.tag" value="$L{bwpluginauditsafe.palette.install.tag}"/>
+		</postInstallAction>
+
+		<!-- <postInstallAction logLevel="debug" sequence="post-assembly-ref" target="remove-exclude-as-provisioning-properties" taskFile="${tibco.BW.home}/scripts/build.xml">
+			<postInstallActionProperty name="bw.home" value="${tibco.BW.home}"/>
+			<postInstallActionProperty name="bw.home.esc" value="${tibco.BW.home.esc}"/>
+		</postInstallAction> -->
+
+		<postInstallAction logLevel="debug" sequence="post-assembly-ref" target="setup-bwthor-launch" taskFile="${tibco.BW.home}/scripts/build.xml">
+			<postInstallActionProperty name="bw.home" value="${tibco.BW.home}"/>
+			<postInstallActionProperty name="bw.home.esc" value="${tibco.BW.home.esc}"/>
+		</postInstallAction>
+
+		<postInstallAction logLevel="debug" sequence="pre-assembly-uninstall-ref" target="uninstall-ext-palette-design" taskFile="${tibco.BW.home}/scripts/build.xml">
+			<postInstallActionProperty name="bw.home" value="${tibco.BW.home}"/>
+			<postInstallActionProperty name="bw.home.esc" value="${tibco.BW.home.esc}"/>
+			<postInstallActionProperty name="ext.palette.short.name" value="$L{bwpluginauditsafe.palette.short.name}"/>
+			<postInstallActionProperty name="ext.palette.package.name" value="$L{bwpluginauditsafe.palette.package.name}"/>
+			<postInstallActionProperty name="ext.palette.location" value="$L{bwpluginauditsafe.extension.palettes.home}"/>
+			<postInstallActionProperty name="ext.palette.uninstall.ius" value="$L{bwpluginauditsafe.palette.ius}"/>
+			<postInstallActionProperty name="ext.palette.uninstall.tag" value="$L{bwpluginauditsafe.palette.uninstall.tag}"/>
+		</postInstallAction>
+
+		<postInstallAction logLevel="debug" sequence="post-uninstall-ref" target="setup-bwthor-launch" taskFile="${tibco.BW.home}/scripts/build.xml">
+			<postInstallActionProperty name="bw.home" value="${tibco.BW.home}"/>
+			<postInstallActionProperty name="bw.home.esc" value="${tibco.BW.home.esc}"/>
+		</postInstallAction>
+
+    </installerFeature>
+	
+	<installerFeature name="required" version="6.0.0" visible="false">
+		<install location="$L{bwpluginauditsafe.extension.palettes.design.home}">
+		<condition class="com.tibco.installer.wizard.condition.TIBCOFeatureSelectedWizardCondition">
+		<property mustBeMet="true"/>
+		<property featureID="design_bwpluginauditsafe"/>
+		</condition>
+		</install>
+		<assembly uid="assembly_tibco_com_tibco_bw_palette_tas_model_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.0.0" />
+		<assembly uid="assembly_tibco_com_tibco_bw_sharedresource_tas_model_feature" overrideTargetDirectory="$L{bwpluginauditsafe.extension.palettes.runtime.home}" version="6.0.0" />
+	</installerFeature>
+
+</TIBCOInstallerFeatures>

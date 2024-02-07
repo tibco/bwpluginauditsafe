@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="palette.model">
+
+<!-- 
+    ${repo}${autobuild.svn.tags-prefix}/tags${autobuild.svn.tags-suffix}/${autobuild.svn.tagname-base}-x.y.z.nnn/${autobuild.svn.tag-pattern}
+
+   ${repo}                        = bw
+   ${autobuild.svn.tags-prefix}   = <empty>
+   ${autobuild.svn.tags-suffix}   = /bw/{release-unit folder structure as in svn}
+   ${autobuild.svn.tagname-base}  = {two(or three) part release-unit name}
+   ${autobuild.svn.tag-pattern}   = {folder name as in svn, under which release-unit exists}
+   
+   Ex:
+   bw/tags/bw/palette/model/palette.model-6.0.0.001/model
+ -->
+
+    <property name="release-unit" value="palette.model" />
+    <property name="feature" value="com.tibco.bw.palette.tas.model.feature" />
+    
+    <!--
+   	if your product the final path in svn like this:
+     ...amxext/tags/bw6plugins/tas/palette/palette.model-6.0.0.001/model
+    then property configuration as below:  
+    -->
+    <property name="autobuild.repository" value="amxext" />
+    <property name="autobuild.svn.tags-suffix" value="/bw6plugins/tas/palette" />
+    <property name="autobuild.svn.tag-pattern" value="model" />
+    <property name="autobuild.p2.packaging" value="true" />    <!--want P2 package, used for eclipse P2 installation-->
+
+<!--
+    <property name="autobuild.version.eclipse" value="4.4" />
+    <property name="autobuild.version.developer.eclipse" value="4.4" />
+-->
+<property name="autobuild.version.eclipse" value="4.19"/>
+<property name="autobuild.version.developer.eclipse" value="4.19"/>
+<property name="autobuild.dir.java110-classes" value="${autobuild.dir.java-classes}"/>
+<property name="autobuild.jdk.force-110" value="true"/>
+    <property name="javacSource" value="1.8" />
+    <property name="javacTarget" value="1.8" />
+
+    <property name="autobuild.workspace.extra-feature" location="extrafeature.xml"/>
+
+    <property name="autobuild.obfuscator.style" value="package"/>
+
+    <property name="site.type" value="release"/>
+    <property name="reldist.download.enable" value="true"/>
+
+    <updatesites id="autobuild.workspace.update-sites.list">
+        <updatesite url="http://spin.tibco.com:8008/dev/release/"/>
+    </updatesites>
+    
+</project>

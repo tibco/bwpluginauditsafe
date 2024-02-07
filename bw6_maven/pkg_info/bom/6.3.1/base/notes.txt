@@ -1,0 +1,5 @@
+https://confluence.tibco.com/pages/viewpage.action?pageId=195418535
+
+dockerfile_location     https://svn.tibco.com/svn/amxext/trunk/bwsolutions/bwplugintcta/bw6/pkg_info/bom/6.1.0/base/docker-tci2.0
+pkg_location    http://reldist.na.tibco.com/package/bwpluginauditsafe/6.1.0/V9.1-GA/
+

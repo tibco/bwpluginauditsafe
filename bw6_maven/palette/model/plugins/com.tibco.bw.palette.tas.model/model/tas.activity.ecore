@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="tas" nsURI="http://ns.tibco.com/bw/palette/tas" nsPrefix="tas">
+  <eClassifiers xsi:type="ecore:EClass" name="TasAbstractObject" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tasConnection" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="cbgeneralcontrol"/>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PostAuditEvent" eSuperTypes="#//TasAbstractObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PutAuditEvent" eSuperTypes="#//TasAbstractObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PostBatchAuditEvents" eSuperTypes="#//TasAbstractObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="GetAuditEvent" eSuperTypes="#//TasAbstractObject">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sortColumn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="descOrder" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exactMatch" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="includePayload" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="limit" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="onlyGetCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+</ecore:EPackage>

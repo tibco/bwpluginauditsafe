@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ Copyright2011 - 2013 TIBCO Software Inc.
+ All rights reserved.
+ This software is confidential and proprietary information of TIBCO Software Inc.
+ Overridable true
+ </copyright>
+ $Id$
+-->
+
+<plugin>
+   <extension
+         point="com.tibco.amf.design.sr.core.sharedResourceExtension">
+      <srExtension
+            fileExtension="tasconnectionResource"
+            name="tasConnection"
+            typeQName="{http://ns.tibco.com/bw/sharedresource/tas}tasConnection">
+      </srExtension>
+   </extension>
+   <extension
+         point="com.tibco.amf.design.sr.core.sharedResourceCreator">
+      <sharedResourceCreator
+            sharedResourceType="tasconnectionResource"
+            wizard="com.tibco.bw.sharedresource.tas.design.wizard.TasConnectionWizard">
+      </sharedResourceCreator>
+   </extension>
+   <extension
+         point="com.tibco.bw.design.propertyType">
+      <propertyTypeToITBinding
+            implementationTypeID="implementation.bw"
+            supportedPropertyType="{http://ns.tibco.com/bw/sharedresource/tas}tasConnection">
+      </propertyTypeToITBinding>
+      <propertyType
+            QName="{http://ns.tibco.com/bw/sharedresource/tas}tasConnection"
+            cellEditor="com.tibco.bw.sharedresource.common.design.internal.picker.SharedResourceCellEditor:tasconnectionResource"
+            editControl="com.tibco.amf.design.sr.ui.internal.picker.SharedResourcePropertyValueViewer:tasconnectionResource"
+            icon="icons/obj16/tasResource_16x16.png"
+            typeDescription="%tasconnection.sharedresource.name"
+            typeLabel="%tasconnection.display.activity.name">
+      </propertyType>
+   </extension>
+   <extension
+         point="com.tibco.bw.sharedresource.common.design.BWSharedResource">
+      <resourcetype
+            productID="bw.auditsafe.product"
+            resourceQName="{http://ns.tibco.com/bw/sharedresource/tas}tasConnection">
+         <requirement
+               requirementName="bw.tasconnection"
+               requirementNamespace="com.tibco.bw.sharedresource.model">
+         </requirement>
+      </resourcetype>
+   </extension>
+   <extension
+         point="com.tibco.xpd.resources.workingCopyIndexer">
+      <indexer
+            filePattern="tasconnectionResource"
+            indexID="sr.index.tasconnectionResource"
+            indexerClass="com.tibco.amf.design.sr.core.internal.wc.GenericSharedResourceIndexProvider">
+      </indexer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            category="com.tibco.new"
+            class="com.tibco.bw.sharedresource.tas.design.wizard.TasConnectionWizard"
+            descriptionImage="icons/obj48/tasResource_48x48.png"
+            icon="icons/obj16/tasResource_16x16.png"
+            id="com.tibco.bw.sharedresource.tas.design.tasconnectionwizard"
+            name="%tasconnection.sharedresource.name">
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.tibco.bw.sharedresource.tas.design.wizard.TasConnectionSharedResourceEditor"
+            contributorClass="com.tibco.bw.sharedresource.common.design.forms.SREditorContributor"
+            default="true"
+            extensions="tasconnectionResource"
+            icon="icons/obj16/tasResource_16x16.png"
+            id="com.tibco.bw.sharedresource.tas.design.tasconnectioneditor"
+            name="%tasconnection.display.activity.name">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <commonWizard
+            associatedExtensionId="com.tibco.xpd.projectExplorer.compositeContent"
+            menuGroupId="shared-resources"
+            type="new"
+            wizardId="com.tibco.bw.sharedresource.tas.design.tasconnectionwizard">
+         <enablement>
+            <or>
+               <and>
+                  <instanceof
+                        value="com.tibco.xpd.resources.projectconfig.SpecialFolder">
+                  </instanceof>
+                  <test
+                        property="com.tibco.xpd.resources.specialfolder.isOfKind"
+                        value="com.tibco.amx.zion.resource">
+                  </test>
+               </and>
+               <and>
+                  <instanceof
+                        value="org.eclipse.core.resources.IResource">
+                  </instanceof>
+                  <test
+                        property="com.tibco.xpd.resources.specialfolder.isRootSpecialFolder"
+                        value="com.tibco.amx.zion.resource">
+                  </test>
+               </and>
+            </or>
+         </enablement>
+      </commonWizard>
+   </extension>
+   <extension
+         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            class="com.tibco.bw.sharedresource.tas.design.provider.TasItemProviderAdapterFactory"
+            uri="http://ns.tibco.com/bw/sharedresource/tas"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource">
+      </factory>
+   </extension>
+
+</plugin>

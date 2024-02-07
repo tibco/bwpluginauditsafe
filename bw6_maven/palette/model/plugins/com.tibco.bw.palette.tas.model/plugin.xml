@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ Copyright2011 - 2013 TIBCO Software Inc.
+ All rights reserved.
+ This software is confidential and proprietary information of TIBCO Software Inc.
+ Overridable true
+ </copyright>
+ $Id$
+-->
+
+<plugin>
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated tas.activity -->
+      <package
+            uri="http://ns.tibco.com/bw/palette/tas"
+            class="com.tibco.bw.palette.tas.model.tas.TasPackage"
+            genModel="model/tas.activity.genmodel"/>
+   </extension>
+   <extension
+         point="com.tibco.bw.model.ActivityIcon">
+      <activityIcon
+            activityTypeID="bw.auditsafe.PostAuditEvent"
+            diagramIcon="icons/obj48/postauditevent_48x48.png"
+            largeIcon="icons/obj32/postauditevent_32x32.png"
+            smallIcon="icons/obj16/postauditevent_16x16.png">
+      </activityIcon>
+      <activityIcon
+            activityTypeID="bw.auditsafe.PutAuditEvent"
+            diagramIcon="icons/obj48/putauditevent_48x48.png"
+            largeIcon="icons/obj32/putauditevent_32x32.png"
+            smallIcon="icons/obj16/putauditevent_16x16.png">
+      </activityIcon>
+      <activityIcon
+            activityTypeID="bw.auditsafe.GetAuditEvent"
+            diagramIcon="icons/obj48/getauditevent_48x48.png"
+            largeIcon="icons/obj32/getauditevent_32x32.png"
+            smallIcon="icons/obj16/getauditevent_16x16.png">
+      </activityIcon>
+    </extension>
+
+</plugin>

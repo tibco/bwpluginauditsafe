@@ -9,7 +9,7 @@
    		compatDisplayName="TIBCO ActiveMatrix BusinessWorks(TM) Plug-in for TIBCO AuditSafe"
    		compatType="bwpluginauditsafe"
 		emailalias="mqian@tibco.com"
-   		universalinstallerrelease="3.7.7"
+   		universalinstallerrelease="3.8.1"
    		universalinstallerversion="L"/>
 
         <packagingProperties createp2installer="true" supportedBWVersion="6.9" createcloudartifacts="epaas" bundle_analysis="true"/>

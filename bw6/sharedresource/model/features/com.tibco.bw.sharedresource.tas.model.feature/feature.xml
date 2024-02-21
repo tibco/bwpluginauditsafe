@@ -15,7 +15,7 @@
 
 
    <requires>
-      <import plugin="com.tibco.bw.tpcl.com.sun.jersey" version="2.21.1100" match="compatible"/>
+      <import feature="com.tibco.bw.tpcl.com.sun.jersey.feature" version="2.21.1100" match="compatible"/>
    </requires>
 
    <license url="%licenseURL">
